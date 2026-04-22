@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ═══════════════════════════════════════════
+       SEO META TAGS
+  ════════════════════════════════════════════ -->
+  <title>Nexusyl Limited | Recruitment, Street Food, Education & Property — London</title>
+  <meta name="description" content="Nexusyl Limited is a London-based multi-sector company. We offer expert recruitment & job placement, street food catering, international student university admissions, and property letting & management across the UK." />
+  <meta name="keywords" content="recruitment in London, job placement London, talent acquisition UK, student admission agent UK, international student university admissions London, letting agent London, property management London, street food catering London, food cart hire London, Nexusyl Limited" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Nexusyl Limited" />
+  <link rel="canonical" href="https://www.nexusyl.co.uk/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.nexusyl.co.uk/" />
+  <meta property="og:title" content="Nexusyl Limited | Multi-Sector Solutions in London" />
+  <meta property="og:description" content="From talent acquisition to student admissions, street food to property management — Nexusyl Limited connects people with opportunity." />
+  <meta property="og:image" content="https://www.nexusyl.co.uk/og-image.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Nexusyl Limited | Multi-Sector Solutions" />
+  <meta name="twitter:description" content="Recruitment · Street Food · Education · Property — all under one trusted brand in London." />
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Nexusyl Limited",
+    "url": "https://www.nexusyl.co.uk",
+    "logo": "https://www.nexusyl.co.uk/Nexusyl.png",
+    "description": "Multi-sector company based in London providing recruitment, street food catering, international student admissions, and property letting services.",
+    "address": { "@type": "PostalAddress", "addressLocality": "London", "addressCountry": "GB" },
+    "contactPoint": { "@type": "ContactPoint", "contactType": "customer service", "email": "hello@nexusyl.co.uk" }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['Manrope', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              red:   '#E8211A',
+              black: '#0A0A0A',
+              dark:  '#111111',
+              card:  '#161616',
+              muted: '#888888',
+              border:'#222222',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --red:    #E8211A;
+      --black:  #0A0A0A;
+      --dark:   #111111;
+      --card:   #161616;
+      --border: #2a2a2a;
+      --muted:  #888;
+      --white:  #F5F5F5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+
+    /* ── NAV ── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(10,10,10,0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+    #navbar.scrolled { border-color: rgba(232,33,26,0.3); }
+
+    .nav-link {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #aaa;
+      transition: color 0.2s;
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 1.5px; background: var(--red);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.25s;
+    }
+    .nav-link:hover { color: #fff; }
+    .nav-link:hover::after { transform: scaleX(1); }
+
+    /* ── HERO ── */
+    .hero-section {
+      min-height: 100vh;
+      background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-noise {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    .hero-glow {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(232,33,26,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-lines {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+
+    /* Animated counter line */
+    .ticker-line {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+      animation: sweep 3s ease-in-out infinite;
+    }
+    @keyframes sweep {
+      0%   { opacity: 0; transform: scaleX(0) translateX(-100%); }
+      50%  { opacity: 1; transform: scaleX(1) translateX(0); }
+      100% { opacity: 0; transform: scaleX(0) translateX(100%); }
+    }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(232,33,26,0.35);
+      border-radius: 2px;
+      padding: 6px 16px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(232,33,26,0.85);
+      background: rgba(232,33,26,0.06);
+    }
+    .badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--red);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    /* ── HEADLINE ANIMATION ── */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .anim-1 { animation: fade-up 0.7s ease both; }
+    .anim-2 { animation: fade-up 0.7s ease 0.15s both; }
+    .anim-3 { animation: fade-up 0.7s ease 0.3s both; }
+    .anim-4 { animation: fade-up 0.7s ease 0.45s both; }
+    .anim-5 { animation: fade-up 0.7s ease 0.6s both; }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(232,33,26,0.3);
+    }
+    .btn-primary:hover {
+      background: #ff2d25;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 36px rgba(232,33,26,0.45);
+    }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid var(--border);
+      color: #ccc;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: var(--red);
+      color: #fff;
+      background: rgba(232,33,26,0.07);
+    }
+
+    /* ── STATS ROW ── */
+    .stat-item {
+      border-left: 2px solid var(--red);
+      padding-left: 20px;
+    }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 32px; height: 1px;
+      background: var(--red);
+    }
+
+    /* ── SECTOR CARDS ── */
+    .sector-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    .sector-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--red);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s;
+      z-index: 2;
+    }
+    .sector-card:hover { border-color: #333; transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+    .sector-card:hover::before { transform: scaleX(1); }
+
+    .sector-img-wrap { position: relative; overflow: hidden; height: 240px; }
+    .sector-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s;
+      filter: brightness(0.85);
+    }
+    .sector-card:hover .sector-img-wrap img { transform: scale(1.06); filter: brightness(0.95); }
+
+    .sector-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.7) 0%, transparent 60%);
+    }
+    .sector-number {
+      position: absolute; top: 16px; right: 16px;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.5);
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    /* ── SERVICES LIST ── */
+    .service-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.83rem; color: #aaa;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .service-item:last-child { border-bottom: none; }
+    .service-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+
+    /* ── FEATURE STRIP ── */
+    .feature-strip {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .feature-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.8rem; font-weight: 600; color: #aaa;
+      padding: 14px 0;
+    }
+    .feature-pill i { color: var(--red); font-size: 0.85rem; }
+
+    /* ── CONTACT FORM ── */
+    .form-input {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 13px 16px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.875rem;
+      color: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .form-input::placeholder { color: #555; }
+    .form-input:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(232,33,26,0.1);
+    }
+    .form-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 6px;
+    }
+
+    /* ── FOOTER ── */
+    .footer-link {
+      font-size: 0.82rem; color: #666;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--red); }
+
+    /* ── MOBILE NAV ── */
+    #mobile-menu {
+      display: none;
+      background: rgba(10,10,10,0.98);
+      border-top: 1px solid var(--border);
+    }
+    #mobile-menu.open { display: block; }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── SUCCESS MESSAGE ── */
+    #form-success {
+      display: none;
+      background: rgba(232,33,26,0.1);
+      border: 1px solid rgba(232,33,26,0.3);
+      border-radius: 2px;
+      padding: 16px;
+      text-align: center;
+      color: #fff;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     STICKY NAVIGATION
+════════════════════════════════════════════════════════════ -->
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-3 flex-shrink-0">
+        <img src="Nexusyl_Fab.png" alt="Nexusyl icon" class="h-8 w-8 object-contain" onerror="this.style.display='none'" />
+        <img src="Nexusyl.png" alt="Nexusyl Limited" class="h-7 object-contain hidden sm:block" onerror="this.style.display='none'" />
+        <span class="text-white font-display font-bold text-lg sm:hidden">nexusyl!</span>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#recruitment" class="nav-link">Recruitment</a>
+        <a href="#streetfood"  class="nav-link">Street Food</a>
+        <a href="#education"   class="nav-link">Education</a>
+        <a href="#property"    class="nav-link">Property</a>
+        <a href="#contact"     class="btn-primary text-xs py-2.5 px-5">Get in Touch</a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-toggle" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-2">
+        <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar1"></span>
+        <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
+        <span class="w-4 h-0.5 bg-white transition-all duration-300" id="bar3"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" role="menu">
+    <div class="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-1">
+      <a href="#recruitment" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-briefcase mr-3 text-red-500"></i>Recruitment
+      </a>
+      <a href="#streetfood" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-utensils mr-3 text-red-500"></i>Street Food
+      </a>
+      <a href="#education" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-graduation-cap mr-3 text-red-500"></i>Education
+      </a>
+      <a href="#property" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-building mr-3 text-red-500"></i>Property
+      </a>
+      <div class="pt-2 pb-1">
+        <a href="#contact" class="btn-primary w-full justify-center text-sm">Get in Touch <i class="fa-solid fa-arrow-right text-xs"></i></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     HERO SECTION
+════════════════════════════════════════════════════════════ -->
+<section id="home" class="hero-section" aria-label="Hero">
+  <div class="hero-noise"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-glow"></div>
+
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 w-full pt-20 pb-12">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-[80vh]">
+
+      <!-- Left: Copy -->
+      <div>
+        <div class="badge anim-1 mb-8">
+          <span class="badge-dot"></span>
+          London, United Kingdom
+        </div>
+
+        <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-white anim-2 mb-6">
+          One Company.<br />
+          <span style="color: var(--red);">Endless</span><br />
+          Possibilities.
+        </h1>
+
+        <p class="text-gray-400 text-base sm:text-lg leading-relaxed anim-3 mb-8 max-w-md">
+          Nexusyl Limited operates across four dynamic sectors — connecting talent, feeding communities, opening university doors, and finding homes across the UK.
+        </p>
+
+        <!-- Sector pills -->
+        <div class="flex flex-wrap gap-2 anim-4 mb-10">
+          <span class="text-xs font-semibold px-3 py-1.5 rounded-sm border border-white/10 text-gray-400 bg-white/5">Recruitment</span>
+          <span class="text-xs font-semibold px-3 py-1.5 rounded-sm border border-white/10 text-gray-400 bg-white/5">Street Food</span>
+          <span class="text-xs font-semibold px-3 py-1.5 rounded-sm border border-white/10 text-gray-400 bg-white/5">Education</span>
+          <span class="text-xs font-semibold px-3 py-1.5 rounded-sm border border-white/10 text-gray-400 bg-white/5">Property</span>
+        </div>
+
+        <div class="flex flex-wrap gap-4 anim-5">
+          <a href="#contact" class="btn-primary">
+            Get Started <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+          <a href="#recruitment" class="btn-outline">
+            Our Services <i class="fa-solid fa-chevron-down text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Stats -->
+      <div class="lg:flex flex-col gap-6 hidden">
+        <!-- Logo large display -->
+        <div class="border border-white/8 rounded-sm p-8 bg-white/3 backdrop-blur-sm flex items-center justify-center" style="background: rgba(22,22,22,0.7);">
+          <img src="Nexusyl.png" alt="Nexusyl Limited" class="max-w-[280px] w-full object-contain" onerror="this.style.display='none'" />
+        </div>
+
+        <!-- Stats grid -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="stat-item">
+            <div class="font-display text-3xl font-bold text-white mb-1">4</div>
+            <div class="text-xs text-gray-500 font-semibold uppercase tracking-widest">Business Sectors</div>
+          </div>
+          <div class="stat-item">
+            <div class="font-display text-3xl font-bold text-white mb-1">UK</div>
+            <div class="text-xs text-gray-500 font-semibold uppercase tracking-widest">Wide Operations</div>
+          </div>
+          <div class="stat-item">
+            <div class="font-display text-3xl font-bold text-white mb-1">100+</div>
+            <div class="text-xs text-gray-500 font-semibold uppercase tracking-widest">Clients Served</div>
+          </div>
+          <div class="stat-item">
+            <div class="font-display text-3xl font-bold text-white mb-1">5★</div>
+            <div class="text-xs text-gray-500 font-semibold uppercase tracking-widest">Rated Service</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile stats -->
+  <div class="grid grid-cols-4 border-t border-white/8 lg:hidden w-full" style="border-top-color: var(--border);">
+    <div class="py-5 flex flex-col items-center border-r" style="border-color: var(--border);">
+      <span class="font-display text-xl font-bold text-white">4</span>
+      <span class="text-xs text-gray-600 mt-0.5">Sectors</span>
+    </div>
+    <div class="py-5 flex flex-col items-center border-r" style="border-color: var(--border);">
+      <span class="font-display text-xl font-bold text-white">UK</span>
+      <span class="text-xs text-gray-600 mt-0.5">Wide</span>
+    </div>
+    <div class="py-5 flex flex-col items-center border-r" style="border-color: var(--border);">
+      <span class="font-display text-xl font-bold text-white">100+</span>
+      <span class="text-xs text-gray-600 mt-0.5">Clients</span>
+    </div>
+    <div class="py-5 flex flex-col items-center">
+      <span class="font-display text-xl font-bold text-white">5★</span>
+      <span class="text-xs text-gray-600 mt-0.5">Rated</span>
+    </div>
+  </div>
+
+  <div class="ticker-line"></div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FEATURE STRIP
+════════════════════════════════════════════════════════════ -->
+<div class="feature-strip overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="flex flex-wrap items-center gap-x-10 gap-y-0 divide-x divide-white/8">
+      <div class="feature-pill"><i class="fa-solid fa-check-circle"></i> Trusted Multi-Sector Company</div>
+      <div class="feature-pill pl-10"><i class="fa-solid fa-map-marker-alt"></i> Based in London</div>
+      <div class="feature-pill pl-10"><i class="fa-solid fa-shield-halved"></i> Fully Compliant & Regulated</div>
+      <div class="feature-pill pl-10"><i class="fa-solid fa-headset"></i> Dedicated Support Team</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTOR 1: NEXUSYL RECRUITMENT
+════════════════════════════════════════════════════════════ -->
+<section id="recruitment" class="py-24 lg:py-32" aria-label="Nexusyl Recruitment">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+    <!-- Label -->
+    <div class="section-label reveal mb-4">Sector 01</div>
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- Image -->
+      <div class="reveal order-2 lg:order-1">
+        <div class="relative">
+          <div class="absolute -inset-3 rounded-sm opacity-20" style="background: radial-gradient(circle at 50% 50%, var(--red), transparent 70%);"></div>
+          <div class="sector-img-wrap rounded-sm relative z-10" style="height: 480px;">
+            <img
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&q=80&auto=format&fit=crop"
+              alt="Professional office environment for recruitment services in London"
+              loading="lazy"
+            />
+            <div class="sector-img-overlay"></div>
+          </div>
+          <!-- Floating badge -->
+          <div class="absolute -bottom-5 -right-5 z-20 bg-brand-card border rounded-sm p-4" style="background: var(--card); border-color: var(--border);">
+            <div class="font-display text-2xl font-bold text-white mb-0.5">500+</div>
+            <div class="text-xs text-gray-500 uppercase tracking-widest">Placements Made</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copy -->
+      <div class="order-1 lg:order-2">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-white leading-tight reveal mb-4">
+          Nexusyl <span style="color: var(--red);">Recruitment</span>
+        </h2>
+        <p class="text-gray-400 text-base leading-relaxed reveal reveal-delay-1 mb-6">
+          We connect ambitious professionals with forward-thinking employers across London and the UK. Whether you're a candidate seeking your next opportunity or a business hunting for elite talent, Nexusyl Recruitment is your dedicated partner.
+        </p>
+
+        <!-- Services list -->
+        <div class="reveal reveal-delay-2 mb-8 border rounded-sm p-5" style="border-color: var(--border);">
+          <div class="service-item"><span class="service-dot"></span>Permanent & Contract Placements</div>
+          <div class="service-item"><span class="service-dot"></span>Executive Search & Headhunting</div>
+          <div class="service-item"><span class="service-dot"></span>CV Writing & Interview Coaching</div>
+          <div class="service-item"><span class="service-dot"></span>Workforce Planning & HR Consulting</div>
+          <div class="service-item"><span class="service-dot"></span>Sector-Specific Talent Pipelines</div>
+        </div>
+
+        <!-- Icons row -->
+        <div class="flex flex-wrap gap-5 reveal reveal-delay-3 mb-8">
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <i class="fa-solid fa-user-tie text-red-500"></i> Executive Level
+          </div>
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <i class="fa-solid fa-clock text-red-500"></i> Fast Turnaround
+          </div>
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <i class="fa-solid fa-handshake text-red-500"></i> No Placement, No Fee
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-4">
+          <a href="#contact" class="btn-primary">
+            Find Talent or Work <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider mx-8 lg:mx-24"></div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTOR 2: NEXUSYL STREET FOOD
+════════════════════════════════════════════════════════════ -->
+<section id="streetfood" class="py-24 lg:py-32" aria-label="Nexusyl Street Food">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+    <div class="section-label reveal mb-4">Sector 02</div>
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- Copy -->
+      <div>
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-white leading-tight reveal mb-4">
+          Nexusyl <span style="color: var(--red);">Street Food</span>
+        </h2>
+        <p class="text-gray-400 text-base leading-relaxed reveal reveal-delay-1 mb-6">
+          Bold flavours, vibrant atmosphere, and professional catering excellence. Our street food cart and catering arm brings unforgettable food experiences to events, corporate gatherings, markets, festivals, and private functions across London and beyond.
+        </p>
+
+        <div class="reveal reveal-delay-2 mb-8 border rounded-sm p-5" style="border-color: var(--border);">
+          <div class="service-item"><span class="service-dot"></span>Food Cart Hire for Events & Festivals</div>
+          <div class="service-item"><span class="service-dot"></span>Corporate Catering Packages</div>
+          <div class="service-item"><span class="service-dot"></span>Private Party & Wedding Catering</div>
+          <div class="service-item"><span class="service-dot"></span>Market Stall Operations</div>
+          <div class="service-item"><span class="service-dot"></span>Bespoke Menu Curation</div>
+        </div>
+
+        <div class="flex flex-wrap gap-5 reveal reveal-delay-3 mb-8">
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <i class="fa-solid fa-fire text-red-500"></i> Fresh & Flavourful
+          </div>
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <i class="fa-solid fa-calendar-check text-red-500"></i> Bookable Year-Round
+          </div>
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <i class="fa-solid fa-leaf text-red-500"></i> Dietary Options Available
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-4">
+          <a href="#contact" class="btn-primary">
+            Book Our Cart <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="reveal">
+        <div class="relative">
+          <div class="absolute -inset-3 rounded-sm opacity-20" style="background: radial-gradient(circle at 50% 50%, var(--red), transparent 70%);"></div>
+          <div class="sector-img-wrap rounded-sm relative z-10" style="height: 480px;">
+            <img
+              src="https://images.unsplash.com/photo-1565299543923-37dd37887442?w=900&q=80&auto=format&fit=crop"
+              alt="Vibrant street food cart with fresh food — Nexusyl Street Food London"
+              loading="lazy"
+            />
+            <div class="sector-img-overlay"></div>
+          </div>
+          <div class="absolute -bottom-5 -left-5 z-20 bg-brand-card border rounded-sm p-4" style="background: var(--card); border-color: var(--border);">
+            <div class="font-display text-2xl font-bold text-white mb-0.5">Events</div>
+            <div class="text-xs text-gray-500 uppercase tracking-widest">All Year Round</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider mx-8 lg:mx-24"></div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTOR 3: NEXUSYL EDUCATION
+════════════════════════════════════════════════════════════ -->
+<section id="education" class="py-24 lg:py-32" aria-label="Nexusyl Education">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+    <div class="section-label reveal mb-4">Sector 03</div>
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- Image -->
+      <div class="reveal order-2 lg:order-1">
+        <div class="relative">
+          <div class="absolute -inset-3 rounded-sm opacity-20" style="background: radial-gradient(circle at 50% 50%, var(--red), transparent 70%);"></div>
+          <div class="sector-img-wrap rounded-sm relative z-10" style="height: 480px;">
+            <img
+              src="https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=900&q=80&auto=format&fit=crop"
+              alt="University campus for international student admissions — Nexusyl Education"
+              loading="lazy"
+            />
+            <div class="sector-img-overlay"></div>
+          </div>
+          <div class="absolute -bottom-5 -right-5 z-20 bg-brand-card border rounded-sm p-4" style="background: var(--card); border-color: var(--border);">
+            <div class="font-display text-2xl font-bold text-white mb-0.5">50+</div>
+            <div class="text-xs text-gray-500 uppercase tracking-widest">University Partners</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copy -->
+      <div class="order-1 lg:order-2">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-white leading-tight reveal mb-4">
+          Nexusyl <span style="color: var(--red);">Education</span>
+        </h2>
+        <p class="text-gray-400 text-base leading-relaxed reveal reveal-delay-1 mb-6">
+          Your trusted international student admission agent. We guide students from across the globe through the UK university application process — from selecting the right course to submitting a winning application and managing your student visa.
+        </p>
+
+        <div class="reveal reveal-delay-2 mb-8 border rounded-sm p-5" style="border-color: var(--border);">
+          <div class="service-item"><span class="service-dot"></span>UK University Application Guidance</div>
+          <div class="service-item"><span class="service-dot"></span>Course & University Selection</div>
+          <div class="service-item"><span class="service-dot"></span>Student Visa Application Support (CAS)</div>
+          <div class="service-item"><span class="service-dot"></span>Personal Statement & SOP Writing</div>
+          <div class="service-item"><span class="service-dot"></span>Pre-Departure & Arrival Support</div>
+        </div>
+
+        <div class="flex flex-wrap gap-5 reveal reveal-delay-3 mb-8">
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <i class="fa-solid fa-globe text-red-500"></i> 30+ Countries
+          </div>
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <i class="fa-solid fa-university text-red-500"></i> Top UK Universities
+          </div>
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <i class="fa-solid fa-star text-red-500"></i> High Acceptance Rate
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-4">
+          <a href="#contact" class="btn-primary">
+            Apply Now <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider mx-8 lg:mx-24"></div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTOR 4: NEXUSYL PROPERTY
+════════════════════════════════════════════════════════════ -->
+<section id="property" class="py-24 lg:py-32" aria-label="Nexusyl Property">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+    <div class="section-label reveal mb-4">Sector 04</div>
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- Copy -->
+      <div>
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-white leading-tight reveal mb-4">
+          Nexusyl <span style="color: var(--red);">Property</span>
+        </h2>
+        <p class="text-gray-400 text-base leading-relaxed reveal reveal-delay-1 mb-6">
+          Expert letting agents and property management specialists. We help landlords maximise their rental yields and guide tenants to their perfect home — delivering a seamless, professional experience from listing to keys in hand.
+        </p>
+
+        <div class="reveal reveal-delay-2 mb-8 border rounded-sm p-5" style="border-color: var(--border);">
+          <div class="service-item"><span class="service-dot"></span>Residential Lettings & Tenant Finding</div>
+          <div class="service-item"><span class="service-dot"></span>Full Property Management Service</div>
+          <div class="service-item"><span class="service-dot"></span>Landlord Compliance & Inspections</div>
+          <div class="service-item"><span class="service-dot"></span>Rent Collection & Arrears Management</div>
+          <div class="service-item"><span class="service-dot"></span>Property Maintenance Coordination</div>
+        </div>
+
+        <div class="flex flex-wrap gap-5 reveal reveal-delay-3 mb-8">
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <i class="fa-solid fa-key text-red-500"></i> Landlord & Tenant
+          </div>
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <i class="fa-solid fa-chart-line text-red-500"></i> Maximise Yields
+          </div>
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <i class="fa-solid fa-file-contract text-red-500"></i> Fully Compliant
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-4">
+          <a href="#contact" class="btn-primary">
+            List or Find a Property <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="reveal">
+        <div class="relative">
+          <div class="absolute -inset-3 rounded-sm opacity-20" style="background: radial-gradient(circle at 50% 50%, var(--red), transparent 70%);"></div>
+          <div class="sector-img-wrap rounded-sm relative z-10" style="height: 480px;">
+            <img
+              src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=900&q=80&auto=format&fit=crop"
+              alt="Modern London apartment for letting — Nexusyl Property Management"
+              loading="lazy"
+            />
+            <div class="sector-img-overlay"></div>
+          </div>
+          <div class="absolute -bottom-5 -left-5 z-20 bg-brand-card border rounded-sm p-4" style="background: var(--card); border-color: var(--border);">
+            <div class="font-display text-2xl font-bold text-white mb-0.5">200+</div>
+            <div class="text-xs text-gray-500 uppercase tracking-widest">Properties Managed</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     WHY NEXUSYL — TRUST BAR
+════════════════════════════════════════════════════════════ -->
+<section class="py-20" style="background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="text-center mb-14 reveal">
+      <div class="section-label justify-center mb-4">Why Nexusyl</div>
+      <h2 class="font-display text-3xl lg:text-4xl font-bold text-white">
+        Trusted Across Every Sector
+      </h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <!-- Card 1 -->
+      <div class="sector-card p-6 reveal">
+        <div class="w-10 h-10 rounded-sm flex items-center justify-center mb-4" style="background: rgba(232,33,26,0.12);">
+          <i class="fa-solid fa-award" style="color: var(--red);"></i>
+        </div>
+        <h3 class="font-display font-bold text-white mb-2">Proven Track Record</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Hundreds of successful placements, admissions, lettings, and events delivered with excellence.</p>
+      </div>
+      <!-- Card 2 -->
+      <div class="sector-card p-6 reveal reveal-delay-1">
+        <div class="w-10 h-10 rounded-sm flex items-center justify-center mb-4" style="background: rgba(232,33,26,0.12);">
+          <i class="fa-solid fa-people-group" style="color: var(--red);"></i>
+        </div>
+        <h3 class="font-display font-bold text-white mb-2">Expert Teams</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Every division is led by specialists with deep industry knowledge and a passion for results.</p>
+      </div>
+      <!-- Card 3 -->
+      <div class="sector-card p-6 reveal reveal-delay-2">
+        <div class="w-10 h-10 rounded-sm flex items-center justify-center mb-4" style="background: rgba(232,33,26,0.12);">
+          <i class="fa-solid fa-headset" style="color: var(--red);"></i>
+        </div>
+        <h3 class="font-display font-bold text-white mb-2">Dedicated Support</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">We stay with you at every step — before, during, and after engagement with any of our services.</p>
+      </div>
+      <!-- Card 4 -->
+      <div class="sector-card p-6 reveal reveal-delay-3">
+        <div class="w-10 h-10 rounded-sm flex items-center justify-center mb-4" style="background: rgba(232,33,26,0.12);">
+          <i class="fa-solid fa-shield-halved" style="color: var(--red);"></i>
+        </div>
+        <h3 class="font-display font-bold text-white mb-2">Fully Compliant</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">We operate to the highest regulatory standards across all four of our business sectors in the UK.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     CONTACT SECTION
+════════════════════════════════════════════════════════════ -->
+<section id="contact" class="py-24 lg:py-32" aria-label="Contact Nexusyl Limited">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+      <!-- Left info -->
+      <div class="reveal">
+        <div class="section-label mb-4">Get In Touch</div>
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+          Let's Start a <span style="color: var(--red);">Conversation</span>
+        </h2>
+        <p class="text-gray-400 text-base leading-relaxed mb-10">
+          Whether you're looking for a job, planning an event, applying to university, or need help with your property — we'd love to hear from you. Reach out and a member of our team will be in touch promptly.
+        </p>
+
+        <!-- Contact details -->
+        <div class="flex flex-col gap-6">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-sm flex-shrink-0 flex items-center justify-center" style="background: rgba(232,33,26,0.12);">
+              <i class="fa-solid fa-envelope" style="color: var(--red); font-size: 0.875rem;"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-widest text-gray-600 mb-0.5">Email Us</div>
+              <a href="mailto:hello@nexusyl.co.uk" class="text-white font-medium hover:text-red-400 transition-colors">hello@nexusyl.co.uk</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-sm flex-shrink-0 flex items-center justify-center" style="background: rgba(232,33,26,0.12);">
+              <i class="fa-solid fa-phone" style="color: var(--red); font-size: 0.875rem;"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-widest text-gray-600 mb-0.5">Call Us</div>
+              <a href="tel:+442012345678" class="text-white font-medium hover:text-red-400 transition-colors">+44 (0)20 1234 5678</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-sm flex-shrink-0 flex items-center justify-center" style="background: rgba(232,33,26,0.12);">
+              <i class="fa-solid fa-location-dot" style="color: var(--red); font-size: 0.875rem;"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-widest text-gray-600 mb-0.5">Our Office</div>
+              <span class="text-white font-medium">London, United Kingdom</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social -->
+        <div class="mt-10 flex items-center gap-3">
+          <span class="text-xs font-bold uppercase tracking-widest text-gray-600">Follow Us</span>
+          <div class="flex gap-2">
+            <a href="#" aria-label="LinkedIn" class="w-8 h-8 rounded-sm border flex items-center justify-center text-gray-500 hover:text-white hover:border-red-500 transition-all" style="border-color: var(--border);">
+              <i class="fa-brands fa-linkedin-in text-xs"></i>
+            </a>
+            <a href="#" aria-label="Instagram" class="w-8 h-8 rounded-sm border flex items-center justify-center text-gray-500 hover:text-white hover:border-red-500 transition-all" style="border-color: var(--border);">
+              <i class="fa-brands fa-instagram text-xs"></i>
+            </a>
+            <a href="#" aria-label="Facebook" class="w-8 h-8 rounded-sm border flex items-center justify-center text-gray-500 hover:text-white hover:border-red-500 transition-all" style="border-color: var(--border);">
+              <i class="fa-brands fa-facebook-f text-xs"></i>
+            </a>
+            <a href="#" aria-label="X/Twitter" class="w-8 h-8 rounded-sm border flex items-center justify-center text-gray-500 hover:text-white hover:border-red-500 transition-all" style="border-color: var(--border);">
+              <i class="fa-brands fa-x-twitter text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right form -->
+      <div class="reveal reveal-delay-2">
+        <div class="border rounded-sm p-8 lg:p-10" style="background: var(--card); border-color: var(--border);">
+
+          <div id="form-success">
+            <i class="fa-solid fa-circle-check text-2xl mb-3" style="color: var(--red);"></i>
+            <p class="font-semibold text-white mb-1">Message Sent!</p>
+            <p class="text-gray-400 text-sm">Thank you for reaching out. We'll get back to you shortly.</p>
+          </div>
+
+          <form id="contact-form" novalidate>
+
+            <!-- Name -->
+            <div class="mb-5">
+              <label class="form-label" for="name">Full Name</label>
+              <input class="form-input" type="text" id="name" name="name" placeholder="John Smith" required />
+            </div>
+
+            <!-- Email -->
+            <div class="mb-5">
+              <label class="form-label" for="email">Email Address</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="john@example.com" required />
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-5">
+              <label class="form-label" for="phone">Phone Number <span class="text-gray-600 normal-case tracking-normal font-normal">(optional)</span></label>
+              <input class="form-input" type="tel" id="phone" name="phone" placeholder="+44 7700 000000" />
+            </div>
+
+            <!-- Enquiry type -->
+            <div class="mb-5">
+              <label class="form-label" for="sector">Enquiry Type</label>
+              <select class="form-input" id="sector" name="sector" required>
+                <option value="" disabled selected>Select a service area...</option>
+                <option value="recruitment">Nexusyl Recruitment</option>
+                <option value="streetfood">Nexusyl Street Food</option>
+                <option value="education">Nexusyl Education</option>
+                <option value="property">Nexusyl Property</option>
+                <option value="general">General Enquiry</option>
+              </select>
+            </div>
+
+            <!-- Message -->
+            <div class="mb-7">
+              <label class="form-label" for="message">Your Message</label>
+              <textarea class="form-input" id="message" name="message" rows="4" placeholder="Tell us how we can help you..." required style="resize: vertical;"></textarea>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn-primary w-full justify-center text-sm">
+              Send Message <i class="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+
+            <p class="text-xs text-gray-600 text-center mt-4">We respond within 1 business day. Your information is kept private.</p>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════ -->
+<footer style="background: var(--dark); border-top: 1px solid var(--border);" role="contentinfo">
+
+  <!-- Main footer -->
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-14">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
+
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3 mb-5">
+          <img src="Nexusyl_Fab.png" alt="Nexusyl icon" class="h-8 w-8 object-contain" onerror="this.style.display='none'" />
+          <img src="Nexusyl.png" alt="Nexusyl Limited" class="h-7 object-contain" onerror="this.style.display='none'" />
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed mb-5 max-w-xs">
+          A London-based multi-sector company delivering excellence across recruitment, food, education, and property.
+        </p>
+        <div class="text-xs text-gray-600 font-semibold uppercase tracking-widest">Registered in England & Wales</div>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Our Sectors</h3>
+        <div class="flex flex-col gap-2.5">
+          <a href="#recruitment" class="footer-link">Recruitment</a>
+          <a href="#streetfood"  class="footer-link">Street Food</a>
+          <a href="#education"   class="footer-link">Education</a>
+          <a href="#property"    class="footer-link">Property</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Company</h3>
+        <div class="flex flex-col gap-2.5">
+          <a href="#home"    class="footer-link">About Us</a>
+          <a href="#contact" class="footer-link">Contact</a>
+          <a href="#"        class="footer-link">Privacy Policy</a>
+          <a href="#"        class="footer-link">Terms of Service</a>
+        </div>
+      </div>
+
+      <!-- Contact quick -->
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Contact</h3>
+        <div class="flex flex-col gap-3">
+          <a href="mailto:hello@nexusyl.co.uk" class="footer-link flex items-center gap-2">
+            <i class="fa-solid fa-envelope text-red-600 text-xs"></i> hello@nexusyl.co.uk
+          </a>
+          <a href="tel:+442012345678" class="footer-link flex items-center gap-2">
+            <i class="fa-solid fa-phone text-red-600 text-xs"></i> +44 (0)20 1234 5678
+          </a>
+          <span class="footer-link flex items-center gap-2">
+            <i class="fa-solid fa-location-dot text-red-600 text-xs"></i> London, UK
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div style="border-top: 1px solid var(--border);">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-gray-600">© <span id="year"></span> Nexusyl Limited. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="#" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Privacy</a>
+        <a href="#" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Terms</a>
+        <a href="#" class="text-xs text-gray-600 hover:text-gray-400 transition-colors">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top button -->
+<button id="back-to-top" aria-label="Back to top"
+  style="position: fixed; bottom: 24px; right: 24px; z-index: 900; background: var(--red); color: white; width: 40px; height: 40px; border-radius: 2px; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(232,33,26,0.4); transition: transform 0.2s; border: none; cursor: pointer;">
+  <i class="fa-solid fa-arrow-up text-sm"></i>
+</button>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════════════ -->
+<script>
+  // ── Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ── Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── Mobile menu
+  const toggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const bar1 = document.getElementById('bar1');
+  const bar2 = document.getElementById('bar2');
+  const bar3 = document.getElementById('bar3');
+  let menuOpen = false;
+
+  toggle.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('open', menuOpen);
+    bar1.style.transform = menuOpen ? 'translateY(8px) rotate(45deg)' : '';
+    bar2.style.opacity   = menuOpen ? '0' : '1';
+    bar3.style.transform = menuOpen ? 'translateY(-8px) rotate(-45deg)' : '';
+    bar3.style.width     = menuOpen ? '24px' : '16px';
+  });
+
+  // Close mobile menu on nav link click
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      menuOpen = false;
+      mobileMenu.classList.remove('open');
+      bar1.style.transform = bar2.style.opacity = bar3.style.transform = '';
+      bar3.style.width = '16px';
+      bar2.style.opacity = '1';
+    });
+  });
+
+  // ── Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // ── Back to top
+  const btt = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    btt.style.display = window.scrollY > 400 ? 'flex' : 'none';
+  });
+  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  btt.addEventListener('mouseenter', () => btt.style.transform = 'translateY(-3px)');
+  btt.addEventListener('mouseleave', () => btt.style.transform = '');
+
+  // ── Contact form
+  const form = document.getElementById('contact-form');
+  const successMsg = document.getElementById('form-success');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Sending...';
+    btn.disabled = true;
+
+    // Simulate submission (replace with real endpoint)
+    setTimeout(() => {
+      form.style.display = 'none';
+      successMsg.style.display = 'block';
+    }, 1500);
+  });
+
+  // ── Smooth anchor offset (account for fixed nav)
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = navbar.offsetHeight + 16;
+        window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
