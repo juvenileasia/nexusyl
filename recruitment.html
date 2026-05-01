@@ -404,6 +404,125 @@
     body.light section[style*="background: var(--dark)"] h2,
     body.light section[style*="background: var(--card)"] h2 { color: #111 !important; }
 
+
+    /* ── Fix inline rgba dark backgrounds in light mode ────────────────── */
+
+    /* Hero ecology card (rgba(22,22,22,0.8)) */
+    body.light .hero-section .border,
+    body.light .hero-section [style*="rgba(22,22,22"],
+    body.light .hero-section [style*="rgba(16,16,16"],
+    body.light .hero-section [style*="rgba(18,18,18"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+
+    /* Floating stat/badge panels in hero on service pages */
+    body.light [style*="rgba(22,22,22"],
+    body.light [style*="rgba(16,16,16"],
+    body.light [style*="rgba(18,18,18"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+
+    /* All elements with var(--card) or var(--dark) inline backgrounds */
+    body.light [style*="background: var(--card)"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+    body.light [style*="background: var(--dark)"] {
+      background: #EFEFED !important;
+    }
+    body.light [style*="background: var(--black)"] {
+      background: #F7F7F5 !important;
+    }
+
+    /* Text INSIDE those forced-white boxes */
+    body.light [style*="rgba(22,22,22"] *,
+    body.light [style*="background: var(--card)"] *,
+    body.light [style*="background: var(--dark)"] *,
+    body.light [style*="background: var(--black)"] * {
+      color: inherit;
+    }
+    body.light [style*="rgba(22,22,22"] .text-white,
+    body.light [style*="background: var(--card)"] .text-white,
+    body.light [style*="background: var(--dark)"] .text-white {
+      color: #111 !important;
+    }
+    body.light [style*="rgba(22,22,22"] .text-gray-400,
+    body.light [style*="background: var(--card)"] .text-gray-400,
+    body.light [style*="background: var(--dark)"] .text-gray-400 { color: #555 !important; }
+    body.light [style*="rgba(22,22,22"] .text-gray-500,
+    body.light [style*="background: var(--card)"] .text-gray-500,
+    body.light [style*="background: var(--dark)"] .text-gray-500 { color: #666 !important; }
+    body.light [style*="rgba(22,22,22"] .text-gray-600,
+    body.light [style*="background: var(--card)"] .text-gray-600,
+    body.light [style*="background: var(--dark)"] .text-gray-600 { color: #777 !important; }
+    body.light [style*="rgba(22,22,22"] .text-gray-300,
+    body.light [style*="background: var(--card)"] .text-gray-300 { color: #333 !important; }
+
+    /* Section label inside dark boxes */
+    body.light [style*="rgba(22,22,22"] .section-label,
+    body.light [style*="background: var(--card)"] .section-label { color: var(--red) !important; }
+
+    /* Icon background circles inside dark boxes */
+    body.light [style*="rgba(232,33,26,0.12)"] { background: rgba(232,33,26,0.1) !important; }
+
+    /* Inline border-color: var(--border) → light border */
+    body.light [style*="border-color: var(--border)"] { border-color: #DDDDD8 !important; }
+    body.light [style*="border: 1px solid var(--border)"] { border-color: #DDDDD8 !important; }
+
+    /* Floating stat panels in sector pages */
+    body.light .absolute.z-20[style*="background: var(--card)"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+    body.light .absolute.z-20[style*="background: var(--card)"] .text-white { color: #111 !important; }
+    body.light .absolute.z-20[style*="background: var(--card)"] .text-gray-500 { color: #777 !important; }
+
+    /* Services list box on sector pages */
+    body.light .border.rounded-sm[style*="border-color: var(--border)"],
+    body.light .border.rounded-sm[style*="background: var(--card)"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+
+    /* Contact form card */
+    body.light #contact .border.rounded-sm {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+
+    /* Success message */
+    body.light #form-success {
+      background: rgba(232,33,26,0.06) !important;
+      border-color: rgba(232,33,26,0.2) !important;
+    }
+
+    /* All floating badges / number panels */
+    body.light [class*="absolute"][class*="-bottom-5"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+    body.light [class*="absolute"][class*="-bottom-5"] .text-white { color: #111 !important; }
+
+    /* Hero section label text */
+    body.light .hero-section .section-label { color: var(--red) !important; }
+    body.light .hero-section p { color: #444 !important; }
+
+    /* Global: any remaining dark inline text in light mode */
+    body.light span.text-white { color: #111 !important; }
+    body.light p.text-gray-400 { color: #555 !important; }
+    body.light p.text-gray-500 { color: #666 !important; }
+
+    /* Ticker line stays visible */
+    body.light .ticker-line { opacity: 0.4; }
+
+    /* Hero noise/lines — invisible in light */
+    body.light .hero-noise { opacity: 0.15; }
+
+    /* Select dropdown options */
+    body.light select option { background: #fff !important; color: #111 !important; }
+
   </style>
 </head>
 <body>
