@@ -500,6 +500,7 @@
 
       <!-- Desktop links -->
       <div class="hidden md:flex items-center gap-8">
+        <a href="#home" class="nav-link">Home</a>
 
         <!-- Services dropdown -->
         <div class="nav-dropdown" id="services-dropdown">
@@ -514,8 +515,9 @@
           </div>
         </div>
 
-        <a href="privacy.html" class="nav-link">Legal</a>
-        <a href="#contact"     class="btn-primary text-xs py-2.5 px-5">Get in Touch</a>
+        <a href="#about-section" class="nav-link">About</a>
+        <a href="#contact"       class="nav-link">Contact</a>
+        <a href="#contact"       class="btn-primary text-xs py-2.5 px-5">Get in Touch</a>
       </div>
 
       <!-- Mobile hamburger -->
@@ -528,8 +530,11 @@
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" role="menu">
+    <div id="mobile-menu" role="menu">
     <div class="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-1">
+      <a href="#home" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-house mr-3 text-red-500"></i>Home
+      </a>
       <a href="recruitment.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
         <i class="fa-solid fa-briefcase mr-3 text-red-500"></i>Recruitment
       </a>
@@ -541,6 +546,12 @@
       </a>
       <a href="property.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
         <i class="fa-solid fa-building mr-3 text-red-500"></i>Property
+      </a>
+      <a href="#about-section" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-info-circle mr-3 text-red-500"></i>About
+      </a>
+      <a href="#contact" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-envelope mr-3 text-red-500"></i>Contact
       </a>
       <div class="pt-2 pb-1">
         <a href="#contact" class="btn-primary w-full justify-center text-sm">Get in Touch <i class="fa-solid fa-arrow-right text-xs"></i></a>
@@ -967,7 +978,7 @@
 <!-- ══════════════════════════════════════════════════════════
      WHY NEXUSYL — TRUST BAR
 ════════════════════════════════════════════════════════════ -->
-<section class="py-20" style="background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+<section id="about-section" class="py-20" style="background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
     <div class="text-center mb-14 reveal">
       <div class="section-label justify-center mb-4">Why Nexusyl</div>
