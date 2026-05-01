@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+  // Prevent flash: apply saved theme before page renders
+  (function(){var t=localStorage.getItem('nx-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();
+</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy | Nexusyl Limited</title>
@@ -98,6 +102,171 @@
     .nav-dropdown-menu a:hover { background: rgba(232,33,26,0.1); color: #fff; }
     .nav-dropdown-menu a i { color: var(--red); font-size: 0.78rem; width: 16px; text-align: center; }
 
+  
+    /* ══════════════════════════════════════════════════════
+       LIGHT THEME — applied when <html data-theme="light">
+    ══════════════════════════════════════════════════════ */
+    [data-theme="light"] {
+      --black:  #F8F8F6;
+      --dark:   #F0F0EE;
+      --card:   #FFFFFF;
+      --border: #E0E0DC;
+      --muted:  #666666;
+      --white:  #1A1A1A;
+    }
+
+    /* Body & page background */
+    [data-theme="light"] body {
+      background: #F8F8F6;
+      color: #1A1A1A;
+    }
+
+    /* Navbar */
+    [data-theme="light"] #navbar {
+      background: rgba(248,248,246,0.95);
+      border-bottom-color: #E0E0DC;
+    }
+    [data-theme="light"] #navbar.scrolled { border-color: rgba(232,33,26,0.25); }
+
+    /* Nav links */
+    [data-theme="light"] .nav-link { color: #555; }
+    [data-theme="light"] .nav-link:hover { color: #111; }
+    [data-theme="light"] .nav-dropdown-trigger { color: #555; }
+    [data-theme="light"] .nav-dropdown-trigger:hover { color: #111; }
+    [data-theme="light"] .nav-dropdown.open .nav-dropdown-trigger { color: #111; }
+    [data-theme="light"] .nav-dropdown-menu {
+      background: rgba(255,255,255,0.98);
+      border-color: #E0E0DC;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+    }
+    [data-theme="light"] .nav-dropdown-menu a { color: #555; }
+    [data-theme="light"] .nav-dropdown-menu a:hover { background: rgba(232,33,26,0.07); color: #111; }
+
+    /* Mobile menu */
+    [data-theme="light"] #mobile-menu { background: rgba(248,248,246,0.98); border-top-color: #E0E0DC; }
+    [data-theme="light"] .mobile-nav-link { color: #444 !important; }
+    [data-theme="light"] .mobile-nav-link:hover { color: #111 !important; background: rgba(0,0,0,0.04) !important; }
+
+    /* Hamburger bars */
+    [data-theme="light"] #bar1,
+    [data-theme="light"] #bar2,
+    [data-theme="light"] #bar3 { background-color: #222; }
+
+    /* Hero section */
+    [data-theme="light"] .hero-section { background: #F8F8F6; }
+    [data-theme="light"] .hero-glow { background: radial-gradient(circle, rgba(232,33,26,0.06) 0%, transparent 70%); }
+    [data-theme="light"] .hero-lines {
+      background-image:
+        linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+    }
+
+    /* Typography */
+    [data-theme="light"] .text-white,
+    [data-theme="light"] h1, [data-theme="light"] h2,
+    [data-theme="light"] h3, [data-theme="light"] h4 { color: #111111; }
+    [data-theme="light"] .text-gray-400 { color: #555555 !important; }
+    [data-theme="light"] .text-gray-500 { color: #666666 !important; }
+    [data-theme="light"] .text-gray-600 { color: #777777 !important; }
+    [data-theme="light"] .text-gray-300 { color: #444444 !important; }
+
+    /* Badges */
+    [data-theme="light"] .badge {
+      background: rgba(232,33,26,0.07);
+      border-color: rgba(232,33,26,0.3);
+    }
+
+    /* Buttons — outline */
+    [data-theme="light"] .btn-outline {
+      border-color: #CCCCCC;
+      color: #333333;
+      background: transparent;
+    }
+    [data-theme="light"] .btn-outline:hover { border-color: var(--red); color: #111; background: rgba(232,33,26,0.06); }
+
+    /* Cards */
+    [data-theme="light"] .sector-card {
+      background: #FFFFFF;
+      border-color: #E0E0DC;
+    }
+    [data-theme="light"] .sector-card:hover { border-color: #CCCCCC; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+
+    /* Feature strip */
+    [data-theme="light"] .feature-strip { background: #F0F0EE; border-color: #E0E0DC; }
+    [data-theme="light"] .feature-pill { color: #555; }
+
+    /* Section labels */
+    [data-theme="light"] .section-label { color: var(--red); }
+
+    /* Stats */
+    [data-theme="light"] .stat-item .font-display { color: #111 !important; }
+
+    /* Service list */
+    [data-theme="light"] .service-item { color: #555; border-bottom-color: rgba(0,0,0,0.06); }
+
+    /* Sector image overlay — lighter */
+    [data-theme="light"] .sector-img-overlay {
+      background: linear-gradient(to top, rgba(255,255,255,0.15) 0%, transparent 60%);
+    }
+
+    /* Section divider */
+    [data-theme="light"] .section-divider {
+      background: linear-gradient(90deg, transparent, #D0D0CC, transparent);
+    }
+
+    /* Why Nexusyl / trust bar */
+    [data-theme="light"] #about-section { background: #F0F0EE !important; border-color: #E0E0DC !important; }
+
+    /* Synergy cards */
+    [data-theme="light"] .synergy-card { background: #FFFFFF; border-color: #E0E0DC; }
+    [data-theme="light"] .synergy-card:hover { border-color: rgba(232,33,26,0.25); }
+
+    /* Process step numbers */
+    [data-theme="light"] .step-number { background: rgba(232,33,26,0.08); border-color: rgba(232,33,26,0.2); }
+
+    /* Form inputs */
+    [data-theme="light"] .form-input {
+      background: #FFFFFF;
+      border-color: #D8D8D4;
+      color: #111111;
+    }
+    [data-theme="light"] .form-input::placeholder { color: #AAAAAA; }
+    [data-theme="light"] .form-input:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(232,33,26,0.08); }
+    [data-theme="light"] .form-label { color: #777777; }
+
+    /* Contact section */
+    [data-theme="light"] #contact { background: #F8F8F6; }
+    [data-theme="light"] #contact .border { background: #FFFFFF !important; border-color: #E0E0DC !important; }
+
+    /* Footer */
+    [data-theme="light"] footer { background: #F0F0EE !important; border-top-color: #E0E0DC !important; }
+    [data-theme="light"] .footer-link { color: #777; }
+    [data-theme="light"] .footer-link:hover { color: var(--red); }
+    [data-theme="light"] footer .text-gray-500 { color: #666 !important; }
+    [data-theme="light"] footer .text-gray-600 { color: #888 !important; }
+    [data-theme="light"] footer div[style*="border-top"] { border-top-color: #E0E0DC !important; }
+
+    /* Scroll reveal — ensure visible in light mode */
+    [data-theme="light"] .reveal.visible { color: inherit; }
+
+    /* Legal pages */
+    [data-theme="light"] .legal-body h2 { color: #111; }
+    [data-theme="light"] .legal-body h3 { color: #333; }
+    [data-theme="light"] .legal-body p,
+    [data-theme="light"] .legal-body ul,
+    [data-theme="light"] .legal-body ol { color: #444; }
+    [data-theme="light"] .legal-body .highlight-box { background: #FFFFFF; border-color: #E0E0DC; }
+
+    /* Dark sections override — keep their own background in light mode */
+    [data-theme="light"] section[style*="background: var(--dark)"] { background: #EEEEED !important; }
+    [data-theme="light"] section[style*="background: var(--card)"] { background: #F5F5F3 !important; }
+
+    /* Back to top button stays red */
+    [data-theme="light"] #back-to-top { background: var(--red) !important; }
+
+    /* Scrollbar */
+    [data-theme="light"] ::-webkit-scrollbar-track { background: #F0F0EE; }
+
   </style>
 </head>
 <body>
@@ -130,6 +299,13 @@
         <a href="/#contact"       class="nav-link">Contact</a>
         <a href="/#contact"       class="btn-primary text-xs py-2.5 px-5">Get in Touch</a>
       </div>
+        <button id="theme-toggle" aria-label="Toggle light/dark theme"
+          style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:2px;border:1px solid var(--border);background:transparent;cursor:pointer;transition:border-color 0.2s,background 0.2s;flex-shrink:0;"
+          onmouseenter="this.style.borderColor='var(--red)'"
+          onmouseleave="this.style.borderColor='var(--border)'">
+          <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color:#aaa;display:block;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color:#555;display:none;"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
 
       <button id="menu-toggle" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-2">
         <span class="w-6 h-0.5 bg-white" id="bar1"></span>
