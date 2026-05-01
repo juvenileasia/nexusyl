@@ -313,6 +313,54 @@
     .feature-strip { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .feature-pill { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 600; color: #aaa; padding: 14px 0; }
     .feature-pill i { color: var(--red); font-size: 0.85rem; }
+  
+    /* ── SERVICES DROPDOWN ── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-trigger {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #aaa; transition: color 0.2s;
+      position: relative; padding-bottom: 2px;
+      display: flex; align-items: center; gap: 5px;
+      cursor: pointer; background: none; border: none; font-family: inherit;
+    }
+    .nav-dropdown-trigger::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 1.5px; background: var(--red);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.25s;
+    }
+    .nav-dropdown-trigger:hover { color: #fff; }
+    .nav-dropdown-trigger:hover::after,
+    .nav-dropdown.open .nav-dropdown-trigger::after { transform: scaleX(1); }
+    .nav-dropdown.open .nav-dropdown-trigger { color: #fff; }
+    .nav-dropdown-trigger .chevron { font-size: 0.6rem; transition: transform 0.2s; margin-top: 1px; }
+    .nav-dropdown.open .chevron { transform: rotate(180deg); }
+    .nav-dropdown-menu {
+      position: absolute; top: calc(100% + 14px); left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      background: rgba(18,18,18,0.98);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border); border-radius: 4px;
+      min-width: 200px; padding: 6px;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+      z-index: 2000; box-shadow: 0 16px 48px rgba(0,0,0,0.6);
+    }
+    .nav-dropdown-menu::before {
+      content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px;
+    }
+    .nav-dropdown.open .nav-dropdown-menu {
+      opacity: 1; visibility: visible; pointer-events: all;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown-menu a {
+      display: flex; align-items: center; gap: 10px; padding: 9px 12px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em;
+      text-transform: uppercase; color: #999; border-radius: 3px;
+      transition: background 0.15s, color 0.15s; white-space: nowrap;
+    }
+    .nav-dropdown-menu a:hover { background: rgba(232,33,26,0.1); color: #fff; }
+    .nav-dropdown-menu a i { color: var(--red); font-size: 0.78rem; width: 16px; text-align: center; }
+
   </style>
 </head>
 <body>
@@ -329,12 +377,24 @@
         <span class="text-white font-display font-bold text-lg sm:hidden">nexusyl!</span>
       </a>
       <div class="hidden md:flex items-center gap-8">
-        <a href="recruitment.html" class="nav-link">Recruitment</a>
-        <a href="foodtech.html"    class="nav-link">Food Tech</a>
-        <a href="education.html"   class="nav-link active">Education</a>
-        <a href="property.html"    class="nav-link">Property</a>
+
+        <!-- Services dropdown -->
+        <div class="nav-dropdown" id="services-dropdown">
+          <button class="nav-dropdown-trigger" id="services-trigger" aria-haspopup="true" aria-expanded="false">
+            Services <i class="fa-solid fa-chevron-down chevron"></i>
+          </button>
+          <div class="nav-dropdown-menu" id="services-menu" role="menu">
+            <a href="recruitment.html" role="menuitem"><i class="fa-solid fa-briefcase"></i>Recruitment</a>
+            <a href="foodtech.html"    role="menuitem"><i class="fa-solid fa-utensils"></i>Food Tech</a>
+            <a href="education.html"   role="menuitem"><i class="fa-solid fa-graduation-cap"></i>Education</a>
+            <a href="property.html"    role="menuitem"><i class="fa-solid fa-building"></i>Property</a>
+          </div>
+        </div>
+
+        <a href="privacy.html" class="nav-link">Legal</a>
         <a href="index.html#contact" class="btn-primary text-xs py-2.5 px-5">Get in Touch</a>
       </div>
+
       <button id="menu-toggle" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-2">
         <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar1"></span>
         <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
@@ -772,6 +832,25 @@
   btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   btt.addEventListener('mouseenter', () => btt.style.transform = 'translateY(-3px)');
   btt.addEventListener('mouseleave', () => btt.style.transform = '');
+
+  // ── Services dropdown
+  (function () {
+    var dropdown = document.getElementById('services-dropdown');
+    var trigger  = document.getElementById('services-trigger');
+    var menu     = document.getElementById('services-menu');
+    if (!dropdown || !trigger || !menu) return;
+    var closeTimer;
+    function openMenu() { clearTimeout(closeTimer); dropdown.classList.add('open'); trigger.setAttribute('aria-expanded','true'); }
+    function closeMenu() { closeTimer = setTimeout(function(){ dropdown.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); }, 150); }
+    trigger.addEventListener('mouseenter', openMenu);
+    trigger.addEventListener('mouseleave', closeMenu);
+    menu.addEventListener('mouseenter', function(){ clearTimeout(closeTimer); });
+    menu.addEventListener('mouseleave', closeMenu);
+    trigger.addEventListener('click', function(e){ e.stopPropagation(); dropdown.classList.toggle('open'); trigger.setAttribute('aria-expanded', dropdown.classList.contains('open').toString()); });
+    document.addEventListener('click', function(e){ if(!dropdown.contains(e.target)){ dropdown.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); } });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ dropdown.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); trigger.focus(); } });
+  })();
+
 </script>
 </body>
 </html>
