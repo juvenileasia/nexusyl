@@ -553,12 +553,20 @@
       filter: brightness(0) !important;
     }
 
-    /* ── Logo image theme swap ─────────────────────────────────────────────── */
-    .logo-dark  { display: inline-block; }   /* white logo — shown in dark mode */
-    .logo-light { display: none; }           /* black logo — hidden in dark mode */
-    body.light .logo-dark  { display: none !important; }
-    body.light .logo-light { display: inline-block !important; }
+    
 
+    /* ── Logo image theme swap ─────────────────────────────────────────────── */
+    .logo-wrap        { display: none; }
+    @media (min-width: 640px) { .logo-wrap { display: inline-flex; align-items: center; } }
+    .logo-dark        { display: block; }
+    .logo-light       { display: none; }
+    body.light .logo-dark  { display: none; }
+    body.light .logo-light { display: block; }
+    .logo-wrap-always { display: inline-flex; align-items: center; }
+    .logo-wrap-always .logo-dark  { display: block; }
+    .logo-wrap-always .logo-light { display: none; }
+    body.light .logo-wrap-always .logo-dark  { display: none; }
+    body.light .logo-wrap-always .logo-light { display: block; }
   </style>
 </head>
 <body>
@@ -568,7 +576,7 @@
     <div class="flex items-center justify-between h-16">
       <a href="/" class="flex items-center gap-3 flex-shrink-0">
         <img src="/Nexusyl_Fab.png" alt="Nexusyl icon" class="h-8 w-8 object-contain" onerror="this.style.display='none'" />
-        <img src="/Nexusyl_White_Logo.png" alt="Nexusyl Limited" class="logo-dark h-7 object-contain hidden sm:block "/><img src="/Nexusyl_Black_Logo.png" alt="Nexusyl Limited" class="logo-light h-7 object-contain hidden sm:block "/>
+        <span class="logo-wrap"><img src="/Nexusyl_White_Logo.png" alt="Nexusyl Limited" class="logo-dark h-7 object-contain" /><img src="/Nexusyl_Black_Logo.png" alt="Nexusyl Limited" class="logo-light h-7 object-contain" /></span>
         <span class="text-white font-display font-bold text-lg sm:hidden">nexusyl!</span>
       </a>
       <div class="hidden md:flex items-center gap-8">
@@ -668,7 +676,7 @@
         <div class="border border-white/8 rounded-sm p-8" style="background: rgba(22,22,22,0.7);">
                     <div class="flex items-center gap-3 mb-5">
             <img src="/Nexusyl_Fab.png" alt="Nexusyl" class="h-8 w-8 object-contain" onerror="this.style.display='none'" />
-            <img src="/Nexusyl_White_Logo.png" alt="Nexusyl Limited" class="logo-dark h-7 object-contain"/><img src="/Nexusyl_Black_Logo.png" alt="Nexusyl Limited" class="logo-light h-7 object-contain"/>
+            <span class="logo-wrap-always"><img src="/Nexusyl_White_Logo.png" alt="Nexusyl Limited" class="logo-dark h-6 object-contain" /><img src="/Nexusyl_Black_Logo.png" alt="Nexusyl Limited" class="logo-light h-6 object-contain" /></span>
           </div>
           <div class="section-label mb-5">The Enterprise Alternative</div>
           <p class="text-gray-400 text-sm leading-relaxed">Not every international graduate wants a job. Nexusyl Food Tech is the structured entrepreneurship exit within the Nexusyl Ecology — a data-matched, low-risk route to running a food business in the UK without the capital barriers that defeat most first-time founders.</p>
@@ -884,7 +892,7 @@
     <div class="section-label justify-center reveal mb-4">Start Your Venture</div>
     <div class="flex items-center justify-center gap-3 reveal mb-6">
       <img src="/Nexusyl_Fab.png" alt="Nexusyl" class="h-10 w-10 object-contain" onerror="this.style.display='none'" />
-      <img src="/Nexusyl_White_Logo.png" alt="Nexusyl Limited" class="logo-dark h-7 object-contain"/><img src="/Nexusyl_Black_Logo.png" alt="Nexusyl Limited" class="logo-light h-7 object-contain"/>
+      <span class="logo-wrap-always"><img src="/Nexusyl_White_Logo.png" alt="Nexusyl Limited" class="logo-dark h-7 object-contain" /><img src="/Nexusyl_Black_Logo.png" alt="Nexusyl Limited" class="logo-light h-7 object-contain" /></span>
     </div>
     <h2 class="font-display text-4xl lg:text-5xl font-bold text-white leading-tight reveal mb-6">
       Your Food Business Starts <span style="color: var(--red);">with Data, Not Debt.</span>
@@ -907,7 +915,7 @@
       <div class="lg:col-span-2">
         <div class="flex items-center gap-3 mb-5">
           <img src="/Nexusyl_Fab.png" alt="Nexusyl icon" class="h-8 w-8 object-contain" onerror="this.style.display='none'" />
-          <img src="/Nexusyl_White_Logo.png" alt="Nexusyl Limited" class="logo-dark h-7 object-contain"/><img src="/Nexusyl_Black_Logo.png" alt="Nexusyl Limited" class="logo-light h-7 object-contain"/>
+          <span class="logo-wrap-always"><img src="/Nexusyl_White_Logo.png" alt="Nexusyl Limited" class="logo-dark h-6 object-contain" /><img src="/Nexusyl_Black_Logo.png" alt="Nexusyl Limited" class="logo-light h-6 object-contain" /></span>
         </div>
         <p class="text-gray-500 text-sm leading-relaxed mb-5 max-w-xs">
           A London-based multi-sector company delivering excellence across recruitment, food tech, education, and property.
