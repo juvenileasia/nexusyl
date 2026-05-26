@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexusyl Academy | Learning Dashboard</title>
+  <meta name="description" content="Nexusyl Academy — your personalised compliance learning and pre-employment readiness dashboard, powered by Juvenile Asia Technical Infrastructure." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://academy.nexusyl.com/dashboard" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/Nexusyl_Fab.png" />
+  <link rel="shortcut icon" type="image/png" href="/Nexusyl_Fab.png" />
+  <link rel="apple-touch-icon" href="/Nexusyl_Fab.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    // Anti-flash: apply saved theme before paint
+    (function(){
+      var t = localStorage.getItem('nx-theme');
+      if (t === 'light') {
+        document.addEventListener('DOMContentLoaded', function(){ document.body.classList.add('light'); });
+      }
+    })();
+  </script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body:    ['Manrope', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              red:    '#E8211A',
+              black:  '#0A0A0A',
+              dark:   '#111111',
+              card:   '#161616',
+              muted:  '#888888',
+              border: '#222222',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ═══════════════════════════════════════════════════
+       DESIGN TOKENS — mirrors nexusyl.juvenileasia.com
+    ═══════════════════════════════════════════════════ */
+    :root {
+      --red:       #E8211A;
+      --black:     #0A0A0A;
+      --dark:      #111111;
+      --card:      #161616;
+      --card2:     #1C1C1C;
+      --border:    #2a2a2a;
+      --border-lt: #222222;
+      --muted:     #888;
+      --white:     #F5F5F5;
+      --sidebar-w: 256px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behaviour: smooth; height: 100%; }
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+
+    /* ── SIDEBAR ─────────────────────────────────────── */
+    #sidebar {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: var(--sidebar-w);
+      background: var(--dark);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      z-index: 200;
+      transition: transform 0.3s ease;
+    }
+    #sidebar.collapsed { transform: translateX(calc(-1 * var(--sidebar-w))); }
+
+    .sidebar-logo {
+      padding: 20px 20px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .sidebar-section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #555;
+      padding: 16px 20px 6px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 20px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: #888;
+      border-radius: 0;
+      cursor: pointer;
+      transition: color 0.15s, background 0.15s, border-color 0.15s;
+      border-left: 2px solid transparent;
+      text-decoration: none;
+      position: relative;
+    }
+    .nav-item i { width: 16px; text-align: center; font-size: 0.8rem; flex-shrink: 0; }
+    .nav-item:hover { color: var(--white); background: rgba(255,255,255,0.04); }
+    .nav-item.active {
+      color: var(--white);
+      background: rgba(232,33,26,0.08);
+      border-left-color: var(--red);
+    }
+    .nav-item.active i { color: var(--red); }
+    .nav-badge {
+      margin-left: auto;
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 2px;
+      background: rgba(232,33,26,0.15);
+      color: var(--red);
+      border: 1px solid rgba(232,33,26,0.25);
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+    }
+    .user-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .user-chip:hover { border-color: rgba(232,33,26,0.3); }
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.75rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    /* ── TOP BAR ──────────────────────────────────────── */
+    #topbar {
+      position: fixed;
+      top: 0;
+      left: var(--sidebar-w);
+      right: 0;
+      height: 60px;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 100;
+      transition: left 0.3s ease;
+    }
+    #topbar.full-width { left: 0; }
+
+    .topbar-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: #666;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .topbar-breadcrumb .current { color: var(--white); }
+
+    /* ── MAIN CONTENT ────────────────────────────────── */
+    #main-content {
+      margin-left: var(--sidebar-w);
+      margin-top: 60px;
+      flex: 1;
+      padding: 28px 28px 0;
+      transition: margin-left 0.3s ease;
+      min-height: calc(100vh - 60px);
+      display: flex;
+      flex-direction: column;
+    }
+    #main-content.full-width { margin-left: 0; }
+
+    /* ── STAT CARDS ───────────────────────────────────── */
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 20px 22px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .stat-card:hover { border-color: #333; transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+    .stat-card:hover::before { transform: scaleX(1); }
+    .stat-value {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #555;
+    }
+    .stat-sub {
+      font-size: 0.78rem;
+      color: #666;
+      margin-top: 6px;
+    }
+
+    /* ── SECTION HEADERS ─────────────────────────────── */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--red);
+    }
+
+    /* ── CARD BASE ───────────────────────────────────── */
+    .panel-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .panel-card-header {
+      padding: 18px 22px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .panel-card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .panel-card-body { padding: 22px; }
+
+    /* ── VIDEO CONTAINER ─────────────────────────────── */
+    .aspect-video-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      background: #000;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .aspect-video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-overlay-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(232,33,26,0.9);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+      z-index: 10;
+    }
+
+    /* ── MODULE CHECKLIST ────────────────────────────── */
+    .module-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+      border: 1px solid transparent;
+      position: relative;
+    }
+    .module-item:hover { background: rgba(255,255,255,0.04); border-color: var(--border); }
+    .module-item.active { background: rgba(232,33,26,0.08); border-color: rgba(232,33,26,0.2); }
+    .module-item.completed .module-icon { background: rgba(34,197,94,0.12); }
+    .module-item.completed .module-icon i { color: #22c55e; }
+    .module-item.active .module-icon { background: rgba(232,33,26,0.15); }
+    .module-item.active .module-icon i { color: var(--red); }
+    .module-icon {
+      width: 32px; height: 32px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.05);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .module-icon i { font-size: 0.75rem; color: #666; }
+    .module-duration {
+      margin-left: auto;
+      font-size: 0.7rem;
+      color: #555;
+      flex-shrink: 0;
+    }
+    .progress-bar-track {
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: var(--red);
+      transition: width 0.8s ease;
+    }
+    .progress-bar-fill.green { background: #22c55e; }
+
+    /* ── DBS STEPPER ─────────────────────────────────── */
+    .step-connector {
+      flex: 1;
+      height: 2px;
+      background: var(--border);
+      margin: 0 4px;
+      position: relative;
+      overflow: hidden;
+    }
+    .step-connector.done { background: var(--red); }
+    .step-connector.active::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, var(--red), transparent);
+      animation: flow 1.8s ease-in-out infinite;
+    }
+    @keyframes flow {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    .step-circle {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.8rem;
+      transition: all 0.3s;
+    }
+    .step-circle.done { background: var(--red); color: #fff; }
+    .step-circle.active { background: var(--red); color: #fff; box-shadow: 0 0 0 4px rgba(232,33,26,0.2); }
+    .step-circle.pending { background: transparent; border: 2px solid var(--border); color: #555; }
+
+    /* ── DROPZONE ────────────────────────────────────── */
+    #dropzone {
+      border: 2px dashed rgba(232,33,26,0.35);
+      border-radius: 4px;
+      background: rgba(232,33,26,0.04);
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    #dropzone:hover,
+    #dropzone.drag-over {
+      border-color: var(--red);
+      background: rgba(232,33,26,0.09);
+    }
+    #dropzone .dz-icon {
+      font-size: 1.8rem;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+
+    /* ── BUTTONS ─────────────────────────────────────── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--red); color: #fff;
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 10px 22px; border-radius: 2px; border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(232,33,26,0.28);
+      text-decoration: none;
+    }
+    .btn-primary:hover { background: #ff2d25; transform: translateY(-1px); box-shadow: 0 6px 28px rgba(232,33,26,0.4); }
+    .btn-primary:disabled { opacity: 0.5; pointer-events: none; }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: #aaa;
+      font-family: 'Syne', sans-serif; font-weight: 600;
+      font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 10px 18px; border-radius: 2px;
+      border: 1px solid var(--border); cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      text-decoration: none;
+    }
+    .btn-secondary:hover { border-color: var(--red); color: var(--white); background: rgba(232,33,26,0.06); }
+    .btn-icon {
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 2px; cursor: pointer;
+      color: #666; font-size: 0.8rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-icon:hover { border-color: var(--red); color: var(--white); }
+
+    /* ── STATUS PILLS ────────────────────────────────── */
+    .pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 3px 9px; border-radius: 2px;
+    }
+    .pill-red     { background: rgba(232,33,26,0.12); color: var(--red);    border: 1px solid rgba(232,33,26,0.25); }
+    .pill-yellow  { background: rgba(234,179,8,0.12);  color: #eab308;      border: 1px solid rgba(234,179,8,0.25); }
+    .pill-green   { background: rgba(34,197,94,0.12);  color: #22c55e;      border: 1px solid rgba(34,197,94,0.25); }
+    .pill-blue    { background: rgba(59,130,246,0.12); color: #60a5fa;      border: 1px solid rgba(59,130,246,0.25); }
+    .pill-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+    /* ── CIRCULAR PROGRESS ───────────────────────────── */
+    .circular-progress { position: relative; display: inline-block; }
+    .circular-progress svg { transform: rotate(-90deg); }
+    .circular-progress .cp-label {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .cp-value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--white); line-height: 1; }
+    .cp-unit  { font-size: 0.6rem; color: #666; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+
+    /* ── BADGE/NOTIFICATION ──────────────────────────── */
+    .notification-dot {
+      position: absolute;
+      top: 6px; right: 6px;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+      border: 2px solid var(--dark);
+    }
+
+    /* ── DIVIDER ─────────────────────────────────────── */
+    .divider { height: 1px; background: var(--border); margin: 0; }
+
+    /* ── SECTION DIVIDER ─────────────────────────────── */
+    .section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 28px 0; }
+
+    /* ── REVEAL ANIMATION ────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+
+    /* ── LOGO ────────────────────────────────────────── */
+    .logo-dark  { display: block; }
+    .logo-light { display: none; }
+    body.light .logo-dark  { display: none; }
+    body.light .logo-light { display: block; }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    .academy-footer {
+      margin-left: var(--sidebar-w);
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      padding: 20px 28px;
+      transition: margin-left 0.3s ease;
+    }
+    .academy-footer.full-width { margin-left: 0; }
+    .footer-link { font-size: 0.78rem; color: #555; transition: color 0.15s; text-decoration: none; }
+    .footer-link:hover { color: var(--red); }
+
+    /* ════════════════════════════════════════════════════
+       LIGHT MODE
+    ════════════════════════════════════════════════════ */
+    body { transition: background-color 0.3s ease, color 0.3s ease; }
+    body.light { background-color: #F7F7F5 !important; color: #1A1A1A !important; }
+    body.light #sidebar  { background: #EEEEED !important; border-right-color: #DDDDD8 !important; }
+    body.light .sidebar-section-label { color: #AAA !important; }
+    body.light .nav-item { color: #666 !important; }
+    body.light .nav-item:hover { color: #111 !important; background: rgba(0,0,0,0.05) !important; }
+    body.light .nav-item.active { color: #111 !important; background: rgba(232,33,26,0.07) !important; }
+    body.light #topbar { background: rgba(247,247,245,0.96) !important; border-bottom-color: #DDDDD8 !important; }
+    body.light .topbar-breadcrumb { color: #999 !important; }
+    body.light .topbar-breadcrumb .current { color: #111 !important; }
+    body.light .stat-card { background: #FFFFFF !important; border-color: #DDDDD8 !important; }
+    body.light .stat-value { color: #111 !important; }
+    body.light .stat-label { color: #AAA !important; }
+    body.light .stat-sub   { color: #888 !important; }
+    body.light .panel-card { background: #FFFFFF !important; border-color: #DDDDD8 !important; }
+    body.light .panel-card-header { border-bottom-color: #DDDDD8 !important; }
+    body.light .panel-card-title { color: #111 !important; }
+    body.light .module-item { border-color: transparent !important; }
+    body.light .module-item:hover { background: rgba(0,0,0,0.04) !important; border-color: #DDDDD8 !important; }
+    body.light .module-item.active { background: rgba(232,33,26,0.06) !important; border-color: rgba(232,33,26,0.2) !important; }
+    body.light .module-icon { background: rgba(0,0,0,0.04) !important; }
+    body.light .divider     { background: #E4E4E0 !important; }
+    body.light .section-divider { background: linear-gradient(90deg, transparent, #DDDDD8, transparent) !important; }
+    body.light #dropzone { border-color: rgba(232,33,26,0.3) !important; background: rgba(232,33,26,0.03) !important; }
+    body.light .user-chip { background: rgba(0,0,0,0.04) !important; border-color: #DDDDD8 !important; }
+    body.light .step-circle.pending { border-color: #DDDDD8 !important; color: #AAA !important; }
+    body.light .step-connector { background: #DDDDD8 !important; }
+    body.light .step-connector.done { background: var(--red) !important; }
+    body.light .progress-bar-track { background: #E4E4E0 !important; }
+    body.light .academy-footer { background: #EEEEED !important; border-top-color: #DDDDD8 !important; }
+    body.light ::-webkit-scrollbar-track { background: #EFEFED; }
+
+    /* ── MOBILE SIDEBAR TOGGLE ───────────────────────── */
+    @media (max-width: 768px) {
+      #sidebar { transform: translateX(calc(-1 * var(--sidebar-w))); }
+      #sidebar.open { transform: translateX(0); }
+      #topbar, #main-content, .academy-footer { margin-left: 0 !important; left: 0 !important; }
+      #sidebar-overlay { display: block; }
+    }
+    #sidebar-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 199;
+    }
+
+    /* ── COURSE THUMBNAIL GRADIENT ───────────────────── */
+    .course-thumb {
+      height: 80px;
+      border-radius: 3px;
+      background: linear-gradient(135deg, rgba(232,33,26,0.15), rgba(10,10,10,0.6));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      color: var(--red);
+      flex-shrink: 0;
+      width: 80px;
+    }
+    body.light .course-thumb { background: linear-gradient(135deg, rgba(232,33,26,0.1), rgba(220,220,215,0.5)); }
+
+    /* ── TOOLTIP ─────────────────────────────────────── */
+    [data-tooltip] { position: relative; }
+    [data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute; bottom: calc(100% + 6px); left: 50%;
+      transform: translateX(-50%);
+      background: #1C1C1C; color: #eee;
+      font-size: 0.68rem; white-space: nowrap;
+      padding: 4px 8px; border-radius: 2px;
+      pointer-events: none; opacity: 0;
+      transition: opacity 0.15s;
+      z-index: 9999;
+      border: 1px solid var(--border);
+    }
+    [data-tooltip]:hover::after { opacity: 1; }
+  </style>
+</head>
+<body>
+
+<!-- Sidebar overlay (mobile) -->
+<div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SIDEBAR
+═══════════════════════════════════════════════════════ -->
+<aside id="sidebar" role="navigation" aria-label="Academy navigation">
+
+  <!-- Logo -->
+  <div class="sidebar-logo">
+    <img src="/Nexusyl_Fab.png" alt="Nexusyl" class="h-7 w-7 object-contain flex-shrink-0" onerror="this.style.display='none'" />
+    <div>
+      <img src="/Nexusyl_White_Logo.png" alt="Nexusyl" class="logo-dark h-5 object-contain" onerror="this.style.display='none'" />
+      <img src="/Nexusyl_Black_Logo.png" alt="Nexusyl" class="logo-light h-5 object-contain" onerror="this.style.display='none'" />
+      <div style="font-size:0.58rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#E8211A;margin-top:2px;">Academy</div>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <nav class="flex-1 overflow-y-auto py-2">
+
+    <div class="sidebar-section-label">Learning</div>
+    <a href="#my-courses" class="nav-item active" onclick="setActive(this)" data-section="my-courses">
+      <i class="fa-solid fa-play-circle"></i>
+      My Courses
+      <span class="nav-badge">3</span>
+    </a>
+    <a href="#compliance-hub" class="nav-item" onclick="setActive(this)" data-section="compliance-hub">
+      <i class="fa-solid fa-shield-halved"></i>
+      Compliance Hub
+    </a>
+    <a href="#dbs-vetting" class="nav-item" onclick="setActive(this)" data-section="dbs-vetting">
+      <i class="fa-solid fa-fingerprint"></i>
+      DBS Vetting Tracker
+      <span class="nav-badge" style="background:rgba(234,179,8,0.15);color:#eab308;border-color:rgba(234,179,8,0.3);">!</span>
+    </a>
+
+    <div class="sidebar-section-label" style="margin-top:8px;">Career</div>
+    <a href="#" class="nav-item">
+      <i class="fa-solid fa-briefcase"></i>
+      Vacancy Pipeline
+    </a>
+    <a href="#" class="nav-item">
+      <i class="fa-solid fa-chart-line"></i>
+      Readiness Report
+    </a>
+
+    <div class="sidebar-section-label" style="margin-top:8px;">Platform</div>
+    <a href="#account-settings" class="nav-item" onclick="setActive(this)" data-section="account-settings">
+      <i class="fa-solid fa-gear"></i>
+      Account Settings
+    </a>
+    <a href="/" class="nav-item">
+      <i class="fa-solid fa-arrow-left"></i>
+      Back to Nexusyl
+    </a>
+  </nav>
+
+  <!-- User chip -->
+  <div class="sidebar-footer">
+    <div class="user-chip">
+      <div class="user-avatar">JS</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:0.8rem;font-weight:700;color:var(--white);truncate;">Jordan Singh</div>
+        <div style="font-size:0.68rem;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">jordan.singh@nexusyl.co.uk</div>
+      </div>
+      <button class="btn-icon" title="Sign out" aria-label="Sign out">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </button>
+    </div>
+  </div>
+
+</aside>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     TOP BAR
+═══════════════════════════════════════════════════════ -->
+<header id="topbar" role="banner">
+  <div class="flex items-center gap-3">
+    <!-- Mobile hamburger -->
+    <button class="btn-icon md:hidden" onclick="openSidebar()" aria-label="Open navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="topbar-breadcrumb">
+      <span>Academy</span>
+      <i class="fa-solid fa-chevron-right" style="font-size:0.55rem;color:#444;"></i>
+      <span class="current">Learning Dashboard</span>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-2">
+    <!-- Notifications -->
+    <button class="btn-icon" aria-label="Notifications" data-tooltip="1 notification" style="position:relative;">
+      <i class="fa-solid fa-bell"></i>
+      <span class="notification-dot"></span>
+    </button>
+
+    <!-- Theme toggle -->
+    <button id="theme-toggle" class="btn-icon" aria-label="Toggle light/dark theme" data-tooltip="Toggle theme">
+      <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display:block;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+
+    <!-- Help -->
+    <button class="btn-icon" aria-label="Help" data-tooltip="Help & support">
+      <i class="fa-solid fa-circle-question"></i>
+    </button>
+  </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════════════════ -->
+<main id="main-content" role="main">
+
+  <!-- ── PAGE TITLE ──────────────────────────────────── -->
+  <div class="reveal mb-6">
+    <div class="section-label mb-2">Learning Dashboard</div>
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+      <div>
+        <h1 class="font-display text-2xl lg:text-3xl font-bold" style="color:var(--white);">
+          Welcome back, Jordan.
+        </h1>
+        <p style="font-size:0.85rem;color:#666;margin-top:4px;">
+          You are <span style="color:var(--red);font-weight:700;">28% away</span> from full employment readiness. Keep going.
+        </p>
+      </div>
+      <a href="#dbs-vetting" class="btn-primary text-xs" style="align-self:flex-start;">
+        <i class="fa-solid fa-rocket"></i> Continue Training
+      </a>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       STATISTICS PANEL
+  ══════════════════════════════════════════════════ -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8" id="stats-panel">
+
+    <!-- Stat 1: Overall Readiness -->
+    <div class="stat-card reveal">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">
+        <div style="flex:1;">
+          <div class="stat-label">Overall Readiness Score</div>
+          <div class="stat-value" style="color:var(--red);">72%</div>
+          <div class="stat-sub">Pre-employment programme active</div>
+        </div>
+        <!-- Circular progress -->
+        <div class="circular-progress" style="flex-shrink:0;">
+          <svg width="64" height="64" viewBox="0 0 36 36">
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="var(--border)" stroke-width="3"/>
+            <circle cx="18" cy="18" r="15.9" fill="none"
+                    stroke="var(--red)" stroke-width="3"
+                    stroke-dasharray="72 100"
+                    stroke-linecap="round"
+                    style="transition: stroke-dasharray 1.2s ease;" />
+          </svg>
+          <div class="cp-label">
+            <span class="cp-value" style="font-size:0.85rem;">72</span>
+            <span class="cp-unit">%</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:12px;">
+        <div style="display:flex;justify-content:space-between;font-size:0.68rem;color:#555;margin-bottom:4px;">
+          <span>Progress</span><span style="color:var(--red);">72%</span>
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" style="width:72%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat 2: Completed Modules -->
+    <div class="stat-card reveal reveal-delay-1">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">
+        <div>
+          <div class="stat-label">Completed Modules (3/5)</div>
+          <div class="stat-value">3<span style="font-size:1rem;color:#555;">/5</span></div>
+          <div class="stat-sub">2 modules remaining</div>
+        </div>
+        <div style="width:44px;height:44px;border-radius:3px;background:rgba(232,33,26,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i class="fa-solid fa-graduation-cap" style="color:var(--red);font-size:1.1rem;"></i>
+        </div>
+      </div>
+      <!-- Mini module bars -->
+      <div style="display:flex;gap:4px;margin-top:14px;">
+        <div style="flex:1;height:5px;border-radius:2px;background:#22c55e;"></div>
+        <div style="flex:1;height:5px;border-radius:2px;background:#22c55e;"></div>
+        <div style="flex:1;height:5px;border-radius:2px;background:#22c55e;"></div>
+        <div style="flex:1;height:5px;border-radius:2px;background:var(--border);position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:linear-gradient(90deg,var(--red),transparent);width:45%;"></div>
+        </div>
+        <div style="flex:1;height:5px;border-radius:2px;background:var(--border);"></div>
+      </div>
+    </div>
+
+    <!-- Stat 3: Vetting Status -->
+    <div class="stat-card reveal reveal-delay-2">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">
+        <div>
+          <div class="stat-label">Vetting Status</div>
+          <div class="stat-value" style="font-size:1.2rem;margin-top:2px;">Pending</div>
+          <div class="stat-sub">Identity verification in progress</div>
+        </div>
+        <div style="width:44px;height:44px;border-radius:3px;background:rgba(234,179,8,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i class="fa-solid fa-hourglass-half" style="color:#eab308;font-size:1.1rem;"></i>
+        </div>
+      </div>
+      <div style="margin-top:14px;display:flex;align-items:center;gap:8px;">
+        <span class="pill pill-yellow"><span class="pill-dot"></span>Pending Verification</span>
+        <span style="font-size:0.7rem;color:#666;">est. 48h</span>
+      </div>
+    </div>
+
+  </div><!-- /stats-panel -->
+
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION: MY COURSES — VIDEO LEARNING WORKSPACE
+  ══════════════════════════════════════════════════ -->
+  <section id="my-courses" class="mb-8">
+
+    <div class="flex items-center justify-between mb-4 reveal">
+      <div>
+        <div class="section-label">My Courses</div>
+        <h2 class="font-display text-lg font-bold" style="color:var(--white);">Video Learning Workspace</h2>
+      </div>
+      <div class="flex gap-2">
+        <button class="btn-secondary text-xs" onclick="alert('Course catalogue — coming soon.')">
+          <i class="fa-solid fa-th-large"></i> All Courses
+        </button>
+      </div>
+    </div>
+
+    <!-- Split-screen video workspace -->
+    <div class="panel-card reveal">
+      <div class="panel-card-header">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse-dot 2s infinite;"></div>
+          <span class="panel-card-title">Module 3: Food Safety Certification</span>
+          <span class="pill pill-blue" style="margin-left:4px;"><i class="fa-solid fa-play" style="font-size:0.55rem;"></i>In Progress</span>
+        </div>
+        <div class="flex gap-2">
+          <button class="btn-icon" data-tooltip="Download resources" aria-label="Download resources">
+            <i class="fa-solid fa-download"></i>
+          </button>
+          <button class="btn-icon" data-tooltip="Expand player" aria-label="Fullscreen" onclick="toggleFullscreenPlayer()">
+            <i class="fa-solid fa-expand"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Video + Module checklist grid -->
+      <div class="panel-card-body" style="padding:0;">
+        <div style="display:grid;grid-template-columns:1fr;gap:0;" id="video-workspace">
+
+          <!-- LEFT: video area -->
+          <div style="padding:22px;border-bottom:1px solid var(--border);" id="video-pane">
+            <div style="position:relative;">
+              <div class="aspect-video-wrap" id="video-container">
+                <span class="video-overlay-badge">
+                  <i class="fa-solid fa-circle-dot" style="margin-right:4px;animation:pulse-dot 1.5s infinite;"></i>
+                  Live Module
+                </span>
+                <iframe
+                  src="https://www.youtube.com/embed/Kyux1lWdQ1I?rel=0&modestbranding=1&color=red"
+                  title="Food Safety Certification Training — Nexusyl Academy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy">
+                </iframe>
+              </div>
+
+              <!-- Video meta bar -->
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px;flex-wrap:wrap;gap:8px;">
+                <div>
+                  <p style="font-size:0.85rem;font-weight:600;color:var(--white);">Food Safety Level 2 — UK Compliance</p>
+                  <p style="font-size:0.72rem;color:#666;margin-top:2px;">
+                    <i class="fa-solid fa-clock" style="margin-right:4px;color:var(--red);"></i>45 min &nbsp;&middot;&nbsp;
+                    <i class="fa-solid fa-graduation-cap" style="margin-right:4px;color:var(--red);"></i>CPD Accredited &nbsp;&middot;&nbsp;
+                    <i class="fa-solid fa-certificate" style="margin-right:4px;color:var(--red);"></i>Certificate on completion
+                  </p>
+                </div>
+                <div class="flex gap-2">
+                  <button class="btn-primary text-xs" style="padding:8px 16px;" onclick="markComplete()">
+                    <i class="fa-solid fa-check"></i> Mark Complete
+                  </button>
+                  <button class="btn-secondary text-xs" style="padding:8px 14px;" onclick="takeNotes()">
+                    <i class="fa-solid fa-pen"></i> Notes
+                  </button>
+                </div>
+              </div>
+
+              <!-- Progress bar under video -->
+              <div style="margin-top:14px;">
+                <div style="display:flex;justify-content:space-between;font-size:0.68rem;color:#555;margin-bottom:5px;">
+                  <span>Module progress</span>
+                  <span style="color:var(--red);">45% complete</span>
+                </div>
+                <div class="progress-bar-track">
+                  <div class="progress-bar-fill" id="video-progress-bar" style="width:45%;transition:width 0.5s ease;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Module checklist -->
+          <div style="border-top:1px solid var(--border);" id="module-pane">
+            <div style="padding:16px 22px 10px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#555;">Course Modules</span>
+              <span style="font-size:0.7rem;color:#555;">3 of 5 done</span>
+            </div>
+            <div style="max-height:340px;overflow-y:auto;padding:0 12px 16px;">
+
+              <!-- Module 1: Complete -->
+              <div class="module-item completed" onclick="selectModule(this, 1)">
+                <div class="module-icon"><i class="fa-solid fa-check"></i></div>
+                <div style="flex:1;min-width:0;">
+                  <p style="font-size:0.82rem;font-weight:600;color:var(--white);">Module 1: Cleaning Tools &amp; Agents</p>
+                  <div class="progress-bar-track" style="margin-top:5px;">
+                    <div class="progress-bar-fill green" style="width:100%;"></div>
+                  </div>
+                </div>
+                <span class="module-duration">30 min</span>
+              </div>
+
+              <!-- Module 2: Complete -->
+              <div class="module-item completed" onclick="selectModule(this, 2)">
+                <div class="module-icon"><i class="fa-solid fa-check"></i></div>
+                <div style="flex:1;min-width:0;">
+                  <p style="font-size:0.82rem;font-weight:600;color:var(--white);">Module 2: COSHH Protocols</p>
+                  <div class="progress-bar-track" style="margin-top:5px;">
+                    <div class="progress-bar-fill green" style="width:100%;"></div>
+                  </div>
+                </div>
+                <span class="module-duration">40 min</span>
+              </div>
+
+              <!-- Module 3: Active -->
+              <div class="module-item active" id="module-3" onclick="selectModule(this, 3)">
+                <div class="module-icon"><i class="fa-solid fa-play"></i></div>
+                <div style="flex:1;min-width:0;">
+                  <p style="font-size:0.82rem;font-weight:600;color:var(--white);">Module 3: Food Safety Certification</p>
+                  <div class="progress-bar-track" style="margin-top:5px;">
+                    <div class="progress-bar-fill" style="width:45%;"></div>
+                  </div>
+                </div>
+                <span class="module-duration">45 min</span>
+              </div>
+
+              <!-- Module 4: Locked -->
+              <div class="module-item" style="opacity:0.45;" onclick="alert('Complete Module 3 first to unlock this module.')">
+                <div class="module-icon"><i class="fa-solid fa-lock"></i></div>
+                <div style="flex:1;min-width:0;">
+                  <p style="font-size:0.82rem;font-weight:600;color:#555;">Module 4: GDPR &amp; Data Handling (UK)</p>
+                  <p style="font-size:0.7rem;color:#555;margin-top:2px;">Unlocks on Module 3 completion</p>
+                </div>
+                <span class="module-duration">60 min</span>
+              </div>
+
+              <!-- Module 5: Locked -->
+              <div class="module-item" style="opacity:0.35;" onclick="alert('Complete the GDPR module to unlock the certification quiz.')">
+                <div class="module-icon"><i class="fa-solid fa-lock"></i></div>
+                <div style="flex:1;min-width:0;">
+                  <p style="font-size:0.82rem;font-weight:600;color:#555;">Module 5: Certification Quiz</p>
+                  <p style="font-size:0.7rem;color:#555;margin-top:2px;">Unlocks after Module 4</p>
+                </div>
+                <span class="module-duration">20 min</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section><!-- /my-courses -->
+
+  <div class="section-divider reveal"></div>
+
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION: DBS VETTING TRACKER
+  ══════════════════════════════════════════════════ -->
+  <section id="dbs-vetting" class="mb-8">
+
+    <div class="flex items-center justify-between mb-4 reveal">
+      <div>
+        <div class="section-label">Pre-Employment Compliance</div>
+        <h2 class="font-display text-lg font-bold" style="color:var(--white);">DBS Vetting Tracker</h2>
+      </div>
+      <span class="pill pill-yellow"><span class="pill-dot"></span>Action Required</span>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-6">
+
+      <!-- LEFT: 3-step progress stepper card -->
+      <div class="panel-card reveal">
+        <div class="panel-card-header">
+          <div class="panel-card-title">
+            <i class="fa-solid fa-shield-halved" style="color:var(--red);margin-right:8px;"></i>
+            Disclosure &amp; Barring Service Check
+          </div>
+          <span class="pill pill-yellow"><span class="pill-dot"></span>Step 2 of 3</span>
+        </div>
+        <div class="panel-card-body">
+
+          <!-- 3-step stepper -->
+          <div style="display:flex;align-items:flex-start;gap:6px;margin-bottom:28px;">
+            <!-- Step 1 -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:0 0 auto;">
+              <div class="step-circle done"><i class="fa-solid fa-check" style="font-size:0.75rem;"></i></div>
+              <span style="font-size:0.6rem;font-weight:700;text-align:center;color:#22c55e;letter-spacing:0.05em;max-width:64px;">Data<br/>Submitted</span>
+            </div>
+            <div class="step-connector done" style="margin-top:18px;"></div>
+            <!-- Step 2 -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:0 0 auto;">
+              <div class="step-circle active">
+                <i class="fa-solid fa-fingerprint" style="font-size:0.75rem;"></i>
+              </div>
+              <span style="font-size:0.6rem;font-weight:700;text-align:center;color:var(--red);letter-spacing:0.05em;max-width:72px;">Identity<br/>Verified</span>
+            </div>
+            <div class="step-connector active" style="margin-top:18px;"></div>
+            <!-- Step 3 -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:0 0 auto;">
+              <div class="step-circle pending">3</div>
+              <span style="font-size:0.6rem;font-weight:700;text-align:center;color:#555;letter-spacing:0.05em;max-width:68px;">Certificate<br/>Issued</span>
+            </div>
+          </div>
+
+          <!-- Step detail cards -->
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+
+            <div style="display:flex;gap:12px;padding:12px 14px;border-radius:3px;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);">
+              <div style="width:30px;height:30px;border-radius:50%;background:rgba(34,197,94,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i class="fa-solid fa-check" style="color:#22c55e;font-size:0.7rem;"></i>
+              </div>
+              <div>
+                <p style="font-size:0.82rem;font-weight:600;color:var(--white);">Data Submitted</p>
+                <p style="font-size:0.7rem;color:#666;margin-top:2px;">Personal data &amp; consent form received &middot; <span style="color:#22c55e;">02 May 2026, 14:32</span></p>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:12px;padding:12px 14px;border-radius:3px;background:rgba(232,33,26,0.07);border:1px solid rgba(232,33,26,0.2);">
+              <div style="width:30px;height:30px;border-radius:50%;background:rgba(232,33,26,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;animation:pulse-outer 2s infinite;">
+                <i class="fa-solid fa-fingerprint" style="color:var(--red);font-size:0.7rem;"></i>
+              </div>
+              <div>
+                <p style="font-size:0.82rem;font-weight:600;color:var(--white);">Identity Verified</p>
+                <p style="font-size:0.7rem;color:#666;margin-top:2px;">Biometric ID cross-referencing UKVI database &middot; <span style="color:#eab308;">Processing&hellip; est. 48h</span></p>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:12px;padding:12px 14px;border-radius:3px;border:1px solid var(--border);opacity:0.45;">
+              <div style="width:30px;height:30px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i class="fa-solid fa-certificate" style="color:#555;font-size:0.7rem;"></i>
+              </div>
+              <div>
+                <p style="font-size:0.82rem;font-weight:600;color:#555;">Certificate Issued</p>
+                <p style="font-size:0.7rem;color:#555;margin-top:2px;">Awaiting identity verification completion</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div style="padding:12px 14px;border-radius:3px;background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.2);font-size:0.78rem;color:#eab308;display:flex;align-items:center;gap:8px;">
+            <i class="fa-solid fa-circle-info"></i>
+            Your DBS result will be emailed to jordan.singh@nexusyl.co.uk and appear here automatically.
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT: drag-and-drop upload card -->
+      <div class="panel-card reveal reveal-delay-1">
+        <div class="panel-card-header">
+          <div class="panel-card-title">
+            <i class="fa-solid fa-id-card" style="color:var(--red);margin-right:8px;"></i>
+            Upload UK Digital Identity Document
+          </div>
+        </div>
+        <div class="panel-card-body">
+          <p style="font-size:0.8rem;color:#666;margin-bottom:16px;">
+            Upload a valid UK government-issued identity document. This is used solely for DBS verification purposes and processed securely by Juvenile Asia Technical Infrastructure.
+          </p>
+
+          <!-- Dropzone -->
+          <div id="dropzone"
+               role="button"
+               tabindex="0"
+               aria-label="Upload identity document — drag and drop or click to browse"
+               onkeydown="if(event.key==='Enter'||event.key===' ') document.getElementById('id-upload').click()"
+               ondragover="event.preventDefault();this.classList.add('drag-over')"
+               ondragleave="this.classList.remove('drag-over')"
+               ondrop="handleDrop(event)"
+               onclick="document.getElementById('id-upload').click()">
+            <div class="dz-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+            <p style="font-size:0.88rem;font-weight:700;color:var(--white);margin-bottom:4px;">
+              Drag &amp; drop your document here
+            </p>
+            <p style="font-size:0.75rem;color:#666;">or <span style="color:var(--red);text-decoration:underline;">browse files</span></p>
+            <div style="display:flex;justify-content:center;gap:8px;margin-top:12px;flex-wrap:wrap;">
+              <span class="pill" style="background:rgba(255,255,255,0.06);color:#888;border-color:var(--border);">Passport</span>
+              <span class="pill" style="background:rgba(255,255,255,0.06);color:#888;border-color:var(--border);">BRP Card</span>
+              <span class="pill" style="background:rgba(255,255,255,0.06);color:#888;border-color:var(--border);">UK Driving Licence</span>
+              <span class="pill" style="background:rgba(255,255,255,0.06);color:#888;border-color:var(--border);">PDF / JPG / PNG</span>
+            </div>
+            <p style="font-size:0.68rem;color:#555;margin-top:8px;">Maximum file size: 10 MB</p>
+            <input type="file"
+                   id="id-upload"
+                   name="identity_document"
+                   accept=".pdf,.jpg,.jpeg,.png"
+                   class="hidden"
+                   aria-label="Upload identity document"
+                   required
+                   onchange="handleFileSelect(event)" />
+          </div>
+
+          <!-- File confirmation row (hidden until file selected) -->
+          <div id="file-confirm" style="display:none;margin-top:14px;padding:10px 14px;border-radius:3px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);display:none;align-items:center;gap:10px;">
+            <i class="fa-solid fa-circle-check" style="color:#22c55e;"></i>
+            <div style="flex:1;min-width:0;">
+              <p style="font-size:0.8rem;font-weight:600;color:#22c55e;" id="file-name-display">document.pdf</p>
+              <p style="font-size:0.68rem;color:#555;" id="file-size-display">2.4 MB</p>
+            </div>
+            <button class="btn-icon" onclick="clearFile()" aria-label="Remove file" style="border-color:rgba(34,197,94,0.3);">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <!-- Submit button -->
+          <div style="display:flex;gap:10px;margin-top:16px;">
+            <button type="button"
+                    id="upload-btn"
+                    class="btn-primary"
+                    style="flex:1;justify-content:center;"
+                    onclick="submitUpload()">
+              <i class="fa-solid fa-upload"></i> Submit for Verification
+            </button>
+            <button type="button"
+                    class="btn-secondary"
+                    onclick="document.getElementById('id-upload').click()">
+              Browse
+            </button>
+          </div>
+
+          <p style="font-size:0.7rem;color:#555;margin-top:12px;text-align:center;">
+            <i class="fa-solid fa-lock" style="margin-right:4px;color:var(--red);"></i>
+            Encrypted in transit &amp; at rest · Processed under UK GDPR &middot; Deleted within 30 days of certification
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </section><!-- /dbs-vetting -->
+
+
+  <div class="section-divider reveal"></div>
+
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION: COMPLIANCE HUB
+  ══════════════════════════════════════════════════ -->
+  <section id="compliance-hub" class="mb-8">
+
+    <div class="mb-4 reveal">
+      <div class="section-label">Compliance Hub</div>
+      <h2 class="font-display text-lg font-bold" style="color:var(--white);">Regulatory Checklist</h2>
+    </div>
+
+    <div class="panel-card reveal">
+      <div class="panel-card-header">
+        <span class="panel-card-title"><i class="fa-solid fa-clipboard-check" style="color:var(--red);margin-right:8px;"></i>UK Employment Compliance Requirements</span>
+        <span style="font-size:0.72rem;color:#555;">4 of 6 complete</span>
+      </div>
+      <div class="panel-card-body" style="padding:0;">
+
+        <div style="padding:6px 22px;">
+
+          <!-- Compliance item -->
+          <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);">
+            <div style="width:22px;height:22px;border-radius:50%;background:rgba(34,197,94,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fa-solid fa-check" style="color:#22c55e;font-size:0.6rem;"></i>
+            </div>
+            <div style="flex:1;">
+              <p style="font-size:0.83rem;font-weight:600;color:var(--white);">Right to Work Verification</p>
+              <p style="font-size:0.7rem;color:#666;margin-top:1px;">Completed · 02 May 2026</p>
+            </div>
+            <span class="pill pill-green">Complete</span>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);">
+            <div style="width:22px;height:22px;border-radius:50%;background:rgba(34,197,94,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fa-solid fa-check" style="color:#22c55e;font-size:0.6rem;"></i>
+            </div>
+            <div style="flex:1;">
+              <p style="font-size:0.83rem;font-weight:600;color:var(--white);">UK Hospitality Compliance (Level 2)</p>
+              <p style="font-size:0.7rem;color:#666;margin-top:1px;">CPD Certificate issued · 01 May 2026</p>
+            </div>
+            <span class="pill pill-green">Complete</span>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);">
+            <div style="width:22px;height:22px;border-radius:50%;background:rgba(34,197,94,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fa-solid fa-check" style="color:#22c55e;font-size:0.6rem;"></i>
+            </div>
+            <div style="flex:1;">
+              <p style="font-size:0.83rem;font-weight:600;color:var(--white);">COSHH Protocols Awareness</p>
+              <p style="font-size:0.7rem;color:#666;margin-top:1px;">Completed · 30 Apr 2026</p>
+            </div>
+            <span class="pill pill-green">Complete</span>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);">
+            <div style="width:22px;height:22px;border-radius:50%;background:rgba(34,197,94,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fa-solid fa-check" style="color:#22c55e;font-size:0.6rem;"></i>
+            </div>
+            <div style="flex:1;">
+              <p style="font-size:0.83rem;font-weight:600;color:var(--white);">ID Document Submission</p>
+              <p style="font-size:0.7rem;color:#666;margin-top:1px;">Uploaded · DBS processing</p>
+            </div>
+            <span class="pill pill-yellow"><span class="pill-dot"></span>In Review</span>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);opacity:0.55;">
+            <div style="width:22px;height:22px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fa-solid fa-lock" style="color:#555;font-size:0.55rem;"></i>
+            </div>
+            <div style="flex:1;">
+              <p style="font-size:0.83rem;font-weight:600;color:#555;">GDPR &amp; Data Handling (UK)</p>
+              <p style="font-size:0.7rem;color:#555;margin-top:1px;">In progress — 45% complete</p>
+            </div>
+            <span class="pill" style="background:rgba(255,255,255,0.05);color:#555;border-color:var(--border);">In Progress</span>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:14px;padding:14px 0;opacity:0.35;">
+            <div style="width:22px;height:22px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fa-solid fa-lock" style="color:#555;font-size:0.55rem;"></i>
+            </div>
+            <div style="flex:1;">
+              <p style="font-size:0.83rem;font-weight:600;color:#555;">UK Employment Law Fundamentals</p>
+              <p style="font-size:0.7rem;color:#555;margin-top:1px;">Locked — awaiting DBS certificate</p>
+            </div>
+            <span class="pill" style="background:rgba(255,255,255,0.03);color:#555;border-color:var(--border);">Locked</span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </section><!-- /compliance-hub -->
+
+  <div class="section-divider reveal"></div>
+
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION: ACCOUNT SETTINGS
+  ══════════════════════════════════════════════════ -->
+  <section id="account-settings" class="mb-10">
+
+    <div class="mb-4 reveal">
+      <div class="section-label">Account</div>
+      <h2 class="font-display text-lg font-bold" style="color:var(--white);">Account Settings</h2>
+    </div>
+
+    <div class="panel-card reveal">
+      <div class="panel-card-header">
+        <span class="panel-card-title"><i class="fa-solid fa-user-gear" style="color:var(--red);margin-right:8px;"></i>Profile &amp; Preferences</span>
+      </div>
+      <div class="panel-card-body">
+        <form id="settings-form" novalidate>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;" class="settings-grid">
+            <div>
+              <label for="s-name" style="display:block;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#555;margin-bottom:6px;">Full Name</label>
+              <input type="text" id="s-name" name="full_name"
+                     autocomplete="name"
+                     value="Jordan Singh"
+                     required
+                     style="width:100%;background:var(--dark);border:1px solid var(--border);border-radius:2px;padding:10px 14px;font-family:'Manrope',sans-serif;font-size:0.85rem;color:var(--white);outline:none;transition:border-color 0.2s,box-shadow 0.2s;"
+                     onfocus="this.style.borderColor='var(--red)';this.style.boxShadow='0 0 0 3px rgba(232,33,26,0.1)'"
+                     onblur="this.style.borderColor='var(--border)';this.style.boxShadow='none'" />
+            </div>
+            <div>
+              <label for="s-email" style="display:block;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#555;margin-bottom:6px;">Email Address</label>
+              <input type="email" id="s-email" name="email"
+                     autocomplete="email"
+                     value="jordan.singh@nexusyl.co.uk"
+                     required
+                     style="width:100%;background:var(--dark);border:1px solid var(--border);border-radius:2px;padding:10px 14px;font-family:'Manrope',sans-serif;font-size:0.85rem;color:var(--white);outline:none;transition:border-color 0.2s,box-shadow 0.2s;"
+                     onfocus="this.style.borderColor='var(--red)';this.style.boxShadow='0 0 0 3px rgba(232,33,26,0.1)'"
+                     onblur="this.style.borderColor='var(--border)';this.style.boxShadow='none'" />
+            </div>
+            <div>
+              <label for="s-phone" style="display:block;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#555;margin-bottom:6px;">Phone Number</label>
+              <input type="tel" id="s-phone" name="phone"
+                     autocomplete="tel"
+                     pattern="[+]?[0-9 \-()]{7,20}"
+                     placeholder="+44 7700 000000"
+                     style="width:100%;background:var(--dark);border:1px solid var(--border);border-radius:2px;padding:10px 14px;font-family:'Manrope',sans-serif;font-size:0.85rem;color:var(--white);outline:none;transition:border-color 0.2s,box-shadow 0.2s;"
+                     onfocus="this.style.borderColor='var(--red)';this.style.boxShadow='0 0 0 3px rgba(232,33,26,0.1)'"
+                     onblur="this.style.borderColor='var(--border)';this.style.boxShadow='none'" />
+            </div>
+            <div>
+              <label for="s-notify" style="display:block;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#555;margin-bottom:6px;">Notification Preference</label>
+              <select id="s-notify" name="notifications"
+                      aria-required="true"
+                      style="width:100%;background:var(--dark);border:1px solid var(--border);border-radius:2px;padding:10px 14px;font-family:'Manrope',sans-serif;font-size:0.85rem;color:var(--white);outline:none;cursor:pointer;">
+                <option value="all">All notifications</option>
+                <option value="important" selected>Important only</option>
+                <option value="none">None</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button type="submit" class="btn-primary" onclick="saveSettings(event)">
+              <i class="fa-solid fa-floppy-disk"></i> Save Changes
+            </button>
+            <button type="button" class="btn-secondary" onclick="this.closest('form').reset()">
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </section><!-- /account-settings -->
+
+</main><!-- /main-content -->
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════ -->
+<footer class="academy-footer" role="contentinfo">
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="16" height="16" style="display:inline-block;vertical-align:-2px;flex-shrink:0;"><circle cx="32" cy="32" r="32" fill="white"/><path d="M32 32 Q46 10 54 20 Q58 28 44 36 Z" fill="#e85c2b"/><path d="M32 32 Q56 36 52 50 Q46 58 34 46 Z" fill="#28a8b5"/><path d="M32 32 Q36 58 22 58 Q12 56 18 42 Z" fill="#1a6eb5"/><path d="M32 32 Q8 48 8 34 Q8 22 24 24 Z" fill="#2b7fcc"/><path d="M32 32 Q12 16 22 10 Q32 6 38 20 Z" fill="#35b8c8"/></svg>
+        <p style="font-size:0.72rem;color:#555;max-width:680px;line-height:1.5;">
+          Nexusyl Academy is a proprietary learning environment powered by the Juvenile Asia Technical Infrastructure (Company No. 16966853).
+        </p>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;flex-shrink:0;">
+        <a href="/privacy" class="footer-link">Privacy</a>
+        <a href="/terms"   class="footer-link">Terms</a>
+        <a href="https://nexusyl.juvenileasia.com" class="footer-link">nexusyl.juvenileasia.com</a>
+      </div>
+    </div>
+    <div style="height:1px;background:var(--border);"></div>
+    <p style="font-size:0.68rem;color:#444;">© 2026 Nexusyl Limited · All rights reserved · Academy Platform v1.0.0</p>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════════ -->
+<script>
+  // ── Responsive video/module layout ─────────────────────────────────────────
+  function applyVideoLayout() {
+    var ws  = document.getElementById('video-workspace');
+    var vp  = document.getElementById('video-pane');
+    var mp  = document.getElementById('module-pane');
+    if (!ws) return;
+    if (window.innerWidth >= 1024) {
+      ws.style.gridTemplateColumns = '1fr 320px';
+      vp.style.borderBottom = 'none';
+      vp.style.borderRight  = '1px solid var(--border)';
+      mp.style.borderTop    = 'none';
+    } else {
+      ws.style.gridTemplateColumns = '1fr';
+      vp.style.borderRight  = 'none';
+      vp.style.borderBottom = '1px solid var(--border)';
+      mp.style.borderTop    = 'none';
+    }
+  }
+  window.addEventListener('resize', applyVideoLayout);
+  applyVideoLayout();
+
+  // ── Sidebar ─────────────────────────────────────────────────────────────────
+  function openSidebar() {
+    document.getElementById('sidebar').classList.add('open');
+    document.getElementById('sidebar-overlay').style.display = 'block';
+  }
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebar-overlay').style.display = 'none';
+  }
+
+  // ── Active nav ───────────────────────────────────────────────────────────────
+  function setActive(el) {
+    document.querySelectorAll('.nav-item').forEach(function(i){ i.classList.remove('active'); });
+    el.classList.add('active');
+    // Close mobile sidebar on nav click
+    if (window.innerWidth < 768) closeSidebar();
+  }
+
+  // ── Smooth scroll with sidebar offset ────────────────────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        var offset = 80;
+        var top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: top, behaviour: 'smooth' });
+      }
+    });
+  });
+
+  // ── Reveal on scroll ─────────────────────────────────────────────────────────
+  var revealObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(function(el){ revealObs.observe(el); });
+
+  // ── Theme toggle ─────────────────────────────────────────────────────────────
+  (function() {
+    var body   = document.body;
+    var btn    = document.getElementById('theme-toggle');
+    var sunEl  = document.getElementById('icon-sun');
+    var moonEl = document.getElementById('icon-moon');
+    function applyTheme(t) {
+      if (t === 'light') {
+        body.classList.add('light');
+        if (sunEl)  sunEl.style.display  = 'none';
+        if (moonEl) moonEl.style.display = 'block';
+      } else {
+        body.classList.remove('light');
+        if (sunEl)  sunEl.style.display  = 'block';
+        if (moonEl) moonEl.style.display = 'none';
+      }
+      localStorage.setItem('nx-theme', t);
+    }
+    applyTheme(localStorage.getItem('nx-theme') || 'dark');
+    if (btn) btn.addEventListener('click', function() {
+      applyTheme(body.classList.contains('light') ? 'dark' : 'light');
+    });
+  })();
+
+  // ── Module selection ─────────────────────────────────────────────────────────
+  function selectModule(el, num) {
+    // Only active/completed modules are selectable
+    if (el.style.opacity === '0.45' || el.style.opacity === '0.35') return;
+    document.querySelectorAll('.module-item').forEach(function(m) { m.classList.remove('active'); });
+    el.classList.add('active');
+    // Update progress bar to show progress for selected module
+    var progressMap = {1: 100, 2: 100, 3: 45};
+    var val = progressMap[num] || 0;
+    var bar = document.getElementById('video-progress-bar');
+    if (bar) bar.style.width = val + '%';
+    bar.previousElementSibling && (bar.parentNode.previousElementSibling.querySelector('span:last-child').textContent = val + '% complete');
+  }
+
+  // ── Video mark complete ───────────────────────────────────────────────────────
+  function markComplete() {
+    var bar = document.getElementById('video-progress-bar');
+    bar.style.width = '100%';
+    bar.classList.add('green');
+    var btn = event.target.closest('button');
+    btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Completed';
+    btn.style.background = '#16a34a';
+    btn.style.boxShadow = '0 4px 20px rgba(34,197,94,0.3)';
+    setTimeout(function(){ alert('Module 3 marked complete! Module 4 is now unlocked.'); }, 400);
+  }
+
+  function takeNotes() { alert('Notes panel — coming in Academy v1.1.'); }
+
+  function toggleFullscreenPlayer() {
+    var container = document.getElementById('video-container');
+    if (container.requestFullscreen) container.requestFullscreen();
+    else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen();
+  }
+
+  // ── DBS file upload ───────────────────────────────────────────────────────────
+  function handleDrop(event) {
+    event.preventDefault();
+    document.getElementById('dropzone').classList.remove('drag-over');
+    var file = event.dataTransfer.files[0];
+    if (file) processFile(file);
+  }
+  function handleFileSelect(event) {
+    var file = event.target.files[0];
+    if (file) processFile(file);
+  }
+  function processFile(file) {
+    var allowed = ['application/pdf','image/jpeg','image/png'];
+    if (!allowed.includes(file.type)) { alert('Please upload a PDF, JPG, or PNG file.'); return; }
+    if (file.size > 10 * 1024 * 1024) { alert('File size must not exceed 10 MB.'); return; }
+    var confirm = document.getElementById('file-confirm');
+    document.getElementById('file-name-display').textContent = file.name;
+    document.getElementById('file-size-display').textContent = (file.size / 1024).toFixed(0) + ' KB';
+    confirm.style.display = 'flex';
+  }
+  function clearFile() {
+    document.getElementById('id-upload').value = '';
+    document.getElementById('file-confirm').style.display = 'none';
+  }
+  function submitUpload() {
+    var input = document.getElementById('id-upload');
+    if (!input.files || !input.files.length) { alert('Please select a document before submitting.'); return; }
+    var btn = document.getElementById('upload-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading…';
+    setTimeout(function() {
+      btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Submitted Successfully';
+      btn.style.background = '#16a34a';
+      btn.style.boxShadow = '0 4px 20px rgba(34,197,94,0.3)';
+    }, 1800);
+  }
+
+  // ── Settings save ─────────────────────────────────────────────────────────────
+  function saveSettings(e) {
+    e.preventDefault();
+    var btn = e.target.closest('button');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving…';
+    setTimeout(function() {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Saved';
+      setTimeout(function() { btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Save Changes'; }, 2500);
+    }, 1000);
+  }
+
+  // ── Active section highlight on scroll ───────────────────────────────────────
+  var sections = ['my-courses','compliance-hub','dbs-vetting','account-settings'];
+  window.addEventListener('scroll', function() {
+    var scrollY = window.scrollY + 100;
+    sections.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (el.offsetTop <= scrollY && el.offsetTop + el.offsetHeight > scrollY) {
+        document.querySelectorAll('.nav-item[data-section]').forEach(function(n){ n.classList.remove('active'); });
+        var navEl = document.querySelector('.nav-item[data-section="' + id + '"]');
+        if (navEl) navEl.classList.add('active');
+      }
+    });
+  });
+
+  // ── Keyframe for pulse-outer ──────────────────────────────────────────────────
+  var style = document.createElement('style');
+  style.textContent = '@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} } @keyframes pulse-outer { 0%,100%{box-shadow:0 0 0 0 rgba(232,33,26,0.4)} 50%{box-shadow:0 0 0 6px rgba(232,33,26,0)} }';
+  document.head.appendChild(style);
+</script>
+</body>
+</html>
