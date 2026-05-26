@@ -893,9 +893,9 @@
   </div>
 
   <!-- Mobile Menu -->
-    <div id="mobile-menu" role="menu">
+      <div id="mobile-menu" role="menu">
     <div class="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-1">
-      <a href="#home" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+      <a href="/" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
         <i class="fa-solid fa-house mr-3 text-red-500"></i>Home
       </a>
       <a href="/recruitment" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
@@ -910,7 +910,7 @@
       <a href="/property" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
         <i class="fa-solid fa-building mr-3 text-red-500"></i>Property
       </a>
-      <a href="#about-section" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+      <a href="/#about-section" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
         <i class="fa-solid fa-info-circle mr-3 text-red-500"></i>About
       </a>
       <a href="#contact" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
@@ -1503,25 +1503,25 @@
             <!-- Name -->
             <div class="mb-5">
               <label class="form-label" for="name">Full Name</label>
-              <input class="form-input" type="text" id="name" name="name" placeholder="John Smith" required />
+              <input class="form-input" type="text" id="name" autocomplete="name" name="name" placeholder="John Smith" required />
             </div>
 
             <!-- Email -->
             <div class="mb-5">
               <label class="form-label" for="email">Email Address</label>
-              <input class="form-input" type="email" id="email" name="email" placeholder="john@example.com" required />
+              <input class="form-input" type="email" id="email" autocomplete="email" name="email" placeholder="john@example.com" required />
             </div>
 
             <!-- Phone -->
             <div class="mb-5">
               <label class="form-label" for="phone">Phone Number <span class="text-gray-600 normal-case tracking-normal font-normal">(optional)</span></label>
-              <input class="form-input" type="tel" id="phone" name="phone" placeholder="+44 7700 000000" />
+              <input class="form-input" type="tel" id="phone" autocomplete="tel" pattern="[+]?[0-9 \-()]{7,20}" name="phone" placeholder="+44 7700 000000" />
             </div>
 
             <!-- Enquiry type -->
             <div class="mb-5">
               <label class="form-label" for="sector">Enquiry Type</label>
-              <select class="form-input" id="sector" name="sector" required>
+              <select class="form-input" id="sector" name="sector" required aria-required="true">
                 <option value="" disabled selected>Select a service area...</option>
                 <option value="recruitment">Nexusyl Recruitment</option>
                 <option value="streetfood">Nexusyl Street Food</option>
@@ -1534,7 +1534,7 @@
             <!-- Message -->
             <div class="mb-7">
               <label class="form-label" for="message">Your Message</label>
-              <textarea class="form-input" id="message" name="message" rows="4" placeholder="Tell us how we can help you..." required style="resize: vertical;"></textarea>
+              <textarea class="form-input" id="message" name="message" rows="4" minlength="20" placeholder="Tell us how we can help you..." required style="resize: vertical;"></textarea>
             </div>
 
             <!-- Submit -->
@@ -1563,26 +1563,31 @@
     <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
 
       <!-- Brand -->
-      <div class="lg:col-span-2">
+            <div class="lg:col-span-2">
         <div class="flex items-center gap-3 mb-5">
           <img src="/Nexusyl_Fab.png" alt="Nexusyl icon" class="h-8 w-8 object-contain" onerror="this.style.display='none'" />
           <span class="logo-wrap-always"><img src="/Nexusyl_White_Logo.png" alt="Nexusyl Limited" class="logo-dark h-6 object-contain" /><img src="/Nexusyl_Black_Logo.png" alt="Nexusyl Limited" class="logo-light h-6 object-contain" /></span>
         </div>
-        <p class="text-gray-500 text-sm leading-relaxed mb-5 max-w-xs">
+        <p class="text-gray-500 text-sm leading-relaxed mb-3 max-w-xs">
           A London-based multi-sector company delivering excellence across recruitment, food tech, education, and property.
         </p>
-        <div class="text-xs text-gray-600 font-semibold uppercase tracking-widest">Registered in England &amp; Wales</div>
+        <p class="text-gray-600 text-xs leading-relaxed mb-4 max-w-xs">
+          Nexusyl Limited is a wholly owned subsidiary of Juvenile Asia Limited (Company No. 16966853). Registered in England &amp; Wales.
+        </p>
+        <div class="text-xs text-gray-600 font-semibold uppercase tracking-widest">FCA &amp; ICO Registered</div>
       </div>
 
       <!-- Services -->
       <div>
+        <div>
         <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Our Sectors</h3>
         <div class="flex flex-col gap-2.5">
           <a href="/recruitment" class="footer-link">Recruitment</a>
-          <a href="/food-tech"    class="footer-link">Food Tech</a>
+          <a href="/food-tech"   class="footer-link">Food Tech</a>
           <a href="/education"   class="footer-link">Education</a>
           <a href="/property"    class="footer-link">Property</a>
         </div>
+      </div>
       </div>
 
       <!-- Company -->
@@ -1616,7 +1621,7 @@
   </div>
 
   <!-- Bottom bar -->
-    <div style="border-top: 1px solid var(--border);">
+      <div style="border-top: 1px solid var(--border);">
     <div class="max-w-7xl mx-auto px-5 lg:px-8 py-5 flex flex-col items-center gap-3">
       <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-600">
         <span>© 2026 Nexusyl Limited. All rights reserved.</span>
@@ -1629,10 +1634,9 @@
       <div class="flex items-center gap-4 text-xs">
         <a href="/privacy" class="text-gray-600 hover:text-gray-400 transition-colors">Privacy</a>
         <a href="/terms"   class="text-gray-600 hover:text-gray-400 transition-colors">Terms</a>
-        <a href="#"            class="text-gray-600 hover:text-gray-400 transition-colors">Cookies</a>
+        <a href="#"        class="text-gray-600 hover:text-gray-400 transition-colors">Cookies</a>
       </div>
     </div>
-  </div>
   </div>
 </footer>
 

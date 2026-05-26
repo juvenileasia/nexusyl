@@ -568,6 +568,17 @@
     .logo-wrap-always .logo-light { display: none; }
     body.light .logo-wrap-always .logo-dark  { display: none; }
     body.light .logo-wrap-always .logo-light { display: block; }
+    /* ── Pre-Employment Readiness Pipeline ────────────────────────────────── */
+    .pipeline-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 4px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .pipeline-card:hover { border-color: rgba(232,33,26,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+    .ecology-banner { transition: transform 0.3s, box-shadow 0.3s; }
+    .ecology-banner:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(232,33,26,0.1); }
+    body.light .pipeline-card { background: #FFFFFF; border-color: #DDDDD8; }
+    body.light #dbs-dropzone { background: rgba(232,33,26,0.03) !important; }
+
   </style>
 </head>
 <body>
@@ -615,7 +626,7 @@
       </button>
     </div>
   </div>
-    <div id="mobile-menu" role="menu">
+      <div id="mobile-menu" role="menu">
     <div class="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-1">
       <a href="/" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
         <i class="fa-solid fa-house mr-3 text-red-500"></i>Home
@@ -884,6 +895,333 @@
   </div>
 </section>
 
+
+<!-- ══════════════════════════════════════════════════════════
+     PRE-EMPLOYMENT READINESS PIPELINE
+════════════════════════════════════════════════════════════ -->
+<section id="pipeline" class="py-24 lg:py-32" aria-label="Pre-Employment Readiness Pipeline">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+    <!-- Header -->
+    <div class="section-label reveal mb-4">Compliance Pipeline</div>
+    <div class="grid lg:grid-cols-2 gap-6 lg:gap-10 items-end mb-14">
+      <div>
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-white leading-tight reveal">
+          Pre-Employment <span style="color:var(--red);">Readiness</span> Pipeline
+        </h2>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <p class="text-gray-400 text-base leading-relaxed">
+          Every candidate in the Nexusyl ecosystem passes through a structured compliance and onboarding pipeline before entering the live vacancy pool — ensuring employers receive verified, trained, placement-ready talent.
+        </p>
+      </div>
+    </div>
+
+    <!-- Wizard Step Indicator -->
+    <div class="reveal mb-12">
+      <div class="flex items-center justify-center gap-0 overflow-x-auto pb-2">
+        <!-- Step 1 -->
+        <div class="flex items-center gap-0 flex-shrink-0">
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm text-white"
+                 style="background: var(--red); border: 2px solid var(--red);">1</div>
+            <span class="text-xs font-semibold text-white mt-2 text-center max-w-[80px]">Identity &amp;<br/>Eligibility</span>
+          </div>
+          <div class="w-16 sm:w-24 h-0.5 mx-1 flex-shrink-0" style="background: var(--red);"></div>
+        </div>
+        <!-- Step 2 -->
+        <div class="flex items-center gap-0 flex-shrink-0">
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm text-white"
+                 style="background: var(--red); border: 2px solid var(--red);">2</div>
+            <span class="text-xs font-semibold text-white mt-2 text-center max-w-[80px]">DBS &amp; Vetting<br/>Check</span>
+          </div>
+          <div class="w-16 sm:w-24 h-0.5 mx-1 flex-shrink-0" style="background: rgba(232,33,26,0.3);"></div>
+        </div>
+        <!-- Step 3 -->
+        <div class="flex items-center gap-0 flex-shrink-0">
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm"
+                 style="background: transparent; border: 2px solid rgba(232,33,26,0.3); color: rgba(255,255,255,0.4);">3</div>
+            <span class="text-xs font-semibold text-gray-500 mt-2 text-center max-w-[80px]">Academy<br/>Onboarding</span>
+          </div>
+          <div class="w-16 sm:w-24 h-0.5 mx-1 flex-shrink-0" style="background: var(--border);"></div>
+        </div>
+        <!-- Step 4 -->
+        <div class="flex flex-col items-center flex-shrink-0">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm"
+               style="background: transparent; border: 2px solid var(--border); color: rgba(255,255,255,0.25);">4</div>
+          <span class="text-xs font-semibold text-gray-600 mt-2 text-center max-w-[80px]">Live Vacancy<br/>Pool</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two Pipeline Cards -->
+    <div class="grid lg:grid-cols-2 gap-8">
+
+      <!-- ── Card A: DBS Vetting Tracker ─────────────────────────────────── -->
+      <div class="sector-card reveal" style="border-color: rgba(232,33,26,0.25);">
+        <!-- Card header -->
+        <div class="p-6 pb-0">
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <div class="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0"
+                     style="background: rgba(232,33,26,0.12);">
+                  <i class="fa-solid fa-shield-halved text-xs" style="color:var(--red);"></i>
+                </div>
+                <span class="text-xs font-bold uppercase tracking-widest" style="color:var(--red);">Automated Vetting</span>
+              </div>
+              <h3 class="font-display text-xl font-bold text-white">UK DBS Check Tracker</h3>
+              <p class="text-gray-500 text-sm mt-1">Identity-verified background screening aligned to UK Disclosure and Barring Service standards.</p>
+            </div>
+            <span class="text-xs font-bold px-2.5 py-1 rounded-sm flex-shrink-0"
+                  style="background:rgba(232,33,26,0.12); color:var(--red); border:1px solid rgba(232,33,26,0.25);">
+              In Progress
+            </span>
+          </div>
+
+          <!-- 3-step DBS progress stepper -->
+          <div class="border rounded-sm p-5 mb-5" style="background:var(--dark); border-color:var(--border);">
+            <div class="flex items-start gap-3">
+
+              <!-- Step 1: Complete -->
+              <div class="flex flex-col items-center flex-shrink-0">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:var(--red);">
+                  <i class="fa-solid fa-check text-white text-xs"></i>
+                </div>
+                <div class="w-0.5 h-8 mt-1" style="background:var(--red);"></div>
+              </div>
+              <div class="pt-1 flex-1 mb-6">
+                <p class="font-semibold text-white text-sm">Data Submitted</p>
+                <p class="text-gray-500 text-xs mt-0.5">Personal data &amp; consent form received · <span style="color:var(--red);">02 May 2026</span></p>
+              </div>
+
+              <!-- Step 2: Active -->
+              <div class="flex flex-col items-center flex-shrink-0">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center animate-pulse" style="background:var(--red);">
+                  <i class="fa-solid fa-fingerprint text-white text-xs"></i>
+                </div>
+              </div>
+
+            </div>
+            <!-- Second row -->
+            <div class="flex items-start gap-3 mt-1">
+              <div class="flex flex-col items-center flex-shrink-0">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:var(--red);">
+                  <i class="fa-solid fa-fingerprint text-white text-xs"></i>
+                </div>
+                <div class="w-0.5 h-8 mt-1" style="background: rgba(232,33,26,0.3);"></div>
+              </div>
+              <div class="pt-1 flex-1 mb-6">
+                <p class="font-semibold text-white text-sm">Identity Verified</p>
+                <p class="text-gray-500 text-xs mt-0.5">Biometric ID cross-referenced with UKVI database · <span class="text-yellow-500">Processing…</span></p>
+              </div>
+            </div>
+            <!-- Third row -->
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="border:2px solid var(--border);">
+                <i class="fa-solid fa-certificate text-xs text-gray-600"></i>
+              </div>
+              <div class="pt-1 flex-1">
+                <p class="font-semibold text-gray-500 text-sm">Certificate Issued</p>
+                <p class="text-gray-600 text-xs mt-0.5">Awaiting identity verification completion</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- File upload dropzone -->
+        <div class="px-6 pb-6">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Upload UK Digital Identity Document</p>
+          <form id="dbs-upload-form" novalidate>
+            <div id="dbs-dropzone"
+                 class="border-2 border-dashed rounded-sm p-6 text-center cursor-pointer transition-all duration-200"
+                 style="border-color: rgba(232,33,26,0.3); background: rgba(232,33,26,0.04);"
+                 ondragover="event.preventDefault();this.style.borderColor='var(--red)';this.style.background='rgba(232,33,26,0.08)';"
+                 ondragleave="this.style.borderColor='rgba(232,33,26,0.3)';this.style.background='rgba(232,33,26,0.04)';"
+                 ondrop="handleDbsDrop(event)"
+                 onclick="document.getElementById('dbs-file-input').click()">
+              <i class="fa-solid fa-cloud-arrow-up text-2xl mb-2" style="color:var(--red);"></i>
+              <p class="text-sm text-gray-400 font-semibold">Drag &amp; drop your document here</p>
+              <p class="text-xs text-gray-600 mt-1">Accepted: Passport, BRP, UK Driving Licence &middot; PDF, JPG, PNG &middot; Max 10 MB</p>
+              <input type="file" id="dbs-file-input" name="dbs_document"
+                     accept=".pdf,.jpg,.jpeg,.png"
+                     class="hidden"
+                     aria-label="Upload UK Digital Identity Document"
+                     required
+                     onchange="handleDbsFileSelect(event)" />
+            </div>
+            <div id="dbs-file-name" class="hidden mt-3 flex items-center gap-2 text-sm text-green-400">
+              <i class="fa-solid fa-circle-check"></i>
+              <span id="dbs-file-label"></span>
+            </div>
+            <div class="flex gap-3 mt-4">
+              <button type="submit" class="btn-primary text-xs py-2.5 flex-1 justify-center"
+                      onclick="submitDbsForm(event)">
+                <i class="fa-solid fa-upload mr-2"></i> Submit for Verification
+              </button>
+              <button type="button" class="btn-outline text-xs py-2.5 px-4"
+                      onclick="document.getElementById('dbs-file-input').click()">
+                Browse
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ── Card B: Nexusyl Academy Micro-LMS ──────────────────────────── -->
+      <div class="sector-card reveal reveal-delay-1" style="border-color: rgba(232,33,26,0.15);">
+        <!-- Card header -->
+        <div class="p-6 pb-4">
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <div class="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0"
+                     style="background: rgba(232,33,26,0.12);">
+                  <i class="fa-solid fa-graduation-cap text-xs" style="color:var(--red);"></i>
+                </div>
+                <span class="text-xs font-bold uppercase tracking-widest" style="color:var(--red);">Nexusyl Academy</span>
+              </div>
+              <h3 class="font-display text-xl font-bold text-white">Onboarding Progress</h3>
+              <p class="text-gray-500 text-sm mt-1">Complete your assigned compliance modules before entering the live vacancy pool.</p>
+            </div>
+            <!-- Circular progress -->
+            <div class="flex flex-col items-center flex-shrink-0">
+              <div class="relative w-16 h-16">
+                <svg viewBox="0 0 36 36" class="w-16 h-16 -rotate-90">
+                  <circle cx="18" cy="18" r="15.9" fill="none" stroke="var(--border)" stroke-width="2.5"/>
+                  <circle cx="18" cy="18" r="15.9" fill="none"
+                          stroke="var(--red)" stroke-width="2.5"
+                          stroke-dasharray="66 100"
+                          stroke-linecap="round"
+                          style="transition: stroke-dasharray 1s ease;"/>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <span class="font-display font-bold text-white text-sm">66%</span>
+                </div>
+              </div>
+              <span class="text-xs text-gray-500 mt-1">Complete</span>
+            </div>
+          </div>
+
+          <!-- Course list -->
+          <div class="flex flex-col gap-3 mb-5">
+
+            <!-- Course 1: Complete -->
+            <div class="flex items-center gap-3 p-3 rounded-sm" style="background: var(--dark); border: 1px solid var(--border);">
+              <div class="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.12);">
+                <i class="fa-solid fa-check text-xs text-green-400"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-semibold text-white truncate">UK Hospitality Compliance</p>
+                <div class="flex items-center gap-2 mt-0.5">
+                  <div class="flex-1 h-1 rounded-full" style="background: var(--border);">
+                    <div class="h-1 rounded-full" style="background: #22c55e; width: 100%;"></div>
+                  </div>
+                  <span class="text-xs text-green-400 flex-shrink-0">100%</span>
+                </div>
+              </div>
+              <span class="text-xs text-gray-600 flex-shrink-0">45 min</span>
+            </div>
+
+            <!-- Course 2: Complete -->
+            <div class="flex items-center gap-3 p-3 rounded-sm" style="background: var(--dark); border: 1px solid var(--border);">
+              <div class="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.12);">
+                <i class="fa-solid fa-check text-xs text-green-400"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-semibold text-white truncate">Right to Work Verification</p>
+                <div class="flex items-center gap-2 mt-0.5">
+                  <div class="flex-1 h-1 rounded-full" style="background: var(--border);">
+                    <div class="h-1 rounded-full" style="background: #22c55e; width: 100%;"></div>
+                  </div>
+                  <span class="text-xs text-green-400 flex-shrink-0">100%</span>
+                </div>
+              </div>
+              <span class="text-xs text-gray-600 flex-shrink-0">30 min</span>
+            </div>
+
+            <!-- Course 3: In progress -->
+            <div class="flex items-center gap-3 p-3 rounded-sm" style="background: var(--dark); border: 1px solid rgba(232,33,26,0.2);">
+              <div class="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0" style="background: rgba(232,33,26,0.12);">
+                <i class="fa-solid fa-play text-xs" style="color:var(--red);"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-semibold text-white truncate">GDPR &amp; Data Handling (UK)</p>
+                <div class="flex items-center gap-2 mt-0.5">
+                  <div class="flex-1 h-1 rounded-full" style="background: var(--border);">
+                    <div class="h-1 rounded-full" style="background: var(--red); width: 45%;"></div>
+                  </div>
+                  <span class="text-xs flex-shrink-0" style="color:var(--red);">45%</span>
+                </div>
+              </div>
+              <span class="text-xs text-gray-600 flex-shrink-0">60 min</span>
+            </div>
+
+            <!-- Course 4: Locked -->
+            <div class="flex items-center gap-3 p-3 rounded-sm opacity-50" style="background: var(--dark); border: 1px solid var(--border);">
+              <div class="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0" style="background: rgba(255,255,255,0.05);">
+                <i class="fa-solid fa-lock text-xs text-gray-600"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-semibold text-gray-500 truncate">UK Employment Law Fundamentals</p>
+                <p class="text-xs text-gray-600 mt-0.5">Unlocks on DBS certificate receipt</p>
+              </div>
+              <span class="text-xs text-gray-600 flex-shrink-0">90 min</span>
+            </div>
+          </div>
+
+          <!-- Launch Training CTA -->
+          <div class="flex gap-3">
+            <button type="button"
+                    id="launch-training-btn"
+                    class="btn-primary text-xs py-3 flex-1 justify-center"
+                    onclick="launchTraining()">
+              <i class="fa-solid fa-rocket mr-2"></i> Launch Training — GDPR Module
+            </button>
+            <button type="button"
+                    class="btn-outline text-xs py-3 px-4"
+                    title="View full Academy dashboard"
+                    onclick="alert('Full Academy dashboard — coming soon.')">
+              <i class="fa-solid fa-chart-bar"></i>
+            </button>
+          </div>
+          <p class="text-xs text-gray-600 mt-3 text-center">
+            Powered by Nexusyl Academy · Accredited CPD modules for UK employment compliance
+          </p>
+        </div>
+      </div>
+
+    </div><!-- end grid -->
+
+    <!-- Pipeline Status Summary -->
+    <div class="mt-10 reveal border rounded-sm p-6" style="background: var(--card); border-color: var(--border);">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="font-display text-2xl font-bold mb-1" style="color:var(--red);">2/4</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest">Modules Complete</div>
+        </div>
+        <div>
+          <div class="font-display text-2xl font-bold text-white mb-1">Step 2</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest">DBS Status</div>
+        </div>
+        <div>
+          <div class="font-display text-2xl font-bold text-white mb-1">48h</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest">Est. Clearance</div>
+        </div>
+        <div>
+          <div class="font-display text-2xl font-bold mb-1 text-yellow-400">Pending</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest">Pool Status</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider mx-8 lg:mx-24"></div>
+
 <div class="section-divider mx-8 lg:mx-24"></div>
 
 
@@ -913,24 +1251,30 @@
 <footer style="background: var(--dark); border-top: 1px solid var(--border);" role="contentinfo">
   <div class="max-w-7xl mx-auto px-5 lg:px-8 py-14">
     <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
-      <div class="lg:col-span-2">
+            <div class="lg:col-span-2">
         <div class="flex items-center gap-3 mb-5">
           <img src="/Nexusyl_Fab.png" alt="Nexusyl icon" class="h-8 w-8 object-contain" onerror="this.style.display='none'" />
           <span class="logo-wrap-always"><img src="/Nexusyl_White_Logo.png" alt="Nexusyl Limited" class="logo-dark h-6 object-contain" /><img src="/Nexusyl_Black_Logo.png" alt="Nexusyl Limited" class="logo-light h-6 object-contain" /></span>
         </div>
-        <p class="text-gray-500 text-sm leading-relaxed mb-5 max-w-xs">
+        <p class="text-gray-500 text-sm leading-relaxed mb-3 max-w-xs">
           A London-based multi-sector company delivering excellence across recruitment, food tech, education, and property.
         </p>
-        <div class="text-xs text-gray-600 font-semibold uppercase tracking-widest">Registered in England &amp; Wales</div>
+        <p class="text-gray-600 text-xs leading-relaxed mb-4 max-w-xs">
+          Nexusyl Limited is a wholly owned subsidiary of Juvenile Asia Limited (Company No. 16966853). Registered in England &amp; Wales.
+        </p>
+        <div class="text-xs text-gray-600 font-semibold uppercase tracking-widest">FCA &amp; ICO Registered</div>
       </div>
+
       <div>
+        <div>
         <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Our Sectors</h3>
         <div class="flex flex-col gap-2.5">
           <a href="/recruitment" class="footer-link">Recruitment</a>
-          <a href="/food-tech"    class="footer-link">Food Tech</a>
+          <a href="/food-tech"   class="footer-link">Food Tech</a>
           <a href="/education"   class="footer-link">Education</a>
           <a href="/property"    class="footer-link">Property</a>
         </div>
+      </div>
       </div>
       <div>
         <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Company</h3>
@@ -951,7 +1295,7 @@
       </div>
     </div>
   </div>
-    <div style="border-top: 1px solid var(--border);">
+      <div style="border-top: 1px solid var(--border);">
     <div class="max-w-7xl mx-auto px-5 lg:px-8 py-5 flex flex-col items-center gap-3">
       <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-600">
         <span>© 2026 Nexusyl Limited. All rights reserved.</span>
@@ -964,10 +1308,9 @@
       <div class="flex items-center gap-4 text-xs">
         <a href="/privacy" class="text-gray-600 hover:text-gray-400 transition-colors">Privacy</a>
         <a href="/terms"   class="text-gray-600 hover:text-gray-400 transition-colors">Terms</a>
-        <a href="#"            class="text-gray-600 hover:text-gray-400 transition-colors">Cookies</a>
+        <a href="#"        class="text-gray-600 hover:text-gray-400 transition-colors">Cookies</a>
       </div>
     </div>
-  </div>
   </div>
 </footer>
 
@@ -1045,6 +1388,60 @@
       });
     }
   })();
+
+
+  // ── DBS Upload Dropzone ───────────────────────────────────────────────────
+  function handleDbsDrop(event) {
+    event.preventDefault();
+    var zone = document.getElementById('dbs-dropzone');
+    zone.style.borderColor = 'var(--red)';
+    zone.style.background  = 'rgba(232,33,26,0.08)';
+    var file = event.dataTransfer.files[0];
+    if (file) showDbsFile(file);
+  }
+  function handleDbsFileSelect(event) {
+    var file = event.target.files[0];
+    if (file) showDbsFile(file);
+  }
+  function showDbsFile(file) {
+    var allowed = ['application/pdf','image/jpeg','image/png'];
+    if (!allowed.includes(file.type)) {
+      alert('Please upload a PDF, JPG, or PNG file.');
+      return;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+      alert('File size must not exceed 10 MB.');
+      return;
+    }
+    document.getElementById('dbs-file-name').classList.remove('hidden');
+    document.getElementById('dbs-file-label').textContent = file.name + ' (' + (file.size / 1024).toFixed(0) + ' KB)';
+  }
+  function submitDbsForm(event) {
+    event.preventDefault();
+    var input = document.getElementById('dbs-file-input');
+    if (!input.files || input.files.length === 0) {
+      alert('Please select a document before submitting.');
+      return;
+    }
+    var btn = event.target;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Uploading…';
+    setTimeout(function () {
+      btn.innerHTML = '<i class="fa-solid fa-circle-check mr-2"></i> Submitted for Verification';
+      btn.style.background = '#16a34a';
+    }, 1800);
+  }
+
+  // ── Academy Launch Training ──────────────────────────────────────────────
+  function launchTraining() {
+    var btn = document.getElementById('launch-training-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Launching Module…';
+    setTimeout(function () {
+      btn.innerHTML = '<i class="fa-solid fa-rocket mr-2"></i> Module Active — Good Luck!';
+      btn.style.boxShadow = '0 0 24px rgba(232,33,26,0.5)';
+    }, 1200);
+  }
 
 </script>
 </body>
