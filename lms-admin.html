@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexusyl Academy — Admin Panel</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/Nexusyl_Fab.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { display:['Syne','sans-serif'], body:['Manrope','sans-serif'] },
+        colors: { brand: { red:'#E8211A', black:'#0A0A0A', dark:'#111111', card:'#161616', border:'#2a2a2a' } }
+      }}
+    }
+  </script>
+  <style>
+    :root{--red:#E8211A;--black:#0A0A0A;--dark:#111111;--card:#161616;--border:#2a2a2a;--white:#F5F5F5;--sidebar:240px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html,body{height:100%;font-family:'Manrope',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
+    ::-webkit-scrollbar{width:4px;height:4px;}::-webkit-scrollbar-track{background:var(--black);}::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px;}
+    /* SIDEBAR */
+    #sb{position:fixed;top:0;left:0;bottom:0;width:var(--sidebar);background:var(--dark);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:200;}
+    .sb-logo{padding:18px 18px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+    .sb-sec{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#444;padding:14px 18px 5px;}
+    .sb-link{display:flex;align-items:center;gap:10px;padding:9px 18px;font-size:.82rem;font-weight:600;color:#777;cursor:pointer;border-left:2px solid transparent;transition:all .15s;text-decoration:none;}
+    .sb-link i{width:16px;text-align:center;font-size:.78rem;}
+    .sb-link:hover{color:var(--white);background:rgba(255,255,255,.04);}
+    .sb-link.active{color:var(--white);background:rgba(232,33,26,.08);border-left-color:var(--red);}
+    .sb-link.active i{color:var(--red);}
+    .sb-badge{margin-left:auto;font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:2px;background:rgba(232,33,26,.15);color:var(--red);border:1px solid rgba(232,33,26,.25);}
+    /* TOPBAR */
+    #tb{position:fixed;top:0;left:var(--sidebar);right:0;height:56px;background:rgba(10,10,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 22px;z-index:100;}
+    /* MAIN */
+    #main{margin-left:var(--sidebar);margin-top:56px;padding:26px;min-height:calc(100vh - 56px);}
+    .section{display:none;} .section.active{display:block;}
+    /* CARDS */
+    .card{background:var(--card);border:1px solid var(--border);border-radius:4px;}
+    .card-hd{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+    .card-bd{padding:20px;}
+    /* STAT */
+    .stat{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px 20px;position:relative;overflow:hidden;transition:border-color .25s,transform .25s;}
+    .stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+    .stat:hover{transform:translateY(-3px);border-color:#333;}
+    .stat:hover::before{transform:scaleX(1);}
+    /* BUTTONS */
+    .btn{display:inline-flex;align-items:center;gap:7px;font-family:'Syne',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;padding:9px 18px;border-radius:2px;border:none;cursor:pointer;transition:all .2s;}
+    .btn-p{background:var(--red);color:#fff;box-shadow:0 4px 16px rgba(232,33,26,.28);}
+    .btn-p:hover{background:#ff2d25;transform:translateY(-1px);}
+    .btn-p:disabled{opacity:.5;pointer-events:none;}
+    .btn-s{background:transparent;color:#999;border:1px solid var(--border);}
+    .btn-s:hover{border-color:var(--red);color:var(--white);}
+    .btn-d{background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.25);}
+    .btn-d:hover{background:rgba(239,68,68,.2);}
+    /* FORM */
+    .lbl{display:block;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:5px;}
+    .inp{width:100%;background:var(--dark);border:1px solid var(--border);border-radius:2px;padding:9px 13px;font-family:'Manrope',sans-serif;font-size:.85rem;color:var(--white);outline:none;transition:border-color .2s,box-shadow .2s;}
+    .inp:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(232,33,26,.1);}
+    .inp::placeholder{color:#444;}
+    select.inp option{background:var(--dark);}
+    textarea.inp{resize:vertical;min-height:90px;}
+    /* TABLE */
+    table{width:100%;border-collapse:collapse;}
+    th{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#555;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);}
+    td{padding:12px 14px;font-size:.82rem;color:#ccc;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle;}
+    tr:last-child td{border-bottom:none;}
+    tr:hover td{background:rgba(255,255,255,.02);}
+    /* PILL */
+    .pill{display:inline-flex;align-items:center;gap:4px;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:2px;}
+    .pill-r{background:rgba(232,33,26,.12);color:var(--red);border:1px solid rgba(232,33,26,.25);}
+    .pill-g{background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.25);}
+    .pill-y{background:rgba(234,179,8,.12);color:#eab308;border:1px solid rgba(234,179,8,.25);}
+    .pill-b{background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.25);}
+    /* MODAL */
+    .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;}
+    .modal{background:var(--card);border:1px solid var(--border);border-radius:6px;width:100%;max-width:680px;max-height:90vh;overflow-y:auto;animation:mslide .25s ease;}
+    .modal-lg{max-width:860px;}
+    @keyframes mslide{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    .modal-hd{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--card);z-index:1;}
+    .modal-bd{padding:22px;}
+    .modal-ft{padding:16px 22px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;}
+    /* MODULE ITEM */
+    .mod-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:3px;background:rgba(255,255,255,.02);margin-bottom:8px;cursor:pointer;transition:border-color .2s;}
+    .mod-row:hover{border-color:rgba(232,33,26,.3);}
+    .mod-icon{width:32px;height:32px;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.78rem;}
+    /* PROGRESS BAR */
+    .pb{height:5px;background:var(--border);border-radius:3px;overflow:hidden;}
+    .pb-fill{height:100%;background:var(--red);border-radius:3px;transition:width .6s ease;}
+    .pb-fill-g{background:#22c55e;}
+    /* SECTION LABEL */
+    .sec-lbl{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+    .sec-lbl::before{content:'';display:block;width:20px;height:1px;background:var(--red);}
+    /* TOAST */
+    #toast-container{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;}
+    .toast{background:var(--card);border:1px solid var(--border);border-radius:3px;padding:12px 18px;font-size:.82rem;font-weight:600;display:flex;align-items:center;gap:10px;animation:mslide .2s ease;min-width:260px;}
+    .toast-s{border-left:3px solid #22c55e;} .toast-e{border-left:3px solid var(--red);}
+    /* QUIZ BUILDER */
+    .q-block{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:3px;padding:14px;margin-bottom:10px;}
+    .opt-row{display:flex;align-items:center;gap:8px;margin-top:6px;}
+    .opt-row input[type=radio]{accent-color:var(--red);}
+    /* COLOUR SWATCHES */
+    .swatch{width:24px;height:24px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color .15s;}
+    .swatch.selected{border-color:var(--white);}
+    /* EMPTY STATE */
+    .empty{text-align:center;padding:48px 20px;color:#444;}
+    .empty i{font-size:2rem;color:#333;display:block;margin-bottom:12px;}
+    /* CONTENT TYPE TAB */
+    .type-tab{padding:8px 14px;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#666;border:1px solid var(--border);border-radius:2px;cursor:pointer;transition:all .15s;}
+    .type-tab.active{background:var(--red);color:#fff;border-color:var(--red);}
+    /* ENROLL CHIP */
+    .enroll-chip{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:3px;background:rgba(255,255,255,.03);border:1px solid var(--border);cursor:pointer;transition:border-color .2s;font-size:.82rem;}
+    .enroll-chip input[type=checkbox]{accent-color:var(--red);}
+    .enroll-chip:hover{border-color:rgba(232,33,26,.3);}
+  </style>
+</head>
+<body>
+
+<!-- TOAST CONTAINER -->
+<div id="toast-container"></div>
+
+<!-- SIDEBAR -->
+<aside id="sb">
+  <div class="sb-logo">
+    <img src="/Nexusyl_Fab.png" alt="Nexusyl" class="h-7 w-7 object-contain" onerror="this.style.display='none'" />
+    <div>
+      <div style="font-size:.85rem;font-weight:800;font-family:'Syne',sans-serif;color:var(--white);">Nexusyl Academy</div>
+      <div style="font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);">Admin Panel</div>
+    </div>
+  </div>
+  <nav style="flex:1;overflow-y:auto;padding:8px 0;">
+    <div class="sb-sec">Overview</div>
+    <a class="sb-link active" onclick="show('dashboard',this)"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
+    <div class="sb-sec">Content</div>
+    <a class="sb-link" onclick="show('courses',this)"><i class="fa-solid fa-book-open"></i>Courses <span class="sb-badge" id="sb-course-count">0</span></a>
+    <a class="sb-link" onclick="show('content',this)"><i class="fa-solid fa-file-circle-plus"></i>Add Content</a>
+    <div class="sb-sec">People</div>
+    <a class="sb-link" onclick="show('students',this)"><i class="fa-solid fa-users"></i>Students <span class="sb-badge" id="sb-student-count">0</span></a>
+    <a class="sb-link" onclick="show('enroll',this)"><i class="fa-solid fa-user-plus"></i>Enrolment</a>
+    <div class="sb-sec">Reports</div>
+    <a class="sb-link" onclick="show('reports',this)"><i class="fa-solid fa-chart-bar"></i>Progress Reports</a>
+    <div style="margin-top:auto;padding:12px 18px 18px;border-top:1px solid var(--border);margin-top:16px;">
+      <a href="lms-student.html" class="sb-link" style="padding:9px 0;font-size:.8rem;color:#555;"><i class="fa-solid fa-arrow-up-right-from-square"></i>Student Portal</a>
+      <a href="/" class="sb-link" style="padding:9px 0;font-size:.8rem;color:#555;"><i class="fa-solid fa-arrow-left"></i>Back to Nexusyl</a>
+    </div>
+  </nav>
+</aside>
+
+<!-- TOPBAR -->
+<header id="tb">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span style="font-size:.72rem;font-weight:600;letter-spacing:.04em;color:#555;">Academy</span>
+    <i class="fa-solid fa-chevron-right" style="font-size:.5rem;color:#444;"></i>
+    <span id="tb-title" style="font-size:.82rem;font-weight:700;color:var(--white);">Dashboard</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span style="font-size:.75rem;color:#555;">Admin</span>
+    <button onclick="resetAll()" class="btn btn-d" style="padding:6px 12px;font-size:.68rem;">
+      <i class="fa-solid fa-rotate-left"></i> Reset Demo
+    </button>
+  </div>
+</header>
+
+<!-- ═══════════════════════════ MAIN ═══════════════════════════ -->
+<main id="main">
+
+<!-- ──── DASHBOARD ──────────────────────────────────────────── -->
+<div id="sec-dashboard" class="section active">
+  <div class="sec-lbl" style="margin-bottom:4px;">Overview</div>
+  <h1 class="font-display" style="font-size:1.6rem;font-weight:800;color:var(--white);margin-bottom:22px;">Admin Dashboard</h1>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;" id="stat-grid">
+    <div class="stat"><div style="font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#555;margin-bottom:4px;">Total Courses</div><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--white);" id="ds-courses">0</div></div>
+    <div class="stat"><div style="font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#555;margin-bottom:4px;">Total Students</div><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--white);" id="ds-students">0</div></div>
+    <div class="stat"><div style="font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#555;margin-bottom:4px;">Modules Published</div><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--white);" id="ds-modules">0</div></div>
+    <div class="stat"><div style="font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#555;margin-bottom:4px;">Completions</div><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--white);" id="ds-completions">0</div></div>
+  </div>
+
+  <!-- Recent activity -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <div class="card">
+      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;">Recent Courses</span><button class="btn btn-p" style="padding:6px 12px;font-size:.7rem;" onclick="show('courses',document.querySelector('.sb-link:nth-child(4)'))"><i class="fa-solid fa-plus"></i> New Course</button></div>
+      <div id="ds-course-list" style="padding:8px 0;"></div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;">Recent Students</span><button class="btn btn-p" style="padding:6px 12px;font-size:.7rem;" onclick="show('students',null);openAddStudent()"><i class="fa-solid fa-plus"></i> Add Student</button></div>
+      <div id="ds-student-list" style="padding:8px 0;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ──── COURSES ─────────────────────────────────────────────── -->
+<div id="sec-courses" class="section">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:22px;">
+    <div><div class="sec-lbl">Content Library</div><h2 class="font-display" style="font-size:1.4rem;font-weight:800;color:var(--white);">Course Manager</h2></div>
+    <button class="btn btn-p" onclick="openModal('modal-create-course')"><i class="fa-solid fa-plus"></i> Create Course</button>
+  </div>
+  <div id="course-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;"></div>
+</div>
+
+<!-- ──── ADD CONTENT (quick) ─────────────────────────────────── -->
+<div id="sec-content" class="section">
+  <div style="margin-bottom:22px;"><div class="sec-lbl">Content Upload</div><h2 class="font-display" style="font-size:1.4rem;font-weight:800;color:var(--white);">Add Content to a Course</h2></div>
+  <div class="card" style="max-width:660px;">
+    <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;">Quick Content Upload</span></div>
+    <div class="card-bd">
+      <div style="margin-bottom:16px;">
+        <label class="lbl">Select Course</label>
+        <select class="inp" id="qc-course"></select>
+      </div>
+      <div style="margin-bottom:16px;">
+        <label class="lbl">Content Type</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;" id="qc-type-tabs">
+          <button class="type-tab active" onclick="setQcType('video',this)"><i class="fa-brands fa-youtube"></i> Video</button>
+          <button class="type-tab" onclick="setQcType('text',this)"><i class="fa-solid fa-align-left"></i> Text</button>
+          <button class="type-tab" onclick="setQcType('pdf',this)"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+          <button class="type-tab" onclick="setQcType('quiz',this)"><i class="fa-solid fa-list-check"></i> Quiz</button>
+        </div>
+      </div>
+      <div id="qc-fields"></div>
+      <button class="btn btn-p" onclick="saveQuickContent()"><i class="fa-solid fa-plus"></i> Add to Course</button>
+    </div>
+  </div>
+</div>
+
+<!-- ──── STUDENTS ────────────────────────────────────────────── -->
+<div id="sec-students" class="section">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:22px;">
+    <div><div class="sec-lbl">People</div><h2 class="font-display" style="font-size:1.4rem;font-weight:800;color:var(--white);">Student Manager</h2></div>
+    <button class="btn btn-p" onclick="openAddStudent()"><i class="fa-solid fa-user-plus"></i> Add Student</button>
+  </div>
+  <div class="card">
+    <table>
+      <thead><tr><th>Student</th><th>Email</th><th>Enrolled Courses</th><th>Progress</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody id="student-table"></tbody>
+    </table>
+    <div id="student-empty" class="empty" style="display:none;"><i class="fa-solid fa-users-slash"></i>No students yet. Add your first student above.</div>
+  </div>
+</div>
+
+<!-- ──── ENROLMENT ───────────────────────────────────────────── -->
+<div id="sec-enroll" class="section">
+  <div style="margin-bottom:22px;"><div class="sec-lbl">Enrolment</div><h2 class="font-display" style="font-size:1.4rem;font-weight:800;color:var(--white);">Manage Course Enrolment</h2></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <div class="card">
+      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;">Enrol Student into Courses</span></div>
+      <div class="card-bd">
+        <div style="margin-bottom:14px;">
+          <label class="lbl">Select Student</label>
+          <select class="inp" id="enroll-student-sel" onchange="loadEnrollCourses()"></select>
+        </div>
+        <div style="margin-bottom:14px;">
+          <label class="lbl">Available Courses</label>
+          <div id="enroll-courses-list" style="display:flex;flex-direction:column;gap:6px;max-height:320px;overflow-y:auto;"></div>
+        </div>
+        <button class="btn btn-p" onclick="saveEnrolments()"><i class="fa-solid fa-check"></i> Save Enrolment</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;">Bulk Enrol — Assign Course to All</span></div>
+      <div class="card-bd">
+        <div style="margin-bottom:14px;">
+          <label class="lbl">Select Course</label>
+          <select class="inp" id="bulk-course-sel"></select>
+        </div>
+        <button class="btn btn-p" onclick="bulkEnroll()"><i class="fa-solid fa-users"></i> Enrol All Students</button>
+        <p style="font-size:.75rem;color:#555;margin-top:10px;">This will enrol every registered student into the selected course.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ──── REPORTS ─────────────────────────────────────────────── -->
+<div id="sec-reports" class="section">
+  <div style="margin-bottom:22px;"><div class="sec-lbl">Analytics</div><h2 class="font-display" style="font-size:1.4rem;font-weight:800;color:var(--white);">Progress Reports</h2></div>
+  <div id="reports-content"></div>
+</div>
+
+</main>
+
+<!-- ═══════════════ MODALS ═══════════════ -->
+
+<!-- CREATE COURSE MODAL -->
+<div id="modal-create-course" style="display:none;" class="modal-bg" onclick="if(event.target===this)closeModal('modal-create-course')">
+<div class="modal">
+  <div class="modal-hd">
+    <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;" id="modal-course-title-label">Create New Course</span>
+    <button onclick="closeModal('modal-create-course')" style="background:none;border:none;color:#666;cursor:pointer;font-size:1.1rem;"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="modal-bd">
+    <input type="hidden" id="edit-course-id" value="" />
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+      <div style="grid-column:1/-1;">
+        <label class="lbl">Course Title</label>
+        <input class="inp" id="c-title" placeholder="e.g. UK Hospitality Compliance" required />
+      </div>
+      <div style="grid-column:1/-1;">
+        <label class="lbl">Description</label>
+        <textarea class="inp" id="c-desc" placeholder="What will students learn in this course?"></textarea>
+      </div>
+      <div>
+        <label class="lbl">Category</label>
+        <select class="inp" id="c-cat">
+          <option value="Compliance">Compliance</option>
+          <option value="Safety">Health & Safety</option>
+          <option value="Legal">Legal & HR</option>
+          <option value="Skills">Skills Development</option>
+          <option value="Onboarding">Onboarding</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div>
+        <label class="lbl">Pass Mark (%)</label>
+        <input class="inp" type="number" id="c-pass" value="70" min="1" max="100" />
+      </div>
+      <div style="grid-column:1/-1;">
+        <label class="lbl">Course Colour</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;" id="c-colour-swatches">
+          <div class="swatch selected" style="background:#E8211A;" data-col="#E8211A" onclick="selectSwatch(this)"></div>
+          <div class="swatch" style="background:#2563eb;" data-col="#2563eb" onclick="selectSwatch(this)"></div>
+          <div class="swatch" style="background:#16a34a;" data-col="#16a34a" onclick="selectSwatch(this)"></div>
+          <div class="swatch" style="background:#d97706;" data-col="#d97706" onclick="selectSwatch(this)"></div>
+          <div class="swatch" style="background:#7c3aed;" data-col="#7c3aed" onclick="selectSwatch(this)"></div>
+          <div class="swatch" style="background:#0891b2;" data-col="#0891b2" onclick="selectSwatch(this)"></div>
+          <div class="swatch" style="background:#be185d;" data-col="#be185d" onclick="selectSwatch(this)"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modules builder -->
+    <div style="border-top:1px solid var(--border);padding-top:18px;margin-top:4px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Course Modules</span>
+        <div style="display:flex;gap:6px;">
+          <button class="btn btn-s" style="padding:5px 10px;font-size:.68rem;" onclick="addModule('video')"><i class="fa-brands fa-youtube"></i> Video</button>
+          <button class="btn btn-s" style="padding:5px 10px;font-size:.68rem;" onclick="addModule('text')"><i class="fa-solid fa-align-left"></i> Text</button>
+          <button class="btn btn-s" style="padding:5px 10px;font-size:.68rem;" onclick="addModule('pdf')"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+          <button class="btn btn-s" style="padding:5px 10px;font-size:.68rem;" onclick="addModule('quiz')"><i class="fa-solid fa-list-check"></i> Quiz</button>
+        </div>
+      </div>
+      <div id="modules-builder" style="max-height:320px;overflow-y:auto;display:flex;flex-direction:column;gap:0;"></div>
+      <div id="modules-empty" style="text-align:center;padding:24px;color:#444;font-size:.82rem;">No modules yet — add a Video, Text, PDF, or Quiz above.</div>
+    </div>
+  </div>
+  <div class="modal-ft">
+    <button class="btn btn-s" onclick="closeModal('modal-create-course')">Cancel</button>
+    <button class="btn btn-p" onclick="saveCourse()"><i class="fa-solid fa-floppy-disk"></i> Save Course</button>
+  </div>
+</div>
+</div>
+
+<!-- ADD STUDENT MODAL -->
+<div id="modal-add-student" style="display:none;" class="modal-bg" onclick="if(event.target===this)closeModal('modal-add-student')">
+<div class="modal" style="max-width:480px;">
+  <div class="modal-hd">
+    <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;">Add New Student</span>
+    <button onclick="closeModal('modal-add-student')" style="background:none;border:none;color:#666;cursor:pointer;font-size:1.1rem;"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="modal-bd" style="display:flex;flex-direction:column;gap:12px;">
+    <div><label class="lbl">Full Name</label><input class="inp" id="s-name" placeholder="Jordan Singh" required /></div>
+    <div><label class="lbl">Email Address</label><input class="inp" type="email" id="s-email" placeholder="jordan@example.com" required /></div>
+    <div><label class="lbl">Phone (optional)</label><input class="inp" type="tel" id="s-phone" placeholder="+44 7700 000000" /></div>
+    <div><label class="lbl">Job Role (optional)</label><input class="inp" id="s-role" placeholder="e.g. Kitchen Assistant" /></div>
+  </div>
+  <div class="modal-ft">
+    <button class="btn btn-s" onclick="closeModal('modal-add-student')">Cancel</button>
+    <button class="btn btn-p" onclick="saveStudent()"><i class="fa-solid fa-user-plus"></i> Add Student</button>
+  </div>
+</div>
+</div>
+
+<!-- VIEW COURSE MODAL -->
+<div id="modal-view-course" style="display:none;" class="modal-bg" onclick="if(event.target===this)closeModal('modal-view-course')">
+<div class="modal modal-lg">
+  <div class="modal-hd">
+    <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;" id="view-course-title">Course Details</span>
+    <button onclick="closeModal('modal-view-course')" style="background:none;border:none;color:#666;cursor:pointer;font-size:1.1rem;"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="modal-bd" id="view-course-body"></div>
+  <div class="modal-ft">
+    <button class="btn btn-s" onclick="closeModal('modal-view-course')">Close</button>
+    <button class="btn btn-p" id="view-edit-btn" onclick=""><i class="fa-solid fa-pen"></i> Edit Course</button>
+  </div>
+</div>
+</div>
+
+<script>
+// ════════════════════════════════════════════════════════
+// DATA LAYER — localStorage-backed store
+// ════════════════════════════════════════════════════════
+var STORE_KEY = 'nx_lms';
+var LMS = { courses: [], students: [] };
+
+function load() {
+  try { var d = localStorage.getItem(STORE_KEY); if (d) LMS = JSON.parse(d); } catch(e){}
+  // Seed demo data if empty
+  if (!LMS.courses.length && !LMS.students.length) seedData();
+}
+function save() { localStorage.setItem(STORE_KEY, JSON.stringify(LMS)); }
+
+function seedData() {
+  LMS.courses = [
+    { id:'c1', title:'UK Hospitality Compliance', desc:'Food safety, COSHH, and workplace health regulations for UK hospitality workers.', category:'Compliance', colour:'#E8211A', passMark:70, createdAt:'2026-05-01',
+      modules:[
+        { id:'m1', type:'video', title:'Introduction to Food Safety', duration:'15 min', content:{ youtubeId:'Kyux1lWdQ1I', url:'https://www.youtube.com/watch?v=Kyux1lWdQ1I' }},
+        { id:'m2', type:'text', title:'COSHH Protocols & Hazard Awareness', duration:'20 min', content:{ body:'<h3>COSHH Overview</h3><p>The Control of Substances Hazardous to Health (COSHH) Regulations 2002 require employers to control substances that are hazardous to health. You can prevent or reduce workers\' exposure to hazardous substances by finding out what the health hazards are; deciding how to prevent harm to health; providing control measures to reduce harm to health; making sure they are used; keeping all control measures in good working order; providing information, instruction and training for employees and others; providing monitoring and health surveillance in appropriate cases; planning for emergencies.</p><h3>Key Principles</h3><ul><li>Identify hazardous substances in your workplace</li><li>Assess the risk to health</li><li>Control exposure using the COSHH hierarchy</li><li>Maintain and review controls regularly</li></ul>'}},
+        { id:'m3', type:'quiz', title:'Food Safety Certification Quiz', duration:'10 min', content:{ passMark:70, questions:[
+          { id:'q1', text:'What temperature should hot food be stored above?', options:[{id:'a',text:'45°C'},{id:'b',text:'63°C'},{id:'c',text:'75°C'},{id:'d',text:'100°C'}], correct:'b' },
+          { id:'q2', text:'How often should temperature checks be recorded in a commercial kitchen?', options:[{id:'a',text:'Once a day'},{id:'b',text:'Every 4 hours'},{id:'c',text:'Every 2 hours'},{id:'d',text:'Once a week'}], correct:'c' },
+          { id:'q3', text:'What does COSHH stand for?', options:[{id:'a',text:'Control of Substances Hazardous to Health'},{id:'b',text:'Certification of Safe Handling Hazards'},{id:'c',text:'Code of Standard Health Hazards'},{id:'d',text:'Control of Safety in Hospitality Handling'}], correct:'a' }
+        ]}}
+      ]
+    },
+    { id:'c2', title:'Right to Work Verification', desc:'UK immigration compliance, Right to Work checks, and acceptable identity documents.', category:'Legal', colour:'#2563eb', passMark:80, createdAt:'2026-05-02',
+      modules:[
+        { id:'m4', type:'text', title:'Right to Work — Legal Framework', duration:'25 min', content:{ body:'<h3>Your Legal Obligations</h3><p>Under the Immigration, Asylum and Nationality Act 2006, all UK employers must check that every employee has the right to work in the UK before employing them. Failure to carry out correct checks can result in a civil penalty of up to £20,000 per illegal worker.</p><h3>Acceptable Documents</h3><p>Group 1 documents (single document check):</p><ul><li>UK Passport</li><li>EU Settlement Scheme documentation</li><li>Biometric Residence Permit (BRP)</li></ul><p>Group 2 documents (combination required):</p><ul><li>UK birth certificate plus National Insurance document</li></ul>' }},
+        { id:'m5', type:'quiz', title:'Right to Work Assessment', duration:'10 min', content:{ passMark:80, questions:[
+          { id:'q4', text:'What is the maximum civil penalty per illegal worker for non-compliance?', options:[{id:'a',text:'£5,000'},{id:'b',text:'£10,000'},{id:'c',text:'£20,000'},{id:'d',text:'£50,000'}], correct:'c' },
+          { id:'q5', text:'Which document is a Group 1 (single document) acceptable for Right to Work?', options:[{id:'a',text:'UK birth certificate'},{id:'b',text:'UK Passport'},{id:'c',text:'National Insurance letter'},{id:'d',text:'Utility bill'}], correct:'b' }
+        ]}}
+      ]
+    }
+  ];
+  LMS.students = [
+    { id:'s1', name:'Jordan Singh', email:'jordan.singh@nexusyl.co.uk', phone:'+44 7700 111222', role:'Kitchen Assistant', enrolledCourses:['c1'], createdAt:'2026-05-01',
+      progress:{ c1:{ completedModules:['m1','m2'], quizScores:{}, startedAt:'2026-05-01', lastActive:'2026-05-26', completed:false }}},
+    { id:'s2', name:'Amara Osei', email:'amara.osei@example.com', phone:'+44 7700 333444', role:'Front of House', enrolledCourses:['c1','c2'], createdAt:'2026-05-03',
+      progress:{ c1:{ completedModules:['m1','m2','m3'], quizScores:{m3:85}, startedAt:'2026-05-03', lastActive:'2026-05-20', completed:true, completedAt:'2026-05-20'},
+                 c2:{ completedModules:[], quizScores:{}, startedAt:'2026-05-22', lastActive:'2026-05-22', completed:false }}}
+  ];
+  save();
+}
+
+// ── UI ──────────────────────────────────────────────────────
+function show(sec, el) {
+  document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById('sec-'+sec).classList.add('active');
+  document.querySelectorAll('.sb-link').forEach(function(l){ l.classList.remove('active'); });
+  if (el) el.classList.add('active');
+  document.getElementById('tb-title').textContent = { dashboard:'Dashboard', courses:'Course Manager', content:'Add Content', students:'Student Manager', enroll:'Enrolment', reports:'Progress Reports' }[sec] || sec;
+  if (sec==='dashboard') renderDashboard();
+  if (sec==='courses')   renderCourses();
+  if (sec==='students')  renderStudents();
+  if (sec==='enroll')    renderEnroll();
+  if (sec==='reports')   renderReports();
+  if (sec==='content')   renderQuickContent();
+}
+
+function openModal(id) { document.getElementById(id).style.display='flex'; }
+function closeModal(id) { document.getElementById(id).style.display='none'; }
+
+function toast(msg, type) {
+  var t = document.createElement('div');
+  t.className = 'toast '+(type==='e'?'toast-e':'toast-s');
+  t.innerHTML = '<i class="fa-solid fa-'+(type==='e'?'circle-exclamation':'circle-check')+'"></i> '+msg;
+  document.getElementById('toast-container').appendChild(t);
+  setTimeout(function(){ t.remove(); }, 3500);
+}
+
+// ── DASHBOARD ───────────────────────────────────────────────
+function renderDashboard() {
+  var totalMods = LMS.courses.reduce(function(a,c){ return a+c.modules.length; },0);
+  var completions = LMS.students.reduce(function(a,s){
+    return a + Object.values(s.progress||{}).filter(function(p){ return p.completed; }).length;
+  },0);
+  document.getElementById('ds-courses').textContent = LMS.courses.length;
+  document.getElementById('ds-students').textContent = LMS.students.length;
+  document.getElementById('ds-modules').textContent = totalMods;
+  document.getElementById('ds-completions').textContent = completions;
+  document.getElementById('sb-course-count').textContent = LMS.courses.length;
+  document.getElementById('sb-student-count').textContent = LMS.students.length;
+
+  var cl = document.getElementById('ds-course-list');
+  if (!LMS.courses.length) { cl.innerHTML='<div class="empty"><i class="fa-solid fa-book-open"></i>No courses yet.</div>'; }
+  else {
+    cl.innerHTML = LMS.courses.slice(0,5).map(function(c){
+      return '<div style="display:flex;align-items:center;gap:12px;padding:10px 18px;border-bottom:1px solid rgba(255,255,255,.04);">'
+        +'<div style="width:8px;height:8px;border-radius:50%;background:'+c.colour+';flex-shrink:0;"></div>'
+        +'<div style="flex:1;min-width:0;"><div style="font-size:.83rem;font-weight:600;color:var(--white);">'+esc(c.title)+'</div>'
+        +'<div style="font-size:.7rem;color:#555;">'+c.modules.length+' modules &middot; '+c.category+'</div></div>'
+        +'<span class="pill pill-b">'+c.category+'</span>'
+        +'</div>';
+    }).join('');
+  }
+  var sl = document.getElementById('ds-student-list');
+  if (!LMS.students.length) { sl.innerHTML='<div class="empty"><i class="fa-solid fa-user-slash"></i>No students yet.</div>'; }
+  else {
+    sl.innerHTML = LMS.students.slice(0,5).map(function(s){
+      var done = Object.values(s.progress||{}).filter(function(p){ return p.completed; }).length;
+      return '<div style="display:flex;align-items:center;gap:12px;padding:10px 18px;border-bottom:1px solid rgba(255,255,255,.04);">'
+        +'<div style="width:30px;height:30px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:\'Syne\',sans-serif;font-weight:800;font-size:.72rem;color:#fff;flex-shrink:0;">'+initials(s.name)+'</div>'
+        +'<div style="flex:1;min-width:0;"><div style="font-size:.83rem;font-weight:600;color:var(--white);">'+esc(s.name)+'</div>'
+        +'<div style="font-size:.7rem;color:#555;">'+s.enrolledCourses.length+' courses &middot; '+done+' completed</div></div>'
+        +'</div>';
+    }).join('');
+  }
+}
+
+// ── COURSES ─────────────────────────────────────────────────
+function renderCourses() {
+  var g = document.getElementById('course-grid');
+  if (!LMS.courses.length) {
+    g.innerHTML='<div style="grid-column:1/-1;" class="empty"><i class="fa-solid fa-book-open"></i>No courses yet. Create your first course!</div>';
+    return;
+  }
+  g.innerHTML = LMS.courses.map(function(c){
+    var enrolled = LMS.students.filter(function(s){ return s.enrolledCourses.includes(c.id); }).length;
+    return '<div class="card" style="overflow:hidden;">'
+      +'<div style="height:8px;background:'+c.colour+';"></div>'
+      +'<div class="card-bd">'
+        +'<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:10px;">'
+          +'<div><span class="pill pill-b" style="margin-bottom:6px;">'+esc(c.category)+'</span>'
+          +'<div style="font-family:\'Syne\',sans-serif;font-weight:800;font-size:.95rem;color:var(--white);line-height:1.3;">'+esc(c.title)+'</div></div>'
+          +'<div style="display:flex;gap:4px;flex-shrink:0;">'
+            +'<button class="btn btn-s" style="padding:4px 8px;font-size:.65rem;" onclick="viewCourse(\''+c.id+'\')"><i class="fa-solid fa-eye"></i></button>'
+            +'<button class="btn btn-s" style="padding:4px 8px;font-size:.65rem;" onclick="editCourse(\''+c.id+'\')"><i class="fa-solid fa-pen"></i></button>'
+            +'<button class="btn btn-d" style="padding:4px 8px;font-size:.65rem;" onclick="deleteCourse(\''+c.id+'\')"><i class="fa-solid fa-trash"></i></button>'
+          +'</div>'
+        +'</div>'
+        +'<p style="font-size:.78rem;color:#666;margin-bottom:12px;line-height:1.5;">'+esc(c.desc).substring(0,100)+'…</p>'
+        +'<div style="display:flex;justify-content:space-between;font-size:.72rem;color:#555;margin-bottom:8px;">'
+          +'<span><i class="fa-solid fa-puzzle-piece" style="color:'+c.colour+';margin-right:4px;"></i>'+c.modules.length+' modules</span>'
+          +'<span><i class="fa-solid fa-users" style="color:'+c.colour+';margin-right:4px;"></i>'+enrolled+' enrolled</span>'
+          +'<span><i class="fa-solid fa-star" style="color:'+c.colour+';margin-right:4px;"></i>Pass: '+c.passMark+'%</span>'
+        +'</div>'
+        +'<div style="display:flex;flex-wrap:wrap;gap:4px;">'
+          +c.modules.map(function(m){
+            var icons={video:'fa-play',text:'fa-align-left',pdf:'fa-file-pdf',quiz:'fa-list-check'};
+            var cols={video:'pill-r',text:'pill-b',pdf:'pill-y',quiz:'pill-g'};
+            return '<span class="pill '+cols[m.type]+'"><i class="fa-solid '+icons[m.type]+'"></i> '+esc(m.title).substring(0,22)+'</span>';
+          }).join('')
+        +'</div>'
+      +'</div></div>';
+  }).join('');
+}
+
+// ── COURSE CREATION ─────────────────────────────────────────
+var _modules = [];
+var _editCourseId = null;
+
+function openModal_createCourse() {
+  _modules = [];
+  _editCourseId = null;
+  document.getElementById('edit-course-id').value='';
+  document.getElementById('c-title').value='';
+  document.getElementById('c-desc').value='';
+  document.getElementById('c-cat').value='Compliance';
+  document.getElementById('c-pass').value='70';
+  document.getElementById('modal-course-title-label').textContent='Create New Course';
+  document.querySelectorAll('.swatch').forEach(function(s){ s.classList.remove('selected'); });
+  document.querySelector('.swatch[data-col="#E8211A"]').classList.add('selected');
+  renderModulesBuilder();
+  openModal('modal-create-course');
+}
+
+function selectSwatch(el) {
+  document.querySelectorAll('.swatch').forEach(function(s){ s.classList.remove('selected'); });
+  el.classList.add('selected');
+}
+function getSelectedColour() {
+  var el = document.querySelector('.swatch.selected');
+  return el ? el.dataset.col : '#E8211A';
+}
+
+function addModule(type) {
+  var id = 'mod_'+Date.now()+'_'+Math.random().toString(36).slice(2,6);
+  var defaults = { video:{youtubeId:'',url:''}, text:{body:''}, pdf:{dataUrl:'',filename:''}, quiz:{passMark:70,questions:[]} };
+  _modules.push({ id:id, type:type, title:'New '+type+' module', duration:'30 min', content: JSON.parse(JSON.stringify(defaults[type])) });
+  renderModulesBuilder();
+}
+
+function renderModulesBuilder() {
+  var el = document.getElementById('modules-builder');
+  var empty = document.getElementById('modules-empty');
+  empty.style.display = _modules.length ? 'none' : 'block';
+  if (!_modules.length) { el.innerHTML=''; return; }
+  el.innerHTML = _modules.map(function(m,i){
+    var icons={video:'fa-play',text:'fa-align-left',pdf:'fa-file-pdf',quiz:'fa-list-check'};
+    var cols={video:'#E8211A',text:'#2563eb',pdf:'#d97706',quiz:'#16a34a'};
+    var inner = '';
+    if (m.type==='video') {
+      inner='<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">'
+        +'<div><label class="lbl" style="font-size:.62rem;">YouTube URL or ID</label>'
+        +'<input class="inp" style="font-size:.8rem;padding:7px 10px;" placeholder="https://youtube.com/watch?v=..." value="'+esc(m.content.url||'')+'" onchange="_modules['+i+'].content.url=this.value;_modules['+i+'].content.youtubeId=extractYouTubeId(this.value)" /></div>'
+        +'<div><label class="lbl" style="font-size:.62rem;">Duration</label>'
+        +'<input class="inp" style="font-size:.8rem;padding:7px 10px;" placeholder="30 min" value="'+esc(m.duration)+'" onchange="_modules['+i+'].duration=this.value" /></div>'
+        +'</div>';
+    } else if (m.type==='text') {
+      inner='<div style="margin-top:10px;">'
+        +'<label class="lbl" style="font-size:.62rem;">Content (HTML supported)</label>'
+        +'<textarea class="inp" style="font-size:.8rem;padding:7px 10px;min-height:100px;" placeholder="Enter text content... HTML tags like &lt;h3&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;li&gt; are supported." onchange="_modules['+i+'].content.body=this.value">'+esc(m.content.body||'')+'</textarea></div>';
+    } else if (m.type==='pdf') {
+      inner='<div style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">'
+        +'<div><label class="lbl" style="font-size:.62rem;">Upload PDF File</label>'
+        +'<input type="file" accept=".pdf" class="inp" style="font-size:.8rem;padding:6px 10px;" onchange="handlePdfUpload(event,'+i+')" /></div>'
+        +(m.content.filename?'<div style="font-size:.75rem;color:#22c55e;"><i class="fa-solid fa-circle-check"></i> '+esc(m.content.filename)+'</div>':'')
+        +'</div>';
+    } else if (m.type==='quiz') {
+      inner='<div style="margin-top:10px;">'
+        +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">'
+        +'<label class="lbl" style="font-size:.62rem;margin:0;">Questions ('+m.content.questions.length+')</label>'
+        +'<button class="btn btn-s" style="padding:4px 8px;font-size:.65rem;" onclick="addQuestion('+i+')"><i class="fa-solid fa-plus"></i> Add Question</button>'
+        +'</div>'
+        +m.content.questions.map(function(q,qi){
+          return '<div class="q-block"><input class="inp" style="font-size:.8rem;padding:7px 10px;margin-bottom:8px;" value="'+esc(q.text)+'" placeholder="Question '+( qi+1)+'..." onchange="_modules['+i+'].content.questions['+qi+'].text=this.value" />'
+            +q.options.map(function(o){
+              return '<div class="opt-row"><input type="radio" name="q_'+i+'_'+qi+'" value="'+o.id+'" '+(q.correct===o.id?'checked':'')+' onchange="_modules['+i+'].content.questions['+qi+'].correct=this.value" />'
+                +'<input class="inp" style="flex:1;font-size:.78rem;padding:5px 8px;" value="'+esc(o.text)+'" placeholder="Option '+o.id.toUpperCase()+'..." onchange="_modules['+i+'].content.questions['+qi+'].options.find(function(x){return x.id===\''+o.id+'\'}).text=this.value" /></div>';
+            }).join('')
+            +'<button class="btn btn-d" style="margin-top:6px;padding:3px 8px;font-size:.62rem;" onclick="removeQuestion('+i+','+qi+')"><i class="fa-solid fa-trash"></i> Remove</button>'
+            +'</div>';
+        }).join('')
+        +'<div style="margin-top:8px;"><label class="lbl" style="font-size:.62rem;">Pass Mark (%)</label><input class="inp" type="number" min="1" max="100" style="font-size:.8rem;padding:7px 10px;width:100px;" value="'+m.content.passMark+'" onchange="_modules['+i+'].content.passMark=parseInt(this.value)" /></div>'
+        +'</div>';
+    }
+    return '<div class="mod-row" style="flex-direction:column;align-items:stretch;cursor:default;">'
+      +'<div style="display:flex;align-items:center;gap:10px;">'
+        +'<div class="mod-icon" style="background:'+cols[m.type]+'22;"><i class="fa-solid '+icons[m.type]+'" style="color:'+cols[m.type]+';"></i></div>'
+        +'<div style="flex:1;">'
+          +'<input class="inp" style="font-size:.82rem;padding:6px 10px;" value="'+esc(m.title)+'" onchange="_modules['+i+'].title=this.value" />'
+        +'</div>'
+        +'<button class="btn btn-d" style="padding:4px 8px;font-size:.65rem;flex-shrink:0;" onclick="removeModule('+i+')"><i class="fa-solid fa-trash"></i></button>'
+      +'</div>'
+      +inner
+      +'</div>';
+  }).join('');
+}
+
+function removeModule(i) { _modules.splice(i,1); renderModulesBuilder(); }
+function addQuestion(mi) {
+  var q = { id:'q'+Date.now(), text:'', options:[{id:'a',text:''},{id:'b',text:''},{id:'c',text:''},{id:'d',text:''}], correct:'a' };
+  _modules[mi].content.questions.push(q);
+  renderModulesBuilder();
+}
+function removeQuestion(mi, qi) { _modules[mi].content.questions.splice(qi,1); renderModulesBuilder(); }
+
+function handlePdfUpload(event, mi) {
+  var file = event.target.files[0];
+  if (!file) return;
+  if (file.size > 10*1024*1024) { toast('PDF must be under 10 MB','e'); return; }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    _modules[mi].content.dataUrl = e.target.result;
+    _modules[mi].content.filename = file.name;
+    renderModulesBuilder();
+  };
+  reader.readAsDataURL(file);
+}
+
+function saveCourse() {
+  var title = document.getElementById('c-title').value.trim();
+  if (!title) { toast('Please enter a course title','e'); return; }
+  var id = _editCourseId || 'c'+Date.now();
+  var course = { id:id, title:title, desc:document.getElementById('c-desc').value.trim(),
+    category:document.getElementById('c-cat').value, colour:getSelectedColour(),
+    passMark:parseInt(document.getElementById('c-pass').value)||70,
+    createdAt:new Date().toISOString().split('T')[0], modules: _modules.slice() };
+  if (_editCourseId) {
+    var idx = LMS.courses.findIndex(function(c){ return c.id===_editCourseId; });
+    if (idx>-1) LMS.courses[idx] = course;
+  } else { LMS.courses.push(course); }
+  save();
+  closeModal('modal-create-course');
+  renderCourses();
+  renderDashboard();
+  toast(_editCourseId ? 'Course updated successfully' : 'Course created successfully');
+}
+
+function editCourse(id) {
+  var c = LMS.courses.find(function(x){ return x.id===id; });
+  if (!c) return;
+  _modules = JSON.parse(JSON.stringify(c.modules));
+  _editCourseId = id;
+  document.getElementById('edit-course-id').value = id;
+  document.getElementById('c-title').value = c.title;
+  document.getElementById('c-desc').value = c.desc;
+  document.getElementById('c-cat').value = c.category;
+  document.getElementById('c-pass').value = c.passMark;
+  document.getElementById('modal-course-title-label').textContent = 'Edit Course';
+  document.querySelectorAll('.swatch').forEach(function(s){ s.classList.toggle('selected', s.dataset.col===c.colour); });
+  renderModulesBuilder();
+  openModal('modal-create-course');
+}
+
+function deleteCourse(id) {
+  if (!confirm('Delete this course? This cannot be undone.')) return;
+  LMS.courses = LMS.courses.filter(function(c){ return c.id!==id; });
+  LMS.students.forEach(function(s){ s.enrolledCourses = s.enrolledCourses.filter(function(cid){ return cid!==id; }); delete (s.progress||{})[id]; });
+  save(); renderCourses(); renderDashboard(); toast('Course deleted');
+}
+
+function viewCourse(id) {
+  var c = LMS.courses.find(function(x){ return x.id===id; });
+  if (!c) return;
+  var enrolled = LMS.students.filter(function(s){ return s.enrolledCourses.includes(c.id); });
+  document.getElementById('view-course-title').textContent = c.title;
+  document.getElementById('view-edit-btn').onclick = function(){ closeModal('modal-view-course'); editCourse(id); };
+  var icons={video:'fa-play',text:'fa-align-left',pdf:'fa-file-pdf',quiz:'fa-list-check'};
+  var cols={video:'#E8211A',text:'#2563eb',pdf:'#d97706',quiz:'#16a34a'};
+  document.getElementById('view-course-body').innerHTML =
+    '<div style="height:5px;background:'+c.colour+';border-radius:2px;margin-bottom:16px;"></div>'
+    +'<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">'
+    +'<span class="pill pill-b">'+esc(c.category)+'</span>'
+    +'<span class="pill" style="background:rgba(255,255,255,.06);color:#aaa;border-color:var(--border);">Pass: '+c.passMark+'%</span>'
+    +'<span class="pill" style="background:rgba(255,255,255,.06);color:#aaa;border-color:var(--border);">'+enrolled.length+' enrolled</span>'
+    +'</div>'
+    +'<p style="font-size:.85rem;color:#999;margin-bottom:18px;line-height:1.6;">'+esc(c.desc)+'</p>'
+    +'<div style="font-family:\'Syne\',sans-serif;font-weight:700;font-size:.85rem;color:var(--white);margin-bottom:8px;">Modules ('+c.modules.length+')</div>'
+    +c.modules.map(function(m){ return '<div class="mod-row"><div class="mod-icon" style="background:'+cols[m.type]+'22;"><i class="fa-solid '+icons[m.type]+'" style="color:'+cols[m.type]+';"></i></div><div><div style="font-size:.83rem;font-weight:600;color:var(--white);">'+esc(m.title)+'</div><div style="font-size:.7rem;color:#555;">'+m.type+' &middot; '+m.duration+'</div></div></div>'; }).join('')
+    +(enrolled.length?'<div style="font-family:\'Syne\',sans-serif;font-weight:700;font-size:.85rem;color:var(--white);margin:16px 0 8px;">Enrolled Students</div>'
+    +enrolled.map(function(s){
+      var p = (s.progress||{})[c.id]||{};
+      var pct = c.modules.length ? Math.round(((p.completedModules||[]).length/c.modules.length)*100) : 0;
+      return '<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);">'
+        +'<div style="width:30px;height:30px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:\'Syne\',sans-serif;font-weight:800;font-size:.7rem;color:#fff;">'+initials(s.name)+'</div>'
+        +'<div style="flex:1;min-width:0;"><div style="font-size:.82rem;font-weight:600;color:var(--white);">'+esc(s.name)+'</div>'
+        +'<div class="pb" style="margin-top:4px;"><div class="pb-fill '+(p.completed?'pb-fill-g':'')+'" style="width:'+pct+'%;"></div></div></div>'
+        +'<span style="font-size:.78rem;font-weight:700;color:'+(p.completed?'#22c55e':'var(--red)')+';">'+pct+'%</span>'
+        +'</div>';
+    }).join(''):'');
+  openModal('modal-view-course');
+}
+
+// ── STUDENTS ────────────────────────────────────────────────
+function renderStudents() {
+  var tb = document.getElementById('student-table');
+  var empty = document.getElementById('student-empty');
+  if (!LMS.students.length) { tb.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+  tb.innerHTML = LMS.students.map(function(s){
+    var totalCompleted = Object.values(s.progress||{}).filter(function(p){ return p.completed; }).length;
+    var totalEnrolled = s.enrolledCourses.length;
+    var overallPct = 0;
+    if (totalEnrolled) {
+      var sum = s.enrolledCourses.reduce(function(acc,cid){
+        var c = LMS.courses.find(function(x){ return x.id===cid; });
+        if (!c||!c.modules.length) return acc;
+        var p = (s.progress||{})[cid]||{};
+        return acc + ((p.completedModules||[]).length/c.modules.length)*100;
+      },0);
+      overallPct = Math.round(sum/totalEnrolled);
+    }
+    return '<tr>'
+      +'<td><div style="display:flex;align-items:center;gap:10px;">'
+        +'<div style="width:32px;height:32px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:\'Syne\',sans-serif;font-weight:800;font-size:.72rem;color:#fff;flex-shrink:0;">'+initials(s.name)+'</div>'
+        +'<div><div style="font-weight:600;color:var(--white);">'+esc(s.name)+'</div>'
+        +(s.role?'<div style="font-size:.72rem;color:#555;">'+esc(s.role)+'</div>':'')+'</div></div></td>'
+      +'<td style="color:#888;">'+esc(s.email)+'</td>'
+      +'<td><span style="font-family:\'Syne\',sans-serif;font-weight:700;color:var(--white);">'+totalEnrolled+'</span><span style="color:#555;"> / '+LMS.courses.length+' courses</span></td>'
+      +'<td style="min-width:120px;"><div style="display:flex;align-items:center;gap:8px;">'
+        +'<div class="pb" style="flex:1;"><div class="pb-fill" style="width:'+overallPct+'%;"></div></div>'
+        +'<span style="font-size:.75rem;font-weight:700;color:var(--red);flex-shrink:0;">'+overallPct+'%</span></div></td>'
+      +'<td>'+(totalCompleted?'<span class="pill pill-g">'+totalCompleted+' completed</span>':'<span class="pill pill-y">In Progress</span>')+'</td>'
+      +'<td><div style="display:flex;gap:4px;">'
+        +'<button class="btn btn-s" style="padding:4px 8px;font-size:.65rem;" onclick="viewStudent(\''+s.id+'\')" title="View report"><i class="fa-solid fa-eye"></i></button>'
+        +'<button class="btn btn-d" style="padding:4px 8px;font-size:.65rem;" onclick="deleteStudent(\''+s.id+'\')" title="Remove student"><i class="fa-solid fa-trash"></i></button>'
+      +'</div></td>'
+      +'</tr>';
+  }).join('');
+}
+
+function openAddStudent() { openModal('modal-add-student'); document.getElementById('s-name').value=''; document.getElementById('s-email').value=''; document.getElementById('s-phone').value=''; document.getElementById('s-role').value=''; }
+function saveStudent() {
+  var n=document.getElementById('s-name').value.trim(), e=document.getElementById('s-email').value.trim();
+  if (!n||!e) { toast('Name and email are required','e'); return; }
+  if (LMS.students.find(function(s){ return s.email===e; })) { toast('A student with this email already exists','e'); return; }
+  LMS.students.push({ id:'s'+Date.now(), name:n, email:e, phone:document.getElementById('s-phone').value.trim(), role:document.getElementById('s-role').value.trim(), enrolledCourses:[], createdAt:new Date().toISOString().split('T')[0], progress:{} });
+  save(); closeModal('modal-add-student'); renderStudents(); renderDashboard(); toast('Student added successfully');
+}
+function deleteStudent(id) {
+  if (!confirm('Remove this student? All progress will be lost.')) return;
+  LMS.students = LMS.students.filter(function(s){ return s.id!==id; });
+  save(); renderStudents(); renderDashboard(); toast('Student removed');
+}
+function viewStudent(id) {
+  var s = LMS.students.find(function(x){ return x.id===id; });
+  if (!s) return;
+  show('reports', null);
+  document.getElementById('tb-title').textContent='Progress Reports';
+  renderReports(id);
+}
+
+// ── ENROLMENT ────────────────────────────────────────────────
+function renderEnroll() {
+  var ss = document.getElementById('enroll-student-sel');
+  var bs = document.getElementById('bulk-course-sel');
+  ss.innerHTML = LMS.students.map(function(s){ return '<option value="'+s.id+'">'+esc(s.name)+'</option>'; }).join('');
+  bs.innerHTML = LMS.courses.map(function(c){ return '<option value="'+c.id+'">'+esc(c.title)+'</option>'; }).join('');
+  loadEnrollCourses();
+}
+function loadEnrollCourses() {
+  var sel = document.getElementById('enroll-student-sel').value;
+  var s = LMS.students.find(function(x){ return x.id===sel; });
+  var el = document.getElementById('enroll-courses-list');
+  if (!s||!LMS.courses.length) { el.innerHTML='<p style="color:#555;font-size:.82rem;">No courses available.</p>'; return; }
+  el.innerHTML = LMS.courses.map(function(c){
+    var checked = s.enrolledCourses.includes(c.id);
+    return '<label class="enroll-chip">'
+      +'<input type="checkbox" value="'+c.id+'" '+(checked?'checked':'')+' />'
+      +'<div style="width:8px;height:8px;border-radius:50%;background:'+c.colour+';flex-shrink:0;"></div>'
+      +'<span style="font-weight:600;color:var(--white);">'+esc(c.title)+'</span>'
+      +'<span style="font-size:.72rem;color:#555;margin-left:auto;">'+c.modules.length+' modules</span>'
+      +'</label>';
+  }).join('');
+}
+function saveEnrolments() {
+  var sel = document.getElementById('enroll-student-sel').value;
+  var s = LMS.students.find(function(x){ return x.id===sel; });
+  if (!s) return;
+  var checked = Array.from(document.querySelectorAll('#enroll-courses-list input[type=checkbox]:checked')).map(function(i){ return i.value; });
+  checked.forEach(function(cid){ if (!s.enrolledCourses.includes(cid)) { s.enrolledCourses.push(cid); (s.progress=s.progress||{})[cid]={completedModules:[],quizScores:{},startedAt:null,lastActive:null,completed:false}; }});
+  s.enrolledCourses = s.enrolledCourses.filter(function(cid){ return checked.includes(cid); });
+  save(); toast('Enrolment updated for '+s.name);
+}
+function bulkEnroll() {
+  var cid = document.getElementById('bulk-course-sel').value;
+  if (!cid) return;
+  LMS.students.forEach(function(s){ if (!s.enrolledCourses.includes(cid)) { s.enrolledCourses.push(cid); (s.progress=s.progress||{})[cid]={completedModules:[],quizScores:{},startedAt:null,lastActive:null,completed:false}; }});
+  save(); toast('All students enrolled in course');
+}
+
+// ── REPORTS ──────────────────────────────────────────────────
+function renderReports(focusStudentId) {
+  var el = document.getElementById('reports-content');
+  if (!LMS.students.length||!LMS.courses.length) { el.innerHTML='<div class="empty"><i class="fa-solid fa-chart-bar"></i>Add students and courses to see reports.</div>'; return; }
+  var students = focusStudentId ? LMS.students.filter(function(s){ return s.id===focusStudentId; }) : LMS.students;
+  el.innerHTML = students.map(function(s){
+    var rows = LMS.courses.filter(function(c){ return s.enrolledCourses.includes(c.id); }).map(function(c){
+      var p = (s.progress||{})[c.id]||{};
+      var pct = c.modules.length ? Math.round(((p.completedModules||[]).length/c.modules.length)*100) : 0;
+      var quizScores = Object.entries(p.quizScores||{}).map(function(kv){
+        var m = c.modules.find(function(x){ return x.id===kv[0]; });
+        return (m?esc(m.title):'Module')+': <b style="color:var(--white);">'+kv[1]+'%</b>';
+      });
+      return '<tr>'
+        +'<td style="color:var(--white);font-weight:600;">'+esc(c.title)+'</td>'
+        +'<td><div class="pb" style="width:120px;"><div class="pb-fill '+(p.completed?'pb-fill-g':'')+'" style="width:'+pct+'%;"></div></div></td>'
+        +'<td style="font-weight:700;color:'+(p.completed?'#22c55e':'var(--red)')+';">'+pct+'%</td>'
+        +'<td>'+(p.completed?'<span class="pill pill-g">Complete</span>':'<span class="pill pill-y">In Progress</span>')+'</td>'
+        +'<td style="font-size:.75rem;color:#777;">'+(quizScores.join(' &middot; ')||'–')+'</td>'
+        +'</tr>';
+    }).join('');
+    return '<div class="card" style="margin-bottom:20px;">'
+      +'<div class="card-hd"><div style="display:flex;align-items:center;gap:12px;">'
+        +'<div style="width:36px;height:36px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:\'Syne\',sans-serif;font-weight:800;color:#fff;font-size:.8rem;">'+initials(s.name)+'</div>'
+        +'<div><div style="font-family:\'Syne\',sans-serif;font-weight:800;color:var(--white);">'+esc(s.name)+'</div>'
+        +'<div style="font-size:.72rem;color:#555;">'+esc(s.email)+(s.role?' &middot; '+esc(s.role):'')+'</div></div></div>'
+        +'</div>'
+      +'<table style="margin:0;"><thead><tr><th>Course</th><th>Progress</th><th>%</th><th>Status</th><th>Quiz Scores</th></tr></thead><tbody>'+rows+'</tbody></table>'
+      +(rows?'':'<div class="empty" style="padding:24px;"><i class="fa-solid fa-clipboard-question"></i>Not enrolled in any courses yet.</div>')
+      +'</div>';
+  }).join('');
+}
+
+// ── QUICK CONTENT ────────────────────────────────────────────
+var _qcType = 'video';
+function renderQuickContent() {
+  var sel = document.getElementById('qc-course');
+  sel.innerHTML = LMS.courses.map(function(c){ return '<option value="'+c.id+'">'+esc(c.title)+'</option>'; }).join('');
+  if (!sel.innerHTML) sel.innerHTML='<option value="">No courses yet</option>';
+  renderQcFields();
+}
+function setQcType(t, el) {
+  _qcType=t;
+  document.querySelectorAll('.type-tab').forEach(function(b){ b.classList.remove('active'); });
+  el.classList.add('active');
+  renderQcFields();
+}
+function renderQcFields() {
+  var el = document.getElementById('qc-fields');
+  if (_qcType==='video') {
+    el.innerHTML='<div style="margin-bottom:14px;"><label class="lbl">Module Title</label><input class="inp" id="qc-mtitle" placeholder="e.g. Introduction to Food Hygiene" /></div>'
+      +'<div style="margin-bottom:14px;"><label class="lbl">YouTube URL</label><input class="inp" id="qc-yt" placeholder="https://www.youtube.com/watch?v=..." /></div>'
+      +'<div style="margin-bottom:14px;"><label class="lbl">Duration</label><input class="inp" id="qc-dur" placeholder="30 min" value="30 min" /></div>';
+  } else if (_qcType==='text') {
+    el.innerHTML='<div style="margin-bottom:14px;"><label class="lbl">Module Title</label><input class="inp" id="qc-mtitle" placeholder="e.g. COSHH Protocols" /></div>'
+      +'<div style="margin-bottom:14px;"><label class="lbl">Content (HTML supported)</label><textarea class="inp" id="qc-text" style="min-height:140px;" placeholder="Enter your text content here..."></textarea></div>'
+      +'<div style="margin-bottom:14px;"><label class="lbl">Duration</label><input class="inp" id="qc-dur" placeholder="20 min" value="20 min" /></div>';
+  } else if (_qcType==='pdf') {
+    el.innerHTML='<div style="margin-bottom:14px;"><label class="lbl">Module Title</label><input class="inp" id="qc-mtitle" placeholder="e.g. Safety Data Sheets" /></div>'
+      +'<div style="margin-bottom:14px;"><label class="lbl">Upload PDF (max 10 MB)</label><input type="file" accept=".pdf" class="inp" id="qc-pdf" style="padding:7px 10px;" /></div>'
+      +'<div style="margin-bottom:14px;"><label class="lbl">Duration</label><input class="inp" id="qc-dur" placeholder="15 min" value="15 min" /></div>';
+  } else {
+    el.innerHTML='<div style="margin-bottom:14px;"><label class="lbl">Quiz Title</label><input class="inp" id="qc-mtitle" placeholder="e.g. Module Assessment" /></div>'
+      +'<p style="font-size:.82rem;color:#666;margin-bottom:14px;">Use the full Course Builder to create detailed quizzes with multiple questions and scoring.</p>';
+  }
+}
+function saveQuickContent() {
+  var cid = document.getElementById('qc-course').value;
+  if (!cid) { toast('Please select a course','e'); return; }
+  var c = LMS.courses.find(function(x){ return x.id===cid; });
+  if (!c) return;
+  var title = (document.getElementById('qc-mtitle')||{}).value||'';
+  if (!title.trim()) { toast('Please enter a module title','e'); return; }
+  var mod = { id:'m'+Date.now(), type:_qcType, title:title.trim(), duration:((document.getElementById('qc-dur')||{}).value||'30 min') };
+  if (_qcType==='video') { var url=(document.getElementById('qc-yt')||{}).value||''; mod.content={url:url,youtubeId:extractYouTubeId(url)}; }
+  else if (_qcType==='text') { mod.content={body:(document.getElementById('qc-text')||{}).value||''}; }
+  else if (_qcType==='pdf') {
+    var f=(document.getElementById('qc-pdf')||{}).files;
+    if (!f||!f[0]) { toast('Please select a PDF file','e'); return; }
+    var reader=new FileReader();
+    reader.onload=function(e){ mod.content={dataUrl:e.target.result,filename:f[0].name}; c.modules.push(mod); save(); toast('PDF module added to "'+c.title+'"'); };
+    reader.readAsDataURL(f[0]); return;
+  } else { mod.content={passMark:70,questions:[]}; }
+  c.modules.push(mod); save(); toast('Module added to "'+c.title+'"');
+}
+
+// ── UTILS ─────────────────────────────────────────────────────
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function initials(n){ return n.split(' ').map(function(w){ return w[0]||''; }).slice(0,2).join('').toUpperCase(); }
+function extractYouTubeId(url) {
+  var m = url.match(/(?:v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : url;
+}
+function resetAll() {
+  if (!confirm('Reset all demo data? This will restore the original sample courses and students.')) return;
+  localStorage.removeItem(STORE_KEY);
+  LMS={courses:[],students:[]};
+  load(); renderDashboard(); toast('Demo data restored');
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+load();
+show('dashboard', document.querySelector('.sb-link.active'));
+</script>
+</body>
+</html>
