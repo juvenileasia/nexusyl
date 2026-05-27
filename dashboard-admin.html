@@ -11,59 +11,117 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script>tailwind.config={theme:{extend:{fontFamily:{display:['Syne','sans-serif'],body:['Manrope','sans-serif']}}}}</script>
   <style>
-    :root{--red:#E8211A;--black:#0A0A0A;--dark:#111111;--card:#161616;--border:#2a2a2a;--white:#F5F5F5;--sb:240px;}
+    :root{--red:#E8211A;--black:#0A0A0A;--dark:#111111;--card:#161616;--border:#2a2a2a;--white:#F5F5F5;--sb:248px;}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html,body{height:100%;font-family:'Manrope',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
     ::-webkit-scrollbar{width:4px;height:4px;}::-webkit-scrollbar-track{background:var(--black);}::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px;}
+    /* SIDEBAR */
     #sb{position:fixed;top:0;left:0;bottom:0;width:var(--sb);background:var(--dark);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:200;overflow-y:auto;}
-    .sb-logo{padding:18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+    .sb-logo{padding:18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-shrink:0;}
     .sb-sec{font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#444;padding:14px 18px 5px;}
     .sb-link{display:flex;align-items:center;gap:10px;padding:9px 18px;font-size:.81rem;font-weight:600;color:#666;cursor:pointer;border-left:2px solid transparent;transition:all .15s;text-decoration:none;}
     .sb-link i{width:16px;text-align:center;font-size:.78rem;flex-shrink:0;}
     .sb-link:hover{color:var(--white);background:rgba(255,255,255,.04);}
     .sb-link.active{color:var(--white);background:rgba(232,33,26,.08);border-left-color:var(--red);}
     .sb-link.active i{color:var(--red);}
+    .sb-badge{margin-left:auto;font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:2px;background:rgba(232,33,26,.15);color:var(--red);border:1px solid rgba(232,33,26,.25);}
+    /* TOPBAR */
     #tb{position:fixed;top:0;left:var(--sb);right:0;height:56px;background:rgba(10,10,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 22px;z-index:100;}
-    #main{margin-left:var(--sb);margin-top:56px;padding:26px;min-height:calc(100vh - 56px);}
-    .sec{display:none;} .sec.active{display:block;}
+    /* MAIN */
+    #main{margin-left:var(--sb);margin-top:56px;padding:26px;min-height:calc(100vh-56px);}
+    .sec{display:none;}.sec.active{display:block;}
+    /* CARDS */
     .card{background:var(--card);border:1px solid var(--border);border-radius:4px;}
-    .card-hd{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+    .card-hd{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
     .card-bd{padding:18px;}
-    .stat{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px 20px;position:relative;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;}
+    /* STATS */
+    .stat{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px 20px;position:relative;overflow:hidden;transition:border-color .25s,transform .25s;}
     .stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
     .stat:hover{transform:translateY(-3px);border-color:#333;box-shadow:0 12px 40px rgba(0,0,0,.5);}
     .stat:hover::before{transform:scaleX(1);}
+    /* BUTTONS */
     .btn{display:inline-flex;align-items:center;gap:7px;font-family:'Syne',sans-serif;font-weight:700;font-size:.73rem;letter-spacing:.06em;text-transform:uppercase;padding:8px 16px;border-radius:2px;border:none;cursor:pointer;transition:all .2s;}
     .btn-p{background:var(--red);color:#fff;box-shadow:0 4px 16px rgba(232,33,26,.25);}
     .btn-p:hover{background:#ff2d25;transform:translateY(-1px);}
+    .btn-p:disabled{opacity:.5;pointer-events:none;}
     .btn-s{background:transparent;color:#888;border:1px solid var(--border);}
     .btn-s:hover{border-color:var(--red);color:var(--white);}
     .btn-d{background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.2);}
+    .btn-d:hover{background:rgba(239,68,68,.2);}
+    .btn-g{background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.25);}
+    /* FORM FIELDS */
+    .lbl{display:block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:5px;}
+    .inp{width:100%;background:var(--dark);border:1px solid var(--border);border-radius:2px;padding:9px 13px;font-family:'Manrope',sans-serif;font-size:.85rem;color:var(--white);outline:none;transition:border-color .2s,box-shadow .2s;}
+    .inp:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(232,33,26,.1);}
+    .inp::placeholder{color:#444;}
+    select.inp option{background:var(--dark);}
+    textarea.inp{resize:vertical;min-height:80px;}
+    /* TABLE */
     table{width:100%;border-collapse:collapse;}
     th{font-size:.63rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#555;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);}
     td{padding:11px 14px;font-size:.81rem;color:#ccc;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle;}
     tr:last-child td{border-bottom:none;}
     tr:hover td{background:rgba(255,255,255,.02);}
+    /* PILLS */
     .pill{display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:2px;}
     .pill-r{background:rgba(232,33,26,.12);color:var(--red);border:1px solid rgba(232,33,26,.25);}
     .pill-g{background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.25);}
     .pill-y{background:rgba(234,179,8,.12);color:#eab308;border:1px solid rgba(234,179,8,.25);}
     .pill-b{background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.25);}
     .pill-p{background:rgba(168,85,247,.12);color:#c084fc;border:1px solid rgba(168,85,247,.25);}
+    /* MODAL */
+    .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;}
+    .modal{background:var(--card);border:1px solid var(--border);border-radius:6px;width:100%;max-width:680px;max-height:90vh;overflow-y:auto;animation:mslide .25s ease;}
+    .modal-lg{max-width:880px;}
+    @keyframes mslide{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    .modal-hd{padding:16px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--card);z-index:2;}
+    .modal-bd{padding:22px;}
+    .modal-ft{padding:14px 22px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;position:sticky;bottom:0;background:var(--card);}
+    /* MODULE ROW */
+    .mod-row{display:flex;flex-direction:column;gap:10px;padding:12px 14px;border:1px solid var(--border);border-radius:3px;background:rgba(255,255,255,.02);margin-bottom:8px;transition:border-color .2s;}
+    .mod-row:hover{border-color:rgba(232,33,26,.25);}
+    .mod-icon{width:30px;height:30px;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.75rem;}
+    /* COURSE CARD */
+    .course-card{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;}
+    .course-card:hover{border-color:#333;transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.5);}
+    /* QUIZ */
+    .q-block{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:3px;padding:14px;margin-bottom:10px;}
+    .opt-row{display:flex;align-items:center;gap:8px;margin-top:6px;}
+    .opt-row input[type=radio]{accent-color:var(--red);}
+    /* COLOUR SWATCH */
+    .swatch{width:24px;height:24px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color .15s,transform .15s;}
+    .swatch:hover{transform:scale(1.15);}
+    .swatch.selected{border-color:var(--white);}
+    /* ENROLL CHIP */
+    .enroll-chip{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:3px;background:rgba(255,255,255,.03);border:1px solid var(--border);cursor:pointer;transition:border-color .2s;font-size:.82rem;}
+    .enroll-chip input[type=checkbox]{accent-color:var(--red);}
+    .enroll-chip:hover{border-color:rgba(232,33,26,.3);}
+    /* SECTION LABEL */
     .sec-lbl{font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:8px;margin-bottom:5px;}
     .sec-lbl::before{content:'';display:block;width:20px;height:1px;background:var(--red);}
-    .pb{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:6px;}
-    .pb-f{height:100%;border-radius:3px;background:var(--red);transition:width .8s ease;}
+    /* PROGRESS BAR */
+    .pb{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+    .pb-f{height:100%;background:var(--red);border-radius:2px;transition:width .6s ease;}
+    .pb-fg{background:#22c55e;}
+    /* CONTENT TYPE TAB */
+    .type-tab{padding:7px 12px;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border:1px solid var(--border);border-radius:2px;cursor:pointer;transition:all .15s;background:transparent;color:#666;}
+    .type-tab.active{background:var(--red);color:#fff;border-color:var(--red);}
+    /* EMPTY */
+    .empty{text-align:center;padding:48px 20px;color:#444;font-size:.85rem;}
+    .empty i{font-size:2rem;color:#333;display:block;margin-bottom:12px;}
+    /* TOAST */
+    #toast-c{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;flex-direction:column;gap:8px;}
+    .toast{background:var(--card);border:1px solid var(--border);border-radius:3px;padding:10px 16px;font-size:.8rem;font-weight:600;display:flex;align-items:center;gap:8px;animation:mslide .2s ease;min-width:240px;}
+    .toast-s{border-left:3px solid #22c55e;}
+    .toast-e{border-left:3px solid var(--red);}
     @keyframes fadeIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
     .fade-in{animation:fadeIn .4s ease both;}
-    #toast-c{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:6px;}
-    .toast{background:var(--card);border:1px solid var(--border);border-left:3px solid #22c55e;border-radius:3px;padding:10px 16px;font-size:.8rem;font-weight:600;display:flex;align-items:center;gap:8px;animation:fadeIn .2s ease;min-width:220px;}
   </style>
 </head>
 <body>
 <div id="toast-c"></div>
 
-<!-- SIDEBAR -->
+<!-- ════════ SIDEBAR ════════ -->
 <aside id="sb">
   <div class="sb-logo">
     <img src="/Nexusyl_Fab.png" alt="N" style="height:28px;width:28px;object-fit:contain;flex-shrink:0;" onerror="this.style.display='none'" />
@@ -71,235 +129,1032 @@
   </div>
   <nav style="flex:1;padding:8px 0;">
     <div class="sb-sec">Overview</div>
-    <a class="sb-link active" onclick="show('overview',this)"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
-    <div class="sb-sec">Management</div>
-    <a class="sb-link" onclick="show('users',this)"><i class="fa-solid fa-users"></i>All Users</a>
-    <a class="sb-link" onclick="show('students',this)"><i class="fa-solid fa-graduation-cap"></i>Students</a>
-    <a class="sb-link" onclick="show('employees',this)"><i class="fa-solid fa-briefcase"></i>Employees</a>
-    <a class="sb-link" onclick="show('suppliers',this)"><i class="fa-solid fa-handshake"></i>Suppliers</a>
-    <div class="sb-sec">Finance & Compliance</div>
-    <a class="sb-link" onclick="show('revenue',this)"><i class="fa-solid fa-sterling-sign"></i>Revenue</a>
+    <a class="sb-link active" onclick="show('dashboard',this)"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
+    <div class="sb-sec">People</div>
+    <a class="sb-link" onclick="show('students',this)"><i class="fa-solid fa-graduation-cap"></i>Students <span class="sb-badge" id="badge-students">0</span></a>
+    <a class="sb-link" onclick="show('employees',this)"><i class="fa-solid fa-briefcase"></i>Employees <span class="sb-badge" id="badge-employees">0</span></a>
+    <a class="sb-link" onclick="show('suppliers',this)"><i class="fa-solid fa-handshake"></i>Suppliers <span class="sb-badge" id="badge-suppliers">0</span></a>
+    <div class="sb-sec">Academy LMS</div>
+    <a class="sb-link" onclick="show('courses',this)"><i class="fa-solid fa-book-open"></i>Courses <span class="sb-badge" id="badge-courses">0</span></a>
+    <a class="sb-link" onclick="show('enrolment',this)"><i class="fa-solid fa-user-plus"></i>Enrolment</a>
+    <a class="sb-link" onclick="show('content',this)"><i class="fa-solid fa-file-circle-plus"></i>Add Content</a>
+    <div class="sb-sec">Compliance</div>
     <a class="sb-link" onclick="show('dbs',this)"><i class="fa-solid fa-fingerprint"></i>DBS Pipeline</a>
+    <a class="sb-link" onclick="show('reports',this)"><i class="fa-solid fa-chart-bar"></i>Progress Reports</a>
     <div class="sb-sec">System</div>
-    <a class="sb-link" href="login.html"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+    <a class="sb-link" href="login.html?role=admin"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
   </nav>
-  <div style="padding:14px 18px;border-top:1px solid var(--border);">
+  <div style="padding:12px 18px;border-top:1px solid var(--border);flex-shrink:0;">
     <div style="display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:3px;background:rgba(255,255,255,.03);border:1px solid var(--border);">
       <div id="user-avatar" style="width:28px;height:28px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:.68rem;color:#fff;flex-shrink:0;">A</div>
       <div style="flex:1;min-width:0;"><div id="user-name" style="font-size:.78rem;font-weight:700;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Admin</div><div style="font-size:.65rem;color:#555;">Administrator</div></div>
+      <button onclick="if(confirm('Reset demo data?')){resetAll();}" title="Reset demo data" style="background:none;border:none;color:#444;cursor:pointer;font-size:.75rem;"><i class="fa-solid fa-rotate-left"></i></button>
     </div>
   </div>
 </aside>
 
-<!-- TOPBAR -->
+<!-- ════════ TOPBAR ════════ -->
 <header id="tb">
   <div style="display:flex;align-items:center;gap:8px;">
-    <span style="font-size:.7rem;color:#555;">CRM</span>
+    <span style="font-size:.7rem;color:#555;">Nexusyl CRM</span>
     <i class="fa-solid fa-chevron-right" style="font-size:.5rem;color:#333;"></i>
-    <span id="tb-title" style="font-size:.8rem;font-weight:700;color:var(--white);">Dashboard</span>
+    <span id="tb-title" style="font-size:.82rem;font-weight:700;color:var(--white);">Dashboard</span>
   </div>
   <div style="display:flex;align-items:center;gap:8px;">
     <span class="pill pill-r"><i class="fa-solid fa-shield-halved"></i> Admin</span>
-    <button class="btn btn-s" style="padding:5px 10px;font-size:.68rem;" onclick="toast('Feature available in full release.')"><i class="fa-solid fa-bell"></i></button>
   </div>
 </header>
 
-<!-- MAIN -->
+<!-- ════════ MAIN ════════ -->
 <main id="main">
 
-<!-- OVERVIEW -->
-<div id="sec-overview" class="sec active fade-in">
-  <div class="sec-lbl" style="margin-bottom:5px;">Platform Overview</div>
+<!-- ── DASHBOARD ─────────────────────────────────────────── -->
+<div id="sec-dashboard" class="sec active fade-in">
+  <div class="sec-lbl" style="margin-bottom:4px;">Overview</div>
   <h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:22px;">Global CRM Dashboard</h2>
-
-  <!-- Stat grid -->
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px;">
-    <div class="stat"><div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:4px;">Platform Revenue</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#22c55e;">£128,450</div><div style="font-size:.72rem;color:#555;margin-top:3px;"><i class="fa-solid fa-arrow-up" style="color:#22c55e;font-size:.6rem;"></i> +12.4% this month</div></div>
-    <div class="stat"><div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:4px;">Registered Students</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--white);">247</div><div style="font-size:.72rem;color:#555;margin-top:3px;">42 enrolled this month</div></div>
-    <div class="stat"><div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:4px;">Pending DBS Checks</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#eab308;">12</div><div style="font-size:.72rem;color:#555;margin-top:3px;">Avg. 48h clearance</div></div>
-    <div class="stat"><div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:4px;">Active Supplier Streams</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#60a5fa;">8</div><div style="font-size:.72rem;color:#555;margin-top:3px;">3 pending renewal</div></div>
-  </div>
-
-  <!-- Secondary stats -->
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px;">
-    <div class="stat" style="border-left:2px solid var(--red);"><div style="font-size:.6rem;color:#555;text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:3px;">Total Employees</div><div style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--white);">38</div></div>
-    <div class="stat" style="border-left:2px solid #22c55e;"><div style="font-size:.6rem;color:#555;text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:3px;">Visa Applications</div><div style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--white);">74</div></div>
-    <div class="stat" style="border-left:2px solid #60a5fa;"><div style="font-size:.6rem;color:#555;text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:3px;">Courses Published</div><div style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--white);">14</div></div>
-    <div class="stat" style="border-left:2px solid #eab308;"><div style="font-size:.6rem;color:#555;text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:3px;">Compliance Rate</div><div style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:#22c55e;">94%</div></div>
-  </div>
-
-  <!-- Two-col layout -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-
-    <!-- Recent activity -->
-    <div class="card">
-      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Recent Activity</span><button class="btn btn-s" style="padding:4px 10px;font-size:.65rem;">View All</button></div>
-      <div style="padding:6px 0;">
-        <div id="activity-feed"></div>
-      </div>
-    </div>
-
-    <!-- Quick access portals -->
-    <div class="card">
-      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Portal Access</span></div>
-      <div class="card-bd" style="display:flex;flex-direction:column;gap:10px;">
-        <a href="dashboard-employee.html" style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:3px;border:1px solid var(--border);text-decoration:none;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(59,130,246,.4)'" onmouseout="this.style.borderColor='var(--border)'">
-          <div style="width:36px;height:36px;border-radius:3px;background:rgba(59,130,246,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-briefcase" style="color:#60a5fa;"></i></div>
-          <div><div style="font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:var(--white);">Employee Dashboard</div><div style="font-size:.7rem;color:#555;">LMS Content & DBS Vetting Portal</div></div>
-          <i class="fa-solid fa-arrow-right" style="color:#444;margin-left:auto;font-size:.75rem;"></i>
-        </a>
-        <a href="dashboard-student.html" style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:3px;border:1px solid var(--border);text-decoration:none;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(34,197,94,.4)'" onmouseout="this.style.borderColor='var(--border)'">
-          <div style="width:36px;height:36px;border-radius:3px;background:rgba(34,197,94,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-graduation-cap" style="color:#22c55e;"></i></div>
-          <div><div style="font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:var(--white);">Student Portal</div><div style="font-size:.7rem;color:#555;">Document Upload & Visa Tracker</div></div>
-          <i class="fa-solid fa-arrow-right" style="color:#444;margin-left:auto;font-size:.75rem;"></i>
-        </a>
-        <a href="dashboard-supplier.html" style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:3px;border:1px solid var(--border);text-decoration:none;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(234,179,8,.4)'" onmouseout="this.style.borderColor='var(--border)'">
-          <div style="width:36px;height:36px;border-radius:3px;background:rgba(234,179,8,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-handshake" style="color:#eab308;"></i></div>
-          <div><div style="font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:var(--white);">Supplier Dashboard</div><div style="font-size:.7rem;color:#555;">B2B Pipeline Tracking</div></div>
-          <i class="fa-solid fa-arrow-right" style="color:#444;margin-left:auto;font-size:.75rem;"></i>
-        </a>
-        <a href="lms-admin.html" style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:3px;border:1px solid var(--border);text-decoration:none;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(232,33,26,.4)'" onmouseout="this.style.borderColor='var(--border)'">
-          <div style="width:36px;height:36px;border-radius:3px;background:rgba(232,33,26,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-book-open" style="color:var(--red);"></i></div>
-          <div><div style="font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:var(--white);">Academy LMS Admin</div><div style="font-size:.7rem;color:#555;">Course & Enrolment Management</div></div>
-          <i class="fa-solid fa-arrow-right" style="color:#444;margin-left:auto;font-size:.75rem;"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- USERS -->
-<div id="sec-users" class="sec fade-in">
-  <div class="sec-lbl" style="margin-bottom:5px;">User Management</div>
-  <h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:22px;">All Platform Users</h2>
-  <div class="card">
-    <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Registered Accounts</span>
-      <button class="btn btn-p" style="padding:6px 12px;font-size:.68rem;" onclick="toast('User creation available in full release.')"><i class="fa-solid fa-plus"></i> Add User</button></div>
-    <table>
-      <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Last Login</th><th>Actions</th></tr></thead>
-      <tbody id="users-table"></tbody>
-    </table>
-  </div>
-</div>
-
-<!-- REVENUE -->
-<div id="sec-revenue" class="sec fade-in">
-  <div class="sec-lbl" style="margin-bottom:5px;">Finance</div>
-  <h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:22px;">Revenue Overview</h2>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px;">
-    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Monthly Revenue</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#22c55e;">£12,840</div><div class="pb"><div class="pb-f" style="width:68%;background:#22c55e;"></div></div></div>
-    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Annual Recurring</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--white);">£128,450</div><div class="pb"><div class="pb-f" style="width:82%;"></div></div></div>
-    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Outstanding Invoices</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#eab308;">£4,200</div><div class="pb"><div class="pb-f" style="width:22%;background:#eab308;"></div></div></div>
-  </div>
-  <div class="card">
-    <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Revenue Streams</span></div>
-    <table>
-      <thead><tr><th>Stream</th><th>Monthly</th><th>YTD</th><th>Growth</th><th>Status</th></tr></thead>
-      <tbody>
-        <tr><td style="font-weight:600;color:var(--white);">Student Enrolment Fees</td><td>£5,400</td><td>£58,200</td><td><span style="color:#22c55e;"><i class="fa-solid fa-arrow-up" style="font-size:.6rem;"></i> +18%</span></td><td><span class="pill pill-g">Active</span></td></tr>
-        <tr><td style="font-weight:600;color:var(--white);">Supplier Commission</td><td>£3,200</td><td>£32,400</td><td><span style="color:#22c55e;"><i class="fa-solid fa-arrow-up" style="font-size:.6rem;"></i> +9%</span></td><td><span class="pill pill-g">Active</span></td></tr>
-        <tr><td style="font-weight:600;color:var(--white);">DBS Processing Fees</td><td>£1,840</td><td>£18,650</td><td><span style="color:var(--red);"><i class="fa-solid fa-arrow-down" style="font-size:.6rem;"></i> -3%</span></td><td><span class="pill pill-y">Review</span></td></tr>
-        <tr><td style="font-weight:600;color:var(--white);">Academy LMS Licensing</td><td>£2,400</td><td>£19,200</td><td><span style="color:#22c55e;"><i class="fa-solid fa-arrow-up" style="font-size:.6rem;"></i> +24%</span></td><td><span class="pill pill-g">Active</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- DBS -->
-<div id="sec-dbs" class="sec fade-in">
-  <div class="sec-lbl" style="margin-bottom:5px;">Compliance</div>
-  <h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:22px;">DBS Checks Pipeline</h2>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px;">
-    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Submitted</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--white);">38</div></div>
-    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Processing</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#eab308;">12</div></div>
-    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Cleared</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#22c55e;">24</div></div>
-    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Flagged</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--red);">2</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:3px;">Courses</div><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--white);" id="ds-courses">0</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:3px;">Students</div><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--white);" id="ds-students">0</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:3px;">Employees</div><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--white);" id="ds-employees">0</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:3px;">Suppliers</div><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--white);" id="ds-suppliers">0</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <div class="card">
+      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Recent Courses</span><button class="btn btn-p" style="padding:6px 12px;font-size:.68rem;" onclick="show('courses',null);openCreateCourse()"><i class="fa-solid fa-plus"></i> New Course</button></div>
+      <div id="ds-course-list" style="padding:6px 0;"></div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Recent People</span><div style="display:flex;gap:6px;"><button class="btn btn-p" style="padding:6px 10px;font-size:.66rem;" onclick="show('students',null);openAddPerson('student')"><i class="fa-solid fa-graduation-cap"></i> Student</button><button class="btn btn-s" style="padding:6px 10px;font-size:.66rem;" onclick="show('employees',null);openAddPerson('employee')"><i class="fa-solid fa-briefcase"></i> Employee</button></div></div>
+      <div id="ds-people-list" style="padding:6px 0;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── STUDENTS ──────────────────────────────────────────── -->
+<div id="sec-students" class="sec fade-in">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:22px;">
+    <div><div class="sec-lbl">People</div><h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);">Student Management</h2></div>
+    <button class="btn btn-p" onclick="openAddPerson('student')"><i class="fa-solid fa-user-plus"></i> Add New Student</button>
+  </div>
+  <div class="card">
+    <table><thead><tr><th>Student</th><th>Email</th><th>Enrolled Courses</th><th>Progress</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody id="students-table"></tbody></table>
+    <div id="students-empty" class="empty" style="display:none;"><i class="fa-solid fa-graduation-cap"></i>No students yet. Add your first student above.</div>
+  </div>
+</div>
+
+<!-- ── EMPLOYEES ─────────────────────────────────────────── -->
+<div id="sec-employees" class="sec fade-in">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:22px;">
+    <div><div class="sec-lbl">People</div><h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);">Employee Management</h2></div>
+    <button class="btn btn-p" onclick="openAddPerson('employee')"><i class="fa-solid fa-user-plus"></i> Add New Employee</button>
+  </div>
+  <div class="card">
+    <table><thead><tr><th>Employee</th><th>Email</th><th>Role / Department</th><th>Training Progress</th><th>DBS Status</th><th>Actions</th></tr></thead>
+    <tbody id="employees-table"></tbody></table>
+    <div id="employees-empty" class="empty" style="display:none;"><i class="fa-solid fa-briefcase"></i>No employees yet. Add your first employee above.</div>
+  </div>
+</div>
+
+<!-- ── SUPPLIERS ─────────────────────────────────────────── -->
+<div id="sec-suppliers" class="sec fade-in">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:22px;">
+    <div><div class="sec-lbl">People</div><h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);">Supplier / Partner Management</h2></div>
+    <button class="btn btn-p" onclick="openAddPerson('supplier')"><i class="fa-solid fa-plus"></i> Add New Supplier</button>
+  </div>
+  <div class="card">
+    <table><thead><tr><th>Organisation</th><th>Contact Email</th><th>Type</th><th>Students Supplied</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody id="suppliers-table"></tbody></table>
+    <div id="suppliers-empty" class="empty" style="display:none;"><i class="fa-solid fa-handshake"></i>No suppliers yet. Add your first supplier above.</div>
+  </div>
+</div>
+
+<!-- ── COURSES ────────────────────────────────────────────── -->
+<div id="sec-courses" class="sec fade-in">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:22px;">
+    <div><div class="sec-lbl">Academy LMS</div><h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);">Course Manager</h2></div>
+    <button class="btn btn-p" onclick="openCreateCourse()"><i class="fa-solid fa-plus"></i> Create New Course</button>
+  </div>
+  <div id="course-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;"></div>
+  <div id="course-empty" class="empty" style="display:none;"><i class="fa-solid fa-book-open"></i>No courses yet. Create your first course!</div>
+</div>
+
+<!-- ── ENROLMENT ──────────────────────────────────────────── -->
+<div id="sec-enrolment" class="sec fade-in">
+  <div style="margin-bottom:22px;"><div class="sec-lbl">Academy LMS</div><h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);">Course Enrolment</h2></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <!-- Per-person enrolment -->
+    <div class="card">
+      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Enrol Person in Courses</span></div>
+      <div class="card-bd">
+        <div style="margin-bottom:12px;"><label class="lbl">Person Type</label>
+          <div style="display:flex;gap:6px;">
+            <button class="type-tab active" onclick="setEnrolType('student',this)" id="enrol-type-student">Students</button>
+            <button class="type-tab" onclick="setEnrolType('employee',this)" id="enrol-type-employee">Employees</button>
+          </div>
+        </div>
+        <div style="margin-bottom:12px;"><label class="lbl">Select Person</label><select class="inp" id="enrol-person-sel" onchange="loadEnrolCourses()"></select></div>
+        <div style="margin-bottom:14px;"><label class="lbl">Available Courses</label><div id="enrol-courses-list" style="display:flex;flex-direction:column;gap:6px;max-height:320px;overflow-y:auto;"></div></div>
+        <button class="btn btn-p" onclick="saveEnrolment()"><i class="fa-solid fa-check"></i> Save Enrolment</button>
+      </div>
+    </div>
+    <!-- Bulk enrolment -->
+    <div class="card">
+      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Bulk Assign Course to All</span></div>
+      <div class="card-bd">
+        <div style="margin-bottom:12px;"><label class="lbl">Select Course</label><select class="inp" id="bulk-course-sel"></select></div>
+        <div style="margin-bottom:16px;"><label class="lbl">Assign To</label>
+          <div style="display:flex;gap:6px;">
+            <button class="type-tab active" id="bulk-type-student" onclick="setBulkType('student',this)">All Students</button>
+            <button class="type-tab" id="bulk-type-employee" onclick="setBulkType('employee',this)">All Employees</button>
+            <button class="type-tab" id="bulk-type-both" onclick="setBulkType('both',this)">Everyone</button>
+          </div>
+        </div>
+        <button class="btn btn-p" onclick="bulkEnrol()"><i class="fa-solid fa-users"></i> Bulk Enrol</button>
+        <div style="margin-top:18px;border-top:1px solid var(--border);padding-top:16px;">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;color:var(--white);margin-bottom:10px;">Current Enrolments</div>
+          <div id="enrolment-overview" style="max-height:240px;overflow-y:auto;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ADD CONTENT ────────────────────────────────────────── -->
+<div id="sec-content" class="sec fade-in">
+  <div style="margin-bottom:22px;"><div class="sec-lbl">Academy LMS</div><h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);">Quick Content Upload</h2></div>
+  <div class="card" style="max-width:660px;">
+    <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Add Module to Existing Course</span></div>
+    <div class="card-bd">
+      <div style="margin-bottom:14px;"><label class="lbl">Select Course</label><select class="inp" id="qc-course"></select></div>
+      <div style="margin-bottom:14px;"><label class="lbl">Content Type</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="type-tab active" onclick="setQcType('video',this)"><i class="fa-brands fa-youtube"></i> Video</button>
+          <button class="type-tab" onclick="setQcType('text',this)"><i class="fa-solid fa-align-left"></i> Text</button>
+          <button class="type-tab" onclick="setQcType('pdf',this)"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+          <button class="type-tab" onclick="setQcType('quiz',this)"><i class="fa-solid fa-list-check"></i> Quiz</button>
+        </div>
+      </div>
+      <div id="qc-fields" style="margin-bottom:16px;"></div>
+      <button class="btn btn-p" onclick="saveQuickContent()"><i class="fa-solid fa-plus"></i> Add Module to Course</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── DBS ────────────────────────────────────────────────── -->
+<div id="sec-dbs" class="sec fade-in">
+  <div style="margin-bottom:22px;"><div class="sec-lbl">Compliance</div><h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);">DBS Pipeline</h2></div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;">
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:3px;">Total Submitted</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--white);">38</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:3px;">Processing</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#eab308;">12</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:3px;">Cleared</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#22c55e;">24</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:3px;">Flagged</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--red);">2</div></div>
   </div>
   <div class="card">
     <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Live DBS Queue</span></div>
-    <table>
-      <thead><tr><th>Applicant</th><th>Role</th><th>Submitted</th><th>Stage</th><th>Est. Clearance</th><th>Action</th></tr></thead>
-      <tbody>
-        <tr><td style="font-weight:600;color:var(--white);">Jordan Singh</td><td style="color:#888;">Kitchen Assistant</td><td>02 May 2026</td><td><span class="pill pill-y">Identity Verified</span></td><td>04 May 2026</td><td><button class="btn btn-s" style="padding:3px 8px;font-size:.62rem;">View</button></td></tr>
-        <tr><td style="font-weight:600;color:var(--white);">Amara Osei</td><td style="color:#888;">Front of House</td><td>01 May 2026</td><td><span class="pill pill-r">Data Submitted</span></td><td>03 May 2026</td><td><button class="btn btn-s" style="padding:3px 8px;font-size:.62rem;">View</button></td></tr>
-        <tr><td style="font-weight:600;color:var(--white);">Marcus Lee</td><td style="color:#888;">Chef de Partie</td><td>28 Apr 2026</td><td><span class="pill pill-g">Certificate Issued</span></td><td>—</td><td><button class="btn btn-s" style="padding:3px 8px;font-size:.62rem;">Download</button></td></tr>
-      </tbody>
+    <table><thead><tr><th>Applicant</th><th>Role</th><th>Submitted</th><th>Stage</th><th>Est. Clearance</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td style="font-weight:600;color:var(--white);">Jordan Singh</td><td style="color:#888;">Kitchen Assistant</td><td>02 May 2026</td><td><span class="pill pill-y">Identity Verified</span></td><td>04 May 2026</td><td><button class="btn btn-s" style="padding:3px 8px;font-size:.62rem;">View</button></td></tr>
+      <tr><td style="font-weight:600;color:var(--white);">Amara Osei</td><td style="color:#888;">Front of House</td><td>01 May 2026</td><td><span class="pill pill-r">Data Submitted</span></td><td>03 May 2026</td><td><button class="btn btn-s" style="padding:3px 8px;font-size:.62rem;">View</button></td></tr>
+      <tr><td style="font-weight:600;color:var(--white);">Marcus Lee</td><td style="color:#888;">Chef de Partie</td><td>28 Apr 2026</td><td><span class="pill pill-g">Certificate Issued</span></td><td>—</td><td><button class="btn btn-s" style="padding:3px 8px;font-size:.62rem;">Download</button></td></tr>
+    </tbody>
     </table>
   </div>
 </div>
 
-<!-- STUB SECTIONS -->
-<div id="sec-students" class="sec fade-in"><div class="sec-lbl">Students</div><h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin:8px 0 16px;">Student Management</h2><p style="color:#555;font-size:.85rem;margin-bottom:14px;">Full student CRM — manage enrolments, visa status, and document verification.</p><a href="lms-admin.html" class="btn btn-p"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Academy LMS</a></div>
-<div id="sec-employees" class="sec fade-in"><div class="sec-lbl">Employees</div><h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin:8px 0 16px;">Employee Management</h2><p style="color:#555;font-size:.85rem;margin-bottom:14px;">Manage employee training, DBS status, and compliance records.</p><a href="dashboard-employee.html" class="btn btn-p"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Employee Dashboard</a></div>
-<div id="sec-suppliers" class="sec fade-in"><div class="sec-lbl">Suppliers</div><h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin:8px 0 16px;">Supplier Management</h2><p style="color:#555;font-size:.85rem;margin-bottom:14px;">Track supplier pipeline contributions and B2B contract status.</p><a href="dashboard-supplier.html" class="btn btn-p"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Supplier Dashboard</a></div>
+<!-- ── REPORTS ────────────────────────────────────────────── -->
+<div id="sec-reports" class="sec fade-in">
+  <div style="margin-bottom:22px;"><div class="sec-lbl">Analytics</div><h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);">Progress Reports</h2></div>
+  <div id="reports-content"></div>
+</div>
 
 </main>
 
+<!-- ════════════════ MODALS ════════════════ -->
+
+<!-- ADD / EDIT PERSON -->
+<div id="modal-person" style="display:none;" class="modal-bg" onclick="if(event.target===this)closeModal('modal-person')">
+<div class="modal" style="max-width:500px;">
+  <div class="modal-hd">
+    <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;" id="modal-person-title">Add Person</span>
+    <button onclick="closeModal('modal-person')" style="background:none;border:none;color:#666;cursor:pointer;font-size:1.1rem;"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="modal-bd">
+    <input type="hidden" id="person-edit-id" />
+    <input type="hidden" id="person-role" />
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div style="grid-column:1/-1;"><label class="lbl">Full Name</label><input class="inp" id="p-name" placeholder="Full name" required /></div>
+      <div style="grid-column:1/-1;"><label class="lbl">Email Address</label><input class="inp" type="email" id="p-email" placeholder="email@example.com" required autocomplete="off" /></div>
+      <div><label class="lbl">Phone (optional)</label><input class="inp" type="tel" id="p-phone" placeholder="+44 7700 000000" /></div>
+      <div><label class="lbl" id="p-role-label">Role / Title</label><input class="inp" id="p-roletitle" placeholder="e.g. Kitchen Assistant" /></div>
+      <div id="p-org-wrap" style="grid-column:1/-1;display:none;"><label class="lbl">Organisation Name</label><input class="inp" id="p-org" placeholder="Company name" /></div>
+      <div style="grid-column:1/-1;border-top:1px solid var(--border);padding-top:14px;margin-top:4px;">
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:10px;"><i class="fa-solid fa-lock" style="color:var(--red);margin-right:5px;"></i>Login Credentials</div>
+        <div style="margin-bottom:10px;"><label class="lbl">Set Password <span style="color:#444;text-transform:none;letter-spacing:0;font-weight:400;font-size:.65rem;">(minimum 6 characters)</span></label>
+          <div style="position:relative;"><input class="inp" type="password" id="p-pass" placeholder="Initial password" autocomplete="new-password" style="padding-right:40px;" /><button type="button" onclick="togglePassModal()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#555;font-size:.82rem;"><i id="p-eye" class="fa-solid fa-eye"></i></button></div>
+        </div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.82rem;color:#888;"><input type="checkbox" id="p-must-change" checked style="accent-color:var(--red);" /> Require password change on first login</label>
+      </div>
+    </div>
+  </div>
+  <div class="modal-ft">
+    <button class="btn btn-s" onclick="closeModal('modal-person')">Cancel</button>
+    <button class="btn btn-p" onclick="savePerson()"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+  </div>
+</div>
+</div>
+
+<!-- CREATE / EDIT COURSE -->
+<div id="modal-course" style="display:none;" class="modal-bg" onclick="if(event.target===this)closeModal('modal-course')">
+<div class="modal modal-lg">
+  <div class="modal-hd">
+    <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;" id="modal-course-title">Create New Course</span>
+    <button onclick="closeModal('modal-course')" style="background:none;border:none;color:#666;cursor:pointer;font-size:1.1rem;"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="modal-bd">
+    <input type="hidden" id="course-edit-id" />
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+      <div style="grid-column:1/-1;"><label class="lbl">Course Title</label><input class="inp" id="c-title" placeholder="e.g. UK Hospitality Compliance" required /></div>
+      <div style="grid-column:1/-1;"><label class="lbl">Description</label><textarea class="inp" id="c-desc" placeholder="What will participants learn?"></textarea></div>
+      <div><label class="lbl">Category</label>
+        <select class="inp" id="c-cat"><option>Compliance</option><option>Health &amp; Safety</option><option>Legal &amp; HR</option><option>Skills Development</option><option>Onboarding</option><option>Other</option></select>
+      </div>
+      <div><label class="lbl">Pass Mark (%)</label><input class="inp" type="number" id="c-pass" value="70" min="1" max="100" /></div>
+      <div style="grid-column:1/-1;"><label class="lbl">Course Colour</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;" id="colour-swatches">
+          <div class="swatch selected" style="background:#E8211A;" data-col="#E8211A" onclick="selectColour(this)"></div>
+          <div class="swatch" style="background:#2563eb;" data-col="#2563eb" onclick="selectColour(this)"></div>
+          <div class="swatch" style="background:#16a34a;" data-col="#16a34a" onclick="selectColour(this)"></div>
+          <div class="swatch" style="background:#d97706;" data-col="#d97706" onclick="selectColour(this)"></div>
+          <div class="swatch" style="background:#7c3aed;" data-col="#7c3aed" onclick="selectColour(this)"></div>
+          <div class="swatch" style="background:#0891b2;" data-col="#0891b2" onclick="selectColour(this)"></div>
+          <div class="swatch" style="background:#be185d;" data-col="#be185d" onclick="selectColour(this)"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Modules builder -->
+    <div style="border-top:1px solid var(--border);padding-top:18px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;color:var(--white);">Course Modules</span>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <button class="btn btn-s" style="padding:5px 10px;font-size:.68rem;" onclick="addModule('video')"><i class="fa-brands fa-youtube"></i> Video</button>
+          <button class="btn btn-s" style="padding:5px 10px;font-size:.68rem;" onclick="addModule('text')"><i class="fa-solid fa-align-left"></i> Text</button>
+          <button class="btn btn-s" style="padding:5px 10px;font-size:.68rem;" onclick="addModule('pdf')"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+          <button class="btn btn-s" style="padding:5px 10px;font-size:.68rem;" onclick="addModule('quiz')"><i class="fa-solid fa-list-check"></i> Quiz</button>
+        </div>
+      </div>
+      <div id="modules-builder" style="max-height:340px;overflow-y:auto;"></div>
+      <div id="modules-empty-msg" style="text-align:center;padding:20px;color:#444;font-size:.82rem;">No modules yet — add Video, Text, PDF, or Quiz above.</div>
+    </div>
+  </div>
+  <div class="modal-ft">
+    <button class="btn btn-s" onclick="closeModal('modal-course')">Cancel</button>
+    <button class="btn btn-p" onclick="saveCourse()"><i class="fa-solid fa-floppy-disk"></i> Save Course</button>
+  </div>
+</div>
+</div>
+
+<!-- VIEW COURSE DETAIL -->
+<div id="modal-view-course" style="display:none;" class="modal-bg" onclick="if(event.target===this)closeModal('modal-view-course')">
+<div class="modal modal-lg">
+  <div class="modal-hd">
+    <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;" id="view-course-title">Course Detail</span>
+    <button onclick="closeModal('modal-view-course')" style="background:none;border:none;color:#666;cursor:pointer;font-size:1.1rem;"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="modal-bd" id="view-course-body"></div>
+  <div class="modal-ft">
+    <button class="btn btn-s" onclick="closeModal('modal-view-course')">Close</button>
+    <button class="btn btn-p" id="view-edit-btn"><i class="fa-solid fa-pen"></i> Edit Course</button>
+  </div>
+</div>
+</div>
+
+<!-- RESET PASSWORD -->
+<div id="modal-reset-pass" style="display:none;" class="modal-bg" onclick="if(event.target===this)closeModal('modal-reset-pass')">
+<div class="modal" style="max-width:400px;">
+  <div class="modal-hd"><span style="font-family:'Syne',sans-serif;font-weight:800;font-size:.95rem;" id="reset-pass-title">Reset Password</span><button onclick="closeModal('modal-reset-pass')" style="background:none;border:none;color:#666;cursor:pointer;font-size:1.1rem;"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="modal-bd">
+    <input type="hidden" id="reset-pass-uid" />
+    <div style="margin-bottom:12px;"><label class="lbl">New Password (min 6 chars)</label><input class="inp" type="password" id="reset-new-pass" placeholder="Enter new password" /></div>
+    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.82rem;color:#888;"><input type="checkbox" id="reset-must-change" checked style="accent-color:var(--red);" /> Require change on next login</label>
+  </div>
+  <div class="modal-ft">
+    <button class="btn btn-s" onclick="closeModal('modal-reset-pass')">Cancel</button>
+    <button class="btn btn-p" onclick="doResetPass()"><i class="fa-solid fa-key"></i> Set Password</button>
+  </div>
+</div>
+</div>
+
 <!-- FOOTER -->
-<footer style="margin-left:var(--sb);border-top:1px solid var(--border);padding:16px 26px;background:var(--dark);">
+<footer style="margin-left:var(--sb);border-top:1px solid var(--border);padding:14px 26px;background:var(--dark);">
   <p style="font-size:.68rem;color:#333;line-height:1.6;">Nexusyl Limited is a wholly owned subsidiary of Juvenile Asia Limited (Company No. 16966853). All infrastructure and data architectures are managed securely under corporate data frameworks.</p>
 </footer>
 
 <script>
-var SESSION_KEY = 'nx_portal_session';
-var PORTAL_KEY  = 'nx_portal';
-var session, PORTAL = {users:[]};
+// ════════════════════════════════════════════════════════════
+// DATA LAYER
+// ════════════════════════════════════════════════════════════
+var LMS_KEY    = 'nx_lms';
+var PORTAL_KEY = 'nx_portal';
+var SESSION_KEY= 'nx_portal_session';
 
-// Auth guard
+var LMS    = { courses:[], students:[] };  // courses + LMS students
+var PORTAL = { users:[] };                  // all portal users (admin/employee/supplier/student)
+
+function loadData() {
+  try { var d=localStorage.getItem(LMS_KEY);    if(d) LMS=JSON.parse(d);    }catch(e){}
+  try { var d=localStorage.getItem(PORTAL_KEY); if(d) PORTAL=JSON.parse(d); }catch(e){}
+  if (!LMS.courses)    LMS.courses=[];
+  if (!LMS.students)   LMS.students=[];
+  if (!PORTAL.users)   PORTAL.users=[];
+  // Seed demo data if empty
+  if (!LMS.courses.length) seedLms();
+  if (!PORTAL.users.length) seedPortal();
+}
+function saveAll() {
+  localStorage.setItem(LMS_KEY,    JSON.stringify(LMS));
+  localStorage.setItem(PORTAL_KEY, JSON.stringify(PORTAL));
+}
+
+function seedLms() {
+  LMS.courses = [
+    { id:'c1', title:'UK Hospitality Compliance', desc:'Food safety, COSHH, and workplace health regulations.', category:'Compliance', colour:'#E8211A', passMark:70, createdAt:'2026-05-01',
+      modules:[
+        {id:'m1',type:'video',title:'Introduction to Food Safety',duration:'15 min',content:{youtubeId:'Kyux1lWdQ1I',url:'https://www.youtube.com/watch?v=Kyux1lWdQ1I'}},
+        {id:'m2',type:'text',title:'COSHH Protocols',duration:'20 min',content:{body:'<h3>COSHH Overview</h3><p>The Control of Substances Hazardous to Health Regulations 2002 require employers to control substances that are hazardous to health. Assess the risk to health and provide control measures to reduce harm.</p><h3>Key Principles</h3><ul><li>Identify hazardous substances</li><li>Assess the risk to health</li><li>Control exposure using hierarchy of controls</li><li>Maintain and review controls regularly</li></ul>'}},
+        {id:'m3',type:'quiz',title:'Certification Quiz',duration:'10 min',content:{passMark:70,questions:[
+          {id:'q1',text:'What temperature should hot food be stored above?',options:[{id:'a',text:'45°C'},{id:'b',text:'63°C'},{id:'c',text:'75°C'},{id:'d',text:'100°C'}],correct:'b'},
+          {id:'q2',text:'What does COSHH stand for?',options:[{id:'a',text:'Control of Substances Hazardous to Health'},{id:'b',text:'Certification of Safe Handling Hazards'},{id:'c',text:'Code of Standard Health Hazards'},{id:'d',text:'Control of Safety in Hospitality'}],correct:'a'}
+        ]}}
+      ]
+    },
+    { id:'c2', title:'Right to Work Verification', desc:'UK immigration compliance and Right to Work checks.', category:'Legal & HR', colour:'#2563eb', passMark:80, createdAt:'2026-05-02',
+      modules:[
+        {id:'m4',type:'text',title:'Legal Framework',duration:'25 min',content:{body:'<h3>Your Legal Obligations</h3><p>Under the Immigration, Asylum and Nationality Act 2006, all UK employers must check that every employee has the right to work in the UK. Failure to carry out correct checks can result in a civil penalty of up to £20,000 per illegal worker.</p>'}},
+        {id:'m5',type:'quiz',title:'Assessment',duration:'10 min',content:{passMark:80,questions:[
+          {id:'q3',text:'What is the maximum civil penalty per illegal worker?',options:[{id:'a',text:'£5,000'},{id:'b',text:'£10,000'},{id:'c',text:'£20,000'},{id:'d',text:'£50,000'}],correct:'c'}
+        ]}}
+      ]
+    }
+  ];
+  LMS.students = [
+    {id:'s1',name:'Jordan Singh',email:'jordan.singh@student.ac.uk',phone:'+44 7700 111222',role:'Student',enrolledCourses:['c1'],createdAt:'2026-05-01',password:'student2026',mustChangePass:false,progress:{c1:{completedModules:['m1','m2'],quizScores:{},startedAt:'2026-05-01',lastActive:'2026-05-27',completed:false}}},
+    {id:'s2',name:'Amara Osei',email:'amara.osei@student.ac.uk',phone:'+44 7700 333444',role:'Student',enrolledCourses:['c1','c2'],createdAt:'2026-05-03',password:'student2026',mustChangePass:false,progress:{c1:{completedModules:['m1','m2','m3'],quizScores:{m3:85},startedAt:'2026-05-03',lastActive:'2026-05-20',completed:true,completedAt:'2026-05-20'},c2:{completedModules:[],quizScores:{},startedAt:'2026-05-22',lastActive:'2026-05-22',completed:false}}}
+  ];
+  saveAll();
+}
+
+function seedPortal() {
+  PORTAL.users = [
+    {id:'u1',role:'admin',    name:'Nexusyl Admin',          email:'admin@nexusyl.co.uk',         password:'nexusyl2026',mustChangePass:false,createdAt:'2026-01-01'},
+    {id:'u2',role:'employee', name:'Sarah Thompson',         email:'sarah.thompson@nexusyl.co.uk',password:'employee2026',mustChangePass:false,role_title:'Senior Coordinator',enrolledCourses:['c1'],progress:{c1:{completedModules:['m1'],quizScores:{},startedAt:'2026-05-01',lastActive:'2026-05-27',completed:false}},dbs:'Processing',createdAt:'2026-02-01'},
+    {id:'u3',role:'student',  name:'Jordan Singh',           email:'jordan.singh@student.ac.uk',  password:'student2026', mustChangePass:false,role_title:'Student',createdAt:'2026-05-01'},
+    {id:'u4',role:'supplier', name:'Global Talent Partners', email:'contact@globaltalent.co.uk',  password:'supplier2026',mustChangePass:false,role_title:'Recruitment Partner',org:'Global Talent Partners Ltd',studentsSupplied:7,createdAt:'2026-03-01'}
+  ];
+  saveAll();
+}
+
+// ── AUTH GUARD ────────────────────────────────────────────────
 (function(){
-  var s = sessionStorage.getItem(SESSION_KEY);
-  if (!s) { window.location.href='login.html?role=admin'; return; }
-  try {
-    session = JSON.parse(s);
-    if (session.role !== 'admin') { window.location.href='login.html?role='+session.role; return; }
-    document.getElementById('user-name').textContent = session.name;
-    document.getElementById('user-avatar').textContent = session.name.split(' ').map(function(w){return w[0]||'';}).slice(0,2).join('').toUpperCase();
-  } catch(e){ window.location.href='login.html'; }
+  var s=sessionStorage.getItem(SESSION_KEY);
+  if(!s){window.location.href='login.html?role=admin';return;}
+  try{
+    var sess=JSON.parse(s);
+    if(sess.role!=='admin'){window.location.href='login.html?role='+sess.role;return;}
+    document.getElementById('user-name').textContent=sess.name;
+    document.getElementById('user-avatar').textContent=initials(sess.name);
+  }catch(e){window.location.href='login.html';}
 })();
 
-try { var d=localStorage.getItem(PORTAL_KEY); if(d) PORTAL=JSON.parse(d); } catch(e){}
+loadData();
 
-function show(sec, el) {
-  document.querySelectorAll('.sec').forEach(function(s){ s.classList.remove('active'); });
+// ════════════════════════════════════════════════════════════
+// NAV
+// ════════════════════════════════════════════════════════════
+var TITLES={dashboard:'Dashboard',students:'Students',employees:'Employees',suppliers:'Suppliers',courses:'Courses',enrolment:'Enrolment',content:'Add Content',dbs:'DBS Pipeline',reports:'Reports'};
+function show(sec,el){
+  document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('active');});
   document.getElementById('sec-'+sec).classList.add('active');
-  document.querySelectorAll('.sb-link').forEach(function(l){ l.classList.remove('active'); });
+  document.querySelectorAll('.sb-link').forEach(function(l){l.classList.remove('active');});
   if(el) el.classList.add('active');
-  var titles={overview:'Dashboard',users:'All Users',students:'Students',employees:'Employees',suppliers:'Suppliers',revenue:'Revenue',dbs:'DBS Pipeline'};
-  document.getElementById('tb-title').textContent = titles[sec]||sec;
-  if(sec==='users') renderUsers();
-  if(sec==='overview') renderActivity();
+  document.getElementById('tb-title').textContent=TITLES[sec]||sec;
+  if(sec==='dashboard')  renderDashboard();
+  if(sec==='students')   renderStudents();
+  if(sec==='employees')  renderEmployees();
+  if(sec==='suppliers')  renderSuppliers();
+  if(sec==='courses')    renderCourses();
+  if(sec==='enrolment')  renderEnrolment();
+  if(sec==='content')    renderQuickContent();
+  if(sec==='reports')    renderReports();
+  updateBadges();
+}
+function updateBadges(){
+  document.getElementById('badge-students').textContent  = LMS.students.length;
+  document.getElementById('badge-employees').textContent = portalByRole('employee').length;
+  document.getElementById('badge-suppliers').textContent = portalByRole('supplier').length;
+  document.getElementById('badge-courses').textContent   = LMS.courses.length;
+  document.getElementById('ds-courses').textContent   = LMS.courses.length;
+  document.getElementById('ds-students').textContent  = LMS.students.length;
+  document.getElementById('ds-employees').textContent = portalByRole('employee').length;
+  document.getElementById('ds-suppliers').textContent = portalByRole('supplier').length;
 }
 
-function renderUsers() {
-  var tb = document.getElementById('users-table');
-  var roles = {admin:'pill-r',employee:'pill-b',student:'pill-g',supplier:'pill-y'};
-  tb.innerHTML = (PORTAL.users||[]).map(function(u){
-    return '<tr><td style="font-weight:600;color:var(--white);">'+esc(u.name)+'</td><td style="color:#888;">'+esc(u.email)+'</td><td><span class="pill '+(roles[u.role]||'pill-b')+'">'+u.role+'</span></td><td><span class="pill pill-g">Active</span></td><td style="color:#666;">'+new Date().toLocaleDateString('en-GB')+'</td><td><div style="display:flex;gap:4px;"><button class="btn btn-s" style="padding:3px 8px;font-size:.6rem;" onclick="toast(\'User profile — available in full release.\')"><i class="fa-solid fa-eye"></i></button><button class="btn btn-d" style="padding:3px 8px;font-size:.6rem;" onclick="toast(\'Account management — available in full release.\')"><i class="fa-solid fa-trash"></i></button></div></td></tr>';
+// ════════════════════════════════════════════════════════════
+// DASHBOARD
+// ════════════════════════════════════════════════════════════
+function renderDashboard(){
+  updateBadges();
+  // Course list
+  var cl=document.getElementById('ds-course-list');
+  if(!LMS.courses.length){cl.innerHTML='<div class="empty" style="padding:24px;"><i class="fa-solid fa-book-open"></i>No courses yet.</div>';return;}
+  cl.innerHTML=LMS.courses.slice(0,5).map(function(c){
+    var enrolled=LMS.students.filter(function(s){return s.enrolledCourses&&s.enrolledCourses.includes(c.id);}).length;
+    return '<div style="display:flex;align-items:center;gap:12px;padding:10px 18px;border-bottom:1px solid rgba(255,255,255,.04);">'
+      +'<div style="width:8px;height:8px;border-radius:50%;background:'+c.colour+';flex-shrink:0;"></div>'
+      +'<div style="flex:1;min-width:0;"><div style="font-size:.83rem;font-weight:600;color:var(--white);">'+esc(c.title)+'</div>'
+      +'<div style="font-size:.7rem;color:#555;">'+c.modules.length+' modules &middot; '+enrolled+' enrolled</div></div>'
+      +'<span class="pill pill-b">'+esc(c.category)+'</span>'
+      +'</div>';
   }).join('');
-  if (!tb.innerHTML) tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:#555;padding:30px;">No users found.</td></tr>';
+  // People list
+  var pl=document.getElementById('ds-people-list');
+  var all=[...LMS.students.map(function(s){return{name:s.name,type:'student'};}), ...portalByRole('employee').map(function(u){return{name:u.name,type:'employee'};}), ...portalByRole('supplier').map(function(u){return{name:u.name,type:'supplier'};})].slice(0,5);
+  pl.innerHTML=all.map(function(p){
+    var cols={student:'pill-g',employee:'pill-b',supplier:'pill-y'};
+    return '<div style="display:flex;align-items:center;gap:12px;padding:10px 18px;border-bottom:1px solid rgba(255,255,255,.04);">'
+      +'<div style="width:28px;height:28px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:\'Syne\',sans-serif;font-weight:800;font-size:.68rem;color:#fff;flex-shrink:0;">'+initials(p.name)+'</div>'
+      +'<div style="flex:1;min-width:0;"><div style="font-size:.83rem;font-weight:600;color:var(--white);">'+esc(p.name)+'</div></div>'
+      +'<span class="pill '+cols[p.type]+'">'+p.type+'</span>'
+      +'</div>';
+  }).join('') || '<div class="empty" style="padding:24px;"><i class="fa-solid fa-users"></i>No people yet.</div>';
 }
 
-function renderActivity() {
-  var acts = [
-    {icon:'fa-graduation-cap',col:'#22c55e',msg:'Jordan Singh enrolled in UK Hospitality Compliance',time:'2 min ago'},
-    {icon:'fa-fingerprint',col:'#eab308',msg:'DBS check submitted for Marcus Lee',time:'18 min ago'},
-    {icon:'fa-handshake',col:'#eab308',msg:'Global Talent Partners renewed supplier agreement',time:'1h ago'},
-    {icon:'fa-file-upload',col:'#60a5fa',msg:'Amara Osei uploaded Offer Letter documents',time:'2h ago'},
-    {icon:'fa-certificate',col:'#22c55e',msg:'Certificate issued: Right to Work — Sarah Thompson',time:'3h ago'},
-    {icon:'fa-sterling-sign',col:'var(--red)',msg:'Invoice #NX2026-048 settled — £2,400',time:'4h ago'},
-  ];
-  document.getElementById('activity-feed').innerHTML = acts.map(function(a){
-    return '<div style="display:flex;align-items:flex-start;gap:12px;padding:10px 18px;border-bottom:1px solid rgba(255,255,255,.03);">'
-      +'<div style="width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid '+a.icon+'" style="color:'+a.col+';font-size:.7rem;"></i></div>'
-      +'<div style="flex:1;min-width:0;"><div style="font-size:.8rem;color:#ccc;line-height:1.4;">'+a.msg+'</div><div style="font-size:.68rem;color:#555;margin-top:2px;">'+a.time+'</div></div>'
+// ════════════════════════════════════════════════════════════
+// PEOPLE — STUDENTS / EMPLOYEES / SUPPLIERS
+// ════════════════════════════════════════════════════════════
+function portalByRole(role){ return PORTAL.users.filter(function(u){return u.role===role;}); }
+
+function renderStudents(){
+  var tb=document.getElementById('students-table');
+  var em=document.getElementById('students-empty');
+  if(!LMS.students.length){tb.innerHTML='';em.style.display='block';return;}
+  em.style.display='none';
+  tb.innerHTML=LMS.students.map(function(s){
+    var done=Object.values(s.progress||{}).filter(function(p){return p.completed;}).length;
+    var pct=calcOverallPct(s,'student');
+    return '<tr>'
+      +'<td><div style="display:flex;align-items:center;gap:10px;"><div style="width:30px;height:30px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:\'Syne\',sans-serif;font-weight:800;font-size:.7rem;color:#fff;flex-shrink:0;">'+initials(s.name)+'</div><div><div style="font-weight:600;color:var(--white);">'+esc(s.name)+'</div>'+(s.role?'<div style="font-size:.7rem;color:#555;">'+esc(s.role_title||s.role||'')+'</div>':'')+'</div></div></td>'
+      +'<td style="color:#888;font-size:.8rem;">'+esc(s.email)+'</td>'
+      +'<td><span style="font-family:\'Syne\',sans-serif;font-weight:700;color:var(--white);">'+(s.enrolledCourses||[]).length+'</span><span style="color:#555;"> / '+LMS.courses.length+'</span></td>'
+      +'<td style="min-width:120px;"><div style="display:flex;align-items:center;gap:8px;"><div class="pb" style="flex:1;"><div class="pb-f '+(done?'pb-fg':'')+'" style="width:'+pct+'%;"></div></div><span style="font-size:.72rem;font-weight:700;color:var(--red);">'+pct+'%</span></div></td>'
+      +'<td>'+(done?'<span class="pill pill-g">'+done+' cert'+(done>1?'s':'')+'</span>':'<span class="pill pill-y">In Progress</span>')+'</td>'
+      +'<td><div style="display:flex;gap:4px;">'
+        +'<button class="btn btn-s" style="padding:3px 8px;font-size:.62rem;" onclick="editPerson(\'student\',\''+s.id+'\')" title="Edit"><i class="fa-solid fa-pen"></i></button>'
+        +'<button class="btn btn-s" style="padding:3px 8px;font-size:.62rem;" onclick="openResetPass(\'student\',\''+s.id+'\')" title="Reset password"><i class="fa-solid fa-key"></i></button>'
+        +'<button class="btn btn-d" style="padding:3px 8px;font-size:.62rem;" onclick="deletePerson(\'student\',\''+s.id+'\')" title="Delete"><i class="fa-solid fa-trash"></i></button>'
+      +'</div></td>'
+      +'</tr>';
+  }).join('');
+}
+
+function renderEmployees(){
+  var employees=portalByRole('employee');
+  var tb=document.getElementById('employees-table');
+  var em=document.getElementById('employees-empty');
+  if(!employees.length){tb.innerHTML='';em.style.display='block';return;}
+  em.style.display='none';
+  tb.innerHTML=employees.map(function(u){
+    var pct=calcOverallPct(u,'employee');
+    return '<tr>'
+      +'<td><div style="display:flex;align-items:center;gap:10px;"><div style="width:30px;height:30px;border-radius:50%;background:#3b82f6;display:flex;align-items:center;justify-content:center;font-family:\'Syne\',sans-serif;font-weight:800;font-size:.7rem;color:#fff;flex-shrink:0;">'+initials(u.name)+'</div><div><div style="font-weight:600;color:var(--white);">'+esc(u.name)+'</div></div></div></td>'
+      +'<td style="color:#888;font-size:.8rem;">'+esc(u.email)+'</td>'
+      +'<td style="color:#aaa;">'+esc(u.role_title||'–')+'</td>'
+      +'<td style="min-width:120px;"><div style="display:flex;align-items:center;gap:8px;"><div class="pb" style="flex:1;"><div class="pb-f" style="width:'+pct+'%;background:#3b82f6;"></div></div><span style="font-size:.72rem;font-weight:700;color:#60a5fa;">'+pct+'%</span></div></td>'
+      +'<td><span class="pill '+(u.dbs==='Cleared'?'pill-g':u.dbs==='Processing'?'pill-y':'pill-r')+'">'+(u.dbs||'Not Submitted')+'</span></td>'
+      +'<td><div style="display:flex;gap:4px;">'
+        +'<button class="btn btn-s" style="padding:3px 8px;font-size:.62rem;" onclick="editPerson(\'employee\',\''+u.id+'\')" title="Edit"><i class="fa-solid fa-pen"></i></button>'
+        +'<button class="btn btn-s" style="padding:3px 8px;font-size:.62rem;" onclick="openResetPass(\'portal\',\''+u.id+'\')" title="Reset password"><i class="fa-solid fa-key"></i></button>'
+        +'<button class="btn btn-d" style="padding:3px 8px;font-size:.62rem;" onclick="deletePerson(\'employee\',\''+u.id+'\')" title="Delete"><i class="fa-solid fa-trash"></i></button>'
+      +'</div></td>'
+      +'</tr>';
+  }).join('');
+}
+
+function renderSuppliers(){
+  var suppliers=portalByRole('supplier');
+  var tb=document.getElementById('suppliers-table');
+  var em=document.getElementById('suppliers-empty');
+  if(!suppliers.length){tb.innerHTML='';em.style.display='block';return;}
+  em.style.display='none';
+  tb.innerHTML=suppliers.map(function(u){
+    return '<tr>'
+      +'<td><div style="display:flex;align-items:center;gap:10px;"><div style="width:30px;height:30px;border-radius:50%;background:#eab308;display:flex;align-items:center;justify-content:center;font-family:\'Syne\',sans-serif;font-weight:800;font-size:.7rem;color:#000;flex-shrink:0;">'+initials(u.name)+'</div><div><div style="font-weight:600;color:var(--white);">'+esc(u.name)+'</div>'+(u.org?'<div style="font-size:.7rem;color:#555;">'+esc(u.org)+'</div>':'')+'</div></div></td>'
+      +'<td style="color:#888;font-size:.8rem;">'+esc(u.email)+'</td>'
+      +'<td style="color:#aaa;">'+esc(u.role_title||'Partner')+'</td>'
+      +'<td style="font-family:\'Syne\',sans-serif;font-weight:700;color:var(--white);">'+(u.studentsSupplied||0)+'</td>'
+      +'<td><span class="pill pill-g">Active</span></td>'
+      +'<td><div style="display:flex;gap:4px;">'
+        +'<button class="btn btn-s" style="padding:3px 8px;font-size:.62rem;" onclick="editPerson(\'supplier\',\''+u.id+'\')" title="Edit"><i class="fa-solid fa-pen"></i></button>'
+        +'<button class="btn btn-s" style="padding:3px 8px;font-size:.62rem;" onclick="openResetPass(\'portal\',\''+u.id+'\')" title="Reset password"><i class="fa-solid fa-key"></i></button>'
+        +'<button class="btn btn-d" style="padding:3px 8px;font-size:.62rem;" onclick="deletePerson(\'supplier\',\''+u.id+'\')" title="Delete"><i class="fa-solid fa-trash"></i></button>'
+      +'</div></td>'
+      +'</tr>';
+  }).join('');
+}
+
+// ADD / EDIT PERSON
+function openAddPerson(role){
+  document.getElementById('person-edit-id').value='';
+  document.getElementById('person-role').value=role;
+  document.getElementById('p-name').value='';
+  document.getElementById('p-email').value='';
+  document.getElementById('p-phone').value='';
+  document.getElementById('p-roletitle').value='';
+  document.getElementById('p-pass').value='';
+  document.getElementById('p-org').value='';
+  document.getElementById('p-must-change').checked=true;
+  var titles={student:'Add New Student',employee:'Add New Employee',supplier:'Add New Supplier / Partner'};
+  document.getElementById('modal-person-title').textContent=titles[role]||'Add Person';
+  document.getElementById('p-role-label').textContent=role==='supplier'?'Contact Name':'Job Role / Title';
+  document.getElementById('p-org-wrap').style.display=role==='supplier'?'block':'none';
+  openModal('modal-person');
+}
+
+function editPerson(type,id){
+  var person = type==='student' ? LMS.students.find(function(s){return s.id===id;}) : PORTAL.users.find(function(u){return u.id===id;});
+  if(!person) return;
+  document.getElementById('person-edit-id').value=id;
+  document.getElementById('person-role').value=type==='student'?'student':person.role;
+  document.getElementById('p-name').value=person.name||'';
+  document.getElementById('p-email').value=person.email||'';
+  document.getElementById('p-phone').value=person.phone||'';
+  document.getElementById('p-roletitle').value=person.role_title||person.role||'';
+  document.getElementById('p-org').value=person.org||'';
+  document.getElementById('p-pass').value='';
+  document.getElementById('p-must-change').checked=false;
+  var role=type==='student'?'student':person.role;
+  var titles={student:'Edit Student',employee:'Edit Employee',supplier:'Edit Supplier'};
+  document.getElementById('modal-person-title').textContent=titles[role]||'Edit Person';
+  document.getElementById('p-role-label').textContent=role==='supplier'?'Contact Name':'Job Role / Title';
+  document.getElementById('p-org-wrap').style.display=role==='supplier'?'block':'none';
+  openModal('modal-person');
+}
+
+function savePerson(){
+  var editId = document.getElementById('person-edit-id').value;
+  var role   = document.getElementById('person-role').value;
+  var name   = document.getElementById('p-name').value.trim();
+  var email  = document.getElementById('p-email').value.trim().toLowerCase();
+  var pass   = document.getElementById('p-pass').value;
+  if(!name||!email){toast('Name and email are required.','e');return;}
+  if(!editId && (!pass || pass.length<6)){toast('Please set an initial password (minimum 6 characters).','e');return;}
+
+  if(role==='student'){
+    // Check duplicate
+    var dup=LMS.students.find(function(s){return s.email===email&&s.id!==editId;});
+    if(dup){toast('A student with this email already exists.','e');return;}
+    if(editId){
+      var s=LMS.students.find(function(x){return x.id===editId;});
+      if(s){s.name=name;s.email=email;s.phone=document.getElementById('p-phone').value.trim();s.role_title=document.getElementById('p-roletitle').value.trim();if(pass&&pass.length>=6){s.password=pass;s.mustChangePass=document.getElementById('p-must-change').checked;}}
+    } else {
+      var mc=document.getElementById('p-must-change').checked;
+      LMS.students.push({id:'s'+Date.now(),name:name,email:email,phone:document.getElementById('p-phone').value.trim(),role_title:document.getElementById('p-roletitle').value.trim(),enrolledCourses:[],createdAt:new Date().toISOString().split('T')[0],password:pass,mustChangePass:mc,progress:{}});
+    }
+  } else {
+    // Portal user (employee/supplier)
+    var dupP=PORTAL.users.find(function(u){return u.email===email&&u.id!==editId;});
+    if(dupP){toast('An account with this email already exists.','e');return;}
+    if(editId){
+      var u=PORTAL.users.find(function(x){return x.id===editId;});
+      if(u){u.name=name;u.email=email;u.phone=document.getElementById('p-phone').value.trim();u.role_title=document.getElementById('p-roletitle').value.trim();u.org=document.getElementById('p-org').value.trim();if(pass&&pass.length>=6){u.password=pass;u.mustChangePass=document.getElementById('p-must-change').checked;}}
+    } else {
+      var mc2=document.getElementById('p-must-change').checked;
+      var nu={id:'u'+Date.now(),role:role,name:name,email:email,phone:document.getElementById('p-phone').value.trim(),role_title:document.getElementById('p-roletitle').value.trim(),org:document.getElementById('p-org').value.trim(),createdAt:new Date().toISOString().split('T')[0],password:pass,mustChangePass:mc2,enrolledCourses:[],progress:{},dbs:'Not Submitted',studentsSupplied:0};
+      PORTAL.users.push(nu);
+    }
+  }
+  saveAll();
+  closeModal('modal-person');
+  if(role==='student')  {renderStudents();toast(editId?'Student updated.':'Student added — credentials set.');}
+  if(role==='employee') {renderEmployees();toast(editId?'Employee updated.':'Employee added — credentials set.');}
+  if(role==='supplier') {renderSuppliers();toast(editId?'Supplier updated.':'Supplier added — credentials set.');}
+  updateBadges();
+}
+
+function deletePerson(type,id){
+  if(!confirm('Delete this person? All their data will be removed.')) return;
+  if(type==='student'){LMS.students=LMS.students.filter(function(s){return s.id!==id;});}
+  else {PORTAL.users=PORTAL.users.filter(function(u){return u.id!==id;});}
+  saveAll();
+  if(type==='student') renderStudents();
+  if(type==='employee') renderEmployees();
+  if(type==='supplier') renderSuppliers();
+  updateBadges();
+  toast('Deleted.');
+}
+
+// PASSWORD RESET
+function openResetPass(store,id){
+  document.getElementById('reset-pass-uid').value=store+'::'+id;
+  var name='';
+  if(store==='student'){var s=LMS.students.find(function(x){return x.id===id;});if(s)name=s.name;}
+  else{var u=PORTAL.users.find(function(x){return x.id===id;});if(u)name=u.name;}
+  document.getElementById('reset-pass-title').textContent='Reset Password — '+name;
+  document.getElementById('reset-new-pass').value='';
+  document.getElementById('reset-must-change').checked=true;
+  openModal('modal-reset-pass');
+}
+function doResetPass(){
+  var raw=document.getElementById('reset-pass-uid').value.split('::');
+  var store=raw[0], id=raw[1];
+  var pw=document.getElementById('reset-new-pass').value;
+  var mc=document.getElementById('reset-must-change').checked;
+  if(!pw||pw.length<6){toast('Password must be at least 6 characters.','e');return;}
+  if(store==='student'){var s=LMS.students.find(function(x){return x.id===id;});if(s){s.password=pw;s.mustChangePass=mc;}}
+  else{var u=PORTAL.users.find(function(x){return x.id===id;});if(u){u.password=pw;u.mustChangePass=mc;}}
+  saveAll();
+  closeModal('modal-reset-pass');
+  toast('Password reset successfully. Student will be prompted to change it on next login.');
+}
+
+function togglePassModal(){var i=document.getElementById('p-pass'),e=document.getElementById('p-eye');i.type=i.type==='password'?'text':'password';e.className=i.type==='password'?'fa-solid fa-eye':'fa-solid fa-eye-slash';}
+
+// ════════════════════════════════════════════════════════════
+// COURSES — FULL BUILDER
+// ════════════════════════════════════════════════════════════
+var _mods=[], _editCourseId=null;
+
+function renderCourses(){
+  var g=document.getElementById('course-grid');
+  var em=document.getElementById('course-empty');
+  if(!LMS.courses.length){g.innerHTML='';em.style.display='block';return;}
+  em.style.display='none';
+  g.innerHTML=LMS.courses.map(function(c){
+    var enrolled=LMS.students.filter(function(s){return (s.enrolledCourses||[]).includes(c.id);}).length;
+    var icons={video:'fa-play',text:'fa-align-left',pdf:'fa-file-pdf',quiz:'fa-list-check'};
+    var pcols={video:'pill-r',text:'pill-b',pdf:'pill-y',quiz:'pill-g'};
+    return '<div class="course-card">'
+      +'<div style="height:6px;background:'+c.colour+';"></div>'
+      +'<div style="padding:16px;">'
+        +'<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px;">'
+          +'<div><span class="pill pill-b" style="margin-bottom:6px;display:inline-flex;">'+esc(c.category)+'</span>'
+          +'<div style="font-family:\'Syne\',sans-serif;font-weight:800;font-size:.92rem;color:var(--white);line-height:1.3;">'+esc(c.title)+'</div></div>'
+          +'<div style="display:flex;gap:4px;flex-shrink:0;">'
+            +'<button class="btn btn-s" style="padding:4px 7px;font-size:.62rem;" onclick="viewCourse(\''+c.id+'\')" title="View"><i class="fa-solid fa-eye"></i></button>'
+            +'<button class="btn btn-s" style="padding:4px 7px;font-size:.62rem;" onclick="editCourse(\''+c.id+'\')" title="Edit"><i class="fa-solid fa-pen"></i></button>'
+            +'<button class="btn btn-d" style="padding:4px 7px;font-size:.62rem;" onclick="deleteCourse(\''+c.id+'\')" title="Delete"><i class="fa-solid fa-trash"></i></button>'
+          +'</div>'
+        +'</div>'
+        +'<p style="font-size:.76rem;color:#666;margin-bottom:10px;line-height:1.5;">'+esc((c.desc||'').substring(0,90))+'…</p>'
+        +'<div style="display:flex;justify-content:space-between;font-size:.7rem;color:#555;margin-bottom:8px;">'
+          +'<span><i class="fa-solid fa-puzzle-piece" style="color:'+c.colour+';margin-right:3px;"></i>'+c.modules.length+' modules</span>'
+          +'<span><i class="fa-solid fa-users" style="color:'+c.colour+';margin-right:3px;"></i>'+enrolled+' enrolled</span>'
+          +'<span><i class="fa-solid fa-star" style="color:'+c.colour+';margin-right:3px;"></i>Pass: '+c.passMark+'%</span>'
+        +'</div>'
+        +'<div style="display:flex;flex-wrap:wrap;gap:4px;">'
+          +c.modules.map(function(m){return '<span class="pill '+pcols[m.type]+'"><i class="fa-solid '+icons[m.type]+'"></i> '+esc((m.title||'').substring(0,20))+'</span>';}).join('')
+        +'</div>'
+      +'</div></div>';
+  }).join('');
+}
+
+function openCreateCourse(){
+  _mods=[]; _editCourseId=null;
+  document.getElementById('course-edit-id').value='';
+  document.getElementById('c-title').value='';
+  document.getElementById('c-desc').value='';
+  document.getElementById('c-cat').value='Compliance';
+  document.getElementById('c-pass').value='70';
+  document.getElementById('modal-course-title').textContent='Create New Course';
+  document.querySelectorAll('.swatch').forEach(function(s){s.classList.remove('selected');});
+  document.querySelector('.swatch[data-col="#E8211A"]').classList.add('selected');
+  renderModulesBuilder();
+  openModal('modal-course');
+}
+
+function selectColour(el){document.querySelectorAll('.swatch').forEach(function(s){s.classList.remove('selected');});el.classList.add('selected');}
+function getColour(){var el=document.querySelector('.swatch.selected');return el?el.dataset.col:'#E8211A';}
+
+function addModule(type){
+  var id='m'+Date.now()+'_'+Math.random().toString(36).slice(2,5);
+  var defs={video:{youtubeId:'',url:''},text:{body:''},pdf:{dataUrl:'',filename:''},quiz:{passMark:70,questions:[]}};
+  _mods.push({id:id,type:type,title:type.charAt(0).toUpperCase()+type.slice(1)+' Module',duration:'30 min',content:JSON.parse(JSON.stringify(defs[type]))});
+  renderModulesBuilder();
+}
+function removeModule(i){_mods.splice(i,1);renderModulesBuilder();}
+function addQuestion(mi){_mods[mi].content.questions.push({id:'q'+Date.now(),text:'',options:[{id:'a',text:''},{id:'b',text:''},{id:'c',text:''},{id:'d',text:''}],correct:'a'});renderModulesBuilder();}
+function removeQuestion(mi,qi){_mods[mi].content.questions.splice(qi,1);renderModulesBuilder();}
+
+function renderModulesBuilder(){
+  var el=document.getElementById('modules-builder');
+  var em=document.getElementById('modules-empty-msg');
+  em.style.display=_mods.length?'none':'block';
+  if(!_mods.length){el.innerHTML='';return;}
+  var cols={video:'#E8211A',text:'#2563eb',pdf:'#d97706',quiz:'#16a34a'};
+  var icons={video:'fa-play',text:'fa-align-left',pdf:'fa-file-pdf',quiz:'fa-list-check'};
+  el.innerHTML=_mods.map(function(m,i){
+    var inner='';
+    if(m.type==='video'){
+      inner='<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;">'
+        +'<div><label style="font-size:.62rem;color:#555;display:block;margin-bottom:3px;">YouTube URL</label><input class="inp" style="font-size:.78rem;padding:6px 10px;" placeholder="https://youtube.com/watch?v=..." value="'+esc(m.content.url||'')+'" onchange="_mods['+i+'].content.url=this.value;_mods['+i+'].content.youtubeId=extractYTId(this.value)" /></div>'
+        +'<div><label style="font-size:.62rem;color:#555;display:block;margin-bottom:3px;">Duration</label><input class="inp" style="font-size:.78rem;padding:6px 10px;" placeholder="30 min" value="'+esc(m.duration)+'" onchange="_mods['+i+'].duration=this.value" /></div>'
+        +'</div>';
+    } else if(m.type==='text'){
+      inner='<div style="margin-top:8px;"><label style="font-size:.62rem;color:#555;display:block;margin-bottom:3px;">Content (HTML supported)</label><textarea class="inp" style="font-size:.78rem;padding:6px 10px;min-height:80px;" placeholder="Text content — &lt;h3&gt;, &lt;p&gt;, &lt;ul&gt; supported." onchange="_mods['+i+'].content.body=this.value">'+esc(m.content.body||'')+'</textarea></div>';
+    } else if(m.type==='pdf'){
+      inner='<div style="margin-top:8px;">'
+        +'<label style="font-size:.62rem;color:#555;display:block;margin-bottom:3px;">Upload PDF (max 10 MB)</label>'
+        +'<input type="file" accept=".pdf" class="inp" style="font-size:.78rem;padding:5px 10px;" onchange="handlePdfUpload(event,'+i+')" />'
+        +(m.content.filename?'<div style="font-size:.72rem;color:#22c55e;margin-top:4px;"><i class="fa-solid fa-circle-check"></i> '+esc(m.content.filename)+'</div>':'')
+        +'</div>';
+    } else if(m.type==='quiz'){
+      var qhtml=m.content.questions.map(function(q,qi){
+        return '<div class="q-block"><input class="inp" style="font-size:.78rem;padding:6px 10px;margin-bottom:6px;" value="'+esc(q.text)+'" placeholder="Question '+(qi+1)+'…" onchange="_mods['+i+'].content.questions['+qi+'].text=this.value" />'
+          +q.options.map(function(o){return '<div class="opt-row"><input type="radio" name="q'+i+'_'+qi+'" value="'+o.id+'" '+(q.correct===o.id?'checked':'')+' onchange="_mods['+i+'].content.questions['+qi+'].correct=this.value" /><input class="inp" style="flex:1;font-size:.75rem;padding:4px 8px;" value="'+esc(o.text)+'" placeholder="Option '+o.id.toUpperCase()+'…" onchange="_mods['+i+'].content.questions['+qi+'].options.find(function(x){return x.id===\''+o.id+'\'}).text=this.value" /></div>';}).join('')
+          +'<button class="btn btn-d" style="margin-top:6px;padding:3px 8px;font-size:.6rem;" onclick="removeQuestion('+i+','+qi+')"><i class="fa-solid fa-trash"></i></button>'
+          +'</div>';
+      }).join('');
+      inner='<div style="margin-top:8px;">'
+        +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;"><label style="font-size:.62rem;color:#555;">Questions ('+m.content.questions.length+')</label><button class="btn btn-s" style="padding:3px 8px;font-size:.62rem;" onclick="addQuestion('+i+')"><i class="fa-solid fa-plus"></i> Add Question</button></div>'
+        +qhtml
+        +'<div style="margin-top:6px;"><label style="font-size:.62rem;color:#555;display:block;margin-bottom:3px;">Pass Mark (%)</label><input class="inp" type="number" min="1" max="100" style="font-size:.78rem;padding:6px 10px;width:90px;" value="'+m.content.passMark+'" onchange="_mods['+i+'].content.passMark=parseInt(this.value)" /></div>'
+        +'</div>';
+    }
+    return '<div class="mod-row"><div style="display:flex;align-items:center;gap:10px;">'
+      +'<div class="mod-icon" style="background:'+cols[m.type]+'22;"><i class="fa-solid '+icons[m.type]+'" style="color:'+cols[m.type]+';"></i></div>'
+      +'<input class="inp" style="flex:1;font-size:.82rem;padding:6px 10px;" value="'+esc(m.title)+'" onchange="_mods['+i+'].title=this.value" />'
+      +'<button class="btn btn-d" style="padding:4px 8px;font-size:.62rem;flex-shrink:0;" onclick="removeModule('+i+')"><i class="fa-solid fa-trash"></i></button>'
+      +'</div>'+inner+'</div>';
+  }).join('');
+}
+
+function handlePdfUpload(event,mi){
+  var f=event.target.files[0];if(!f)return;
+  if(f.size>10*1024*1024){toast('PDF must be under 10 MB.','e');return;}
+  var r=new FileReader();
+  r.onload=function(e){_mods[mi].content.dataUrl=e.target.result;_mods[mi].content.filename=f.name;renderModulesBuilder();};
+  r.readAsDataURL(f);
+}
+
+function saveCourse(){
+  var title=document.getElementById('c-title').value.trim();
+  if(!title){toast('Please enter a course title.','e');return;}
+  var id=_editCourseId||'c'+Date.now();
+  var course={id:id,title:title,desc:document.getElementById('c-desc').value.trim(),category:document.getElementById('c-cat').value,colour:getColour(),passMark:parseInt(document.getElementById('c-pass').value)||70,createdAt:new Date().toISOString().split('T')[0],modules:_mods.slice()};
+  if(_editCourseId){
+    var idx=LMS.courses.findIndex(function(c){return c.id===_editCourseId;});
+    if(idx>-1) LMS.courses[idx]=course;
+  } else {
+    LMS.courses.push(course);
+  }
+  saveAll();
+  closeModal('modal-course');
+  renderCourses();
+  updateBadges();
+  toast(_editCourseId?'Course updated.':'Course created successfully!');
+}
+
+function editCourse(id){
+  var c=LMS.courses.find(function(x){return x.id===id;});if(!c)return;
+  _mods=JSON.parse(JSON.stringify(c.modules));
+  _editCourseId=id;
+  document.getElementById('course-edit-id').value=id;
+  document.getElementById('c-title').value=c.title;
+  document.getElementById('c-desc').value=c.desc||'';
+  document.getElementById('c-cat').value=c.category;
+  document.getElementById('c-pass').value=c.passMark;
+  document.getElementById('modal-course-title').textContent='Edit Course';
+  document.querySelectorAll('.swatch').forEach(function(s){s.classList.toggle('selected',s.dataset.col===c.colour);});
+  renderModulesBuilder();
+  openModal('modal-course');
+}
+
+function deleteCourse(id){
+  if(!confirm('Delete this course? Enrolments will be removed.')) return;
+  LMS.courses=LMS.courses.filter(function(c){return c.id!==id;});
+  LMS.students.forEach(function(s){s.enrolledCourses=(s.enrolledCourses||[]).filter(function(c){return c!==id;});delete(s.progress||{})[id];});
+  PORTAL.users.forEach(function(u){u.enrolledCourses=(u.enrolledCourses||[]).filter(function(c){return c!==id;});delete(u.progress||{})[id];});
+  saveAll();renderCourses();updateBadges();toast('Course deleted.');
+}
+
+function viewCourse(id){
+  var c=LMS.courses.find(function(x){return x.id===id;});if(!c)return;
+  var enrolled=LMS.students.filter(function(s){return (s.enrolledCourses||[]).includes(c.id);});
+  document.getElementById('view-course-title').textContent=c.title;
+  document.getElementById('view-edit-btn').onclick=function(){closeModal('modal-view-course');editCourse(id);};
+  var icons={video:'fa-play',text:'fa-align-left',pdf:'fa-file-pdf',quiz:'fa-list-check'};
+  var pcols={video:'pill-r',text:'pill-b',pdf:'pill-y',quiz:'pill-g'};
+  document.getElementById('view-course-body').innerHTML=
+    '<div style="height:5px;background:'+c.colour+';border-radius:2px;margin-bottom:14px;"></div>'
+    +'<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;"><span class="pill pill-b">'+esc(c.category)+'</span><span class="pill" style="background:rgba(255,255,255,.04);color:#888;border-color:var(--border);">Pass: '+c.passMark+'%</span><span class="pill" style="background:rgba(255,255,255,.04);color:#888;border-color:var(--border);">'+enrolled.length+' enrolled</span></div>'
+    +'<p style="font-size:.83rem;color:#999;margin-bottom:16px;line-height:1.6;">'+esc(c.desc||'')+'</p>'
+    +'<div style="font-family:\'Syne\',sans-serif;font-weight:700;font-size:.82rem;color:var(--white);margin-bottom:8px;">Modules ('+c.modules.length+')</div>'
+    +c.modules.map(function(m){return '<div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--border);border-radius:3px;margin-bottom:6px;"><div class="mod-icon" style="background:rgba(255,255,255,.05);"><i class="fa-solid '+icons[m.type]+'" style="color:#888;font-size:.72rem;"></i></div><div><div style="font-size:.82rem;font-weight:600;color:var(--white);">'+esc(m.title)+'</div><div style="font-size:.7rem;color:#555;">'+m.type+' &middot; '+m.duration+'</div></div></div>';}).join('')
+    +(enrolled.length?'<div style="font-family:\'Syne\',sans-serif;font-weight:700;font-size:.82rem;color:var(--white);margin:14px 0 8px;">Enrolled Students ('+enrolled.length+')</div>'
+    +enrolled.map(function(s){var p=(s.progress||{})[c.id]||{};var pct=c.modules.length?Math.round(((p.completedModules||[]).length/c.modules.length)*100):0;return '<div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);"><div style="width:26px;height:26px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:\'Syne\',sans-serif;font-weight:800;font-size:.62rem;color:#fff;">'+initials(s.name)+'</div><div style="flex:1;min-width:0;"><div style="font-size:.81rem;font-weight:600;color:var(--white);">'+esc(s.name)+'</div><div class="pb" style="margin-top:3px;"><div class="pb-f '+(p.completed?'pb-fg':'')+'" style="width:'+pct+'%;"></div></div></div><span style="font-size:.75rem;font-weight:700;color:'+(p.completed?'#22c55e':'var(--red)')+';">'+pct+'%</span></div>';}).join(''):'');
+  openModal('modal-view-course');
+}
+
+// ════════════════════════════════════════════════════════════
+// ENROLMENT
+// ════════════════════════════════════════════════════════════
+var _enrolType='student';
+var _bulkType='student';
+
+function setEnrolType(t,el){
+  _enrolType=t;
+  document.getElementById('enrol-type-student').classList.toggle('active',t==='student');
+  document.getElementById('enrol-type-employee').classList.toggle('active',t==='employee');
+  populateEnrolPersonSel();
+  loadEnrolCourses();
+}
+function setBulkType(t,el){
+  _bulkType=t;
+  document.querySelectorAll('[id^="bulk-type-"]').forEach(function(b){b.classList.remove('active');});
+  el.classList.add('active');
+}
+
+function renderEnrolment(){
+  // populate person selector
+  populateEnrolPersonSel();
+  loadEnrolCourses();
+  // bulk course selector
+  var bs=document.getElementById('bulk-course-sel');
+  bs.innerHTML=LMS.courses.map(function(c){return '<option value="'+c.id+'">'+esc(c.title)+'</option>';}).join('');
+  // overview
+  renderEnrolmentOverview();
+}
+
+function populateEnrolPersonSel(){
+  var sel=document.getElementById('enrol-person-sel');
+  var people=_enrolType==='student'?LMS.students:portalByRole('employee');
+  sel.innerHTML=people.map(function(p){return '<option value="'+p.id+'">'+esc(p.name)+'</option>';}).join('');
+  if(!sel.innerHTML) sel.innerHTML='<option value="">No '+_enrolType+'s found</option>';
+}
+
+function loadEnrolCourses(){
+  var sid=document.getElementById('enrol-person-sel').value;
+  var el=document.getElementById('enrol-courses-list');
+  if(!sid||!LMS.courses.length){el.innerHTML='<p style="color:#555;font-size:.82rem;">No courses available.</p>';return;}
+  var person=_enrolType==='student'?LMS.students.find(function(x){return x.id===sid;}):PORTAL.users.find(function(x){return x.id===sid;});
+  el.innerHTML=LMS.courses.map(function(c){
+    var checked=person&&(person.enrolledCourses||[]).includes(c.id);
+    return '<label class="enroll-chip"><input type="checkbox" value="'+c.id+'" '+(checked?'checked':'')+' /><div style="width:8px;height:8px;border-radius:50%;background:'+c.colour+';flex-shrink:0;"></div><span style="font-weight:600;color:var(--white);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+esc(c.title)+'</span><span style="font-size:.7rem;color:#555;flex-shrink:0;">'+c.modules.length+' modules</span></label>';
+  }).join('');
+}
+
+function saveEnrolment(){
+  var sid=document.getElementById('enrol-person-sel').value;
+  if(!sid){toast('Please select a person.','e');return;}
+  var checked=Array.from(document.querySelectorAll('#enrol-courses-list input:checked')).map(function(i){return i.value;});
+  var person=_enrolType==='student'?LMS.students.find(function(x){return x.id===sid;}):PORTAL.users.find(function(x){return x.id===sid;});
+  if(!person){toast('Person not found.','e');return;}
+  // Add new enrolments
+  checked.forEach(function(cid){
+    if(!(person.enrolledCourses||[]).includes(cid)){
+      if(!person.enrolledCourses) person.enrolledCourses=[];
+      person.enrolledCourses.push(cid);
+      if(!person.progress) person.progress={};
+      person.progress[cid]={completedModules:[],quizScores:{},startedAt:null,lastActive:null,completed:false};
+    }
+  });
+  // Remove un-checked
+  person.enrolledCourses=(person.enrolledCourses||[]).filter(function(c){return checked.includes(c);});
+  saveAll();
+  renderEnrolmentOverview();
+  toast('Enrolment saved for '+person.name+'.');
+}
+
+function bulkEnrol(){
+  var cid=document.getElementById('bulk-course-sel').value;
+  if(!cid){toast('Please select a course.','e');return;}
+  var people=[];
+  if(_bulkType==='student'||_bulkType==='both') people=people.concat(LMS.students);
+  if(_bulkType==='employee'||_bulkType==='both') people=people.concat(portalByRole('employee'));
+  people.forEach(function(p){
+    if(!(p.enrolledCourses||[]).includes(cid)){
+      if(!p.enrolledCourses) p.enrolledCourses=[];
+      p.enrolledCourses.push(cid);
+      if(!p.progress) p.progress={};
+      p.progress[cid]={completedModules:[],quizScores:{},startedAt:null,lastActive:null,completed:false};
+    }
+  });
+  saveAll();
+  renderEnrolmentOverview();
+  toast('Enrolled '+people.length+' people in course successfully.');
+}
+
+function renderEnrolmentOverview(){
+  var el=document.getElementById('enrolment-overview');
+  if(!LMS.courses.length){el.innerHTML='<p style="color:#555;font-size:.78rem;">No courses yet.</p>';return;}
+  el.innerHTML=LMS.courses.map(function(c){
+    var sCount=LMS.students.filter(function(s){return (s.enrolledCourses||[]).includes(c.id);}).length;
+    var eCount=portalByRole('employee').filter(function(u){return (u.enrolledCourses||[]).includes(c.id);}).length;
+    return '<div style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:center;gap:10px;">'
+      +'<div style="width:6px;height:6px;border-radius:50%;background:'+c.colour+';flex-shrink:0;"></div>'
+      +'<div style="flex:1;min-width:0;font-size:.8rem;font-weight:600;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+esc(c.title)+'</div>'
+      +'<span style="font-size:.7rem;color:#555;flex-shrink:0;">'+sCount+' students &middot; '+eCount+' employees</span>'
       +'</div>';
   }).join('');
 }
 
-function toast(msg){var t=document.createElement('div');t.className='toast';t.innerHTML='<i class="fa-solid fa-circle-check" style="color:#22c55e;"></i> '+msg;document.getElementById('toast-c').appendChild(t);setTimeout(function(){t.remove();},3200);}
-function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+// ════════════════════════════════════════════════════════════
+// QUICK CONTENT UPLOAD
+// ════════════════════════════════════════════════════════════
+var _qcType='video';
+function renderQuickContent(){
+  var sel=document.getElementById('qc-course');
+  sel.innerHTML=LMS.courses.map(function(c){return '<option value="'+c.id+'">'+esc(c.title)+'</option>';}).join('');
+  if(!sel.innerHTML) sel.innerHTML='<option value="">No courses yet</option>';
+  renderQcFields();
+}
+function setQcType(t,el){
+  _qcType=t;
+  document.querySelectorAll('#sec-content .type-tab').forEach(function(b){b.classList.remove('active');});
+  el.classList.add('active');
+  renderQcFields();
+}
+function renderQcFields(){
+  var el=document.getElementById('qc-fields');
+  var dur='<div style="margin-top:10px;"><label class="lbl">Duration</label><input class="inp" id="qc-dur" placeholder="30 min" value="30 min" /></div>';
+  if(_qcType==='video'){el.innerHTML='<div><label class="lbl">Module Title</label><input class="inp" id="qc-mtitle" placeholder="e.g. Introduction to Food Safety" /></div><div style="margin-top:10px;"><label class="lbl">YouTube URL</label><input class="inp" id="qc-yt" placeholder="https://www.youtube.com/watch?v=..." /></div>'+dur;}
+  else if(_qcType==='text'){el.innerHTML='<div><label class="lbl">Module Title</label><input class="inp" id="qc-mtitle" placeholder="e.g. COSHH Overview" /></div><div style="margin-top:10px;"><label class="lbl">Content (HTML supported)</label><textarea class="inp" id="qc-text" style="min-height:100px;" placeholder="Enter text content…"></textarea></div>'+dur;}
+  else if(_qcType==='pdf'){el.innerHTML='<div><label class="lbl">Module Title</label><input class="inp" id="qc-mtitle" placeholder="e.g. Safety Data Sheets" /></div><div style="margin-top:10px;"><label class="lbl">Upload PDF (max 10 MB)</label><input type="file" accept=".pdf" class="inp" id="qc-pdf" style="padding:7px 10px;" /></div>'+dur;}
+  else{el.innerHTML='<div><label class="lbl">Quiz Title</label><input class="inp" id="qc-mtitle" placeholder="e.g. Module Assessment" /></div><p style="font-size:.78rem;color:#666;margin-top:8px;">Use the full Course Builder to create detailed quizzes with multiple questions.</p>'+dur;}
+}
+function saveQuickContent(){
+  var cid=document.getElementById('qc-course').value;
+  if(!cid){toast('Please select a course.','e');return;}
+  var c=LMS.courses.find(function(x){return x.id===cid;});if(!c)return;
+  var title=(document.getElementById('qc-mtitle')||{}).value||'';
+  if(!title.trim()){toast('Please enter a module title.','e');return;}
+  var mod={id:'m'+Date.now(),type:_qcType,title:title.trim(),duration:((document.getElementById('qc-dur')||{}).value||'30 min')};
+  if(_qcType==='video'){var url=(document.getElementById('qc-yt')||{}).value||'';mod.content={url:url,youtubeId:extractYTId(url)};}
+  else if(_qcType==='text'){mod.content={body:(document.getElementById('qc-text')||{}).value||''};}
+  else if(_qcType==='pdf'){
+    var f=(document.getElementById('qc-pdf')||{}).files;
+    if(!f||!f[0]){toast('Please select a PDF file.','e');return;}
+    var reader=new FileReader();
+    reader.onload=function(e){mod.content={dataUrl:e.target.result,filename:f[0].name};c.modules.push(mod);saveAll();toast('PDF module added to "'+c.title+'".');};
+    reader.readAsDataURL(f[0]);return;
+  } else {mod.content={passMark:70,questions:[]};}
+  c.modules.push(mod);saveAll();toast('Module added to "'+c.title+'".');
+}
 
-show('overview', document.querySelector('.sb-link.active'));
+// ════════════════════════════════════════════════════════════
+// PROGRESS REPORTS
+// ════════════════════════════════════════════════════════════
+function calcOverallPct(person,type){
+  var courses=person.enrolledCourses||[];
+  if(!courses.length) return 0;
+  var sum=courses.reduce(function(acc,cid){
+    var c=LMS.courses.find(function(x){return x.id===cid;});
+    if(!c||!c.modules.length) return acc;
+    var p=(person.progress||{})[cid]||{};
+    return acc+((p.completedModules||[]).length/c.modules.length)*100;
+  },0);
+  return Math.round(sum/courses.length);
+}
+
+function renderReports(){
+  var el=document.getElementById('reports-content');
+  var allPeople=[
+    ...LMS.students.map(function(s){return{person:s,type:'student'};}),
+    ...portalByRole('employee').map(function(u){return{person:u,type:'employee'};})
+  ];
+  if(!allPeople.length||!LMS.courses.length){el.innerHTML='<div class="empty"><i class="fa-solid fa-chart-bar"></i>Add people and courses to see reports.</div>';return;}
+  el.innerHTML=allPeople.map(function(item){
+    var s=item.person;
+    var enrolled=(s.enrolledCourses||[]).filter(function(cid){return LMS.courses.find(function(c){return c.id===cid;});});
+    var rows=enrolled.map(function(cid){
+      var c=LMS.courses.find(function(x){return x.id===cid;});if(!c)return '';
+      var p=(s.progress||{})[cid]||{};
+      var pct=c.modules.length?Math.round(((p.completedModules||[]).length/c.modules.length)*100):0;
+      var scores=Object.entries(p.quizScores||{}).map(function(kv){var m=c.modules.find(function(x){return x.id===kv[0];});return (m?esc(m.title):'Quiz')+': <b style="color:var(--white);">'+kv[1]+'%</b>';});
+      return '<tr><td style="font-weight:600;color:var(--white);">'+esc(c.title)+'</td><td><div class="pb" style="width:120px;"><div class="pb-f '+(p.completed?'pb-fg':'')+'" style="width:'+pct+'%;"></div></div></td><td style="font-weight:700;color:'+(p.completed?'#22c55e':'var(--red)')+';">'+pct+'%</td><td>'+(p.completed?'<span class="pill pill-g">Complete</span>':'<span class="pill pill-y">In Progress</span>')+'</td><td style="font-size:.72rem;color:#777;">'+(scores.join(' &middot; ')||'–')+'</td></tr>';
+    }).join('');
+    var roleColours={student:'var(--red)',employee:'#3b82f6'};
+    return '<div class="card" style="margin-bottom:16px;">'
+      +'<div class="card-hd"><div style="display:flex;align-items:center;gap:10px;"><div style="width:32px;height:32px;border-radius:50%;background:'+(roleColours[item.type]||'var(--red)')+';display:flex;align-items:center;justify-content:center;font-family:\'Syne\',sans-serif;font-weight:800;color:#fff;font-size:.72rem;">'+initials(s.name)+'</div><div><div style="font-family:\'Syne\',sans-serif;font-weight:800;color:var(--white);">'+esc(s.name)+'</div><div style="font-size:.7rem;color:#555;">'+esc(s.email)+' &middot; '+item.type+'</div></div></div></div>'
+      +'<table style="margin:0;"><thead><tr><th>Course</th><th>Progress</th><th>%</th><th>Status</th><th>Quiz Scores</th></tr></thead><tbody>'+rows+'</tbody></table>'
+      +(rows?'':'<div class="empty" style="padding:18px;"><i class="fa-solid fa-clipboard"></i>Not enrolled in any courses.</div>')
+      +'</div>';
+  }).join('');
+}
+
+// ════════════════════════════════════════════════════════════
+// UTILS
+// ════════════════════════════════════════════════════════════
+function openModal(id){document.getElementById(id).style.display='flex';}
+function closeModal(id){document.getElementById(id).style.display='none';}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function initials(n){return String(n||'').split(' ').map(function(w){return w[0]||'';}).slice(0,2).join('').toUpperCase();}
+function extractYTId(url){var m=String(url||'').match(/(?:v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{11})/);return m?m[1]:url;}
+function toast(msg,type){var t=document.createElement('div');t.className='toast '+(type==='e'?'toast-e':'toast-s');t.innerHTML='<i class="fa-solid fa-'+(type==='e'?'circle-exclamation':'circle-check')+'"></i> '+msg;document.getElementById('toast-c').appendChild(t);setTimeout(function(){t.remove();},3500);}
+function resetAll(){localStorage.removeItem(LMS_KEY);localStorage.removeItem(PORTAL_KEY);LMS={courses:[],students:[]};PORTAL={users:[]};loadData();show('dashboard',document.querySelector('.sb-link.active'));toast('Demo data restored.');}
+
+// ── INIT ─────────────────────────────────────────────────────
+show('dashboard', document.querySelector('.sb-link.active'));
 </script>
 </body>
 </html>
