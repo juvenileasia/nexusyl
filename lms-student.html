@@ -119,43 +119,9 @@
 <body>
 <div id="tc"></div>
 
-<!-- ══════════ STUDENT SELECT SCREEN ══════════ -->
-<div id="student-select">
-  <div style="width:100%;max-width:900px;">
-    <div style="text-align:center;margin-bottom:40px;">
-      <img src="/Nexusyl_Fab.png" alt="Nexusyl" style="height:44px;width:44px;object-fit:contain;display:inline-block;margin-bottom:12px;" onerror="this.style.display='none'" />
-      <h1 style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--white);">Nexusyl Academy</h1>
-      <p style="color:#666;font-size:.9rem;margin-top:6px;">Select your profile to continue learning</p>
-    </div>
-    <div id="student-cards" style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-bottom:32px;"></div>
-    <div style="text-align:center;">
-      <button class="btn btn-s" onclick="showNewStudentForm()" style="font-size:.78rem;">
-        <i class="fa-solid fa-user-plus"></i> Register as New Student
-      </button>
-      <span style="color:#444;margin:0 12px;font-size:.8rem;">or</span>
-      <a href="lms-admin.html" class="btn btn-s" style="font-size:.78rem;text-decoration:none;">
-        <i class="fa-solid fa-shield-halved"></i> Admin Panel
-      </a>
-    </div>
-    <div id="new-student-form" style="display:none;max-width:440px;margin:24px auto 0;">
-      <div class="card">
-        <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;">Register</span></div>
-        <div class="card-bd" style="display:flex;flex-direction:column;gap:12px;">
-          <div><label class="lbl">Full Name</label><input class="inp" id="reg-name" placeholder="Your full name" required /></div>
-          <div><label class="lbl">Email Address</label><input class="inp" type="email" id="reg-email" placeholder="your@email.com" required /></div>
-          <div><label class="lbl">Job Role (optional)</label><input class="inp" id="reg-role" placeholder="e.g. Kitchen Assistant" /></div>
-          <div style="display:flex;gap:8px;">
-            <button class="btn btn-p" onclick="registerStudent()" style="flex:1;justify-content:center;"><i class="fa-solid fa-user-plus"></i> Register</button>
-            <button class="btn btn-s" onclick="hideNewStudentForm()">Cancel</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:32px;">
-      <p style="font-size:.72rem;color:#444;">Nexusyl Academy is a proprietary learning environment powered by the Juvenile Asia Technical Infrastructure (Company No. 16966853).</p>
-    </div>
-  </div>
-</div>
+<!-- ══════════ AUTH GATE ══════════ -->
+<!-- If no session, redirect to login. This div is never shown. -->
+<div id="auth-redirect" style="display:none;"></div>
 
 <!-- ══════════ MAIN DASHBOARD ══════════ -->
 <div id="app" style="display:none;">
@@ -163,7 +129,7 @@
   <!-- TOPBAR -->
   <header id="topbar">
     <div style="display:flex;align-items:center;gap:12px;">
-      <button onclick="backToSelect()" style="background:none;border:none;color:#666;cursor:pointer;font-size:1rem;" title="Switch student"><i class="fa-solid fa-arrow-left"></i></button>
+      <button onclick="studentLogout()" style="background:none;border:none;color:#666;cursor:pointer;font-size:.82rem;display:flex;align-items:center;gap:5px;font-family:'Syne',sans-serif;font-weight:600;letter-spacing:.04em;" title="Logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
       <img src="/Nexusyl_Fab.png" alt="Nexusyl" style="height:28px;width:28px;object-fit:contain;" onerror="this.style.display='none'" />
       <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;color:var(--white);">Nexusyl Academy</span>
     </div>
@@ -186,6 +152,10 @@
         <div class="sb-course" onclick="showView('certificates',this)" id="nav-certs" style="border-left-color:transparent;">
           <i class="fa-solid fa-certificate" style="font-size:.8rem;color:#777;width:16px;text-align:center;"></i>
           <span style="font-size:.82rem;font-weight:600;color:#aaa;">My Certificates</span>
+        </div>
+        <div class="sb-course" onclick="showView('settings',this)" id="nav-settings" style="border-left-color:transparent;">
+          <i class="fa-solid fa-gear" style="font-size:.8rem;color:#777;width:16px;text-align:center;"></i>
+          <span style="font-size:.82rem;font-weight:600;color:#aaa;">Settings</span>
         </div>
       </div>
       <div class="sb-sec">My Courses</div>
@@ -270,6 +240,68 @@
         <div class="sec-lbl" style="margin-bottom:4px;">Achievements</div>
         <h2 style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--white);margin-bottom:22px;">My Certificates</h2>
         <div id="cert-list"></div>
+      </div>
+
+
+      <!-- SETTINGS VIEW -->
+      <div id="view-settings" class="main-view" style="padding:26px;display:none;">
+        <div class="sec-lbl" style="margin-bottom:4px;">Account</div>
+        <h2 style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--white);margin-bottom:22px;">Settings</h2>
+
+        <!-- Profile info (read-only) -->
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;"><i class="fa-solid fa-user" style="color:var(--red);margin-right:8px;"></i>My Profile</span></div>
+          <div class="card-bd">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
+              <div id="settings-avatar" style="width:48px;height:48px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:#fff;flex-shrink:0;"></div>
+              <div>
+                <div id="settings-name" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--white);"></div>
+                <div id="settings-email" style="font-size:.78rem;color:#666;margin-top:2px;"></div>
+                <div id="settings-role" style="font-size:.72rem;color:#555;margin-top:1px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Change password -->
+        <div class="card">
+          <div class="card-hd">
+            <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;"><i class="fa-solid fa-lock" style="color:var(--red);margin-right:8px;"></i>Change Password</span>
+          </div>
+          <div class="card-bd" style="max-width:440px;">
+            <div id="must-change-notice" style="display:none;background:rgba(232,33,26,.1);border:1px solid rgba(232,33,26,.25);border-radius:2px;padding:10px 14px;margin-bottom:16px;font-size:.8rem;color:var(--red);display:none;align-items:center;gap:8px;">
+              <i class="fa-solid fa-circle-exclamation"></i> Your administrator requires you to change your password before continuing.
+            </div>
+            <div id="change-pass-success" style="display:none;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);border-radius:2px;padding:10px 14px;margin-bottom:16px;font-size:.8rem;color:#22c55e;display:none;align-items:center;gap:8px;">
+              <i class="fa-solid fa-circle-check"></i> Password changed successfully!
+            </div>
+            <div style="margin-bottom:12px;">
+              <label style="display:block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:5px;">Current Password</label>
+              <input type="password" id="cp-current" class="inp" placeholder="Your current password" autocomplete="current-password" />
+            </div>
+            <div style="margin-bottom:12px;">
+              <label style="display:block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:5px;">New Password</label>
+              <input type="password" id="cp-new" class="inp" placeholder="New password (min 6 characters)" autocomplete="new-password" />
+            </div>
+            <div style="margin-bottom:18px;">
+              <label style="display:block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:5px;">Confirm New Password</label>
+              <input type="password" id="cp-confirm" class="inp" placeholder="Confirm new password" autocomplete="new-password" />
+            </div>
+            <button onclick="changeStudentPassword()"
+              style="background:var(--red);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding:11px 22px;border-radius:2px;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .2s;">
+              <i class="fa-solid fa-floppy-disk"></i> Save New Password
+            </button>
+          </div>
+        </div>
+
+        <!-- Logout -->
+        <div style="margin-top:16px;">
+          <button onclick="studentLogout()"
+            style="background:transparent;color:#f87171;border:1px solid rgba(239,68,68,.25);font-family:'Syne',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:9px 18px;border-radius:2px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s;"
+            onmouseover="this.style.background='rgba(239,68,68,.1)'" onmouseout="this.style.background='transparent'">
+            <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+          </button>
+        </div>
       </div>
 
     </div><!-- /content -->
@@ -409,11 +441,13 @@ function showView(name, navEl) {
   if (v) v.style.display='block';
   if (name==='dashboard') renderDashboard();
   if (name==='certificates') renderCertificates();
+  if (name==='settings')     renderSettings();
   // sidebar highlight
   document.querySelectorAll('.sb-course').forEach(function(n){ n.classList.remove('active'); });
   if (navEl) navEl.classList.add('active');
   if (name==='dashboard') document.getElementById('nav-home').classList.add('active');
   if (name==='certificates') document.getElementById('nav-certs').classList.add('active');
+  if (name==='settings')     document.getElementById('nav-settings').classList.add('active');
 }
 
 // ── DASHBOARD ────────────────────────────────────────────
@@ -713,6 +747,16 @@ function retakeQuiz(mid) {
 }
 
 // ── CERTIFICATES ─────────────────────────────────────────
+function renderSettings() {
+  var s = CURRENT_STUDENT;
+  if (!s) return;
+  document.getElementById('settings-avatar').textContent = initials(s.name);
+  document.getElementById('settings-name').textContent  = s.name;
+  document.getElementById('settings-email').textContent = s.email;
+  document.getElementById('settings-role').textContent  = s.role || '';
+  var notice = document.getElementById('must-change-notice');
+  if (notice) notice.style.display = s.mustChangePass ? 'flex' : 'none';
+}
 function renderCertificates() {
   var s = CURRENT_STUDENT;
   var el = document.getElementById('cert-list');
@@ -766,9 +810,71 @@ function extractYouTubeId(url){var m=url.match(/(?:v=|youtu\.be\/|embed\/)([A-Za
 function sanitiseHtml(h){ return h.replace(/<script[\s\S]*?<\/script>/gi,'').replace(/<\s*on\w+\s*=/gi,''); }
 function toast(msg,type){var t=document.createElement('div');t.className='toast '+(type==='e'?'toast-e':'toast-s');t.innerHTML='<i class="fa-solid fa-'+(type==='e'?'circle-exclamation':'circle-check')+'"></i> '+msg;document.getElementById('tc').appendChild(t);setTimeout(function(){t.remove();},3500);}
 
+
+// ════════════════════════════════════════════════════════
+// SESSION-BASED AUTHENTICATION
+// ════════════════════════════════════════════════════════
+var STU_SESSION_KEY = 'nx_student_auth';
+
+function loadStudentSession() {
+  var sid = sessionStorage.getItem(STU_SESSION_KEY);
+  if (!sid) {
+    window.location.href = 'lms-login.html';
+    return false;
+  }
+  var s = LMS.students.find(function(x){ return x.id === sid; });
+  if (!s) {
+    sessionStorage.removeItem(STU_SESSION_KEY);
+    window.location.href = 'lms-login.html';
+    return false;
+  }
+  CURRENT_STUDENT = s;
+  return true;
+}
+
+function studentLogout() {
+  sessionStorage.removeItem(STU_SESSION_KEY);
+  window.location.href = 'lms-login.html';
+}
+
+function changeStudentPassword() {
+  var current = document.getElementById('cp-current').value;
+  var newPass  = document.getElementById('cp-new').value;
+  var confirm  = document.getElementById('cp-confirm').value;
+  if (!current || !newPass || !confirm) { toast('Please fill in all password fields', 'e'); return; }
+  if (current !== CURRENT_STUDENT.password) { toast('Current password is incorrect', 'e'); return; }
+  if (newPass.length < 6) { toast('New password must be at least 6 characters', 'e'); return; }
+  if (newPass !== confirm) { toast('New passwords do not match', 'e'); return; }
+  CURRENT_STUDENT.password = newPass;
+  CURRENT_STUDENT.mustChangePass = false;
+  save();
+  document.getElementById('cp-current').value = '';
+  document.getElementById('cp-new').value = '';
+  document.getElementById('cp-confirm').value = '';
+  var succ = document.getElementById('change-pass-success');
+  if (succ) { succ.style.display = 'flex'; setTimeout(function(){ succ.style.display='none'; }, 4000); }
+  toast('Password changed successfully');
+}
+
 // ── INIT ──────────────────────────────────────────────────
 load();
-renderStudentSelect();
+if (!loadStudentSession()) {
+  // loadStudentSession redirects to login page
+} else {
+  document.getElementById('app').style.display = 'flex';
+  document.getElementById('tb-student-name').textContent = CURRENT_STUDENT.name;
+  document.getElementById('tb-avatar').textContent = initials(CURRENT_STUDENT.name);
+  renderSidebar();
+  var _params = new URLSearchParams(window.location.search);
+  if (CURRENT_STUDENT.mustChangePass || _params.get('action') === 'changepass') {
+    showView('settings');
+    var _notice = document.getElementById('must-change-notice');
+    if (_notice) _notice.style.display = 'flex';
+    toast('Please change your password before continuing.', 'e');
+  } else {
+    showView('dashboard');
+  }
+}
 </script>
 </body>
 </html>

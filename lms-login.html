@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexusyl Academy — Login</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/Nexusyl_Fab.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>tailwind.config={theme:{extend:{fontFamily:{display:['Syne','sans-serif'],body:['Manrope','sans-serif']}}}}</script>
+  <style>
+    :root{--red:#E8211A;--black:#0A0A0A;--dark:#111111;--card:#161616;--border:#2a2a2a;--white:#F5F5F5;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html,body{min-height:100%;font-family:'Manrope',sans-serif;background:var(--black);color:var(--white);}
+    ::-webkit-scrollbar{width:4px;} ::-webkit-scrollbar-track{background:var(--black);} ::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px;}
+    .inp{width:100%;background:var(--dark);border:1px solid var(--border);border-radius:2px;padding:11px 14px;font-family:'Manrope',sans-serif;font-size:.88rem;color:var(--white);outline:none;transition:border-color .2s,box-shadow .2s;}
+    .inp:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(232,33,26,.1);}
+    .inp::placeholder{color:#444;}
+    .btn-p{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--red);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;padding:12px;border-radius:2px;border:none;cursor:pointer;transition:background .2s,transform .2s;box-shadow:0 4px 20px rgba(232,33,26,.28);}
+    .btn-p:hover{background:#ff2d25;transform:translateY(-1px);}
+    .btn-p:disabled{opacity:.5;pointer-events:none;}
+    .btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;background:transparent;color:#999;font-family:'Syne',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:11px;border-radius:2px;border:1px solid var(--border);cursor:pointer;transition:all .2s;}
+    .btn-outline:hover{border-color:var(--red);color:var(--white);}
+    .lbl{display:block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:6px;}
+    .tab{padding:9px 20px;font-family:'Syne',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;border:none;cursor:pointer;transition:all .15s;border-radius:2px 2px 0 0;}
+    .tab.active{background:var(--card);color:var(--white);border-bottom:2px solid var(--red);}
+    .tab:not(.active){background:transparent;color:#555;}
+    .tab:not(.active):hover{color:#aaa;}
+    @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+    .fade-in{animation:fadeIn .3s ease both;}
+  </style>
+</head>
+<body>
+
+<!-- Background grid -->
+<div style="position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:80px 80px;z-index:0;"></div>
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(232,33,26,.06) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+<div style="position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;">
+
+  <!-- Back link -->
+  <div style="width:100%;max-width:460px;margin-bottom:20px;">
+    <a href="/" style="display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:#555;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='#555'">
+      <i class="fa-solid fa-arrow-left"></i> Back to Nexusyl
+    </a>
+  </div>
+
+  <!-- Header -->
+  <div style="text-align:center;margin-bottom:28px;" class="fade-in">
+    <img src="/Nexusyl_Fab.png" alt="Nexusyl" style="height:46px;width:46px;object-fit:contain;display:inline-block;margin-bottom:12px;" onerror="this.style.display='none'" />
+    <div style="font-family:'Syne',sans-serif;font-size:1.7rem;font-weight:800;color:var(--white);">Nexusyl Academy</div>
+    <div style="font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-top:4px;">Secure Login Portal</div>
+  </div>
+
+  <!-- Login card -->
+  <div style="width:100%;max-width:460px;background:var(--card);border:1px solid var(--border);border-radius:6px;overflow:hidden;" class="fade-in">
+    <div style="height:3px;background:var(--red);"></div>
+
+    <!-- Tabs -->
+    <div style="display:flex;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02);">
+      <button class="tab active" id="tab-student" onclick="switchTab('student')">
+        <i class="fa-solid fa-graduation-cap" style="margin-right:6px;"></i>Student Login
+      </button>
+      <button class="tab" id="tab-admin" onclick="switchTab('admin')">
+        <i class="fa-solid fa-shield-halved" style="margin-right:6px;"></i>Admin Login
+      </button>
+    </div>
+
+    <!-- ── STUDENT LOGIN ── -->
+    <div id="panel-student" style="padding:28px;">
+      <p style="font-size:.82rem;color:#666;margin-bottom:22px;line-height:1.6;">
+        Enter the credentials your administrator provided. Contact your admin if you have not yet received them.
+      </p>
+      <div style="margin-bottom:14px;">
+        <label class="lbl" for="st-email">Email Address</label>
+        <input class="inp" type="email" id="st-email" autocomplete="email"
+          placeholder="your.email@example.com"
+          onkeydown="if(event.key==='Enter')document.getElementById('st-pass').focus()" />
+      </div>
+      <div style="margin-bottom:6px;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+          <label class="lbl" for="st-pass" style="margin-bottom:0;">Password</label>
+        </div>
+        <div style="position:relative;">
+          <input class="inp" type="password" id="st-pass" autocomplete="current-password"
+            placeholder="Enter your password"
+            style="padding-right:42px;"
+            onkeydown="if(event.key==='Enter')studentLogin()" />
+          <button type="button" onclick="toggleVis('st-pass','eye-st')" tabindex="-1"
+            style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#555;font-size:.85rem;padding:4px;">
+            <i id="eye-st" class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+      </div>
+      <div id="st-error" style="display:none;background:rgba(232,33,26,.1);border:1px solid rgba(232,33,26,.25);border-radius:2px;padding:9px 13px;margin-bottom:14px;font-size:.78rem;color:var(--red);display:none;align-items:center;gap:7px;">
+        <i class="fa-solid fa-circle-exclamation"></i><span id="st-error-msg"></span>
+      </div>
+      <div style="margin-bottom:20px;"></div>
+      <button class="btn-p" id="st-btn" onclick="studentLogin()">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In as Student
+      </button>
+      <p style="text-align:center;margin-top:14px;font-size:.72rem;color:#444;">
+        <i class="fa-solid fa-circle-info" style="margin-right:3px;"></i>
+        Forgot your password? Contact your Nexusyl Academy administrator.
+      </p>
+    </div>
+
+    <!-- ── ADMIN LOGIN ── -->
+    <div id="panel-admin" style="padding:28px;display:none;">
+      <p style="font-size:.82rem;color:#666;margin-bottom:22px;line-height:1.6;">
+        Admin access is restricted. Enter your administrator credentials below.
+      </p>
+      <div style="margin-bottom:14px;">
+        <label class="lbl" for="ad-user">Username</label>
+        <input class="inp" type="text" id="ad-user" autocomplete="username"
+          placeholder="admin"
+          onkeydown="if(event.key==='Enter')document.getElementById('ad-pass').focus()" />
+      </div>
+      <div style="margin-bottom:6px;">
+        <label class="lbl" for="ad-pass">Password</label>
+        <div style="position:relative;">
+          <input class="inp" type="password" id="ad-pass" autocomplete="current-password"
+            placeholder="Enter admin password"
+            style="padding-right:42px;"
+            onkeydown="if(event.key==='Enter')adminLogin()" />
+          <button type="button" onclick="toggleVis('ad-pass','eye-ad')" tabindex="-1"
+            style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#555;font-size:.85rem;padding:4px;">
+            <i id="eye-ad" class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+      </div>
+      <div id="ad-error" style="display:none;background:rgba(232,33,26,.1);border:1px solid rgba(232,33,26,.25);border-radius:2px;padding:9px 13px;margin-bottom:14px;font-size:.78rem;color:var(--red);display:none;align-items:center;gap:7px;">
+        <i class="fa-solid fa-circle-exclamation"></i><span id="ad-error-msg"></span>
+      </div>
+      <div style="margin-bottom:20px;"></div>
+      <button class="btn-p" id="ad-btn" onclick="adminLogin()">
+        <i class="fa-solid fa-shield-halved"></i> Sign In as Admin
+      </button>
+      <p style="text-align:center;margin-top:14px;font-size:.72rem;color:#444;">
+        Default: <code style="background:rgba(255,255,255,.06);padding:2px 6px;border-radius:2px;color:#888;">admin</code> /
+        <code style="background:rgba(255,255,255,.06);padding:2px 6px;border-radius:2px;color:#888;">nexusyl2026</code>
+      </p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <p style="margin-top:24px;font-size:.68rem;color:#333;text-align:center;max-width:420px;line-height:1.6;">
+    Nexusyl Academy · Powered by Juvenile Asia Technical Infrastructure (Company No. 16966853)
+  </p>
+</div>
+
+<script>
+var STORE_KEY  = 'nx_lms';
+var AUTH_KEY   = 'nx_admin_auth';
+var CREDS_KEY  = 'nx_admin_creds';
+var STU_KEY    = 'nx_student_auth'; // stores student id
+
+var LMS = { courses:[], students:[] };
+try { var _d = localStorage.getItem(STORE_KEY); if (_d) LMS = JSON.parse(_d); } catch(e){}
+
+// ── TAB SWITCHING ──────────────────────────────────────────
+function switchTab(t) {
+  document.getElementById('panel-student').style.display = t==='student' ? 'block' : 'none';
+  document.getElementById('panel-admin').style.display   = t==='admin'   ? 'block' : 'none';
+  document.getElementById('tab-student').classList.toggle('active', t==='student');
+  document.getElementById('tab-admin').classList.toggle('active',   t==='admin');
+  // Check URL param
+}
+
+// Pre-select tab from URL param  ?role=admin
+(function(){
+  var p = new URLSearchParams(window.location.search);
+  if (p.get('role') === 'admin') switchTab('admin');
+})();
+
+// ── SHOW/HIDE PASSWORD ─────────────────────────────────────
+function toggleVis(inputId, iconId) {
+  var inp  = document.getElementById(inputId);
+  var icon = document.getElementById(iconId);
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+  icon.className = inp.type === 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash';
+}
+
+// ── STUDENT LOGIN ──────────────────────────────────────────
+var _stAttempts = parseInt(sessionStorage.getItem('nx_st_attempts') || '0');
+
+function studentLogin() {
+  var email = document.getElementById('st-email').value.trim().toLowerCase();
+  var pass  = document.getElementById('st-pass').value;
+  var btn   = document.getElementById('st-btn');
+
+  hideError('st-error');
+  if (!email || !pass) { showError('st-error','st-error-msg','Please enter your email and password.'); return; }
+
+  if (_stAttempts >= 5) {
+    showError('st-error','st-error-msg','Too many failed attempts. Please close this tab and try again.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing in…';
+
+  setTimeout(function() {
+    // Find student by email (case-insensitive)
+    var student = LMS.students.find(function(s) {
+      return s.email.toLowerCase() === email;
+    });
+
+    if (!student) {
+      _stAttempts++;
+      sessionStorage.setItem('nx_st_attempts', _stAttempts);
+      var left = 5 - _stAttempts;
+      showError('st-error','st-error-msg',
+        'No account found with that email.' + (left > 0 ? ' ' + left + ' attempt' + (left===1?'':'s') + ' remaining.' : ''));
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In as Student';
+      shake('st-btn');
+      return;
+    }
+
+    if (!student.password) {
+      showError('st-error','st-error-msg','Your account has no password set. Please contact your administrator.');
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In as Student';
+      return;
+    }
+
+    if (student.password !== pass) {
+      _stAttempts++;
+      sessionStorage.setItem('nx_st_attempts', _stAttempts);
+      var left = 5 - _stAttempts;
+      showError('st-error','st-error-msg',
+        'Incorrect password.' + (left > 0 ? ' ' + left + ' attempt' + (left===1?'':'s') + ' remaining.' : ' Locked — close tab to reset.'));
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In as Student';
+      shake('st-btn');
+      return;
+    }
+
+    // Success
+    sessionStorage.removeItem('nx_st_attempts');
+    sessionStorage.setItem(STU_KEY, student.id);
+    // If student must change password on first login
+    if (student.mustChangePass) {
+      window.location.href = 'lms-student.html?action=changepass';
+    } else {
+      window.location.href = 'lms-student.html';
+    }
+  }, 600);
+}
+
+// ── ADMIN LOGIN ────────────────────────────────────────────
+var _adAttempts = parseInt(sessionStorage.getItem('nx_ad_attempts') || '0');
+
+function getAdminCreds() {
+  try { var c = localStorage.getItem(CREDS_KEY); return c ? JSON.parse(c) : {username:'admin',password:'nexusyl2026'}; } catch(e) { return {username:'admin',password:'nexusyl2026'}; }
+}
+
+function adminLogin() {
+  var user = document.getElementById('ad-user').value.trim();
+  var pass = document.getElementById('ad-pass').value;
+  var btn  = document.getElementById('ad-btn');
+  var creds = getAdminCreds();
+
+  hideError('ad-error');
+  if (!user || !pass) { showError('ad-error','ad-error-msg','Please enter username and password.'); return; }
+
+  if (_adAttempts >= 5) {
+    showError('ad-error','ad-error-msg','Too many failed attempts. Please close this tab and try again.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Verifying…';
+
+  setTimeout(function() {
+    if (user === creds.username && pass === creds.password) {
+      sessionStorage.removeItem('nx_ad_attempts');
+      sessionStorage.setItem(AUTH_KEY, '1');
+      window.location.href = 'lms-admin.html';
+    } else {
+      _adAttempts++;
+      sessionStorage.setItem('nx_ad_attempts', _adAttempts);
+      var left = 5 - _adAttempts;
+      showError('ad-error','ad-error-msg',
+        'Incorrect credentials.' + (left > 0 ? ' ' + left + ' attempt' + (left===1?'':'s') + ' remaining.' : ' Locked — close tab to reset.'));
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-shield-halved"></i> Sign In as Admin';
+      shake('ad-btn');
+    }
+  }, 600);
+}
+
+// ── UTILS ──────────────────────────────────────────────────
+function showError(divId, msgId, msg) {
+  var d = document.getElementById(divId);
+  document.getElementById(msgId).textContent = msg;
+  d.style.display = 'flex';
+}
+function hideError(divId) { document.getElementById(divId).style.display = 'none'; }
+function shake(btnId) {
+  var b = document.getElementById(btnId);
+  b.style.animation = 'shake .4s ease';
+  setTimeout(function(){ b.style.animation=''; }, 400);
+}
+
+// ── Auto redirect if already logged in ─────────────────────
+if (sessionStorage.getItem(AUTH_KEY) === '1')      window.location.href = 'lms-admin.html';
+if (sessionStorage.getItem(STU_KEY))               window.location.href = 'lms-student.html';
+</script>
+</body>
+</html>
