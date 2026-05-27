@@ -501,6 +501,12 @@ function seedLms() {
     {id:'s1',name:'Jordan Singh',email:'jordan.singh@student.ac.uk',phone:'+44 7700 111222',role:'Student',enrolledCourses:['c1'],createdAt:'2026-05-01',password:'student2026',mustChangePass:false,progress:{c1:{completedModules:['m1','m2'],quizScores:{},startedAt:'2026-05-01',lastActive:'2026-05-27',completed:false}}},
     {id:'s2',name:'Amara Osei',email:'amara.osei@student.ac.uk',phone:'+44 7700 333444',role:'Student',enrolledCourses:['c1','c2'],createdAt:'2026-05-03',password:'student2026',mustChangePass:false,progress:{c1:{completedModules:['m1','m2','m3'],quizScores:{m3:85},startedAt:'2026-05-03',lastActive:'2026-05-20',completed:true,completedAt:'2026-05-20'},c2:{completedModules:[],quizScores:{},startedAt:'2026-05-22',lastActive:'2026-05-22',completed:false}}}
   ];
+  // Mirror LMS students to PORTAL so multi-tenant login.html can authenticate them
+  LMS.students.forEach(function(s){
+    if(!PORTAL.users.find(function(u){return u.id===s.id;})){
+      PORTAL.users.push({id:s.id,role:'student',name:s.name,email:s.email,phone:s.phone||'',role_title:'Student',createdAt:s.createdAt,password:s.password||'student2026',mustChangePass:false,enrolledCourses:(s.enrolledCourses||[]).slice(),progress:JSON.parse(JSON.stringify(s.progress||{}))});
+    }
+  });
   saveAll();
 }
 
@@ -716,9 +722,16 @@ function savePerson(){
     if(editId){
       var s=LMS.students.find(function(x){return x.id===editId;});
       if(s){s.name=name;s.email=email;s.phone=document.getElementById('p-phone').value.trim();s.role_title=document.getElementById('p-roletitle').value.trim();if(pass&&pass.length>=6){s.password=pass;s.mustChangePass=document.getElementById('p-must-change').checked;}}
+      // Mirror update to portal
+      var pu=PORTAL.users.find(function(u){return u.id===editId||u.email.toLowerCase()===email;});
+      if(pu){pu.name=name;pu.email=email;if(pass&&pass.length>=6){pu.password=pass;pu.mustChangePass=document.getElementById('p-must-change').checked;}}
     } else {
       var mc=document.getElementById('p-must-change').checked;
-      LMS.students.push({id:'s'+Date.now(),name:name,email:email,phone:document.getElementById('p-phone').value.trim(),role_title:document.getElementById('p-roletitle').value.trim(),enrolledCourses:[],createdAt:new Date().toISOString().split('T')[0],password:pass,mustChangePass:mc,progress:{}});
+      var newId='s'+Date.now();
+      LMS.students.push({id:newId,name:name,email:email,phone:document.getElementById('p-phone').value.trim(),role_title:document.getElementById('p-roletitle').value.trim(),enrolledCourses:[],createdAt:new Date().toISOString().split('T')[0],password:pass,mustChangePass:mc,progress:{}});
+      // Mirror to portal so multi-tenant login.html can authenticate them
+      PORTAL.users=PORTAL.users.filter(function(u){return u.email!==email;});
+      PORTAL.users.push({id:newId,role:'student',name:name,email:email,phone:document.getElementById('p-phone').value.trim(),role_title:'Student',createdAt:new Date().toISOString().split('T')[0],password:pass,mustChangePass:mc,enrolledCourses:[],progress:{}});
     }
   } else {
     // Portal user (employee/supplier)
@@ -743,8 +756,12 @@ function savePerson(){
 
 function deletePerson(type,id){
   if(!confirm('Delete this person? All their data will be removed.')) return;
-  if(type==='student'){LMS.students=LMS.students.filter(function(s){return s.id!==id;});}
-  else {PORTAL.users=PORTAL.users.filter(function(u){return u.id!==id;});}
+  if(type==='student'){
+    var delStudent=LMS.students.find(function(s){return s.id===id;});
+    LMS.students=LMS.students.filter(function(s){return s.id!==id;});
+    // Remove portal mirror
+    if(delStudent) PORTAL.users=PORTAL.users.filter(function(u){return u.id!==id&&u.email!==delStudent.email;});
+  } else {PORTAL.users=PORTAL.users.filter(function(u){return u.id!==id;});}
   saveAll();
   if(type==='student') renderStudents();
   if(type==='employee') renderEmployees();
@@ -1020,6 +1037,11 @@ function saveEnrolment(){
   });
   // Remove un-checked
   person.enrolledCourses=(person.enrolledCourses||[]).filter(function(c){return checked.includes(c);});
+  // Mirror student enrolment to portal record
+  if(_enrolType==='student'){
+    var pu=PORTAL.users.find(function(u){return u.id===person.id||u.email===person.email;});
+    if(pu){pu.enrolledCourses=(person.enrolledCourses||[]).slice();pu.progress=JSON.parse(JSON.stringify(person.progress||{}));}
+  }
   saveAll();
   renderEnrolmentOverview();
   toast('Enrolment saved for '+person.name+'.');
@@ -1039,6 +1061,13 @@ function bulkEnrol(){
       p.progress[cid]={completedModules:[],quizScores:{},startedAt:null,lastActive:null,completed:false};
     }
   });
+  // Sync student portal mirrors
+  if(_bulkType==='student'||_bulkType==='both'){
+    LMS.students.forEach(function(s){
+      var pu=PORTAL.users.find(function(u){return u.id===s.id||u.email===s.email;});
+      if(pu){pu.enrolledCourses=(s.enrolledCourses||[]).slice();if(!pu.progress)pu.progress={};if(s.progress&&s.progress[cid])pu.progress[cid]=JSON.parse(JSON.stringify(s.progress[cid]));}
+    });
+  }
   saveAll();
   renderEnrolmentOverview();
   toast('Enrolled '+people.length+' people in course successfully.');

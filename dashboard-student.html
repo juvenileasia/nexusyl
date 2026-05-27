@@ -82,7 +82,7 @@
     <a class="sb-link" onclick="show('upload',this)"><i class="fa-solid fa-cloud-arrow-up"></i>Document Upload</a>
     <a class="sb-link" onclick="show('visa',this)"><i class="fa-solid fa-passport"></i>Visa Documents</a>
     <div class="sb-sec">Learning</div>
-    <a class="sb-link" href="lms-student.html"><i class="fa-solid fa-graduation-cap"></i>Academy LMS</a>
+    <a class="sb-link" onclick="showCourses(this)" id="nav-courses"><i class="fa-solid fa-play-circle"></i>My Courses</a>
     <div class="sb-sec">System</div>
     <a class="sb-link" href="login.html"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
   </nav>
@@ -323,12 +323,17 @@
 
 <script>
 var SESSION_KEY='nx_portal_session';
+var LMS_KEY='nx_lms';
+var LMS={courses:[],students:[]};
+try{var _d=localStorage.getItem(LMS_KEY);if(_d)LMS=JSON.parse(_d);}catch(e){}
+if(!LMS.courses) LMS.courses=[];
 (function(){
   var s=sessionStorage.getItem(SESSION_KEY);
   if(!s){window.location.href='login.html?role=student';return;}
   try{
     var sess=JSON.parse(s);
     if(sess.role!=='student'&&sess.role!=='admin'){window.location.href='login.html?role=student';return;}
+    window._STUDENT_ID=sess.userId; window._STUDENT_NAME=sess.name;
     document.getElementById('user-name').textContent=sess.name;
     document.getElementById('user-avatar').textContent=sess.name.split(' ').map(function(w){return w[0]||'';}).slice(0,2).join('').toUpperCase();
     document.getElementById('welcome-h').textContent='Welcome, '+sess.name.split(' ')[0]+'.';
@@ -391,6 +396,162 @@ function submitDoc(name){
 function show(sec,el){document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('active');});document.getElementById('sec-'+sec).classList.add('active');document.querySelectorAll('.sb-link').forEach(function(l){l.classList.remove('active');});if(el)el.classList.add('active');var t={home:'Overview',tracker:'Application Tracker',upload:'Document Upload',visa:'Visa Documents'};document.getElementById('tb-title').textContent=t[sec]||sec;}
 function toast(msg){var t=document.createElement('div');t.className='toast';t.innerHTML='<i class="fa-solid fa-circle-check" style="color:var(--acc);"></i> '+msg;document.getElementById('toast-c').appendChild(t);setTimeout(function(){t.remove();},3500);}
 show('home',document.querySelector('.sb-link.active'));
+
+// STUDENT COURSE VIEWER — appended to dashboard-student.html
+var SCV={course:null,modIdx:0,quizState:{}};
+
+function getStudentRecord(){
+  try{var pd=localStorage.getItem('nx_portal');if(pd){var portal=JSON.parse(pd);var pu=portal.users&&portal.users.find(function(u){return u.id===window._STUDENT_ID;});if(pu)return{record:pu,store:'portal',data:portal};}}catch(e){}
+  try{var ld=localStorage.getItem('nx_lms');if(ld){var lms=JSON.parse(ld);var ls=lms.students&&lms.students.find(function(s){return s.id===window._STUDENT_ID;});if(ls)return{record:ls,store:'lms',data:lms};}}catch(e){}
+  return null;
+}
+function saveStudentProgress(result){
+  if(!result)return;
+  if(result.store==='portal')localStorage.setItem('nx_portal',JSON.stringify(result.data));
+  else localStorage.setItem('nx_lms',JSON.stringify(result.data));
+}
+function renderStCourses(){
+  var el=document.getElementById('st-course-grid');
+  var em=document.getElementById('st-course-empty');
+  var cv=document.getElementById('st-course-viewer');
+  if(cv)cv.style.display='none';
+  if(el)el.style.display='grid';
+  var result=getStudentRecord();
+  var enrolled=[];
+  if(result&&(result.record.enrolledCourses||[]).length){
+    enrolled=(result.record.enrolledCourses||[]).map(function(cid){return LMS.courses.find(function(c){return c.id===cid;});}).filter(Boolean);
+  }
+  if(!enrolled.length){if(el)el.innerHTML='';if(em)em.style.display='block';return;}
+  if(em)em.style.display='none';
+  var icons={video:'fa-play',text:'fa-align-left',pdf:'fa-file-pdf',quiz:'fa-list-check'};
+  el.innerHTML=enrolled.map(function(c){
+    var p=result?(result.record.progress||{})[c.id]||{}:{};
+    var pct=c.modules.length?Math.round(((p.completedModules||[]).length/c.modules.length)*100):0;
+    return '<div style="background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s;" onclick="openStCourseViewer(\''+c.id+'\')" onmouseover="this.style.transform=\'translateY(-3px)\';this.style.borderColor=\'#333\'" onmouseout="this.style.transform=\'\';this.style.borderColor=\'var(--border)\'">'
+      +'<div style="height:5px;background:'+c.colour+';"></div>'
+      +'<div style="padding:16px;">'
+        +'<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px;">'
+          +'<div><span class="pill pill-g" style="margin-bottom:6px;display:inline-flex;">'+esc2(c.category)+'</span>'
+          +'<div style="font-family:\'Syne\',sans-serif;font-weight:800;font-size:.9rem;color:var(--white);">'+esc2(c.title)+'</div></div>'
+          +(p.completed?'<span class="pill pill-g" style="flex-shrink:0;">Done</span>':'')
+        +'</div>'
+        +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">'
+          +'<div class="pb" style="flex:1;"><div class="pb-f" style="width:'+pct+'%;background:'+(p.completed?'#22c55e':'var(--acc)')+';"></div></div>'
+          +'<span style="font-size:.74rem;font-weight:700;color:'+c.colour+';">'+pct+'%</span>'
+        +'</div>'
+        +'<div style="display:flex;align-items:center;justify-content:space-between;">'
+          +'<div style="display:flex;gap:3px;">'+c.modules.map(function(m){var d=(p.completedModules||[]).includes(m.id);return '<div style="width:20px;height:20px;border-radius:2px;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;font-size:.55rem;color:'+(d?'#22c55e':'#444')+';" title="'+esc2(m.title)+'"><i class="fa-solid '+icons[m.type]+'"></i></div>';}).join('')+'</div>'
+          +'<button class="btn btn-p" style="padding:6px 12px;font-size:.7rem;pointer-events:none;">'+(pct>0&&!p.completed?'Continue':'Start')+' <i class="fa-solid fa-arrow-right"></i></button>'
+        +'</div>'
+      +'</div></div>';
+  }).join('');
+}
+function esc2(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function extractYTId2(url){var m=String(url||'').match(/(?:v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{11})/);return m?m[1]:url;}
+function sanitise2(h){return String(h||'').replace(/<script[\s\S]*?<\/script>/gi,'').replace(/<\s*on\w+\s*=/gi,'');}
+
+function openStCourseViewer(cid){
+  var c=LMS.courses.find(function(x){return x.id===cid;});
+  if(!c){return;}
+  SCV.course=c;SCV.modIdx=0;SCV.quizState={};
+  var result=getStudentRecord();
+  if(result){var p=(result.record.progress||{})[c.id]||{};for(var i=0;i<c.modules.length;i++){if(!(p.completedModules||[]).includes(c.modules[i].id)){SCV.modIdx=i;break;}}}
+  document.getElementById('st-course-grid').style.display='none';
+  document.getElementById('st-course-viewer').style.display='block';
+  renderStCvSidebar();renderStCvModule(SCV.modIdx);
+}
+function closeStCourseViewer(){document.getElementById('st-course-grid').style.display='grid';document.getElementById('st-course-viewer').style.display='none';SCV.course=null;renderStCourses();}
+
+function renderStCvSidebar(){
+  var c=SCV.course;var result=getStudentRecord();var p=result?(result.record.progress||{})[c.id]||{}:{};
+  var pct=c.modules.length?Math.round(((p.completedModules||[]).length/c.modules.length)*100):0;
+  document.getElementById('st-cv-title').textContent=c.title;
+  document.getElementById('st-cv-pb').style.width=pct+'%';
+  document.getElementById('st-cv-pct').textContent=pct+'%';
+  var icons={video:'fa-play',text:'fa-align-left',pdf:'fa-file-pdf',quiz:'fa-list-check'};
+  var cols={video:'#E8211A',text:'#2563eb',pdf:'#d97706',quiz:'#16a34a'};
+  document.getElementById('st-cv-mods').innerHTML=c.modules.map(function(m,i){
+    var done=(p.completedModules||[]).includes(m.id);var active=i===SCV.modIdx;
+    return '<div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:3px;cursor:pointer;border:1px solid '+(active?'rgba(34,197,94,.2)':'transparent')+';background:'+(active?'rgba(34,197,94,.06)':'transparent')+';margin-bottom:3px;" onclick="renderStCvModule('+i+')">'
+      +'<div style="width:24px;height:24px;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:'+(done?'rgba(34,197,94,.12)':cols[m.type]+'22')+';">'
+        +'<i class="fa-solid '+(done?'fa-check':icons[m.type])+'" style="font-size:.62rem;color:'+(done?'#22c55e':cols[m.type])+'"></i>'
+      +'</div>'
+      +'<div style="flex:1;min-width:0;"><div style="font-size:.75rem;font-weight:600;color:'+(done?'#22c55e':active?'var(--white)':'#aaa')+';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+esc2(m.title)+'</div><div style="font-size:.62rem;color:#555;">'+m.type+' &middot; '+m.duration+'</div></div>'
+      +(done?'<i class="fa-solid fa-circle-check" style="color:#22c55e;font-size:.65rem;flex-shrink:0;"></i>':'')
+      +'</div>';
+  }).join('');
+}
+
+function renderStCvModule(idx){
+  SCV.modIdx=idx;SCV.quizState={};
+  var c=SCV.course;var m=c.modules[idx];if(!m)return;
+  var result=getStudentRecord();var p=result?(result.record.progress||{})[c.id]||{}:{};
+  var isDone=(p.completedModules||[]).includes(m.id);
+  renderStCvSidebar();
+  document.getElementById('st-cv-prev').disabled=idx===0;
+  document.getElementById('st-cv-next').textContent=idx===c.modules.length-1?'Finish':'Next →';
+  document.getElementById('st-cv-pos').textContent=(idx+1)+' / '+c.modules.length;
+  var header='<div style="margin-bottom:18px;"><div style="font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#22c55e;margin-bottom:4px;">Module '+(idx+1)+' of '+c.modules.length+'</div>'
+    +'<h3 style="font-family:Syne,sans-serif;font-size:1.1rem;font-weight:800;color:var(--white);margin-bottom:5px;">'+esc2(m.title)+'</h3>'
+    +'<div style="display:flex;gap:8px;">'+(isDone?'<span class="pill pill-g">Complete</span>':'')+'<span style="font-size:.7rem;color:#555;">'+m.type+' &middot; '+m.duration+'</span></div></div>';
+  var content='';
+  if(m.type==='video'){
+    var ytId=extractYTId2(m.content.url||'');if(!ytId)ytId=m.content.youtubeId;
+    content=(ytId?'<div style="position:relative;padding-top:56.25%;background:#000;border-radius:3px;overflow:hidden;margin-bottom:16px;"><iframe src="https://www.youtube.com/embed/'+ytId+'?rel=0&modestbranding=1" style="position:absolute;inset:0;width:100%;height:100%;border:none;" allowfullscreen loading="lazy"></iframe></div>':'<div style="padding:30px;text-align:center;color:#555;">No video URL configured.</div>');
+  }else if(m.type==='text'){
+    content='<div style="background:var(--card);border:1px solid var(--border);border-radius:3px;padding:18px;margin-bottom:16px;font-size:.87rem;color:#ccc;line-height:1.8;">'+sanitise2(m.content.body||'No content.')+'</div>';
+  }else if(m.type==='pdf'){
+    content=m.content.dataUrl?'<embed src="'+m.content.dataUrl+'" type="application/pdf" style="width:100%;height:460px;border:1px solid var(--border);border-radius:3px;" /><div style="height:14px;"></div>':'<div style="text-align:center;padding:28px;color:#555;"><i class="fa-solid fa-file-pdf" style="font-size:2rem;color:#d97706;display:block;margin-bottom:8px;"></i>No PDF available.</div>';
+  }else if(m.type==='quiz'){renderStQuiz(m,p,header);return;}
+  var complBtn=isDone?'<button class="btn btn-g" style="pointer-events:none;">Complete</button>':'<button class="btn btn-p" onclick="stMarkDone(\''+m.id+'\')"><i class="fa-solid fa-check"></i> Mark Complete</button>';
+  document.getElementById('st-cv-content').innerHTML=header+content+complBtn;
+  document.getElementById('st-cv-content').scrollTop=0;
+}
+
+function renderStQuiz(m,p,header){
+  var qs=m.content.questions||[];
+  var existing=(p.quizScores||{})[m.id];
+  if(existing!==undefined){
+    document.getElementById('st-cv-content').innerHTML=header+'<div style="background:var(--card);border:1px solid var(--border);border-radius:3px;padding:24px;text-align:center;"><div style="font-size:2rem;font-family:Syne,sans-serif;font-weight:800;color:var(--white);">'+existing+'%</div><div style="color:#777;margin:8px 0;">'+(existing>=(m.content.passMark||70)?'Passed!':'Not passed')+'</div><button class="btn btn-s" onclick="stRetakeQuiz(\''+m.id+'\')" style="font-size:.72rem;">Retake</button></div>';return;
+  }
+  SCV.quizState={mid:m.id,answers:{},submitted:false,questions:qs,passMark:m.content.passMark||70};
+  document.getElementById('st-cv-content').innerHTML=header+'<div>'
+    +qs.map(function(q,i){return '<div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:3px;padding:14px;margin-bottom:10px;"><p style="font-size:.87rem;font-weight:600;color:var(--white);margin-bottom:8px;">'+(i+1)+'. '+esc2(q.text)+'</p>'+q.options.map(function(o){return '<button class="opt-btn" id="stopt-'+i+'-'+o.id+'" onclick="stSelOpt('+i+',\''+q.id+'\',\''+o.id+'\')"><span style="font-weight:700;color:#22c55e;margin-right:6px;">'+o.id.toUpperCase()+'.</span> '+esc2(o.text)+'</button>';}).join('')+'</div>';}).join('')
+    +'</div><button class="btn btn-p" id="st-quiz-submit" onclick="stSubQuiz()" disabled style="margin-top:8px;"><i class="fa-solid fa-paper-plane"></i> Submit Quiz</button>';
+  document.getElementById('st-cv-content').scrollTop=0;
+}
+function stSelOpt(qi,qid,optId){SCV.quizState.answers[qid]=optId;SCV.quizState.questions[qi].options.forEach(function(o){var b=document.getElementById('stopt-'+qi+'-'+o.id);if(b){b.className='opt-btn'+(o.id===optId?' selected':'');}});var all=SCV.quizState.questions.every(function(q){return SCV.quizState.answers[q.id];});var sub=document.getElementById('st-quiz-submit');if(sub)sub.disabled=!all;}
+function stSubQuiz(){
+  SCV.quizState.submitted=true;var correct=0;
+  SCV.quizState.questions.forEach(function(q,i){var ans=SCV.quizState.answers[q.id];q.options.forEach(function(o){var b=document.getElementById('stopt-'+i+'-'+o.id);if(!b)return;b.disabled=true;if(o.id===q.correct)b.classList.add('correct');else if(o.id===ans&&ans!==q.correct)b.classList.add('wrong');});if(ans===q.correct)correct++;});
+  var score=SCV.quizState.questions.length?Math.round((correct/SCV.quizState.questions.length)*100):0;
+  var passed=score>=SCV.quizState.passMark;
+  var result=getStudentRecord();
+  if(result){var c=SCV.course;if(!result.record.progress)result.record.progress={};if(!result.record.progress[c.id])result.record.progress[c.id]={completedModules:[],quizScores:{},startedAt:new Date().toISOString().split('T')[0],lastActive:null,completed:false};result.record.progress[c.id].quizScores[SCV.quizState.mid]=score;if(passed&&!result.record.progress[c.id].completedModules.includes(SCV.quizState.mid))result.record.progress[c.id].completedModules.push(SCV.quizState.mid);if(result.record.progress[c.id].completedModules.length===c.modules.length){result.record.progress[c.id].completed=true;result.record.progress[c.id].completedAt=new Date().toISOString().split('T')[0];}saveStudentProgress(result);}
+  var sub=document.getElementById('st-quiz-submit');if(sub){sub.textContent=(passed?'Passed — '+score+'%':'Not passed — '+score+'%');sub.className='btn '+(passed?'btn-g':'btn-s');sub.disabled=true;}
+  if(!passed){var rb=document.createElement('button');rb.className='btn btn-s';rb.style.marginLeft='8px';rb.textContent='Retake';rb.onclick=function(){stRetakeQuiz(SCV.quizState.mid);};sub.insertAdjacentElement('afterend',rb);}
+  renderStCvSidebar();
+}
+function stRetakeQuiz(mid){var result=getStudentRecord();if(result&&result.record.progress&&result.record.progress[SCV.course.id])delete result.record.progress[SCV.course.id].quizScores[mid];if(result)saveStudentProgress(result);renderStCvModule(SCV.modIdx);}
+function stMarkDone(mid){
+  var result=getStudentRecord();var c=SCV.course;
+  if(result){if(!result.record.progress)result.record.progress={};if(!result.record.progress[c.id])result.record.progress[c.id]={completedModules:[],quizScores:{},startedAt:new Date().toISOString().split('T')[0],lastActive:null,completed:false};var p=result.record.progress[c.id];if(!p.completedModules.includes(mid))p.completedModules.push(mid);p.lastActive=new Date().toISOString().split('T')[0];if(p.completedModules.length===c.modules.length){p.completed=true;p.completedAt=new Date().toISOString().split('T')[0];}saveStudentProgress(result);}
+  renderStCvSidebar();
+  if(SCV.modIdx<c.modules.length-1)stCvNav(1);else renderStCvModule(SCV.modIdx);
+}
+function stCvNav(dir){var next=SCV.modIdx+dir;if(next<0||next>=SCV.course.modules.length){if(dir>0){closeStCourseViewer();}return;}renderStCvModule(next);}
+
+
+function showCourses(el) {
+  // Hide all .main-view sections
+  document.querySelectorAll('.main-view').forEach(function(v){ v.style.display='none'; });
+  document.getElementById('view-courses').style.display = 'block';
+  // Update sidebar
+  document.querySelectorAll('.sb-course, .sb-link').forEach(function(l){ l.classList.remove('active'); });
+  if(el) el.classList.add('active');
+  document.getElementById('tb-title').textContent = 'My Courses';
+  renderStCourses();
+}
 </script>
 </body>
 </html>
