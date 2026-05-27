@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexusyl Portal — Secure Login</title>
+  <meta name="description" content="Nexusyl secure multi-tenant login portal for Admin, Employee, Student, and Supplier access." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/Nexusyl_Fab.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>tailwind.config={theme:{extend:{fontFamily:{display:['Syne','sans-serif'],body:['Manrope','sans-serif']}}}}</script>
+
+  <style>
+    :root{--red:#E8211A;--black:#0A0A0A;--dark:#111111;--card:#161616;--border:#2a2a2a;--white:#F5F5F5;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html,body{min-height:100%;font-family:'Manrope',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
+    ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--black);}::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px;}
+
+    /* GRID BG */
+    .grid-bg{position:fixed;inset:0;pointer-events:none;
+      background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);
+      background-size:80px 80px;}
+    .radial-glow{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+      width:800px;height:800px;
+      background:radial-gradient(circle,rgba(232,33,26,.06) 0%,transparent 65%);
+      pointer-events:none;}
+
+    /* ROLE CARD */
+    .role-tab{
+      display:flex;flex-direction:column;align-items:center;gap:8px;
+      padding:14px 12px;border-radius:4px;cursor:pointer;
+      border:1px solid var(--border);background:rgba(255,255,255,.02);
+      transition:all .2s;flex:1;min-width:0;
+    }
+    .role-tab:hover{border-color:rgba(232,33,26,.35);background:rgba(232,33,26,.05);}
+    .role-tab.active{border-color:var(--red);background:rgba(232,33,26,.1);}
+    .role-tab .icon{
+      width:40px;height:40px;border-radius:3px;display:flex;align-items:center;justify-content:center;
+      font-size:.95rem;transition:background .2s;
+    }
+    .role-tab.active .icon{background:rgba(232,33,26,.2);}
+    .role-tab:not(.active) .icon{background:rgba(255,255,255,.05);}
+    .role-tab .label{font-family:'Syne',sans-serif;font-size:.62rem;font-weight:700;
+      letter-spacing:.1em;text-transform:uppercase;color:#666;transition:color .2s;
+      text-align:center;line-height:1.3;}
+    .role-tab.active .label{color:var(--white);}
+    .role-tab:hover .label{color:#aaa;}
+
+    /* FORM */
+    .inp{
+      width:100%;background:rgba(255,255,255,.04);
+      border:1px solid var(--border);border-radius:2px;
+      padding:12px 14px;
+      font-family:'Manrope',sans-serif;font-size:.88rem;color:var(--white);
+      outline:none;transition:border-color .2s,box-shadow .2s;
+    }
+    .inp:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(232,33,26,.12);}
+    .inp::placeholder{color:#3a3a3a;}
+    .lbl{display:block;font-size:.68rem;font-weight:700;letter-spacing:.12em;
+      text-transform:uppercase;color:#555;margin-bottom:6px;}
+
+    /* BUTTON */
+    .btn-login{
+      width:100%;background:var(--red);color:#fff;
+      font-family:'Syne',sans-serif;font-weight:700;
+      font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+      padding:13px;border-radius:2px;border:none;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      transition:background .2s,transform .15s,box-shadow .2s;
+      box-shadow:0 4px 24px rgba(232,33,26,.3);
+    }
+    .btn-login:hover{background:#ff2d25;transform:translateY(-1px);box-shadow:0 6px 32px rgba(232,33,26,.45);}
+    .btn-login:disabled{opacity:.5;pointer-events:none;}
+
+    /* ERROR */
+    .err-box{
+      background:rgba(232,33,26,.1);border:1px solid rgba(232,33,26,.3);
+      border-radius:2px;padding:10px 14px;
+      font-size:.78rem;color:#f87171;
+      display:none;align-items:center;gap:8px;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeSlide{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%,75%{transform:translateX(-5px)}50%{transform:translateX(5px)}}
+    .fade-in{animation:fadeSlide .35s ease both;}
+    .panel{display:none;animation:fadeSlide .25s ease both;}
+    .panel.active{display:block;}
+
+    /* BADGE */
+    .role-badge{
+      display:inline-flex;align-items:center;gap:5px;
+      font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      padding:3px 9px;border-radius:2px;
+    }
+    .badge-admin   {background:rgba(232,33,26,.12);color:var(--red);border:1px solid rgba(232,33,26,.25);}
+    .badge-employee{background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.25);}
+    .badge-student {background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.25);}
+    .badge-supplier{background:rgba(234,179,8,.12);color:#eab308;border:1px solid rgba(234,179,8,.25);}
+
+    /* DIVIDER */
+    .divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);}
+  </style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="radial-glow"></div>
+
+<div style="position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;">
+
+  <!-- TOP NAV -->
+  <nav style="padding:16px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:rgba(10,10,10,.7);backdrop-filter:blur(20px);">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <img src="/Nexusyl_Fab.png" alt="Nexusyl" style="height:32px;width:32px;object-fit:contain;" onerror="this.style.display='none'" />
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:.95rem;color:var(--white);">Nexusyl</div>
+        <div style="font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-top:-2px;">Secure Portal</div>
+      </div>
+    </a>
+    <a href="/" style="font-size:.75rem;color:#555;text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .15s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='#555'">
+      <i class="fa-solid fa-arrow-left"></i> Back to Website
+    </a>
+  </nav>
+
+  <!-- MAIN -->
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:32px 20px;">
+    <div style="width:100%;max-width:520px;" class="fade-in">
+
+      <!-- Header -->
+      <div style="text-align:center;margin-bottom:28px;">
+        <div style="font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px;">
+          <span style="display:block;width:32px;height:1px;background:var(--red);"></span>
+          Multi-Tenant Access Gateway
+          <span style="display:block;width:32px;height:1px;background:var(--red);"></span>
+        </div>
+        <h1 style="font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;color:var(--white);line-height:1.1;">
+          Nexusyl<br/><span style="color:var(--red);">CRM Portal</span>
+        </h1>
+        <p style="font-size:.82rem;color:#555;margin-top:8px;">Select your access role and authenticate securely.</p>
+      </div>
+
+      <!-- Role selector -->
+      <div style="display:flex;gap:8px;margin-bottom:24px;" id="role-tabs">
+        <div class="role-tab active" onclick="switchRole('admin',this)">
+          <div class="icon"><i class="fa-solid fa-shield-halved" style="color:var(--red);"></i></div>
+          <span class="label">Admin</span>
+        </div>
+        <div class="role-tab" onclick="switchRole('employee',this)">
+          <div class="icon"><i class="fa-solid fa-briefcase" style="color:#60a5fa;"></i></div>
+          <span class="label">Employee</span>
+        </div>
+        <div class="role-tab" onclick="switchRole('student',this)">
+          <div class="icon"><i class="fa-solid fa-graduation-cap" style="color:#22c55e;"></i></div>
+          <span class="label">Student</span>
+        </div>
+        <div class="role-tab" onclick="switchRole('supplier',this)">
+          <div class="icon"><i class="fa-solid fa-handshake" style="color:#eab308;"></i></div>
+          <span class="label">Supplier</span>
+        </div>
+      </div>
+
+      <!-- Login card -->
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+        <!-- Role colour bar -->
+        <div id="role-bar" style="height:3px;background:var(--red);transition:background .3s;"></div>
+
+        <div style="padding:28px;">
+
+          <!-- Role label -->
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+            <div>
+              <div id="role-title" style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);">Admin Login</div>
+              <div id="role-subtitle" style="font-size:.78rem;color:#555;margin-top:2px;">Full CRM Control Panel</div>
+            </div>
+            <span id="role-badge" class="role-badge badge-admin"><i class="fa-solid fa-shield-halved"></i> Admin</span>
+          </div>
+
+          <!-- Form panels -->
+
+          <!-- ADMIN -->
+          <div id="panel-admin" class="panel active">
+            <div style="margin-bottom:14px;">
+              <label class="lbl">Email Address</label>
+              <input class="inp" type="email" id="admin-email" autocomplete="email" placeholder="admin@nexusyl.co.uk"
+                onkeydown="if(event.key==='Enter')document.getElementById('admin-pass').focus()" />
+            </div>
+            <div style="margin-bottom:8px;">
+              <label class="lbl">Password</label>
+              <div style="position:relative;">
+                <input class="inp" type="password" id="admin-pass" autocomplete="current-password"
+                  placeholder="Enter admin password" style="padding-right:42px;"
+                  onkeydown="if(event.key==='Enter')attemptLogin('admin')" />
+                <button onclick="toggleVis('admin-pass','eye-admin')" tabindex="-1"
+                  style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#555;font-size:.85rem;padding:4px;">
+                  <i id="eye-admin" class="fa-solid fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="err-box" id="err-admin"><i class="fa-solid fa-circle-exclamation"></i><span id="err-admin-msg"></span></div>
+          </div>
+
+          <!-- EMPLOYEE -->
+          <div id="panel-employee" class="panel">
+            <div style="margin-bottom:14px;">
+              <label class="lbl">Work Email</label>
+              <input class="inp" type="email" id="employee-email" autocomplete="email" placeholder="firstname.lastname@nexusyl.co.uk"
+                onkeydown="if(event.key==='Enter')document.getElementById('employee-pass').focus()" />
+            </div>
+            <div style="margin-bottom:8px;">
+              <label class="lbl">Password</label>
+              <div style="position:relative;">
+                <input class="inp" type="password" id="employee-pass" autocomplete="current-password"
+                  placeholder="Enter your password" style="padding-right:42px;"
+                  onkeydown="if(event.key==='Enter')attemptLogin('employee')" />
+                <button onclick="toggleVis('employee-pass','eye-employee')" tabindex="-1"
+                  style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#555;font-size:.85rem;padding:4px;">
+                  <i id="eye-employee" class="fa-solid fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="err-box" id="err-employee"><i class="fa-solid fa-circle-exclamation"></i><span id="err-employee-msg"></span></div>
+          </div>
+
+          <!-- STUDENT -->
+          <div id="panel-student" class="panel">
+            <div style="margin-bottom:14px;">
+              <label class="lbl">Email Address</label>
+              <input class="inp" type="email" id="student-email" autocomplete="email" placeholder="your.email@example.com"
+                onkeydown="if(event.key==='Enter')document.getElementById('student-pass').focus()" />
+            </div>
+            <div style="margin-bottom:8px;">
+              <label class="lbl">Password</label>
+              <div style="position:relative;">
+                <input class="inp" type="password" id="student-pass" autocomplete="current-password"
+                  placeholder="Enter your password" style="padding-right:42px;"
+                  onkeydown="if(event.key==='Enter')attemptLogin('student')" />
+                <button onclick="toggleVis('student-pass','eye-student')" tabindex="-1"
+                  style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#555;font-size:.85rem;padding:4px;">
+                  <i id="eye-student" class="fa-solid fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="err-box" id="err-student"><i class="fa-solid fa-circle-exclamation"></i><span id="err-student-msg"></span></div>
+          </div>
+
+          <!-- SUPPLIER -->
+          <div id="panel-supplier" class="panel">
+            <div style="margin-bottom:14px;">
+              <label class="lbl">Partner Email</label>
+              <input class="inp" type="email" id="supplier-email" autocomplete="email" placeholder="contact@yourorganisation.com"
+                onkeydown="if(event.key==='Enter')document.getElementById('supplier-pass').focus()" />
+            </div>
+            <div style="margin-bottom:8px;">
+              <label class="lbl">Password</label>
+              <div style="position:relative;">
+                <input class="inp" type="password" id="supplier-pass" autocomplete="current-password"
+                  placeholder="Enter partner access password" style="padding-right:42px;"
+                  onkeydown="if(event.key==='Enter')attemptLogin('supplier')" />
+                <button onclick="toggleVis('supplier-pass','eye-supplier')" tabindex="-1"
+                  style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#555;font-size:.85rem;padding:4px;">
+                  <i id="eye-supplier" class="fa-solid fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="err-box" id="err-supplier"><i class="fa-solid fa-circle-exclamation"></i><span id="err-supplier-msg"></span></div>
+          </div>
+
+          <div style="margin-top:20px;">
+            <button class="btn-login" id="login-btn" onclick="attemptLogin(currentRole)">
+              <i id="login-icon" class="fa-solid fa-arrow-right-to-bracket"></i>
+              <span id="login-label">Access Admin Panel</span>
+            </button>
+          </div>
+
+          <!-- Demo credentials hint -->
+          <div style="margin-top:16px;padding:12px 14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:2px;">
+            <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#444;margin-bottom:6px;">Demo Credentials</div>
+            <div id="demo-hint" style="font-size:.75rem;color:#555;line-height:1.8;"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Attempt counter -->
+      <div id="attempt-notice" style="display:none;text-align:center;margin-top:12px;font-size:.72rem;color:#555;"></div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid var(--border);padding:18px 24px;text-align:center;">
+    <p style="font-size:.7rem;color:#333;line-height:1.6;max-width:640px;margin:0 auto;">
+      Nexusyl Limited is a wholly owned subsidiary of Juvenile Asia Limited (Company No. 16966853).
+      All infrastructure and data architectures are managed securely under corporate data frameworks.
+    </p>
+  </footer>
+
+</div>
+
+<script>
+// ════════════════════════════════════════════════════════════
+// DATA STORE
+// ════════════════════════════════════════════════════════════
+var PORTAL_KEY     = 'nx_portal';
+var SESSION_KEY    = 'nx_portal_session';
+var ADMIN_CREDS_KEY= 'nx_admin_creds';
+
+var PORTAL = { users: [] };
+
+function loadPortal() {
+  try { var d = localStorage.getItem(PORTAL_KEY); if (d) PORTAL = JSON.parse(d); } catch(e){}
+  if (!PORTAL.users || !PORTAL.users.length) seedPortal();
+}
+
+function savePortal() { localStorage.setItem(PORTAL_KEY, JSON.stringify(PORTAL)); }
+
+function seedPortal() {
+  PORTAL.users = [
+    { id:'u1', role:'admin',    name:'Nexusyl Admin',         email:'admin@nexusyl.co.uk',       password:'nexusyl2026' },
+    { id:'u2', role:'employee', name:'Sarah Thompson',        email:'sarah.thompson@nexusyl.co.uk', password:'employee2026' },
+    { id:'u3', role:'student',  name:'Jordan Singh',          email:'jordan.singh@student.ac.uk', password:'student2026' },
+    { id:'u4', role:'supplier', name:'Global Talent Partners', email:'contact@globaltalent.co.uk', password:'supplier2026' }
+  ];
+  savePortal();
+}
+
+// Admin creds stored separately (existing system)
+function getAdminCreds() {
+  try { var c = localStorage.getItem(ADMIN_CREDS_KEY); return c ? JSON.parse(c) : {username:'admin',password:'nexusyl2026'}; } catch(e) { return {username:'admin',password:'nexusyl2026'}; }
+}
+
+// ── AUTO-REDIRECT IF ALREADY LOGGED IN ──────────────────────
+(function() {
+  var sess = sessionStorage.getItem(SESSION_KEY);
+  if (!sess) return;
+  try {
+    var s = JSON.parse(sess);
+    var dest = roleDestination(s.role);
+    if (dest) window.location.href = dest;
+  } catch(e) {}
+})();
+
+function roleDestination(role) {
+  return { admin:'dashboard-admin.html', employee:'dashboard-employee.html',
+           student:'dashboard-student.html', supplier:'dashboard-supplier.html' }[role];
+}
+
+// ════════════════════════════════════════════════════════════
+// ROLE CONFIG
+// ════════════════════════════════════════════════════════════
+var ROLES = {
+  admin:    { title:'Admin Login',           subtitle:'Full CRM Control Panel',              badge:'Admin',           badgeClass:'badge-admin',    colour:'#E8211A', icon:'fa-shield-halved',  btnLabel:'Access Admin Panel',       demoEmail:'admin@nexusyl.co.uk',          demoPass:'nexusyl2026' },
+  employee: { title:'Employee Login',        subtitle:'LMS Access & DBS Vetting Portal',     badge:'Employee',        badgeClass:'badge-employee', colour:'#3b82f6', icon:'fa-briefcase',      btnLabel:'Access Employee Dashboard',  demoEmail:'sarah.thompson@nexusyl.co.uk', demoPass:'employee2026' },
+  student:  { title:'Student / Newcomer Login', subtitle:'Document Upload & Visa Tracker',   badge:'Student',         badgeClass:'badge-student',  colour:'#22c55e', icon:'fa-graduation-cap', btnLabel:'Access Student Portal',      demoEmail:'jordan.singh@student.ac.uk',   demoPass:'student2026' },
+  supplier: { title:'Supplier / Partner Login', subtitle:'B2B Pipeline Tracking Dashboard',  badge:'Supplier/Partner',badgeClass:'badge-supplier', colour:'#eab308', icon:'fa-handshake',      btnLabel:'Access Partner Dashboard',   demoEmail:'contact@globaltalent.co.uk',   demoPass:'supplier2026' }
+};
+
+var currentRole = 'admin';
+var attempts    = {};
+
+// ── SWITCH ROLE ──────────────────────────────────────────────
+function switchRole(role, el) {
+  currentRole = role;
+  // Hide all panels
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('panel-'+role).classList.add('active');
+  // Update tabs
+  document.querySelectorAll('.role-tab').forEach(function(t){ t.classList.remove('active'); });
+  if (el) el.classList.add('active');
+  // Update UI
+  var cfg = ROLES[role];
+  document.getElementById('role-bar').style.background     = cfg.colour;
+  document.getElementById('role-title').textContent        = cfg.title;
+  document.getElementById('role-subtitle').textContent     = cfg.subtitle;
+  document.getElementById('login-icon').className          = 'fa-solid ' + cfg.icon;
+  document.getElementById('login-label').textContent       = cfg.btnLabel;
+  // Badge
+  var badge = document.getElementById('role-badge');
+  badge.className = 'role-badge ' + cfg.badgeClass;
+  badge.innerHTML = '<i class="fa-solid '+cfg.icon+'"></i> '+cfg.badge;
+  // Demo hint
+  document.getElementById('demo-hint').innerHTML =
+    '<span style="color:#777;">Email:</span> <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:2px;color:#aaa;">'+cfg.demoEmail+'</code>'
+    +'&nbsp;&nbsp;<span style="color:#777;">Password:</span> <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:2px;color:#aaa;">'+cfg.demoPass+'</code>';
+  // Clear errors
+  hideErr(role);
+  document.getElementById('attempt-notice').style.display='none';
+}
+
+// Pre-select from URL param ?role=student
+(function(){
+  var p = new URLSearchParams(window.location.search);
+  var r = p.get('role');
+  if (r && ROLES[r]) {
+    var tabs = document.querySelectorAll('.role-tab');
+    var idx  = Object.keys(ROLES).indexOf(r);
+    if (idx > -1) switchRole(r, tabs[idx]);
+  } else {
+    switchRole('admin', document.querySelector('.role-tab.active'));
+  }
+})();
+
+// ── LOGIN LOGIC ──────────────────────────────────────────────
+function attemptLogin(role) {
+  var email = document.getElementById(role+'-email').value.trim().toLowerCase();
+  var pass  = document.getElementById(role+'-pass').value;
+  var btn   = document.getElementById('login-btn');
+
+  hideErr(role);
+  if (!email || !pass) { showErr(role, 'Please enter your email address and password.'); return; }
+
+  var att = (attempts[role] = (attempts[role]||0));
+  if (att >= 5) { showErr(role, 'Too many failed attempts. Please close this tab and try again.'); return; }
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating…';
+
+  setTimeout(function() {
+    var user = PORTAL.users.find(function(u){ return u.role===role && u.email.toLowerCase()===email && u.password===pass; });
+
+    if (user) {
+      // Success
+      attempts[role] = 0;
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify({ userId:user.id, role:user.role, name:user.name, email:user.email }));
+      btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Authenticated — Redirecting…';
+      btn.style.background = '#16a34a';
+      setTimeout(function(){ window.location.href = roleDestination(role); }, 700);
+    } else {
+      attempts[role]++;
+      var left = 5 - attempts[role];
+      showErr(role, 'Incorrect email or password.' + (left > 0 ? ' ' + left + (left===1?' attempt':' attempts') + ' remaining.' : ' Account locked — close tab to reset.'));
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid '+ROLES[role].icon+'"></i> '+ROLES[role].btnLabel;
+      // Shake card
+      var card = btn.closest('div[style*="background:var(--card)"]') || btn.parentElement;
+      btn.style.animation = 'shake .4s ease';
+      setTimeout(function(){ btn.style.animation=''; }, 400);
+    }
+  }, 650);
+}
+
+// ── UTILS ─────────────────────────────────────────────────────
+function toggleVis(inputId, iconId) {
+  var inp  = document.getElementById(inputId);
+  var icon = document.getElementById(iconId);
+  inp.type = inp.type==='password' ? 'text' : 'password';
+  icon.className = inp.type==='password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash';
+}
+function showErr(role, msg) {
+  var box = document.getElementById('err-'+role);
+  document.getElementById('err-'+role+'-msg').textContent = msg;
+  box.style.display = 'flex'; box.style.marginTop='12px';
+}
+function hideErr(role) { document.getElementById('err-'+role).style.display='none'; }
+
+// ── INIT ──────────────────────────────────────────────────────
+loadPortal();
+
+// Add role to demo data if not present (e.g. add new employee/supplier seeded accounts)
+(function(){
+  var existingEmails = PORTAL.users.map(function(u){ return u.email.toLowerCase(); });
+  var defaults = [
+    { id:'u1', role:'admin',    name:'Nexusyl Admin',         email:'admin@nexusyl.co.uk',       password:'nexusyl2026' },
+    { id:'u2', role:'employee', name:'Sarah Thompson',        email:'sarah.thompson@nexusyl.co.uk', password:'employee2026' },
+    { id:'u3', role:'student',  name:'Jordan Singh',          email:'jordan.singh@student.ac.uk', password:'student2026' },
+    { id:'u4', role:'supplier', name:'Global Talent Partners', email:'contact@globaltalent.co.uk', password:'supplier2026' }
+  ];
+  defaults.forEach(function(d){
+    if (!existingEmails.includes(d.email.toLowerCase())) PORTAL.users.push(d);
+  });
+  savePortal();
+})();
+</script>
+</body>
+</html>

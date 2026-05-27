@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexusyl — Employee Dashboard</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/Nexusyl_Fab.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root{--red:#E8211A;--black:#0A0A0A;--dark:#111111;--card:#161616;--border:#2a2a2a;--white:#F5F5F5;--sb:240px;--acc:#3b82f6;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html,body{height:100%;font-family:'Manrope',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
+    ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--black);}::-webkit-scrollbar-thumb{background:var(--acc);border-radius:2px;}
+    #sb{position:fixed;top:0;left:0;bottom:0;width:var(--sb);background:var(--dark);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:200;overflow-y:auto;}
+    .sb-logo{padding:18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+    .sb-sec{font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#444;padding:14px 18px 5px;}
+    .sb-link{display:flex;align-items:center;gap:10px;padding:9px 18px;font-size:.81rem;font-weight:600;color:#666;cursor:pointer;border-left:2px solid transparent;transition:all .15s;text-decoration:none;}
+    .sb-link i{width:16px;text-align:center;font-size:.78rem;}
+    .sb-link:hover{color:var(--white);background:rgba(255,255,255,.04);}
+    .sb-link.active{color:var(--white);background:rgba(59,130,246,.08);border-left-color:var(--acc);}
+    .sb-link.active i{color:var(--acc);}
+    #tb{position:fixed;top:0;left:var(--sb);right:0;height:56px;background:rgba(10,10,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 22px;z-index:100;}
+    #main{margin-left:var(--sb);margin-top:56px;padding:26px;min-height:calc(100vh - 56px);}
+    .sec{display:none;} .sec.active{display:block;}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:4px;}
+    .card-hd{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+    .card-bd{padding:18px;}
+    .stat{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px 20px;}
+    .btn{display:inline-flex;align-items:center;gap:7px;font-family:'Syne',sans-serif;font-weight:700;font-size:.73rem;letter-spacing:.06em;text-transform:uppercase;padding:8px 16px;border-radius:2px;border:none;cursor:pointer;transition:all .2s;}
+    .btn-p{background:var(--acc);color:#fff;} .btn-p:hover{background:#2563eb;transform:translateY(-1px);}
+    .btn-s{background:transparent;color:#888;border:1px solid var(--border);} .btn-s:hover{border-color:var(--acc);color:var(--white);}
+    table{width:100%;border-collapse:collapse;}
+    th{font-size:.63rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#555;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);}
+    td{padding:11px 14px;font-size:.81rem;color:#ccc;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle;}
+    tr:last-child td{border-bottom:none;} tr:hover td{background:rgba(255,255,255,.02);}
+    .pill{display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:2px;}
+    .pill-r{background:rgba(232,33,26,.12);color:var(--red);border:1px solid rgba(232,33,26,.25);}
+    .pill-g{background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.25);}
+    .pill-y{background:rgba(234,179,8,.12);color:#eab308;border:1px solid rgba(234,179,8,.25);}
+    .pill-b{background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.25);}
+    .sec-lbl{font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+    .sec-lbl::before{content:'';display:block;width:20px;height:1px;background:var(--acc);}
+    .pb{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:6px;}
+    .pb-f{height:100%;border-radius:3px;background:var(--acc);transition:width .8s ease;}
+    .api-card{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.2);border-radius:3px;padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:border-color .2s,background .2s;}
+    .api-card:hover{border-color:rgba(59,130,246,.5);background:rgba(59,130,246,.1);}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+    .fade-in{animation:fadeIn .4s ease both;}
+    #toast-c{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:6px;}
+    .toast{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--acc);border-radius:3px;padding:10px 16px;font-size:.8rem;font-weight:600;display:flex;align-items:center;gap:8px;animation:fadeIn .2s ease;}
+  </style>
+</head>
+<body>
+<div id="toast-c"></div>
+
+<aside id="sb">
+  <div class="sb-logo">
+    <img src="/Nexusyl_Fab.png" alt="N" style="height:28px;width:28px;object-fit:contain;flex-shrink:0;" onerror="this.style.display='none'" />
+    <div><div style="font-family:'Syne',sans-serif;font-weight:800;font-size:.88rem;color:var(--white);">Nexusyl</div><div style="font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#60a5fa;">Employee Portal</div></div>
+  </div>
+  <nav style="flex:1;padding:8px 0;">
+    <div class="sb-sec">My Dashboard</div>
+    <a class="sb-link active" onclick="show('home',this)"><i class="fa-solid fa-house"></i>Overview</a>
+    <div class="sb-sec">Training & LMS</div>
+    <a class="sb-link" onclick="show('lms',this)"><i class="fa-solid fa-play-circle"></i>My Courses</a>
+    <a class="sb-link" onclick="show('moodle',this)"><i class="fa-solid fa-plug"></i>Moodle API Tools</a>
+    <div class="sb-sec">Compliance</div>
+    <a class="sb-link" onclick="show('dbs',this)"><i class="fa-solid fa-fingerprint"></i>DBS Vetting Pipeline</a>
+    <a class="sb-link" onclick="show('compliance',this)"><i class="fa-solid fa-clipboard-check"></i>Compliance Records</a>
+    <div class="sb-sec">System</div>
+    <a class="sb-link" href="login.html"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+  </nav>
+  <div style="padding:14px 18px;border-top:1px solid var(--border);">
+    <div style="display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:3px;background:rgba(255,255,255,.03);border:1px solid var(--border);">
+      <div id="user-avatar" style="width:28px;height:28px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:.68rem;color:#fff;flex-shrink:0;">ST</div>
+      <div style="flex:1;min-width:0;"><div id="user-name" style="font-size:.78rem;font-weight:700;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Employee</div><div style="font-size:.65rem;color:#555;">Staff Member</div></div>
+    </div>
+  </div>
+</aside>
+
+<header id="tb">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <span style="font-size:.7rem;color:#555;">Employee</span>
+    <i class="fa-solid fa-chevron-right" style="font-size:.5rem;color:#333;"></i>
+    <span id="tb-title" style="font-size:.8rem;font-weight:700;color:var(--white);">Overview</span>
+  </div>
+  <span class="pill pill-b"><i class="fa-solid fa-briefcase"></i> Employee</span>
+</header>
+
+<main id="main">
+
+<!-- HOME -->
+<div id="sec-home" class="sec active fade-in">
+  <div class="sec-lbl" style="margin-bottom:5px;">Employee Portal</div>
+  <h2 id="welcome-h" style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:22px;">Welcome back.</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px;">
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Assigned Courses</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--white);">5</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Completed</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#22c55e;">3</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">DBS Status</div><div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#eab308;margin-top:4px;">Processing</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Compliance</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#22c55e;">80%</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <div class="card">
+      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">My Training Progress</span><a href="lms-student.html" class="btn btn-p" style="padding:5px 10px;font-size:.65rem;text-decoration:none;">Open LMS</a></div>
+      <div class="card-bd" style="display:flex;flex-direction:column;gap:10px;">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:.78rem;color:#aaa;margin-bottom:4px;"><span>UK Hospitality Compliance</span><span style="color:#22c55e;">100%</span></div>
+          <div class="pb"><div class="pb-f" style="width:100%;background:#22c55e;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:.78rem;color:#aaa;margin-bottom:4px;"><span>Right to Work Verification</span><span style="color:#22c55e;">100%</span></div>
+          <div class="pb"><div class="pb-f" style="width:100%;background:#22c55e;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:.78rem;color:#aaa;margin-bottom:4px;"><span>GDPR &amp; Data Handling (UK)</span><span style="color:var(--acc);">45%</span></div>
+          <div class="pb"><div class="pb-f" style="width:45%;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:.78rem;color:#555;margin-bottom:4px;"><span>UK Employment Law</span><span>Locked</span></div>
+          <div class="pb"><div class="pb-f" style="width:0%;"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">DBS Check Status</span></div>
+      <div class="card-bd">
+        <div style="display:flex;justify-content:center;gap:6px;align-items:center;margin-bottom:16px;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-check" style="color:#fff;font-size:.7rem;"></i></div>
+            <span style="font-size:.58rem;color:#22c55e;text-align:center;max-width:60px;">Data Submitted</span>
+          </div>
+          <div style="flex:1;height:2px;background:var(--red);margin-bottom:14px;"></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-fingerprint" style="color:#fff;font-size:.7rem;"></i></div>
+            <span style="font-size:.58rem;color:#eab308;text-align:center;max-width:60px;">Identity Verified</span>
+          </div>
+          <div style="flex:1;height:2px;background:rgba(232,33,26,.3);margin-bottom:14px;"></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <div style="width:32px;height:32px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-certificate" style="color:#555;font-size:.7rem;"></i></div>
+            <span style="font-size:.58rem;color:#555;text-align:center;max-width:60px;">Certificate Issued</span>
+          </div>
+        </div>
+        <div style="background:rgba(234,179,8,.07);border:1px solid rgba(234,179,8,.2);border-radius:2px;padding:10px 12px;font-size:.78rem;color:#eab308;"><i class="fa-solid fa-hourglass-half" style="margin-right:6px;"></i>Identity verification in progress — est. 48 hours.</div>
+        <a href="academy-dashboard.html#dbs-vetting" class="btn btn-s" style="margin-top:12px;font-size:.7rem;text-decoration:none;display:inline-flex;"><i class="fa-solid fa-upload"></i> Upload ID Document</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LMS -->
+<div id="sec-lms" class="sec fade-in">
+  <div class="sec-lbl" style="margin-bottom:5px;">Learning</div>
+  <h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:16px;">My Courses</h2>
+  <p style="color:#666;font-size:.83rem;margin-bottom:18px;">Your enrolled compliance and onboarding modules. Launch the full Academy for video content.</p>
+  <a href="lms-student.html" class="btn btn-p" style="text-decoration:none;margin-bottom:24px;"><i class="fa-solid fa-rocket"></i> Open Nexusyl Academy</a>
+  <div class="card" style="margin-top:20px;">
+    <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Assigned Courses</span></div>
+    <table>
+      <thead><tr><th>Course</th><th>Type</th><th>Progress</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:600;color:var(--white);">UK Hospitality Compliance</td><td>Compliance</td><td><div style="display:flex;align-items:center;gap:6px;"><div class="pb" style="width:80px;"><div class="pb-f" style="width:100%;background:#22c55e;"></div></div><span style="font-size:.7rem;color:#22c55e;">100%</span></div></td><td><span class="pill pill-g">Complete</span></td><td><button class="btn btn-s" style="padding:3px 8px;font-size:.6rem;" onclick="window.open('lms-student.html')">View</button></td></tr>
+        <tr><td style="font-weight:600;color:var(--white);">Right to Work Verification</td><td>Legal</td><td><div style="display:flex;align-items:center;gap:6px;"><div class="pb" style="width:80px;"><div class="pb-f" style="width:100%;background:#22c55e;"></div></div><span style="font-size:.7rem;color:#22c55e;">100%</span></div></td><td><span class="pill pill-g">Complete</span></td><td><button class="btn btn-s" style="padding:3px 8px;font-size:.6rem;" onclick="window.open('lms-student.html')">View</button></td></tr>
+        <tr><td style="font-weight:600;color:var(--white);">GDPR &amp; Data Handling (UK)</td><td>Compliance</td><td><div style="display:flex;align-items:center;gap:6px;"><div class="pb" style="width:80px;"><div class="pb-f" style="width:45%;"></div></div><span style="font-size:.7rem;color:var(--acc);">45%</span></div></td><td><span class="pill pill-b">In Progress</span></td><td><button class="btn btn-p" style="padding:3px 8px;font-size:.6rem;" onclick="window.open('lms-student.html')">Resume</button></td></tr>
+        <tr><td style="font-weight:600;color:#555;">UK Employment Law Fundamentals</td><td>Legal</td><td><div style="display:flex;align-items:center;gap:6px;"><div class="pb" style="width:80px;"><div class="pb-f" style="width:0%;"></div></div><span style="font-size:.7rem;color:#555;">0%</span></div></td><td><span class="pill" style="background:rgba(255,255,255,.04);color:#555;border-color:var(--border);">Locked</span></td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- MOODLE API -->
+<div id="sec-moodle" class="sec fade-in">
+  <div class="sec-lbl" style="margin-bottom:5px;">Headless LMS</div>
+  <h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:8px;">Moodle API Management</h2>
+  <p style="font-size:.83rem;color:#666;margin-bottom:22px;">Manage the Headless Moodle content engine API connections powering the Nexusyl Academy LMS.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px;">
+    <div class="stat" style="border-left:2px solid var(--acc);">
+      <div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:3px;">API Status</div>
+      <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite;"></div><span style="font-family:'Syne',sans-serif;font-weight:700;color:#22c55e;">Live — Connected</span></div>
+    </div>
+    <div class="stat" style="border-left:2px solid var(--acc);">
+      <div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:3px;">Last Sync</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:700;color:var(--white);">2 min ago</div>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div class="api-card" onclick="toast('API endpoint pinged — 200 OK')">
+      <div style="width:36px;height:36px;border-radius:3px;background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-plug" style="color:#60a5fa;"></i></div>
+      <div style="flex:1;min-width:0;"><div style="font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:var(--white);">Course Content API</div><div style="font-size:.7rem;color:#666;font-family:monospace;">GET /api/v1/courses</div></div>
+      <span class="pill pill-g">200 OK</span>
+    </div>
+    <div class="api-card" onclick="toast('Enrolment API endpoint queried.')">
+      <div style="width:36px;height:36px;border-radius:3px;background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-user-plus" style="color:#60a5fa;"></i></div>
+      <div style="flex:1;min-width:0;"><div style="font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:var(--white);">Enrolment Management API</div><div style="font-size:.7rem;color:#666;font-family:monospace;">POST /api/v1/enrolments</div></div>
+      <span class="pill pill-g">200 OK</span>
+    </div>
+    <div class="api-card" onclick="toast('Grade sync triggered.')">
+      <div style="width:36px;height:36px;border-radius:3px;background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-chart-bar" style="color:#60a5fa;"></i></div>
+      <div style="flex:1;min-width:0;"><div style="font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:var(--white);">Grades &amp; Progress API</div><div style="font-size:.7rem;color:#666;font-family:monospace;">GET /api/v1/grades/{userid}</div></div>
+      <span class="pill pill-g">200 OK</span>
+    </div>
+    <div class="api-card" onclick="toast('Webhook configuration — available in full release.')">
+      <div style="width:36px;height:36px;border-radius:3px;background:rgba(234,179,8,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-webhook" style="color:#eab308;"></i></div>
+      <div style="flex:1;min-width:0;"><div style="font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:var(--white);">Webhook Event Bus</div><div style="font-size:.7rem;color:#666;font-family:monospace;">POST /api/v1/webhooks</div></div>
+      <span class="pill pill-y">Config Required</span>
+    </div>
+  </div>
+  <style>@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}</style>
+</div>
+
+<!-- DBS -->
+<div id="sec-dbs" class="sec fade-in">
+  <div class="sec-lbl" style="margin-bottom:5px;">UK e-Bulk DBS</div>
+  <h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:8px;">DBS Background Verification Pipeline</h2>
+  <p style="font-size:.83rem;color:#666;margin-bottom:22px;">UK e-Bulk DBS check submission, tracking, and certificate management aligned to Disclosure &amp; Barring Service standards.</p>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px;">
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:3px;">My Check Status</div><span class="pill pill-y" style="margin-top:4px;">Processing</span></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:3px;">Submitted</div><div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--white);">02 May</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:3px;">Est. Clearance</div><div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--white);">04 May</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:3px;">Check Type</div><div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:var(--white);">Enhanced</div></div>
+  </div>
+  <div class="card">
+    <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">e-Bulk Verification Queue</span></div>
+    <table>
+      <thead><tr><th>Applicant</th><th>Check Type</th><th>Submitted</th><th>Stage</th><th>DBS Reference</th><th>Est. Completion</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:600;color:var(--white);">Sarah Thompson</td><td>Enhanced</td><td>02 May 2026</td><td><span class="pill pill-y">Identity Verified</span></td><td style="font-family:monospace;font-size:.78rem;">DBS-2026-0048</td><td>04 May 2026</td></tr>
+        <tr><td style="font-weight:600;color:var(--white);">Marcus Lee</td><td>Standard</td><td>28 Apr 2026</td><td><span class="pill pill-g">Certificate Issued</span></td><td style="font-family:monospace;font-size:.78rem;">DBS-2026-0041</td><td>—</td></tr>
+        <tr><td style="font-weight:600;color:var(--white);">Priya Sharma</td><td>Enhanced</td><td>25 Apr 2026</td><td><span class="pill pill-g">Certificate Issued</span></td><td style="font-family:monospace;font-size:.78rem;">DBS-2026-0038</td><td>—</td></tr>
+        <tr><td style="font-weight:600;color:var(--white);">David Okafor</td><td>Basic</td><td>01 May 2026</td><td><span class="pill pill-r">Data Submitted</span></td><td style="font-family:monospace;font-size:.78rem;">DBS-2026-0047</td><td>03 May 2026</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- COMPLIANCE -->
+<div id="sec-compliance" class="sec fade-in">
+  <div class="sec-lbl" style="margin-bottom:5px;">Compliance</div>
+  <h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:16px;">My Compliance Records</h2>
+  <div class="card">
+    <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Regulatory Checklist</span><span style="font-size:.75rem;color:#555;">4 of 5 complete</span></div>
+    <div style="padding:8px 0;">
+      <div style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.03);"><div style="width:20px;height:20px;border-radius:50%;background:rgba(34,197,94,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-check" style="color:#22c55e;font-size:.58rem;"></i></div><div style="flex:1;"><div style="font-size:.82rem;font-weight:600;color:var(--white);">Right to Work Verified</div><div style="font-size:.7rem;color:#555;">Completed 02 May 2026</div></div><span class="pill pill-g">Done</span></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.03);"><div style="width:20px;height:20px;border-radius:50%;background:rgba(34,197,94,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-check" style="color:#22c55e;font-size:.58rem;"></i></div><div style="flex:1;"><div style="font-size:.82rem;font-weight:600;color:var(--white);">Hospitality Compliance Module</div><div style="font-size:.7rem;color:#555;">Completed 01 May 2026</div></div><span class="pill pill-g">Done</span></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.03);"><div style="width:20px;height:20px;border-radius:50%;background:rgba(234,179,8,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-fingerprint" style="color:#eab308;font-size:.58rem;"></i></div><div style="flex:1;"><div style="font-size:.82rem;font-weight:600;color:var(--white);">DBS Enhanced Check</div><div style="font-size:.7rem;color:#eab308;">Processing — est. 04 May 2026</div></div><span class="pill pill-y">Pending</span></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.03);"><div style="width:20px;height:20px;border-radius:50%;background:rgba(59,130,246,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-play" style="color:#60a5fa;font-size:.58rem;"></i></div><div style="flex:1;"><div style="font-size:.82rem;font-weight:600;color:var(--white);">GDPR &amp; Data Handling</div><div style="font-size:.7rem;color:#60a5fa;">45% complete — continue training</div></div><span class="pill pill-b">In Progress</span></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:12px 18px;opacity:.4;"><div style="width:20px;height:20px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-lock" style="color:#555;font-size:.58rem;"></i></div><div style="flex:1;"><div style="font-size:.82rem;font-weight:600;color:#555;">UK Employment Law</div><div style="font-size:.7rem;color:#555;">Locked — awaiting DBS clearance</div></div><span class="pill" style="background:rgba(255,255,255,.04);color:#555;border-color:var(--border);">Locked</span></div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer style="margin-left:var(--sb);border-top:1px solid var(--border);padding:16px 26px;background:var(--dark);">
+  <p style="font-size:.68rem;color:#333;line-height:1.6;">Nexusyl Limited is a wholly owned subsidiary of Juvenile Asia Limited (Company No. 16966853). All infrastructure and data architectures are managed securely under corporate data frameworks.</p>
+</footer>
+
+<script>
+var SESSION_KEY='nx_portal_session';
+(function(){
+  var s=sessionStorage.getItem(SESSION_KEY);
+  if(!s){window.location.href='login.html?role=employee';return;}
+  try{
+    var sess=JSON.parse(s);
+    if(sess.role!=='employee'&&sess.role!=='admin'){window.location.href='login.html?role=employee';return;}
+    document.getElementById('user-name').textContent=sess.name;
+    document.getElementById('user-avatar').textContent=sess.name.split(' ').map(function(w){return w[0]||'';}).slice(0,2).join('').toUpperCase();
+    document.getElementById('welcome-h').textContent='Welcome back, '+sess.name.split(' ')[0]+'.';
+  }catch(e){window.location.href='login.html';}
+})();
+function show(sec,el){document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('active');});document.getElementById('sec-'+sec).classList.add('active');document.querySelectorAll('.sb-link').forEach(function(l){l.classList.remove('active');});if(el)el.classList.add('active');var t={home:'Overview',lms:'My Courses',moodle:'Moodle API Tools',dbs:'DBS Pipeline',compliance:'Compliance Records'};document.getElementById('tb-title').textContent=t[sec]||sec;}
+function toast(msg){var t=document.createElement('div');t.className='toast';t.innerHTML='<i class="fa-solid fa-circle-check" style="color:var(--acc);"></i> '+msg;document.getElementById('toast-c').appendChild(t);setTimeout(function(){t.remove();},3200);}
+show('home',document.querySelector('.sb-link.active'));
+</script>
+</body>
+</html>

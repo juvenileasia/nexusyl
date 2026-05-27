@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexusyl — Student Portal</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/Nexusyl_Fab.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root{--red:#E8211A;--black:#0A0A0A;--dark:#111111;--card:#161616;--border:#2a2a2a;--white:#F5F5F5;--sb:240px;--acc:#22c55e;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html,body{height:100%;font-family:'Manrope',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
+    ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--black);}::-webkit-scrollbar-thumb{background:var(--acc);border-radius:2px;}
+    #sb{position:fixed;top:0;left:0;bottom:0;width:var(--sb);background:var(--dark);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:200;overflow-y:auto;}
+    .sb-logo{padding:18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+    .sb-sec{font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#444;padding:14px 18px 5px;}
+    .sb-link{display:flex;align-items:center;gap:10px;padding:9px 18px;font-size:.81rem;font-weight:600;color:#666;cursor:pointer;border-left:2px solid transparent;transition:all .15s;text-decoration:none;}
+    .sb-link i{width:16px;text-align:center;font-size:.78rem;}
+    .sb-link:hover{color:var(--white);background:rgba(255,255,255,.04);}
+    .sb-link.active{color:var(--white);background:rgba(34,197,94,.07);border-left-color:var(--acc);}
+    .sb-link.active i{color:var(--acc);}
+    #tb{position:fixed;top:0;left:var(--sb);right:0;height:56px;background:rgba(10,10,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 22px;z-index:100;}
+    #main{margin-left:var(--sb);margin-top:56px;padding:26px;min-height:calc(100vh - 56px);}
+    .sec{display:none;}.sec.active{display:block;}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:4px;}
+    .card-hd{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+    .card-bd{padding:18px;}
+    .stat{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px 20px;}
+    .btn{display:inline-flex;align-items:center;gap:7px;font-family:'Syne',sans-serif;font-weight:700;font-size:.73rem;letter-spacing:.06em;text-transform:uppercase;padding:8px 16px;border-radius:2px;border:none;cursor:pointer;transition:all .2s;}
+    .btn-p{background:var(--acc);color:#000;} .btn-p:hover{background:#16a34a;color:#fff;transform:translateY(-1px);}
+    .btn-s{background:transparent;color:#888;border:1px solid var(--border);} .btn-s:hover{border-color:var(--acc);color:var(--white);}
+    .pill{display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:2px;}
+    .pill-r{background:rgba(232,33,26,.12);color:var(--red);border:1px solid rgba(232,33,26,.25);}
+    .pill-g{background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.25);}
+    .pill-y{background:rgba(234,179,8,.12);color:#eab308;border:1px solid rgba(234,179,8,.25);}
+    .pill-b{background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.25);}
+    .sec-lbl{font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+    .sec-lbl::before{content:'';display:block;width:20px;height:1px;background:var(--acc);}
+
+    /* DROPZONE */
+    .dz{border:2px dashed rgba(34,197,94,.3);border-radius:4px;padding:32px 20px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;background:rgba(34,197,94,.03);}
+    .dz:hover,.dz.drag-over{border-color:var(--acc);background:rgba(34,197,94,.08);}
+    .dz .dz-icon{font-size:2rem;color:var(--acc);margin-bottom:10px;}
+    .dz.uploaded{border-style:solid;border-color:var(--acc);background:rgba(34,197,94,.06);}
+
+    /* PROGRESS TRACKER */
+    .track-step{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;min-width:0;}
+    .track-node{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:.8rem;transition:all .3s;}
+    .track-node.done{background:var(--acc);color:#000;}
+    .track-node.active{background:var(--red);color:#fff;box-shadow:0 0 0 4px rgba(232,33,26,.2);}
+    .track-node.pending{background:transparent;border:2px solid var(--border);color:#555;}
+    .track-label{font-size:.6rem;font-weight:700;text-align:center;letter-spacing:.05em;max-width:72px;line-height:1.3;}
+    .track-label.done{color:var(--acc);}
+    .track-label.active{color:var(--red);}
+    .track-label.pending{color:#555;}
+    .track-line{flex:1;height:2px;margin-top:18px;margin-bottom:22px;transition:background .3s;}
+    .track-line.done{background:var(--acc);}
+    .track-line.pending{background:var(--border);}
+
+    @keyframes fadeIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+    .fade-in{animation:fadeIn .4s ease both;}
+    #toast-c{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:6px;}
+    .toast{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--acc);border-radius:3px;padding:10px 16px;font-size:.8rem;font-weight:600;display:flex;align-items:center;gap:8px;animation:fadeIn .2s ease;}
+  </style>
+</head>
+<body>
+<div id="toast-c"></div>
+
+<aside id="sb">
+  <div class="sb-logo">
+    <img src="/Nexusyl_Fab.png" alt="N" style="height:28px;width:28px;object-fit:contain;flex-shrink:0;" onerror="this.style.display='none'" />
+    <div><div style="font-family:'Syne',sans-serif;font-weight:800;font-size:.88rem;color:var(--white);">Nexusyl</div><div style="font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);">Student Portal</div></div>
+  </div>
+  <nav style="flex:1;padding:8px 0;">
+    <div class="sb-sec">My Application</div>
+    <a class="sb-link active" onclick="show('home',this)"><i class="fa-solid fa-house"></i>Overview</a>
+    <a class="sb-link" onclick="show('tracker',this)"><i class="fa-solid fa-route"></i>Application Tracker</a>
+    <div class="sb-sec">Documents</div>
+    <a class="sb-link" onclick="show('upload',this)"><i class="fa-solid fa-cloud-arrow-up"></i>Document Upload</a>
+    <a class="sb-link" onclick="show('visa',this)"><i class="fa-solid fa-passport"></i>Visa Documents</a>
+    <div class="sb-sec">Learning</div>
+    <a class="sb-link" href="lms-student.html"><i class="fa-solid fa-graduation-cap"></i>Academy LMS</a>
+    <div class="sb-sec">System</div>
+    <a class="sb-link" href="login.html"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+  </nav>
+  <div style="padding:14px 18px;border-top:1px solid var(--border);">
+    <div style="display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:3px;background:rgba(255,255,255,.03);border:1px solid var(--border);">
+      <div id="user-avatar" style="width:28px;height:28px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:.68rem;color:#000;flex-shrink:0;">JS</div>
+      <div style="flex:1;min-width:0;"><div id="user-name" style="font-size:.78rem;font-weight:700;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Student</div><div style="font-size:.65rem;color:#555;">Student / Newcomer</div></div>
+    </div>
+  </div>
+</aside>
+
+<header id="tb">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <span style="font-size:.7rem;color:#555;">Student</span>
+    <i class="fa-solid fa-chevron-right" style="font-size:.5rem;color:#333;"></i>
+    <span id="tb-title" style="font-size:.8rem;font-weight:700;color:var(--white);">Overview</span>
+  </div>
+  <span class="pill pill-g"><i class="fa-solid fa-graduation-cap"></i> Student</span>
+</header>
+
+<main id="main">
+
+<!-- HOME -->
+<div id="sec-home" class="sec active fade-in">
+  <div class="sec-lbl" style="margin-bottom:5px;">Student Portal</div>
+  <h2 id="welcome-h" style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:22px;">Your UK Journey Dashboard</h2>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:26px;">
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Application Stage</div><div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:var(--red);margin-top:4px;">Documents Required</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Visa Status</div><div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:#eab308;margin-top:4px;">Awaiting Upload</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Academy Progress</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--acc);">60%</div></div>
+  </div>
+
+  <!-- Quick actions -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px;">
+    <button onclick="show('upload',document.querySelector('.sb-link[onclick*=upload]'))" style="display:flex;align-items:center;gap:14px;padding:16px;border-radius:4px;border:1px solid rgba(34,197,94,.3);background:rgba(34,197,94,.06);cursor:pointer;transition:all .2s;text-align:left;" onmouseover="this.style.borderColor='var(--acc)'" onmouseout="this.style.borderColor='rgba(34,197,94,.3)'">
+      <div style="width:40px;height:40px;border-radius:3px;background:rgba(34,197,94,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-file-circle-plus" style="color:var(--acc);font-size:1rem;"></i></div>
+      <div><div style="font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;color:var(--white);">Upload Offer Letter</div><div style="font-size:.72rem;color:#666;margin-top:2px;">University offer letter required</div></div>
+      <i class="fa-solid fa-arrow-right" style="color:#444;margin-left:auto;"></i>
+    </button>
+    <button onclick="show('visa',document.querySelector('.sb-link[onclick*=visa]'))" style="display:flex;align-items:center;gap:14px;padding:16px;border-radius:4px;border:1px solid rgba(234,179,8,.3);background:rgba(234,179,8,.06);cursor:pointer;transition:all .2s;text-align:left;" onmouseover="this.style.borderColor='#eab308'" onmouseout="this.style.borderColor='rgba(234,179,8,.3)'">
+      <div style="width:40px;height:40px;border-radius:3px;background:rgba(234,179,8,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-passport" style="color:#eab308;font-size:1rem;"></i></div>
+      <div><div style="font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;color:var(--white);">Visa Documentation</div><div style="font-size:.72rem;color:#666;margin-top:2px;">Passport &amp; CAS letter pending</div></div>
+      <i class="fa-solid fa-arrow-right" style="color:#444;margin-left:auto;"></i>
+    </button>
+  </div>
+
+  <!-- Application progress summary -->
+  <div class="card">
+    <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Application Progress</span><button class="btn btn-s" style="padding:4px 10px;font-size:.65rem;" onclick="show('tracker',null)">Full Tracker</button></div>
+    <div class="card-bd">
+      <div style="display:flex;align-items:flex-start;gap:0;">
+        <div class="track-step"><div class="track-node done"><i class="fa-solid fa-check" style="font-size:.75rem;"></i></div><span class="track-label done">Offer Received</span></div>
+        <div class="track-line done"></div>
+        <div class="track-step"><div class="track-node done"><i class="fa-solid fa-check" style="font-size:.75rem;"></i></div><span class="track-label done">Enrolled</span></div>
+        <div class="track-line pending"></div>
+        <div class="track-step"><div class="track-node active">3</div><span class="track-label active">Docs Upload</span></div>
+        <div class="track-line pending"></div>
+        <div class="track-step"><div class="track-node pending">4</div><span class="track-label pending">Under Review</span></div>
+        <div class="track-line pending"></div>
+        <div class="track-step"><div class="track-node pending">5</div><span class="track-label pending">Visa Approved</span></div>
+        <div class="track-line pending"></div>
+        <div class="track-step"><div class="track-node pending">6</div><span class="track-label pending">Arrived UK</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRACKER -->
+<div id="sec-tracker" class="sec fade-in">
+  <div class="sec-lbl" style="margin-bottom:5px;">Application Status</div>
+  <h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:22px;">Step-by-Step Application Tracker</h2>
+  <div style="display:flex;flex-direction:column;gap:12px;" id="tracker-steps">
+    <!-- Rendered by JS -->
+  </div>
+</div>
+
+<!-- UPLOAD -->
+<div id="sec-upload" class="sec fade-in">
+  <div class="sec-lbl" style="margin-bottom:5px;">Document Upload</div>
+  <h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:8px;">University Offer Letter Upload</h2>
+  <p style="font-size:.83rem;color:#666;margin-bottom:22px;">Upload your official university offer letter. Accepted formats: PDF, JPG, PNG (max 10 MB). Your documents are stored securely under corporate data frameworks.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <!-- Offer letter zone -->
+    <div class="card">
+      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;"><i class="fa-solid fa-file-circle-check" style="color:var(--acc);margin-right:7px;"></i>University Offer Letter</span></div>
+      <div class="card-bd">
+        <div class="dz" id="dz-offer"
+          ondragover="event.preventDefault();this.classList.add('drag-over')"
+          ondragleave="this.classList.remove('drag-over')"
+          ondrop="handleDrop(event,'offer')"
+          onclick="document.getElementById('file-offer').click()">
+          <div class="dz-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+          <p style="font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:4px;">Drag &amp; drop here</p>
+          <p style="font-size:.75rem;color:#555;">or <span style="color:var(--acc);text-decoration:underline;">browse files</span></p>
+          <div style="display:flex;justify-content:center;gap:6px;margin-top:10px;flex-wrap:wrap;">
+            <span class="pill" style="background:rgba(255,255,255,.04);color:#777;border-color:var(--border);">PDF</span>
+            <span class="pill" style="background:rgba(255,255,255,.04);color:#777;border-color:var(--border);">JPG</span>
+            <span class="pill" style="background:rgba(255,255,255,.04);color:#777;border-color:var(--border);">PNG</span>
+            <span class="pill" style="background:rgba(255,255,255,.04);color:#777;border-color:var(--border);">Max 10 MB</span>
+          </div>
+          <input type="file" id="file-offer" class="hidden" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(event,'offer')" />
+        </div>
+        <div id="confirm-offer" style="display:none;margin-top:12px;padding:10px 14px;border-radius:2px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);display:none;align-items:center;gap:10px;">
+          <i class="fa-solid fa-circle-check" style="color:var(--acc);"></i>
+          <div style="flex:1;min-width:0;"><div id="offer-name" style="font-size:.8rem;font-weight:600;color:var(--acc);"></div><div id="offer-size" style="font-size:.68rem;color:#555;"></div></div>
+          <button onclick="clearFile('offer')" style="background:none;border:none;cursor:pointer;color:#555;font-size:.85rem;"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <button onclick="submitDoc('offer')" id="btn-offer" class="btn btn-p" style="width:100%;justify-content:center;margin-top:14px;font-size:.75rem;">
+          <i class="fa-solid fa-upload"></i> Submit Offer Letter
+        </button>
+      </div>
+    </div>
+
+    <!-- Academic transcript zone -->
+    <div class="card">
+      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;"><i class="fa-solid fa-scroll" style="color:var(--acc);margin-right:7px;"></i>Academic Transcripts</span></div>
+      <div class="card-bd">
+        <div class="dz" id="dz-transcript"
+          ondragover="event.preventDefault();this.classList.add('drag-over')"
+          ondragleave="this.classList.remove('drag-over')"
+          ondrop="handleDrop(event,'transcript')"
+          onclick="document.getElementById('file-transcript').click()">
+          <div class="dz-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+          <p style="font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:4px;">Drag &amp; drop here</p>
+          <p style="font-size:.75rem;color:#555;">Previous academic certificates &amp; transcripts</p>
+          <input type="file" id="file-transcript" class="hidden" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(event,'transcript')" />
+        </div>
+        <div id="confirm-transcript" style="display:none;margin-top:12px;padding:10px 14px;border-radius:2px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);display:none;align-items:center;gap:10px;">
+          <i class="fa-solid fa-circle-check" style="color:var(--acc);"></i>
+          <div style="flex:1;min-width:0;"><div id="transcript-name" style="font-size:.8rem;font-weight:600;color:var(--acc);"></div><div id="transcript-size" style="font-size:.68rem;color:#555;"></div></div>
+          <button onclick="clearFile('transcript')" style="background:none;border:none;cursor:pointer;color:#555;font-size:.85rem;"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <button onclick="submitDoc('transcript')" id="btn-transcript" class="btn btn-p" style="width:100%;justify-content:center;margin-top:14px;font-size:.75rem;">
+          <i class="fa-solid fa-upload"></i> Submit Transcripts
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submission history -->
+  <div class="card" style="margin-top:20px;">
+    <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Previously Submitted Documents</span></div>
+    <table>
+      <thead><tr><th>Document</th><th>Submitted</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody id="doc-history">
+        <tr><td style="font-weight:600;color:var(--white);">IELTS Certificate</td><td style="color:#888;">01 May 2026</td><td><span class="pill pill-g">Verified</span></td><td><button class="btn btn-s" style="padding:3px 8px;font-size:.6rem;" onclick="toast('Document preview — available in full release.')">View</button></td></tr>
+        <tr><td style="font-weight:600;color:var(--white);">Passport (Biographic Page)</td><td style="color:#888;">01 May 2026</td><td><span class="pill pill-y">Under Review</span></td><td><button class="btn btn-s" style="padding:3px 8px;font-size:.6rem;" onclick="toast('Document preview — available in full release.')">View</button></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- VISA -->
+<div id="sec-visa" class="sec fade-in">
+  <div class="sec-lbl" style="margin-bottom:5px;">Visa Application</div>
+  <h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:8px;">UK Visa Documentation</h2>
+  <p style="font-size:.83rem;color:#666;margin-bottom:22px;">Upload your UK Student Visa application documents. All files are encrypted in transit and processed securely.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:22px;">
+    <!-- Passport -->
+    <div class="card">
+      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;"><i class="fa-solid fa-passport" style="color:#eab308;margin-right:7px;"></i>Passport / BRP</span><span class="pill pill-y">Required</span></div>
+      <div class="card-bd">
+        <div class="dz" id="dz-passport"
+          ondragover="event.preventDefault();this.classList.add('drag-over')"
+          ondragleave="this.classList.remove('drag-over')"
+          ondrop="handleDrop(event,'passport')"
+          onclick="document.getElementById('file-passport').click()">
+          <div class="dz-icon"><i class="fa-solid fa-passport" style="color:#eab308;"></i></div>
+          <p style="font-size:.85rem;font-weight:700;color:var(--white);margin-bottom:4px;">Upload Passport / BRP</p>
+          <p style="font-size:.72rem;color:#555;">Biographic page + photo page · PDF or JPG</p>
+          <input type="file" id="file-passport" class="hidden" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(event,'passport')" />
+        </div>
+        <div id="confirm-passport" style="display:none;margin-top:12px;padding:10px 14px;border-radius:2px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);display:none;align-items:center;gap:10px;">
+          <i class="fa-solid fa-circle-check" style="color:var(--acc);"></i>
+          <div style="flex:1;min-width:0;"><div id="passport-name" style="font-size:.8rem;font-weight:600;color:var(--acc);"></div></div>
+          <button onclick="clearFile('passport')" style="background:none;border:none;cursor:pointer;color:#555;"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <button onclick="submitDoc('passport')" id="btn-passport" class="btn btn-p" style="width:100%;justify-content:center;margin-top:12px;font-size:.73rem;"><i class="fa-solid fa-upload"></i> Submit</button>
+      </div>
+    </div>
+    <!-- CAS Letter -->
+    <div class="card">
+      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;"><i class="fa-solid fa-envelope-open-text" style="color:#60a5fa;margin-right:7px;"></i>CAS Letter</span><span class="pill pill-b">Required</span></div>
+      <div class="card-bd">
+        <div class="dz" id="dz-cas"
+          ondragover="event.preventDefault();this.classList.add('drag-over')"
+          ondragleave="this.classList.remove('drag-over')"
+          ondrop="handleDrop(event,'cas')"
+          onclick="document.getElementById('file-cas').click()">
+          <div class="dz-icon"><i class="fa-solid fa-envelope-open-text" style="color:#60a5fa;"></i></div>
+          <p style="font-size:.85rem;font-weight:700;color:var(--white);margin-bottom:4px;">Upload CAS Letter</p>
+          <p style="font-size:.72rem;color:#555;">Confirmation of Acceptance for Studies (CAS)</p>
+          <input type="file" id="file-cas" class="hidden" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(event,'cas')" />
+        </div>
+        <div id="confirm-cas" style="display:none;margin-top:12px;padding:10px 14px;border-radius:2px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);display:none;align-items:center;gap:10px;">
+          <i class="fa-solid fa-circle-check" style="color:var(--acc);"></i>
+          <div style="flex:1;min-width:0;"><div id="cas-name" style="font-size:.8rem;font-weight:600;color:var(--acc);"></div></div>
+          <button onclick="clearFile('cas')" style="background:none;border:none;cursor:pointer;color:#555;"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <button onclick="submitDoc('cas')" id="btn-cas" class="btn btn-p" style="width:100%;justify-content:center;margin-top:12px;font-size:.73rem;"><i class="fa-solid fa-upload"></i> Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Visa tracker -->
+  <div class="card">
+    <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Visa Application Tracker</span></div>
+    <div class="card-bd">
+      <div style="display:flex;align-items:flex-start;gap:0;">
+        <div class="track-step"><div class="track-node done"><i class="fa-solid fa-check" style="font-size:.72rem;"></i></div><span class="track-label done">CAS Issued</span></div>
+        <div class="track-line done"></div>
+        <div class="track-step"><div class="track-node active">2</div><span class="track-label active">Docs Upload</span></div>
+        <div class="track-line pending"></div>
+        <div class="track-step"><div class="track-node pending">3</div><span class="track-label pending">UKVI Review</span></div>
+        <div class="track-line pending"></div>
+        <div class="track-step"><div class="track-node pending">4</div><span class="track-label pending">Biometrics</span></div>
+        <div class="track-line pending"></div>
+        <div class="track-step"><div class="track-node pending">5</div><span class="track-label pending">Decision</span></div>
+        <div class="track-line pending"></div>
+        <div class="track-step"><div class="track-node pending">6</div><span class="track-label pending">Visa Issued</span></div>
+      </div>
+      <div style="margin-top:18px;padding:12px 14px;background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.2);border-radius:2px;font-size:.78rem;color:#60a5fa;">
+        <i class="fa-solid fa-circle-info" style="margin-right:6px;"></i>
+        Your adviser is monitoring your application. Once documents are verified, your UKVI submission will be prepared within 2 business days.
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer style="margin-left:var(--sb);border-top:1px solid var(--border);padding:16px 26px;background:var(--dark);">
+  <p style="font-size:.68rem;color:#333;line-height:1.6;">Nexusyl Limited is a wholly owned subsidiary of Juvenile Asia Limited (Company No. 16966853). All infrastructure and data architectures are managed securely under corporate data frameworks.</p>
+</footer>
+
+<script>
+var SESSION_KEY='nx_portal_session';
+(function(){
+  var s=sessionStorage.getItem(SESSION_KEY);
+  if(!s){window.location.href='login.html?role=student';return;}
+  try{
+    var sess=JSON.parse(s);
+    if(sess.role!=='student'&&sess.role!=='admin'){window.location.href='login.html?role=student';return;}
+    document.getElementById('user-name').textContent=sess.name;
+    document.getElementById('user-avatar').textContent=sess.name.split(' ').map(function(w){return w[0]||'';}).slice(0,2).join('').toUpperCase();
+    document.getElementById('welcome-h').textContent='Welcome, '+sess.name.split(' ')[0]+'.';
+  }catch(e){window.location.href='login.html';}
+})();
+
+// Tracker steps
+var trackerData=[
+  {step:1,label:'University Offer Received',desc:'Conditional offer accepted from university.',date:'28 Apr 2026',status:'done'},
+  {step:2,label:'Academy Enrolment',desc:'Enrolled in Nexusyl Academy pre-arrival compliance modules.',date:'01 May 2026',status:'done'},
+  {step:3,label:'Document Submission',desc:'Upload offer letter, transcripts, and identity documents.',date:'Awaiting',status:'active'},
+  {step:4,label:'Adviser Review',desc:'Nexusyl adviser verifies all submitted documents.',date:'Pending',status:'pending'},
+  {step:5,label:'Visa Application Submitted',desc:'UKVI Student Visa application prepared and submitted.',date:'Pending',status:'pending'},
+  {step:6,label:'Biometric Appointment',desc:'Attend UK Visa Application Centre for biometrics.',date:'Pending',status:'pending'},
+  {step:7,label:'Visa Decision',desc:'UKVI issue decision on student visa application.',date:'Pending',status:'pending'},
+  {step:8,label:'Arrival in the UK',desc:'Travel to the UK and register with your university.',date:'Pending',status:'pending'},
+];
+var cols={done:'var(--acc)',active:'var(--red)',pending:'#555'};
+document.getElementById('tracker-steps').innerHTML = trackerData.map(function(t){
+  return '<div style="display:flex;gap:14px;padding:14px 18px;border-radius:3px;border:1px solid '+(t.status==='active'?'rgba(232,33,26,.25)':t.status==='done'?'rgba(34,197,94,.15)':'var(--border)')+';background:'+(t.status==='active'?'rgba(232,33,26,.06)':t.status==='done'?'rgba(34,197,94,.04)':'rgba(255,255,255,.01)')+';transition:border-color .2s;">'
+    +'<div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;">'
+      +'<div style="width:32px;height:32px;border-radius:50%;'+(t.status==='done'?'background:var(--acc);':t.status==='active'?'background:var(--red);box-shadow:0 0 0 3px rgba(232,33,26,.2);':'border:2px solid var(--border);background:transparent;')+'display:flex;align-items:center;justify-content:center;font-family:\'Syne\',sans-serif;font-weight:800;font-size:.75rem;color:'+(t.status==='done'?'#000;':t.status==='active'?'#fff;':'#555;')+'">'
+        +(t.status==='done'?'<i class="fa-solid fa-check" style="font-size:.65rem;"></i>':t.step)+'</div>'
+    +'</div>'
+    +'<div style="flex:1;min-width:0;">'
+      +'<div style="font-family:\'Syne\',sans-serif;font-size:.88rem;font-weight:700;color:'+(t.status==='pending'?'#555':'var(--white)')+';">'+t.step+'. '+t.label+'</div>'
+      +'<div style="font-size:.78rem;color:#666;margin-top:3px;line-height:1.5;">'+t.desc+'</div>'
+    +'</div>'
+    +'<div style="flex-shrink:0;text-align:right;">'
+      +'<div style="font-size:.7rem;color:#555;margin-bottom:4px;">'+t.date+'</div>'
+      +'<span style="display:inline-flex;align-items:center;gap:3px;font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:2px;background:'+(t.status==='done'?'rgba(34,197,94,.12)':t.status==='active'?'rgba(232,33,26,.12)':'rgba(255,255,255,.04)')+';color:'+(t.status==='done'?'#22c55e':t.status==='active'?'var(--red)':'#555')+';border:1px solid '+(t.status==='done'?'rgba(34,197,94,.25)':t.status==='active'?'rgba(232,33,26,.25)':'var(--border)')+';">'+(t.status==='done'?'Complete':t.status==='active'?'Action Required':'Pending')+'</span>'
+    +'</div>'
+    +'</div>';
+}).join('');
+
+// File handling
+function handleDrop(e,name){e.preventDefault();document.getElementById('dz-'+name).classList.remove('drag-over');var f=e.dataTransfer.files[0];if(f)processFile(f,name);}
+function handleFile(e,name){var f=e.target.files[0];if(f)processFile(f,name);}
+function processFile(f,name){
+  var ok=['application/pdf','image/jpeg','image/png'];
+  if(!ok.includes(f.type)){toast('Please upload PDF, JPG or PNG only.');return;}
+  if(f.size>10*1024*1024){toast('File must be under 10 MB.');return;}
+  var n=document.getElementById(name+'-name');if(n)n.textContent=f.name;
+  var s=document.getElementById(name+'-size');if(s)s.textContent=(f.size/1024).toFixed(0)+' KB';
+  var c=document.getElementById('confirm-'+name);if(c)c.style.display='flex';
+  document.getElementById('dz-'+name).classList.add('uploaded');
+}
+function clearFile(name){
+  document.getElementById('file-'+name).value='';
+  var c=document.getElementById('confirm-'+name);if(c)c.style.display='none';
+  document.getElementById('dz-'+name).classList.remove('uploaded');
+}
+function submitDoc(name){
+  var c=document.getElementById('confirm-'+name);
+  if(!c||c.style.display==='none'){toast('Please select a file first.');return;}
+  var btn=document.getElementById('btn-'+name);
+  btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Uploading…';
+  setTimeout(function(){btn.innerHTML='<i class="fa-solid fa-circle-check"></i> Submitted';btn.style.background='#16a34a';btn.style.color='#fff';toast('Document submitted successfully — your adviser will review within 24 hours.');},1600);
+}
+function show(sec,el){document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('active');});document.getElementById('sec-'+sec).classList.add('active');document.querySelectorAll('.sb-link').forEach(function(l){l.classList.remove('active');});if(el)el.classList.add('active');var t={home:'Overview',tracker:'Application Tracker',upload:'Document Upload',visa:'Visa Documents'};document.getElementById('tb-title').textContent=t[sec]||sec;}
+function toast(msg){var t=document.createElement('div');t.className='toast';t.innerHTML='<i class="fa-solid fa-circle-check" style="color:var(--acc);"></i> '+msg;document.getElementById('toast-c').appendChild(t);setTimeout(function(){t.remove();},3500);}
+show('home',document.querySelector('.sb-link.active'));
+</script>
+</body>
+</html>
