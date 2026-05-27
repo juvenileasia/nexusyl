@@ -120,6 +120,111 @@
 </head>
 <body>
 
+<!-- ══════════ ADMIN LOGIN SCREEN ══════════ -->
+<div id="login-screen" style="
+  position:fixed;inset:0;background:var(--black);z-index:9999;
+  display:flex;align-items:center;justify-content:center;padding:20px;">
+  <div style="width:100%;max-width:400px;">
+    <!-- Logo -->
+    <div style="text-align:center;margin-bottom:32px;">
+      <img src="/Nexusyl_Fab.png" alt="Nexusyl" style="height:48px;width:48px;object-fit:contain;display:inline-block;margin-bottom:14px;" onerror="this.style.display='none'" />
+      <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--white);">Nexusyl Academy</div>
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-top:4px;">Admin Panel</div>
+    </div>
+
+    <!-- Login card -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+      <div style="height:3px;background:var(--red);"></div>
+      <div style="padding:28px;">
+        <p style="font-size:.82rem;color:#666;margin-bottom:22px;line-height:1.6;">Enter your admin credentials to access the course management panel.</p>
+
+        <!-- Username -->
+        <div style="margin-bottom:14px;">
+          <label style="display:block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:6px;">Username</label>
+          <input id="login-user" type="text" autocomplete="username"
+            style="width:100%;background:var(--dark);border:1px solid var(--border);border-radius:2px;padding:11px 14px;font-family:'Manrope',sans-serif;font-size:.88rem;color:var(--white);outline:none;transition:border-color .2s,box-shadow .2s;"
+            placeholder="admin"
+            onfocus="this.style.borderColor='var(--red)';this.style.boxShadow='0 0 0 3px rgba(232,33,26,.1)'"
+            onblur="this.style.borderColor='var(--border)';this.style.boxShadow='none'"
+            onkeydown="if(event.key==='Enter')document.getElementById('login-pass').focus()" />
+        </div>
+
+        <!-- Password -->
+        <div style="margin-bottom:20px;">
+          <label style="display:block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:6px;">Password</label>
+          <div style="position:relative;">
+            <input id="login-pass" type="password" autocomplete="current-password"
+              style="width:100%;background:var(--dark);border:1px solid var(--border);border-radius:2px;padding:11px 42px 11px 14px;font-family:'Manrope',sans-serif;font-size:.88rem;color:var(--white);outline:none;transition:border-color .2s,box-shadow .2s;"
+              placeholder="Enter password"
+              onfocus="this.style.borderColor='var(--red)';this.style.boxShadow='0 0 0 3px rgba(232,33,26,.1)'"
+              onblur="this.style.borderColor='var(--border)';this.style.boxShadow='none'"
+              onkeydown="if(event.key==='Enter')attemptLogin()" />
+            <button onclick="togglePassVis()" tabindex="-1"
+              style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#555;font-size:.85rem;padding:4px;"
+              aria-label="Show/hide password">
+              <i id="eye-icon" class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Error message -->
+        <div id="login-error" style="display:none;background:rgba(232,33,26,.1);border:1px solid rgba(232,33,26,.25);border-radius:2px;padding:10px 14px;margin-bottom:16px;font-size:.8rem;color:var(--red);display:none;align-items:center;gap:8px;">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <span id="login-error-msg">Incorrect credentials. Please try again.</span>
+        </div>
+
+        <!-- Submit -->
+        <button onclick="attemptLogin()" id="login-btn"
+          style="width:100%;background:var(--red);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;padding:12px;border-radius:2px;border:none;cursor:pointer;transition:background .2s,transform .2s;box-shadow:0 4px 20px rgba(232,33,26,.3);display:flex;align-items:center;justify-content:center;gap:8px;">
+          <i class="fa-solid fa-lock-open"></i> Access Admin Panel
+        </button>
+
+        <!-- Hint -->
+        <p style="text-align:center;margin-top:14px;font-size:.72rem;color:#444;">
+          Default: <code style="background:rgba(255,255,255,.06);padding:2px 6px;border-radius:2px;color:#aaa;">admin</code> /
+          <code style="background:rgba(255,255,255,.06);padding:2px 6px;border-radius:2px;color:#aaa;">nexusyl2026</code>
+          &nbsp;·&nbsp;
+          <button onclick="showChangePass()" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:.72rem;text-decoration:underline;">Change password</button>
+        </p>
+      </div>
+    </div>
+
+    <!-- Change password panel (hidden by default) -->
+    <div id="change-pass-panel" style="display:none;margin-top:14px;background:var(--card);border:1px solid var(--border);border-radius:4px;padding:20px;">
+      <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.85rem;color:var(--white);margin-bottom:12px;"><i class="fa-solid fa-key" style="color:var(--red);margin-right:6px;"></i>Change Admin Password</div>
+      <div style="margin-bottom:10px;">
+        <label style="display:block;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:4px;">Current Password</label>
+        <input id="cp-current" type="password" class="inp" placeholder="Current password"
+          style="width:100%;background:var(--dark);border:1px solid var(--border);border-radius:2px;padding:9px 12px;font-family:'Manrope',sans-serif;font-size:.83rem;color:var(--white);outline:none;" />
+      </div>
+      <div style="margin-bottom:10px;">
+        <label style="display:block;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:4px;">New Password</label>
+        <input id="cp-new" type="password" class="inp" placeholder="New password (min 6 chars)"
+          style="width:100%;background:var(--dark);border:1px solid var(--border);border-radius:2px;padding:9px 12px;font-family:'Manrope',sans-serif;font-size:.83rem;color:var(--white);outline:none;" />
+      </div>
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:4px;">Confirm New Password</label>
+        <input id="cp-confirm" type="password" class="inp" placeholder="Confirm new password"
+          style="width:100%;background:var(--dark);border:1px solid var(--border);border-radius:2px;padding:9px 12px;font-family:'Manrope',sans-serif;font-size:.83rem;color:var(--white);outline:none;" />
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button onclick="changePassword()"
+          style="flex:1;background:var(--red);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;padding:9px;border-radius:2px;border:none;cursor:pointer;">
+          <i class="fa-solid fa-floppy-disk"></i> Save Password
+        </button>
+        <button onclick="document.getElementById('change-pass-panel').style.display='none'"
+          style="background:transparent;color:#777;border:1px solid var(--border);font-family:'Syne',sans-serif;font-weight:600;font-size:.75rem;padding:9px 14px;border-radius:2px;cursor:pointer;">
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:20px;font-size:.68rem;color:#333;">
+      Nexusyl Academy · Powered by Juvenile Asia Technical Infrastructure (Company No. 16966853)
+    </p>
+  </div>
+</div>
+
 <!-- TOAST CONTAINER -->
 <div id="toast-container"></div>
 
@@ -157,10 +262,15 @@
     <i class="fa-solid fa-chevron-right" style="font-size:.5rem;color:#444;"></i>
     <span id="tb-title" style="font-size:.82rem;font-weight:700;color:var(--white);">Dashboard</span>
   </div>
-  <div style="display:flex;align-items:center;gap:10px;">
-    <span style="font-size:.75rem;color:#555;">Admin</span>
-    <button onclick="resetAll()" class="btn btn-d" style="padding:6px 12px;font-size:.68rem;">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <span style="font-size:.72rem;color:#444;">
+      <i class="fa-solid fa-shield-halved" style="color:var(--red);margin-right:4px;"></i>Admin
+    </span>
+    <button onclick="resetAll()" class="btn btn-d" style="padding:5px 10px;font-size:.65rem;">
       <i class="fa-solid fa-rotate-left"></i> Reset Demo
+    </button>
+    <button onclick="adminLogout()" class="btn btn-s" style="padding:5px 10px;font-size:.65rem;">
+      <i class="fa-solid fa-right-from-bracket"></i> Logout
     </button>
   </div>
 </header>
@@ -923,9 +1033,140 @@ function resetAll() {
   load(); renderDashboard(); toast('Demo data restored');
 }
 
+// ════════════════════════════════════════════════════════════════
+// ADMIN AUTHENTICATION
+// ════════════════════════════════════════════════════════════════
+var AUTH_KEY  = 'nx_admin_auth';
+var CREDS_KEY = 'nx_admin_creds';
+
+function getStoredCreds() {
+  try {
+    var c = localStorage.getItem(CREDS_KEY);
+    return c ? JSON.parse(c) : { username: 'admin', password: 'nexusyl2026' };
+  } catch(e) {
+    return { username: 'admin', password: 'nexusyl2026' };
+  }
+}
+
+function isLoggedIn() {
+  // Session stored in sessionStorage (clears when browser tab closes)
+  return sessionStorage.getItem(AUTH_KEY) === '1';
+}
+
+function attemptLogin() {
+  var user = document.getElementById('login-user').value.trim();
+  var pass = document.getElementById('login-pass').value;
+  var creds = getStoredCreds();
+  var errDiv = document.getElementById('login-error');
+  var btn = document.getElementById('login-btn');
+
+  if (!user || !pass) {
+    showLoginError('Please enter both username and password.');
+    return;
+  }
+
+    // Simple brute-force throttle via sessionStorage counter
+  var attempts = parseInt(sessionStorage.getItem('nx_login_attempts') || '0');
+  if (attempts >= 5) {
+    showLoginError('Too many failed attempts. Please close and reopen this tab to try again.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Checking…';
+
+  setTimeout(function() {
+    if (user === creds.username && pass === creds.password) {
+      sessionStorage.setItem(AUTH_KEY, '1');
+      sessionStorage.removeItem('nx_login_attempts');
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('sb').style.display = 'flex';
+      document.getElementById('tb').style.display = 'flex';
+      document.getElementById('main').style.display = 'block';
+      load();
+      show('dashboard', document.querySelector('.sb-link.active'));
+    } else {
+      var newAttempts = attempts + 1;
+      sessionStorage.setItem('nx_login_attempts', newAttempts);
+      var remaining = 5 - newAttempts;
+      showLoginError('Incorrect credentials.' + (remaining > 0 ? ' ' + remaining + ' attempt' + (remaining===1?'':'s') + ' remaining.' : ' Account locked — close tab to reset.'));
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-lock-open"></i> Access Admin Panel';
+      // Shake animation
+      var card = btn.closest('div[style*="background:var(--card)"]') || btn.parentElement;
+      btn.style.animation = 'shake .4s ease';
+      setTimeout(function(){ btn.style.animation=''; }, 400);
+    }
+  }, 600); // Deliberate 600ms delay — discourages brute force
+}
+
+function showLoginError(msg) {
+  var el = document.getElementById('login-error');
+  document.getElementById('login-error-msg').textContent = msg;
+  el.style.display = 'flex';
+}
+
+function togglePassVis() {
+  var inp = document.getElementById('login-pass');
+  var icon = document.getElementById('eye-icon');
+  if (inp.type === 'password') {
+    inp.type = 'text';
+    icon.className = 'fa-solid fa-eye-slash';
+  } else {
+    inp.type = 'password';
+    icon.className = 'fa-solid fa-eye';
+  }
+}
+
+function showChangePass() {
+  document.getElementById('change-pass-panel').style.display = 'block';
+}
+
+function changePassword() {
+  var current  = document.getElementById('cp-current').value;
+  var newPass  = document.getElementById('cp-new').value;
+  var confirm  = document.getElementById('cp-confirm').value;
+  var creds    = getStoredCreds();
+
+  if (current !== creds.password) { alert('Current password is incorrect.'); return; }
+  if (newPass.length < 6)          { alert('New password must be at least 6 characters.'); return; }
+  if (newPass !== confirm)          { alert('New passwords do not match.'); return; }
+
+  localStorage.setItem(CREDS_KEY, JSON.stringify({ username: creds.username, password: newPass }));
+  document.getElementById('change-pass-panel').style.display = 'none';
+  document.getElementById('cp-current').value = '';
+  document.getElementById('cp-new').value = '';
+  document.getElementById('cp-confirm').value = '';
+  alert('✓ Password updated successfully. Use your new password next time you log in.');
+}
+
+function adminLogout() {
+  sessionStorage.removeItem(AUTH_KEY);
+  location.reload();
+}
+
+// Shake keyframe
+(function(){
+  var s = document.createElement('style');
+  s.textContent = '@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}';
+  document.head.appendChild(s);
+})();
+
 // ── INIT ──────────────────────────────────────────────────────
-load();
-show('dashboard', document.querySelector('.sb-link.active'));
+// Show login screen if not authenticated
+if (isLoggedIn()) {
+  document.getElementById('login-screen').style.display = 'none';
+  load();
+  show('dashboard', document.querySelector('.sb-link.active'));
+} else {
+  // Hide the main UI behind the login screen
+  var _sb   = document.getElementById('sb');
+  var _tb   = document.getElementById('tb');
+  var _main = document.getElementById('main');
+  if (_sb)   _sb.style.display   = 'none';
+  if (_tb)   _tb.style.display   = 'none';
+  if (_main) _main.style.display = 'none';
+}
 </script>
 </body>
 </html>
