@@ -1,0 +1,10 @@
+node_modules/
+.DS_Store
+*.log
+
+# Portal env (never commit secrets)
+portal/.env.local
+portal/.env
+
+# Build output
+portal/dist/

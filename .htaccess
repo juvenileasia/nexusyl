@@ -12,11 +12,8 @@ RewriteEngine On
 RewriteRule ^favicon\.ico$ /Nexusyl_Fab.png [L,R=301]
 
 # ── Portal routes ────────────────────────────────────────────────────────────
-RewriteRule ^login/?$               login.html [L]
-RewriteRule ^dashboard-admin/?$     dashboard-admin.html [L]
-RewriteRule ^dashboard-employee/?$  dashboard-employee.html [L]
-RewriteRule ^dashboard-student/?$   dashboard-student.html [L]
-RewriteRule ^dashboard-supplier/?$  dashboard-supplier.html [L]
+# Portal is a React SPA — served by nginx (see deploy/nginx.conf.example).
+# Marketing pages link to /login; production nginx routes that to portal/dist.
 
 # ── Explicit slug → filename mapping (where slug ≠ filename) ────────────────
 RewriteRule ^food-tech/?$ foodtech.html [L]

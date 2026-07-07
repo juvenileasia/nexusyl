@@ -1,0 +1,12 @@
+{
+  "name": "nexusyl",
+  "private": true,
+  "scripts": {
+    "dev:site": "python scripts/dev-server.py",
+    "dev:portal": "npm run dev --prefix portal",
+    "dev": "npx concurrently -n site,portal -c blue,magenta \"npm run dev:site\" \"npm run dev:portal\"",
+    "build:portal": "npm run build --prefix portal",
+    "preview:portal": "npm run preview --prefix portal",
+    "deploy:build": "npm run build:portal"
+  }
+}

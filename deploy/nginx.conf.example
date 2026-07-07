@@ -1,0 +1,59 @@
+# Example nginx config for VPS deployment
+# Marketing HTML at site root, React portal SPA under the same domain.
+#
+# Deploy steps: see scripts/deploy.sh
+
+# Redirect HTTP → HTTPS (uncomment after Certbot)
+# server {
+#     listen 80;
+#     server_name nexusyl.juvenileasia.com;
+#     return 301 https://$host$request_uri;
+# }
+
+server {
+    listen 80;
+    server_name nexusyl.juvenileasia.com;
+    root /var/www/nexusyl;
+    index index.html;
+
+    # ── React portal SPA ─────────────────────────────────────────────────────
+    # Build output: /var/www/nexusyl/portal/dist (see scripts/deploy.sh)
+    location ~ ^/(login|dashboard-admin|dashboard-employee|dashboard-student|dashboard-supplier)(/.*)?$ {
+        root /var/www/nexusyl/portal/dist;
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Vite hashed bundles + portal public assets
+    location /assets/ {
+        root /var/www/nexusyl/portal/dist;
+        expires 7d;
+        add_header Cache-Control "public, immutable";
+    }
+
+    # ── Marketing pages — clean URLs ─────────────────────────────────────────
+    location = /food-tech {
+        try_files /foodtech.html =404;
+    }
+
+    location / {
+        try_files $uri $uri.html $uri/ =404;
+    }
+
+    # ── Security headers ───────────────────────────────────────────────────────
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+}
+
+# HTTPS server block (generate with: certbot --nginx -d nexusyl.juvenileasia.com)
+# server {
+#     listen 443 ssl http2;
+#     server_name nexusyl.juvenileasia.com;
+#     root /var/www/nexusyl;
+#     index index.html;
+#
+#     ssl_certificate     /etc/letsencrypt/live/nexusyl.juvenileasia.com/fullchain.pem;
+#     ssl_certificate_key /etc/letsencrypt/live/nexusyl.juvenileasia.com/privkey.pem;
+#
+#     # (duplicate location blocks from the HTTP server above)
+# }
