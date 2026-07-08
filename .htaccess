@@ -11,9 +11,11 @@ RewriteEngine On
 # ── Serve Nexusyl_Fab.png as favicon.ico ─────────────────────────────────────
 RewriteRule ^favicon\.ico$ /Nexusyl_Fab.png [L,R=301]
 
-# ── Portal routes ────────────────────────────────────────────────────────────
-# Portal is a React SPA — served by nginx (see deploy/nginx.conf.example).
-# Marketing pages link to /login; production nginx routes that to portal/dist.
+# ── Portal SPA assets (Vite builds /assets/* → portal/dist/assets/*) ─────────
+RewriteRule ^assets/(.*)$ portal/dist/assets/$1 [L]
+
+# ── Portal SPA routes → React index.html ─────────────────────────────────────
+RewriteRule ^(login|dashboard-admin|dashboard-employee|dashboard-student|dashboard-supplier)(/.*)?$ portal/dist/index.html [L]
 
 # ── Explicit slug → filename mapping (where slug ≠ filename) ────────────────
 RewriteRule ^food-tech/?$ foodtech.html [L]

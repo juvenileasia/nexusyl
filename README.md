@@ -253,35 +253,46 @@ Portal-only scripts (from `portal/`):
 
 ---
 
-## Production deployment
+## Production deployment (ScalaHosting SPanel)
 
-### Build
+**Full step-by-step guide:** [`deploy/SCALAHOSTING.md`](deploy/SCALAHOSTING.md)
 
-Set production env in `portal/.env.local` before building:
+| Item | Value |
+|------|--------|
+| Panel | **SPanel** (not cPanel) |
+| Domain | `nexusyl.juvenileasia.com` |
+| Document root | `/home/juvenileasia/nexusyl.juvenileasia.com` |
+
+### Build (on your PC)
 
 ```env
+VITE_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key
 VITE_MARKETING_URL=https://nexusyl.juvenileasia.com
 ```
 
 ```bash
-npm run build:portal
-# or
-./scripts/deploy.sh
+cd portal
+npm run build
+# → portal/dist/
 ```
 
-### Deploy to VPS
+### Upload layout
 
-1. Copy marketing HTML to `/var/www/nexusyl/`
-2. Copy `portal/dist/` to `/var/www/nexusyl/portal/dist/`
-3. Configure nginx using `deploy/nginx.conf.example`
-4. Enable SSL: `certbot --nginx -d nexusyl.juvenileasia.com`
-
-Optional rsync helper:
-
-```bash
-./scripts/deploy.sh --sync user@your-vps
+```
+/home/juvenileasia/nexusyl.juvenileasia.com/
+├── index.html, …           # marketing pages
+├── .htaccess               # routes /login + /dashboard-* → portal
+└── portal/dist/            # React build (index.html + assets/)
 ```
 
+### SPanel steps (short)
+
+1. SPanel → Subdomains → confirm document root  
+2. Upload marketing HTML + `.htaccess` via File Manager or SFTP  
+3. Upload `portal/dist/` → `…/portal/dist/`  
+4. Issue SSL for the subdomain in SPanel  
+5. Test `/`, `/login`, `/dashboard-admin`
 ---
 
 ## Documentation
@@ -290,7 +301,8 @@ Optional rsync helper:
 |----------|---------|
 | [`docs/NEXUSYL-PRD.md`](docs/NEXUSYL-PRD.md) | Product requirements, feature status, migration phases |
 | [`Nexusyl_Design_Guideline_and_Sitemap.md`](Nexusyl_Design_Guideline_and_Sitemap.md) | Brand tokens, components, full sitemap |
-| [`deploy/nginx.conf.example`](deploy/nginx.conf.example) | Production web server config |
+| [`deploy/SCALAHOSTING.md`](deploy/SCALAHOSTING.md) | ScalaHosting SPanel deploy (document root + SSL) |
+| [`deploy/nginx.conf.example`](deploy/nginx.conf.example) | nginx site config (unmanaged VPS) |
 
 ---
 

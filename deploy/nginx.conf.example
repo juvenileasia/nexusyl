@@ -1,7 +1,11 @@
-# Example nginx config for VPS deployment
+# Example nginx config for unmanaged VPS (Apache/cPanel users: see SCALAHOSTING.md + root .htaccess)
 # Marketing HTML at site root, React portal SPA under the same domain.
 #
-# Deploy steps: see scripts/deploy.sh
+# Layout:
+#   /var/www/nexusyl/                 marketing HTML
+#   /var/www/nexusyl/portal/dist/     Vite build (index.html + assets/)
+#
+# Deploy steps: see deploy/SCALAHOSTING.md and scripts/deploy.sh
 
 # Redirect HTTP → HTTPS (uncomment after Certbot)
 # server {
@@ -16,21 +20,21 @@ server {
     root /var/www/nexusyl;
     index index.html;
 
-    # ── React portal SPA ─────────────────────────────────────────────────────
-    # Build output: /var/www/nexusyl/portal/dist (see scripts/deploy.sh)
-    location ~ ^/(login|dashboard-admin|dashboard-employee|dashboard-student|dashboard-supplier)(/.*)?$ {
-        root /var/www/nexusyl/portal/dist;
-        try_files $uri $uri/ /index.html;
-    }
-
-    # Vite hashed bundles + portal public assets
+    # Vite hashed bundles live under portal/dist/assets but the SPA
+    # requests them from /assets/...
     location /assets/ {
-        root /var/www/nexusyl/portal/dist;
+        alias /var/www/nexusyl/portal/dist/assets/;
         expires 7d;
         add_header Cache-Control "public, immutable";
+        try_files $uri =404;
     }
 
-    # ── Marketing pages — clean URLs ─────────────────────────────────────────
+    # React portal SPA — all role dashboards + login
+    location ~ ^/(login|dashboard-admin|dashboard-employee|dashboard-student|dashboard-supplier)(/.*)?$ {
+        try_files /portal/dist/index.html =404;
+    }
+
+    # Marketing pages — clean URLs
     location = /food-tech {
         try_files /foodtech.html =404;
     }
@@ -39,21 +43,10 @@ server {
         try_files $uri $uri.html $uri/ =404;
     }
 
-    # ── Security headers ───────────────────────────────────────────────────────
     add_header X-Frame-Options "SAMEORIGIN" always;
     add_header X-Content-Type-Options "nosniff" always;
     add_header Referrer-Policy "strict-origin-when-cross-origin" always;
 }
 
-# HTTPS server block (generate with: certbot --nginx -d nexusyl.juvenileasia.com)
-# server {
-#     listen 443 ssl http2;
-#     server_name nexusyl.juvenileasia.com;
-#     root /var/www/nexusyl;
-#     index index.html;
-#
-#     ssl_certificate     /etc/letsencrypt/live/nexusyl.juvenileasia.com/fullchain.pem;
-#     ssl_certificate_key /etc/letsencrypt/live/nexusyl.juvenileasia.com/privkey.pem;
-#
-#     # (duplicate location blocks from the HTTP server above)
-# }
+# HTTPS: sudo certbot --nginx -d nexusyl.juvenileasia.com
+# Certbot will generate the 443 server block for you.
