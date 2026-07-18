@@ -1,0 +1,61 @@
+@font-face {
+  font-family: "gol-flights";
+  src: url("gol-flights.eot");
+  src: url("gol-flights.eot#iefix") format("embedded-opentype"),
+    url("gol-flights.ttf") format("truetype"),
+    url("gol-flights.woff") format("woff"),
+    url("gol-flights.svg#gol-flights") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+#aaz-flight-search .icon-return,
+#aaz-flight-search .icon-remove,
+#aaz-flight-search .icon-oneway,
+#aaz-flight-search .icon-multi,
+#aaz-flight-search .icon-arrowDown,
+#aaz-flight-search .icon-add,
+#aaz-flight-search .icon-arrowLeft,
+#aaz-flight-search .icon-arrowRight,
+#aaz-flight-search .icon-share,
+#aaz-flight-search .icon-hotel,
+#aaz-flight-search .icon-gol-flights {
+  font-family: "gol-flights" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#aaz-flight-search .icon-return:before {
+  content: "R";
+}
+#aaz-flight-search .icon-remove:before {
+  content: "X";
+}
+#aaz-flight-search .icon-oneway:before {
+  content: "O";
+}
+#aaz-flight-search .icon-multi:before {
+  content: "M";
+}
+#aaz-flight-search .icon-arrowDown:before {
+  content: "V";
+}
+#aaz-flight-search .icon-add:before {
+  content: "+";
+}
+#aaz-flight-search .icon-arrowLeft:before {
+  content: "<";
+}
+#aaz-flight-search .icon-arrowRight:before {
+  content: ">";
+}
+#aaz-flight-search .icon-share:before {
+  content: "S";
+}
+#aaz-flight-search .icon-hotel:before {
+  content: "h";
+}
