@@ -188,16 +188,23 @@ footer.
   reachable with the credentials available in this environment (returns
   404 — likely private or the name/owner differs). This landing page and
   integration were built directly from the provided `AAZ_html-package.zip`,
-  the live `aaztravels.com` site content (for the FAQ/copy), and the AAZ
-  Travel brand assets in the shared Drive folder. If that repository is the
-  intended home for this code, it can be copied in directly — the folder is
-  self-contained and has no build step.
+  the (then-current) `aaztravels.com` site content (for the FAQ/copy), and
+  the AAZ Travel brand assets in the shared Drive folder. If that repository
+  is the intended home for this code, it can be copied in directly — the
+  folder is self-contained and has no build step.
 - `config.en.js` has `defaultCountry = "CZ"` and a demo default airport
   (`Praha / Vídeň`) baked in from the GOL admin console template — adjust
   these in the GOL IBE admin console if you want different defaults for AAZ
   Travel's audience.
 - The brand name is rendered as **"AAZ Travel"** (singular) everywhere on the
-  page, matching the logo artwork and the explicit naming request — except
-  for literal references to the existing live domain `aaztravels.com` (with
-  the "s"), which were left unchanged since that's an external fact, not
-  branding text.
+  page, matching the logo artwork and the explicit naming request.
+- The canonical site URL used across the page (canonical link, Open Graph,
+  schema.org, footer/contact links) is **`https://www.aaztravel.com`**. The
+  old `aaztravels.com` (with the "s") domain — the site this page's original
+  FAQ copy was sourced from — is no longer referenced anywhere; if AAZ Travel
+  is migrating domains, make sure `www.aaztravel.com` actually resolves
+  before this page goes live, or update these references again if the final
+  domain differs.
+- Office address: **241a, 1st Floor, Whitechapel Road, London, E1 1BD**
+  (shown in the contact section, the footer, and the `schema.org` structured
+  data, with a Google Maps link).
