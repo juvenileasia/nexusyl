@@ -1,6 +1,6 @@
-# AAZ Travels — Landing Page + Flight Search Integration
+# AAZ Travel — Landing Page + Flight Search Integration
 
-This folder contains a self-contained landing page for **AAZ Travels**, with the
+This folder contains a self-contained landing page for **AAZ Travel**, with the
 GOL IBE flight-search widget (from `AAZ_html-package.zip`) integrated directly
 into the hero section.
 
@@ -14,12 +14,14 @@ aaz-travels/
 ├── __ENV.js                    ← GOL IBE widget env flag (unmodified, vendor file)
 ├── hotels/HTMLPackageHotels.js ← GOL IBE hotels module (unmodified, vendor file)
 ├── static/                     ← GOL IBE widget assets (icons, styles, fonts)
-│   ├── styles.css              ← ⚠️ SCOPED — see "CSS scoping" below
-│   ├── font.css                ← ⚠️ SCOPED — see "CSS scoping" below
+│   ├── styles.css              ← ⚠️ PARTIALLY SCOPED — see "CSS scoping" below
+│   ├── font.css                ← ⚠️ PARTIALLY SCOPED — see "CSS scoping" below
 │   └── images/…, css-element-queries-1.2.1/…
-├── assets/logo/                ← official AAZ Travels logo exports (from the
-│                                   provided Google Drive brand folder), resized
+├── assets/logo/                ← official AAZ Travel logo exports (from the
+│                                   provided Google Drive brand folder), cropped
 │                                   and optimised for web use
+├── assets/badges/iata-logo.png ← IATA logo (public-domain mark, via Wikimedia
+│                                   Commons) used next to the IATA accreditation code
 └── SEARCH-MODULE-README.md     ← original vendor integration guide (verbatim)
 ```
 
@@ -35,53 +37,96 @@ GOL_Global.config.requestorClientId = "aaztrip.golibe.com"
 `HTMLPackageControl.js` builds the redirect as
 `` `${config.feUrl}/results?${query}` `` on submit, so **every search performed
 on this page redirects the visitor to `https://aaztrip.golibe.com/results`**
-with the selected origin/destination/dates/passengers as query parameters —
-exactly as requested. No code changes were needed for this; it was already
-configured correctly in the package for the `aaztrip.golibe.com` booking
-engine. This was verified by reading the vendor's minified controller source
-directly (see the `redirectUrl` construction in `HTMLPackageControl.js`).
+with the selected origin/destination/dates/passengers as query parameters.
+No code changes were needed for this part.
 
 ## CSS scoping (important if you regenerate the package)
 
 The vendor's `static/styles.css` is a **full booking-engine stylesheet**
-(12,000+ lines) that includes some very generic, page-global class names,
-e.g.:
+(12,000+ lines). Two things about it matter for embedding it on this page:
 
-```css
-.hidden { display: none !important; }
-.flex   { display: flex; }
-.container { max-width: 1010px; margin: 0 5px; }
+1. It defines a handful of very generic, page-global selectors (`.hidden`,
+   `.flex`, `.container`, `.link`, `.pointer`, `html`, `body`, etc.) that
+   collide with common utility class names (e.g. Tailwind's `.hidden`/`.flex`)
+   and silently break layout on the rest of the page (nav, sections) if left
+   unscoped.
+2. The widget's own JS (`HTMLPackageControl.js`) appends its date-picker
+   calendar, and a couple of dropdowns, **directly to `<body>`** — outside
+   any wrapper `<div>` — via `document.getElementsByTagName("body")[0]`. If
+   you scope the *entire* stylesheet under the widget's wrapper `#aaz-flight-search`,
+   those body-appended elements lose all their styling (this is exactly what
+   caused the broken/unstyled calendar popup seen during development).
+
+The fix used here is a **targeted scope**: only the exact, confirmed-risky
+selectors below are prefixed with `#aaz-flight-search`; everything else in
+`static/styles.css` (all the `.header-search-form-*`, `.DayPicker-*`,
+`.date-picker-wrapper`, dropdown, etc. rules) is left global/unscoped on
+purpose, so it still applies correctly wherever the widget's JS appends
+elements — including directly on `<body>`.
+
+Scoped selectors (confirmed via a script that cross-referenced every class
+used elsewhere on this page against the vendor stylesheet):
+
+```
+html, body,
+.bold, .button, .clearfix, .container, .flex, .flex-wrap, .header,
+.hidden, .icon, .items-center, .link, .noselect, .only-desktop,
+.only-desktop-span, .only-mobile, .pointer, .relative, .text-right, .tooltip
 ```
 
-Loaded unmodified on a normal marketing page, these collide with common
-utility class names (Tailwind's `.hidden`, `.flex`, `.container`, etc.) and
-silently break layout **everywhere on the page**, not just inside the widget.
-
-To fix this, `static/styles.css` and `static/font.css` here have been
-**scoped**: every selector was mechanically prefixed with `#aaz-flight-search`
-(the id of the wrapper div around the widget in `index.html`) using PostCSS +
-`postcss-prefix-selector`. The widget's own markup/JS is unaffected (all of it
-lives inside that wrapper), but the rules can no longer leak onto the rest of
-the page.
-
 **If you ever regenerate `static/styles.css` / `static/font.css` from the GOL
-admin console**, re-run the same scoping step before deploying, e.g.:
+admin console**, re-run the same targeted scoping step before deploying:
 
 ```bash
-npm install postcss postcss-prefix-selector
+npm install postcss
 node -e '
   const fs = require("fs");
   const postcss = require("postcss");
-  const prefix = require("postcss-prefix-selector");
-  const css = fs.readFileSync("static/styles.css", "utf8");
-  const out = postcss([prefix({ prefix: "#aaz-flight-search" })]).process(css).css;
-  fs.writeFileSync("static/styles.css", out);
+  const PREFIX = "#aaz-flight-search";
+  const RISKY = new Set(["html","body",".bold",".button",".clearfix",
+    ".container",".flex",".flex-wrap",".header",".hidden",".icon",
+    ".items-center",".link",".noselect",".only-desktop",
+    ".only-desktop-span",".only-mobile",".pointer",".relative",
+    ".text-right",".tooltip"]);
+  for (const file of ["static/styles.css", "static/font.css"]) {
+    const css = fs.readFileSync(file, "utf8");
+    const root = postcss.parse(css);
+    root.walkRules(rule => {
+      rule.selector = rule.selector.split(",").map(s => {
+        s = s.trim();
+        return RISKY.has(s) ? `${PREFIX} ${s}` : s;
+      }).join(", ");
+    });
+    fs.writeFileSync(file, root.toString());
+  }
 '
 ```
+
+Then re-check for *new* collisions if you add more custom classes to
+`index.html` outside the widget — cross-reference your new class names
+against `static/styles.css` the same way (grep for `^\.yourclass\s*{` /
+`^\.yourclass,`) and add any hits to the `RISKY` set above.
 
 Do **not** scope `HTMLPackageControl.js`, `config.en.js`, `__ENV.js`, or
 `hotels/HTMLPackageHotels.js` — those are JS and are left as shipped by the
 vendor/admin console.
+
+## Contact form → email
+
+The contact form (`#contact-form`) submits via [FormSubmit](https://formsubmit.co)
+directly to **info@aaztravel.com** — no backend/server needed:
+
+- Form `action="https://formsubmit.co/ajax/info@aaztravel.com"`, submitted
+  with `fetch()` so the page shows the existing "Message Sent!" success state
+  instead of redirecting to FormSubmit's own confirmation page.
+- **One-time setup**: the *first* submission after this goes live will make
+  FormSubmit send a confirmation email to `info@aaztravel.com` — someone with
+  access to that inbox needs to click **"Confirm"** in that email once. Until
+  that's done, submissions won't be delivered.
+- If AAZ Travel would rather use a different provider (a WordPress form
+  plugin, HubSpot, etc.), just change the `action` attribute on `#contact-form`
+  and the `fetch()` call in the JS at the bottom of `index.html` — the rest of
+  the form (fields, validation, success state) doesn't need to change.
 
 ## Deploying to flytrust.flyjuvenile.com / aaztravels.com (WordPress)
 
@@ -100,11 +145,17 @@ vendor/admin console.
      (e.g. via the theme root or a mu-plugin that registers them).
 3. No further configuration is required for the redirect target — it's
    already `https://aaztrip.golibe.com/results` (see above).
+4. Remember to confirm the FormSubmit email (see "Contact form → email" above)
+   once the page is live at its real URL.
 
 ## Brand assets
 
-`assets/logo/` contains the official logo exports from the AAZ Travels brand
-folder (Google Drive), resized for web:
+`assets/logo/` contains the official logo exports from the AAZ Travel brand
+folder (Google Drive), **cropped to remove the excess transparent padding
+baked into the original exports** (the originals were ~23% content height on
+a much taller canvas, which made the logo render illegibly small when
+constrained to a fixed height in CSS — this was the "logo" issue reported and
+fixed) and resized for web:
 
 - `aaz-travel-logo-red.png` / `aaz-travel-logo-white.png` — full logo (icon + wordmark)
 - `aaz-travel-wordmark-red.png` / `aaz-travel-wordmark-white.png` — wordmark only
@@ -112,7 +163,23 @@ folder (Google Drive), resized for web:
 - `aaz-travel-favicon-32.png`, `aaz-travel-favicon-512.png`, `aaz-travel-apple-touch-icon.png`
 
 Original high-resolution PNG/JPG/EPS masters are in the shared Drive folder;
-only the web-optimised sizes needed for this page are included here.
+only the web-optimised, cropped sizes needed for this page are included here.
+
+`assets/badges/iata-logo.png` is the public-domain IATA logo (via Wikimedia
+Commons — "consists only of simple geometric shapes or text, does not meet
+the threshold of originality needed for copyright protection"), shown next to
+**IATA Code: 9120590** in the "Why Book with AAZ Travel" section and the
+footer.
+
+## Contact details used on this page
+
+- Phone: **020 8154 9513** (`tel:02081549513`)
+- WhatsApp: **+44 7565 699990** (`https://wa.me/447565699990`) — shown in the
+  contact section, the footer, and as a floating WhatsApp button
+  (bottom-left, next to the "back to top" button).
+- Email: **info@aaztravel.com**
+- Facebook: https://www.facebook.com/people/Aaz-Travel/61581291682116/
+- Instagram: https://www.instagram.com/aaz.travels/
 
 ## Notes / open items
 
@@ -122,14 +189,15 @@ only the web-optimised sizes needed for this page are included here.
   404 — likely private or the name/owner differs). This landing page and
   integration were built directly from the provided `AAZ_html-package.zip`,
   the live `aaztravels.com` site content (for the FAQ/copy), and the AAZ
-  Travels brand assets in the shared Drive folder. If that repository is the
+  Travel brand assets in the shared Drive folder. If that repository is the
   intended home for this code, it can be copied in directly — the folder is
   self-contained and has no build step.
-- The contact form on this page is front-end only (`index.html` JS shows a
-  success state on submit). Wire `#contact-form`'s submit handler to a real
-  endpoint (WordPress admin-ajax action, Contact Form 7, HubSpot form, etc.)
-  before going live.
 - `config.en.js` has `defaultCountry = "CZ"` and a demo default airport
   (`Praha / Vídeň`) baked in from the GOL admin console template — adjust
   these in the GOL IBE admin console if you want different defaults for AAZ
-  Travels' audience.
+  Travel's audience.
+- The brand name is rendered as **"AAZ Travel"** (singular) everywhere on the
+  page, matching the logo artwork and the explicit naming request — except
+  for literal references to the existing live domain `aaztravels.com` (with
+  the "s"), which were left unchanged since that's an external fact, not
+  branding text.
