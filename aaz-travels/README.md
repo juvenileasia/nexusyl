@@ -213,7 +213,7 @@ footer.
 ## Contact details used on this page
 
 - Phone: **020 8154 9513** (`tel:02081549513`)
-- WhatsApp: **+44 7565 699990** (`https://wa.me/447565699990`) — shown in the
+- WhatsApp: **020 8154 9513** (`https://wa.me/442081549513`) — shown in the
   contact section, the footer, and as a floating WhatsApp button
   (bottom-left, next to the "back to top" button).
 - Email: **info@aaztravel.com**
