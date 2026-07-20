@@ -234,6 +234,26 @@
     }
 
     /* ── SEARCH WIDGET CARD ── */
+    #search { position: relative; }
+    #search::before {
+      content: '';
+      position: absolute;
+      inset: -22px;
+      z-index: 0;
+      background: radial-gradient(circle at 50% 35%, rgba(180,23,23,0.35), transparent 70%);
+      filter: blur(22px);
+      opacity: 0.35;
+      pointer-events: none;
+      animation: search-glow-pulse 4.5s ease-in-out infinite;
+    }
+    @keyframes search-glow-pulse {
+      0%, 100% { opacity: 0.28; transform: scale(1); }
+      50%      { opacity: 0.5;  transform: scale(1.05); }
+    }
+    @keyframes search-card-entrance {
+      from { transform: scale(0.97); }
+      to   { transform: scale(1); }
+    }
     .search-widget-card {
       background: #ffffff;
       border-radius: 16px;
@@ -241,9 +261,99 @@
       padding: 22px 18px 26px;
       position: relative;
       z-index: 5;
+      animation: search-card-entrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .search-widget-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 40px 90px rgba(0,0,0,0.55);
     }
     @media (min-width: 640px) {
       .search-widget-card { padding: 28px 26px 30px; }
+    }
+
+    /* ── SEARCH WIDGET MICRO-INTERACTIONS ──
+       Purely decorative additions on top of the vendor GOL IBE widget:
+       only transform / box-shadow / filter / background-color are ever
+       animated here (never layout-affecting properties like width, height,
+       margin, padding, or display), and every selector is scoped under
+       #aaz-flight-search so nothing leaks onto the rest of the page and
+       none of the widget's own functionality/JS is touched. */
+    #aaz-flight-search .header-search-form-tab {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    #aaz-flight-search .header-search-form-tab:hover {
+      transform: translateY(-2px);
+    }
+    #aaz-flight-search .header-search-form-tab-ico,
+    #aaz-flight-search .header-search-form-tab-ico-return {
+      transition: transform 0.3s ease;
+    }
+    #aaz-flight-search .header-search-form-tab:hover .header-search-form-tab-ico,
+    #aaz-flight-search .header-search-form-tab:hover .header-search-form-tab-ico-return {
+      transform: translateX(3px);
+    }
+    @keyframes tab-activate {
+      0%   { transform: scale(0.94); }
+      60%  { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+    #aaz-flight-search .header-search-form-tab--active {
+      animation: tab-activate 0.35s ease;
+    }
+
+    #aaz-flight-search .header-search-form-inner-field {
+      transition: background-color 0.25s ease, box-shadow 0.25s ease;
+      border-radius: 8px;
+    }
+    #aaz-flight-search .header-search-form-inner-field:hover {
+      background-color: rgba(180,23,23,0.045);
+    }
+    #aaz-flight-search .header-search-form-inner-field:focus-within {
+      box-shadow: 0 0 0 3px rgba(180,23,23,0.15);
+    }
+
+    #aaz-flight-search .counter-sign,
+    #aaz-flight-search .header-search-form-additional-bottom-tolerance-minus,
+    #aaz-flight-search .header-search-form-additional-bottom-tolerance-plus {
+      transition: transform 0.15s ease;
+    }
+    #aaz-flight-search .counter-sign:hover,
+    #aaz-flight-search .header-search-form-additional-bottom-tolerance-minus:hover,
+    #aaz-flight-search .header-search-form-additional-bottom-tolerance-plus:hover {
+      transform: scale(1.2);
+    }
+    #aaz-flight-search .counter-sign:active,
+    #aaz-flight-search .header-search-form-additional-bottom-tolerance-minus:active,
+    #aaz-flight-search .header-search-form-additional-bottom-tolerance-plus:active {
+      transform: scale(0.88);
+    }
+
+    #aaz-flight-search .button-main-search {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    }
+    #aaz-flight-search .button-main-search::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -60%;
+      width: 35%; height: 100%;
+      background: linear-gradient(115deg, transparent, rgba(255,255,255,0.55), transparent);
+      transform: skewX(-18deg);
+      transition: left 0.65s ease;
+      pointer-events: none;
+    }
+    #aaz-flight-search .button-main-search:hover::after {
+      left: 130%;
+    }
+    #aaz-flight-search .button-main-search:hover {
+      transform: translateY(-2px) scale(1.015);
+      filter: brightness(1.06);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.25);
+    }
+    #aaz-flight-search .button-main-search:active {
+      transform: translateY(0) scale(0.98);
     }
 
     /* ── SECTION LABELS ── */
@@ -369,11 +479,20 @@
     }
 
     /* ── FOOTER ── */
-    .footer-link {
-      font-size: 0.85rem; color: #b7a9a5;
+    /* All footer text/links share ONE consistent, readable colour against
+       the dark footer background (instead of a mix of different Tailwind
+       gray shades, which is what made some lines look dimmer/near-invisible
+       than others). `!important` also defensively beats the vendor GOL IBE
+       stylesheet's global `a:visited { color: inherit }` rule (which — since
+       it has higher CSS specificity than a single custom class — could
+       otherwise silently recolour a visited footer link to an inherited,
+       near-black body text colour). */
+    .footer-link, .footer-text, .footer-social-btn {
+      font-size: 0.85rem; color: #c7bab6 !important;
       transition: color 0.2s;
     }
-    .footer-link:hover { color: #fff; }
+    .footer-link:hover, .footer-social-btn:hover { color: #fff !important; }
+    .footer-text { display: block; }
 
     /* ── MOBILE NAV ── */
     #mobile-menu {
@@ -2828,17 +2947,17 @@
           <img src="assets/logo/aaz-travel-icon-white.png" alt="AAZ Travel icon" class="h-8 w-8 object-contain" onerror="this.style.display='none'" />
           <img src="assets/logo/aaz-travel-wordmark-white.png" alt="AAZ Travel" class="h-6 object-contain" onerror="this.style.display='none'" />
         </div>
-        <p class="text-gray-400 text-sm leading-relaxed mb-5 max-w-xs">
+        <p class="footer-text text-sm leading-relaxed mb-5 max-w-xs">
           AAZ Travel brings your dream destinations closer — flights and fully guided Umrah &amp; Hajj packages, booked with confidence.
         </p>
         <div class="flex items-center gap-3 mb-5">
-          <a href="https://www.instagram.com/aaz.travels/" target="_blank" rel="noopener" aria-label="Instagram" class="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-700 hover:border-red-700 transition-all">
+          <a href="https://www.instagram.com/aaz.travels/" target="_blank" rel="noopener" aria-label="Instagram" class="footer-social-btn w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center hover:bg-red-700 hover:border-red-700 transition-all">
             <i class="fa-brands fa-instagram text-xs"></i>
           </a>
-          <a href="https://www.facebook.com/people/Aaz-Travel/61581291682116/" target="_blank" rel="noopener" aria-label="Facebook" class="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-700 hover:border-red-700 transition-all">
+          <a href="https://www.facebook.com/people/Aaz-Travel/61581291682116/" target="_blank" rel="noopener" aria-label="Facebook" class="footer-social-btn w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center hover:bg-red-700 hover:border-red-700 transition-all">
             <i class="fa-brands fa-facebook-f text-xs"></i>
           </a>
-          <a href="https://wa.me/447565699990" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-700 hover:border-red-700 transition-all">
+          <a href="https://wa.me/447565699990" target="_blank" rel="noopener" aria-label="WhatsApp" class="footer-social-btn w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center hover:bg-red-700 hover:border-red-700 transition-all">
             <i class="fa-brands fa-whatsapp text-xs"></i>
           </a>
         </div>
@@ -2893,11 +3012,11 @@
 
   <div style="border-top: 1px solid rgba(255,255,255,0.08);">
     <div class="max-w-7xl mx-auto px-5 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-      <p class="text-xs text-gray-500">© <span id="year"></span> AAZ Travel. All rights reserved.</p>
+      <p class="footer-text text-xs">© <span id="year"></span> AAZ Travel. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="#" class="text-xs text-gray-500 hover:text-gray-300 transition-colors">Privacy</a>
-        <a href="#" class="text-xs text-gray-500 hover:text-gray-300 transition-colors">Terms</a>
-        <a href="#" class="text-xs text-gray-500 hover:text-gray-300 transition-colors">Cookies</a>
+        <a href="#" class="footer-link text-xs">Privacy</a>
+        <a href="#" class="footer-link text-xs">Terms</a>
+        <a href="#" class="footer-link text-xs">Cookies</a>
       </div>
     </div>
   </div>
@@ -2905,7 +3024,7 @@
   <div style="border-top: 1px solid rgba(255,255,255,0.08);">
     <div class="max-w-7xl mx-auto px-5 lg:px-8 py-4 flex justify-center">
       <a href="https://juvenileasia.com/" target="_blank" rel="noopener"
-         class="inline-flex items-center gap-2 text-xs text-gray-500 hover:text-gray-300 transition-colors">
+         class="footer-link inline-flex items-center gap-2 text-xs">
         <img src="assets/badges/juvenile-asia-favicon.png" alt="Juvenile Asia" class="h-4 w-4 object-contain" onerror="this.style.display='none'" />
         Design and developed by Juvenile Asia
       </a>

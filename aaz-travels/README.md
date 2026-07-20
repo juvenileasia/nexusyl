@@ -128,6 +128,45 @@ directly to **info@aaztravel.com** — no backend/server needed:
   and the `fetch()` call in the JS at the bottom of `index.html` — the rest of
   the form (fields, validation, success state) doesn't need to change.
 
+## Search-widget animations
+
+A layer of purely decorative micro-interactions sits on top of the vendor
+widget (all scoped under `#aaz-flight-search`, none of it touches the
+widget's own JS/functionality):
+
+- An ambient, slowly pulsing red glow behind the search card, plus a
+  scale-in entrance when the page loads.
+- The card lifts slightly with a deeper shadow on hover.
+- The One way / Return / Multi-city tabs lift on hover (with their icon
+  nudging sideways) and "pop" briefly when a tab becomes active.
+- Input fields tint faintly on hover and get a soft focus ring.
+- The passenger/tolerance +/- counters scale up on hover and shrink on
+  press for tactile feedback.
+- The "Search Flights" button has a light sweep/shine on hover, plus a
+  lift + subtle scale.
+
+Only `transform`, `box-shadow`, `filter`, `background-color` and `opacity`
+are ever animated — never layout-affecting properties (`width`, `height`,
+`margin`, `padding`, `display`) — so none of it can throw off the widget's
+own layout calculations (e.g. the calendar popup's positioning math).
+
+## Footer text colour
+
+All footer text/links (copyright, legal links, the "Design and developed by
+Juvenile Asia" credit, the office address, social icons, etc.) share one
+consistent colour (`#c7bab6`, brightening to white on hover), driven by the
+`.footer-link` / `.footer-text` / `.footer-social-btn` classes defined near
+the top of `index.html`. Previously some of these used Tailwind's default
+`text-gray-500`/`text-gray-400` utilities directly, which are visibly dimmer
+than the custom `.footer-link` colour used elsewhere in the same footer —
+that inconsistency (some lines reading brighter, some noticeably dimmer) is
+what got reported as a "visibility issue". The colour on these classes is
+also marked `!important`, which defensively beats the vendor GOL IBE
+stylesheet's global `a:visited { color: inherit }` rule — without it, a
+visited footer link could have a *lower*-specificity class color overridden
+by that rule and fall back to an inherited near-black body-text colour,
+i.e. become invisible against the dark footer background.
+
 ## Deploying to flytrust.flyjuvenile.com / aaztravels.com (WordPress)
 
 1. Upload the contents of this folder to the web root of the target site (or
