@@ -140,6 +140,26 @@
     .nav-link:hover { color: #fff; }
     .nav-link:hover::after { transform: scaleX(1); }
 
+    .nav-call-link {
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #e8dcd8;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      padding: 7px 14px;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-call-link i { color: var(--red-lt); font-size: 0.75rem; }
+    .nav-call-link .nav-call-link-number { color: var(--red-lt); font-weight: 700; }
+    .nav-call-link:hover {
+      border-color: rgba(210,37,31,0.5);
+      background: rgba(180,23,23,0.1);
+      color: #fff;
+    }
+
     /* ── HERO ── */
     .hero-section {
       position: relative;
@@ -580,11 +600,15 @@
       </a>
 
       <!-- Desktop links -->
-      <div class="hidden md:flex items-center gap-8">
+      <div class="hidden md:flex items-center gap-6 lg:gap-8">
         <a href="#search" class="nav-link">Flights</a>
         <a href="#umrah"  class="nav-link">Umrah &amp; Hajj</a>
         <a href="#why-us" class="nav-link">Why Us</a>
         <a href="#faqs"   class="nav-link">FAQs</a>
+        <a href="tel:02081549513" class="nav-call-link hidden lg:inline-flex">
+          <i class="fa-solid fa-phone-volume"></i>
+          Book Online or Call Us <span class="nav-call-link-number">020 8154 9513</span>
+        </a>
         <a href="#search" class="btn-primary text-xs py-2.5 px-5">Search Flights</a>
       </div>
 
@@ -612,6 +636,9 @@
       <a href="#faqs" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
         <i class="fa-solid fa-circle-question mr-3 text-red-500"></i>FAQs
       </a>
+      <a href="tel:02081549513" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-phone-volume mr-3 text-red-500"></i>Book Online or Call Us <span class="ml-1" style="color: var(--red-lt);">020 8154 9513</span>
+      </a>
       <div class="pt-2 pb-1">
         <a href="#search" class="btn-primary w-full justify-center text-sm">Search Flights <i class="fa-solid fa-arrow-right text-xs"></i></a>
       </div>
@@ -634,13 +661,9 @@
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-[1.08] tracking-tight text-white anim-1 mb-5">
         Explore the World <span style="color: var(--red-lt);">with Confidence</span>
       </h1>
-      <p class="text-gray-300 text-base sm:text-lg leading-relaxed anim-2 max-w-2xl mx-auto mb-6">
+      <p class="text-gray-300 text-base sm:text-lg leading-relaxed anim-2 max-w-2xl mx-auto">
         Aaz Travel brings your dream destinations closer — search and book flights worldwide, or let us guide your entire Umrah &amp; Hajj journey, with transparent pricing every step of the way.
       </p>
-      <a href="tel:02081549513" class="anim-2 inline-flex items-center gap-2.5 text-sm font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/15 rounded-full px-5 py-2.5 transition-colors">
-        <i class="fa-solid fa-phone-volume" style="color: var(--red-lt);"></i>
-        Book Online or Call Us <span style="color: var(--red-lt);">020 8154 9513</span>
-      </a>
     </div>
 
     <!-- ── LIVE FLIGHT SEARCH WIDGET (GOL IBE) ──────────────────
