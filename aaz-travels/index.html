@@ -7,23 +7,23 @@
   <!-- ═══════════════════════════════════════════
        SEO META TAGS
   ════════════════════════════════════════════ -->
-  <title>AAZ Travel | Flights, Umrah &amp; Hajj Packages — Book with Confidence</title>
-  <meta name="description" content="AAZ Travel brings your dream destinations closer. Search and book cheap flights worldwide, plus fully guided Umrah &amp; Hajj packages, with transparent pricing and dedicated support." />
-  <meta name="keywords" content="AAZ Travel, cheap flights, flight search, Umrah packages, Hajj packages, travel agency, book flights online, IATA accredited travel agent" />
+  <title>Aaz Travel</title>
+  <meta name="description" content="Aaz Travel brings your dream destinations closer. Search and book cheap flights worldwide, plus fully guided Umrah &amp; Hajj packages, with transparent pricing and dedicated support." />
+  <meta name="keywords" content="Aaz Travel, cheap flights, flight search, Umrah packages, Hajj packages, travel agency, book flights online, IATA accredited travel agent" />
   <meta name="robots" content="index, follow" />
-  <meta name="author" content="AAZ Travel" />
+  <meta name="author" content="Aaz Travel" />
   <link rel="canonical" href="https://www.aaztravel.com/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.aaztravel.com/" />
-  <meta property="og:title" content="AAZ Travel | Explore the World with Confidence" />
-  <meta property="og:description" content="Search and book global flights and fully guided Umrah &amp; Hajj packages with AAZ Travel — personalised service, transparent pricing, curated experiences." />
+  <meta property="og:title" content="Aaz Travel | Explore the World with Confidence" />
+  <meta property="og:description" content="Search and book global flights and fully guided Umrah &amp; Hajj packages with Aaz Travel — personalised service, transparent pricing, curated experiences." />
   <meta property="og:image" content="assets/logo/aaz-travel-logo-red.png" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AAZ Travel | Explore the World with Confidence" />
+  <meta name="twitter:title" content="Aaz Travel | Explore the World with Confidence" />
   <meta name="twitter:description" content="Flights and Umrah &amp; Hajj packages, booked with confidence." />
 
   <!-- Favicons -->
@@ -35,10 +35,10 @@
   {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
-    "name": "AAZ Travel",
+    "name": "Aaz Travel",
     "url": "https://www.aaztravel.com",
     "logo": "https://www.aaztravel.com/assets/logo/aaz-travel-logo-red.png",
-    "description": "AAZ Travel is a travel agency offering global flight search and booking, plus fully guided Umrah and Hajj packages.",
+    "description": "Aaz Travel is a travel agency offering global flight search and booking, plus fully guided Umrah and Hajj packages.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "241a, 1st Floor, Whitechapel Road",
@@ -450,6 +450,21 @@
     }
     .faq-answer-inner { padding: 0 4px 22px; }
 
+    /* ── UMRAH & HAJJ QUESTIONNAIRE (conditional form fields) ──
+       Base max-height: 0 collapses this section by default; the JS below
+       sets an explicit inline max-height (the section's real scrollHeight)
+       to open it, and clears the inline style to close it again, letting
+       it fall back to this 0 value. */
+    .umrah-fields-wrap {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .umrah-fields-wrap.open #umrah-fields {
+      border-top: 1px dashed var(--border);
+      padding-top: 18px;
+    }
+
     /* ── CONTACT FORM ── */
     .form-input {
       width: 100%;
@@ -561,9 +576,7 @@
 
       <!-- Logo -->
       <a href="#home" class="flex items-center gap-2.5 flex-shrink-0">
-        <img src="assets/logo/aaz-travel-icon-white.png" alt="AAZ Travel icon" class="h-8 w-8 object-contain" onerror="this.style.display='none'" />
-        <img src="assets/logo/aaz-travel-wordmark-white.png" alt="AAZ Travel" class="h-6 object-contain hidden sm:block" onerror="this.style.display='none'" />
-        <span class="text-white font-display font-bold text-lg sm:hidden">AAZ Travel</span>
+        <img src="assets/logo/aaz-travel-wordmark-white.png" alt="Aaz Travel" class="h-6 sm:h-7 object-contain" onerror="this.style.display='none'" />
       </a>
 
       <!-- Desktop links -->
@@ -621,9 +634,13 @@
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-[1.08] tracking-tight text-white anim-1 mb-5">
         Explore the World <span style="color: var(--red-lt);">with Confidence</span>
       </h1>
-      <p class="text-gray-300 text-base sm:text-lg leading-relaxed anim-2 max-w-2xl mx-auto">
-        AAZ Travel brings your dream destinations closer — search and book flights worldwide, or let us guide your entire Umrah &amp; Hajj journey, with transparent pricing every step of the way.
+      <p class="text-gray-300 text-base sm:text-lg leading-relaxed anim-2 max-w-2xl mx-auto mb-6">
+        Aaz Travel brings your dream destinations closer — search and book flights worldwide, or let us guide your entire Umrah &amp; Hajj journey, with transparent pricing every step of the way.
       </p>
+      <a href="tel:02081549513" class="anim-2 inline-flex items-center gap-2.5 text-sm font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/15 rounded-full px-5 py-2.5 transition-colors">
+        <i class="fa-solid fa-phone-volume" style="color: var(--red-lt);"></i>
+        Book Online or Call Us <span style="color: var(--red-lt);">020 8154 9513</span>
+      </a>
     </div>
 
     <!-- ── LIVE FLIGHT SEARCH WIDGET (GOL IBE) ──────────────────
@@ -2510,7 +2527,7 @@
           <div class="service-img-wrap">
             <img
               src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=900&q=80&auto=format&fit=crop"
-              alt="Commercial airplane wing above the clouds — AAZ Travel flight booking"
+              alt="Commercial airplane wing above the clouds — Aaz Travel flight booking"
               loading="lazy"
             />
             <div class="service-img-overlay"></div>
@@ -2524,7 +2541,7 @@
           Fly Anywhere, <span style="color: var(--red);">for Less</span>
         </h2>
         <p class="text-gray-500 text-base leading-relaxed reveal reveal-delay-1 mb-6">
-          Search hundreds of airlines and routes in seconds. Whether it's a quick weekend hop or a long-haul adventure, AAZ Travel finds you fair, transparent fares — with real people on hand if your plans change.
+          Search hundreds of airlines and routes in seconds. Whether it's a quick weekend hop or a long-haul adventure, Aaz Travel finds you fair, transparent fares — with real people on hand if your plans change.
         </p>
 
         <div class="reveal reveal-delay-2 mb-8 border rounded-2xl p-5" style="border-color: var(--border);">
@@ -2585,7 +2602,7 @@
           <div class="service-img-wrap" style="height: 340px;">
             <img
               src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=900&q=80&auto=format&fit=crop"
-              alt="Masjid al-Haram in Makkah — AAZ Travel Umrah and Hajj packages"
+              alt="Masjid al-Haram in Makkah — Aaz Travel Umrah and Hajj packages"
               loading="lazy"
             />
             <div class="service-img-overlay"></div>
@@ -2600,14 +2617,14 @@
 
 
 <!-- ══════════════════════════════════════════════════════════
-     WHY BOOK WITH AAZ TRAVELS — TRUST BAR
+     WHY BOOK WITH Aaz TRAVELS — TRUST BAR
 ════════════════════════════════════════════════════════════ -->
 <section id="why-us" class="py-20" style="background: var(--cream); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
     <div class="text-center mb-14 reveal">
-      <div class="section-label justify-center mb-4">Why AAZ Travel</div>
+      <div class="section-label justify-center mb-4">Why Aaz Travel</div>
       <h2 class="text-3xl lg:text-4xl font-display font-bold" style="color:#1A1414;">
-        Why Book with AAZ Travel?
+        Why Book with Aaz Travel?
       </h2>
       <p class="text-gray-500 max-w-xl mx-auto mt-3">
         Personalised service, transparent pricing, and carefully curated travel experiences — every trip, every time.
@@ -2699,17 +2716,17 @@
 
       <div class="faq-item">
         <div class="faq-question">
-          <span>What makes AAZ Travel different from other travel agencies?</span>
+          <span>What makes Aaz Travel different from other travel agencies?</span>
           <i class="fa-solid fa-plus faq-icon"></i>
         </div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">AAZ Travel focuses on personalized service, transparent pricing, and carefully curated travel experiences. Our team works closely with each traveler to ensure every trip is smooth, enjoyable, and stress-free.</div>
+          <div class="faq-answer-inner">Aaz Travel focuses on personalized service, transparent pricing, and carefully curated travel experiences. Our team works closely with each traveler to ensure every trip is smooth, enjoyable, and stress-free.</div>
         </div>
       </div>
 
       <div class="faq-item">
         <div class="faq-question">
-          <span>Can AAZ Travel help me plan a fully customized itinerary?</span>
+          <span>Can Aaz Travel help me plan a fully customized itinerary?</span>
           <i class="fa-solid fa-plus faq-icon"></i>
         </div>
         <div class="faq-answer">
@@ -2719,7 +2736,7 @@
 
       <div class="faq-item">
         <div class="faq-question">
-          <span>Does AAZ Travel offer group or corporate travel packages?</span>
+          <span>Does Aaz Travel offer group or corporate travel packages?</span>
           <i class="fa-solid fa-plus faq-icon"></i>
         </div>
         <div class="faq-answer">
@@ -2739,7 +2756,7 @@
 
       <div class="faq-item">
         <div class="faq-question">
-          <span>Does AAZ Travel provide visa and document assistance?</span>
+          <span>Does Aaz Travel provide visa and document assistance?</span>
           <i class="fa-solid fa-plus faq-icon"></i>
         </div>
         <div class="faq-answer">
@@ -2785,7 +2802,7 @@
 <!-- ══════════════════════════════════════════════════════════
      CONTACT SECTION
 ════════════════════════════════════════════════════════════ -->
-<section id="contact" class="py-24 lg:py-32" style="background: var(--cream);" aria-label="Contact AAZ Travel">
+<section id="contact" class="py-24 lg:py-32" style="background: var(--cream);" aria-label="Contact Aaz Travel">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
@@ -2797,7 +2814,7 @@
           Let's Plan Your <span style="color: var(--red);">Next Trip</span>
         </h2>
         <p class="text-gray-500 text-base leading-relaxed mb-10">
-          Looking for the best flight fare, or planning your Umrah &amp; Hajj journey? Send us your details and a member of the AAZ Travel team will be in touch promptly with a tailored quote.
+          Looking for the best flight fare, or planning your Umrah &amp; Hajj journey? Send us your details and a member of the Aaz Travel team will be in touch promptly with a tailored quote.
         </p>
 
         <div class="flex flex-col gap-6">
@@ -2884,7 +2901,7 @@
                info@aaztravel.com — someone needs to click "Confirm" in that
                email before submissions start arriving. See README.md. -->
           <form id="contact-form" action="https://formsubmit.co/ajax/info@aaztravel.com" method="POST" novalidate>
-            <input type="hidden" name="_subject" value="New enquiry from the AAZ Travel website" />
+            <input type="hidden" name="_subject" value="New enquiry from the Aaz Travel website" />
             <input type="hidden" name="_template" value="table" />
             <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
@@ -2914,8 +2931,132 @@
               </select>
             </div>
 
+            <!-- Extra Umrah & Hajj questionnaire fields — shown only when
+                 "Umrah & Hajj Package" is selected above. Fields mirror
+                 https://aaztravels.com/umrah-hajj-booking-questionnaire-aaz-travels-uk/
+                 Inputs are `disabled` while hidden so they're automatically
+                 excluded from the form submission when not relevant. -->
+            <div id="umrah-fields-wrap" class="umrah-fields-wrap">
+              <div id="umrah-fields" class="pt-1 pb-1">
+                <div class="flex items-center gap-2 mb-4">
+                  <i class="fa-solid fa-kaaba text-xs" style="color: var(--red);"></i>
+                  <span class="text-xs font-bold uppercase tracking-widest" style="color: var(--red);">Umrah &amp; Hajj Details</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-5">
+                  <div>
+                    <label class="form-label" for="umrah_adults">No. of Adults</label>
+                    <select class="form-input" id="umrah_adults" name="umrah_no_of_adults" disabled>
+                      <option value="" disabled selected>Select</option>
+                      <option>1</option><option>2</option><option>3</option><option>4</option>
+                      <option>5</option><option>6</option><option>7</option><option>8</option>
+                      <option>9</option><option>10 or More</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="form-label" for="umrah_infants">No. of Infants</label>
+                    <select class="form-input" id="umrah_infants" name="umrah_no_of_infants" disabled>
+                      <option value="" disabled selected>Select</option>
+                      <option>0</option><option>1</option><option>2</option><option>3</option>
+                      <option>4</option><option>5</option><option>6</option><option>7</option>
+                      <option>8</option><option>9</option><option>10 or More</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-5">
+                  <div>
+                    <label class="form-label" for="umrah_from_date">From Date</label>
+                    <input class="form-input" type="date" id="umrah_from_date" name="umrah_from_date" disabled />
+                  </div>
+                  <div>
+                    <label class="form-label" for="umrah_to_date">To Date</label>
+                    <input class="form-input" type="date" id="umrah_to_date" name="umrah_to_date" disabled />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-5">
+                  <div>
+                    <label class="form-label" for="umrah_makkah_nights">Makkah Nights</label>
+                    <select class="form-input" id="umrah_makkah_nights" name="umrah_makkah_nights" disabled>
+                      <option value="" disabled selected>Select</option>
+                      <option>1</option><option>2</option><option>3</option><option>4</option>
+                      <option>5</option><option>6</option><option>7</option><option>8</option>
+                      <option>9</option><option>10 or More</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="form-label" for="umrah_madinah_nights">Madinah Nights</label>
+                    <select class="form-input" id="umrah_madinah_nights" name="umrah_madinah_nights" disabled>
+                      <option value="" disabled selected>Select</option>
+                      <option>1</option><option>2</option><option>3</option><option>4</option>
+                      <option>5</option><option>6</option><option>7</option><option>8</option>
+                      <option>9</option><option>10 or More</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-5">
+                  <div>
+                    <label class="form-label" for="umrah_accommodation">Accommodation</label>
+                    <select class="form-input" id="umrah_accommodation" name="umrah_accommodation" disabled>
+                      <option value="" disabled selected>Select</option>
+                      <option>3 Star</option>
+                      <option>4 Star</option>
+                      <option>5 Star</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="form-label" for="umrah_visa">Do You Need a Visa?</label>
+                    <select class="form-input" id="umrah_visa" name="umrah_visa_needed" disabled>
+                      <option value="" disabled selected>Select</option>
+                      <option>Yes</option>
+                      <option>No</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-5">
+                  <div>
+                    <label class="form-label" for="umrah_nationality">Passport Nationality</label>
+                    <input class="form-input" type="text" id="umrah_nationality" name="umrah_passport_nationality" placeholder="e.g. British, Bengali" disabled />
+                  </div>
+                  <div>
+                    <label class="form-label" for="umrah_extra_countries">Additional Countries to Visit</label>
+                    <input class="form-input" type="text" id="umrah_extra_countries" name="umrah_additional_countries" placeholder="Before / after Umrah" disabled />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-5">
+                  <div>
+                    <label class="form-label" for="umrah_airline">Airline Preference</label>
+                    <input class="form-input" type="text" id="umrah_airline" name="umrah_airline_preference" placeholder="Any specific airline?" disabled />
+                  </div>
+                  <div>
+                    <label class="form-label" for="umrah_rooms">No. of Rooms Required</label>
+                    <select class="form-input" id="umrah_rooms" name="umrah_rooms_required" disabled>
+                      <option value="" disabled selected>Select</option>
+                      <option>1</option><option>2</option><option>3</option><option>4</option>
+                      <option>5</option><option>6 or More</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="mb-5">
+                  <label class="form-label" for="umrah_bed_type">Bed Type Preference</label>
+                  <select class="form-input" id="umrah_bed_type" name="umrah_bed_type_preference" disabled>
+                    <option value="" disabled selected>Select</option>
+                    <option>Single</option>
+                    <option>Double</option>
+                    <option>Twin</option>
+                    <option>Triple</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
             <div class="mb-7">
-              <label class="form-label" for="message">Your Message</label>
+              <label class="form-label" for="message">Your Message <span class="text-gray-400 normal-case tracking-normal font-normal">(any comments or special requirements — e.g. wheelchair assistance, dietary needs, hotel preference)</span></label>
               <textarea class="form-input" id="message" name="message" rows="4" placeholder="Tell us about your trip..." required style="resize: vertical;"></textarea>
             </div>
 
@@ -2943,12 +3084,11 @@
     <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
 
       <div class="lg:col-span-2">
-        <div class="flex items-center gap-3 mb-5">
-          <img src="assets/logo/aaz-travel-icon-white.png" alt="AAZ Travel icon" class="h-8 w-8 object-contain" onerror="this.style.display='none'" />
-          <img src="assets/logo/aaz-travel-wordmark-white.png" alt="AAZ Travel" class="h-6 object-contain" onerror="this.style.display='none'" />
+        <div class="flex items-center mb-5">
+          <img src="assets/logo/aaz-travel-wordmark-white.png" alt="Aaz Travel" class="h-7 object-contain" onerror="this.style.display='none'" />
         </div>
         <p class="footer-text text-sm leading-relaxed mb-5 max-w-xs">
-          AAZ Travel brings your dream destinations closer — flights and fully guided Umrah &amp; Hajj packages, booked with confidence.
+          Aaz Travel brings your dream destinations closer — flights and fully guided Umrah &amp; Hajj packages, booked with confidence.
         </p>
         <div class="flex items-center gap-3 mb-5">
           <a href="https://www.instagram.com/aaz.travels/" target="_blank" rel="noopener" aria-label="Instagram" class="footer-social-btn w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center hover:bg-red-700 hover:border-red-700 transition-all">
@@ -3012,7 +3152,7 @@
 
   <div style="border-top: 1px solid rgba(255,255,255,0.08);">
     <div class="max-w-7xl mx-auto px-5 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-      <p class="footer-text text-xs">© <span id="year"></span> AAZ Travel. All rights reserved.</p>
+      <p class="footer-text text-xs">© <span id="year"></span> Aaz Travel. All rights reserved.</p>
       <div class="flex items-center gap-4">
         <a href="#" class="footer-link text-xs">Privacy</a>
         <a href="#" class="footer-link text-xs">Terms</a>
@@ -3145,6 +3285,31 @@
       item.classList.toggle('open', !isOpen);
       answer.style.maxHeight = !isOpen ? answer.scrollHeight + 'px' : null;
     });
+  });
+
+  // ── Umrah & Hajj questionnaire — reveal + enable extra fields only when
+  //    that enquiry type is selected (disabled fields are excluded from
+  //    the form submission automatically by the browser).
+  const enquirySelect = document.getElementById('enquiry');
+  const umrahWrap = document.getElementById('umrah-fields-wrap');
+  const umrahFieldsEl = document.getElementById('umrah-fields');
+  const umrahInputs = umrahWrap.querySelectorAll('input, select');
+
+  function setUmrahFieldsVisible(visible) {
+    umrahWrap.classList.toggle('open', visible);
+    umrahInputs.forEach(el => { el.disabled = !visible; });
+    if (visible) {
+      // Recompute in case content height changes after fonts/images settle.
+      requestAnimationFrame(() => {
+        umrahWrap.style.maxHeight = umrahFieldsEl.scrollHeight + 'px';
+      });
+    } else {
+      umrahWrap.style.maxHeight = null;
+    }
+  }
+
+  enquirySelect.addEventListener('change', () => {
+    setUmrahFieldsVisible(enquirySelect.value === 'umrah');
   });
 
   // ── Smooth anchor offset (account for fixed nav)

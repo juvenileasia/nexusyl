@@ -1,6 +1,6 @@
-# AAZ Travel — Landing Page + Flight Search Integration
+# Aaz Travel — Landing Page + Flight Search Integration
 
-This folder contains a self-contained landing page for **AAZ Travel**, with the
+This folder contains a self-contained landing page for **Aaz Travel**, with the
 GOL IBE flight-search widget (from `AAZ_html-package.zip`) integrated directly
 into the hero section.
 
@@ -17,7 +17,7 @@ aaz-travels/
 │   ├── styles.css              ← ⚠️ PARTIALLY SCOPED — see "CSS scoping" below
 │   ├── font.css                ← ⚠️ PARTIALLY SCOPED — see "CSS scoping" below
 │   └── images/…, css-element-queries-1.2.1/…
-├── assets/logo/                ← official AAZ Travel logo exports (from the
+├── assets/logo/                ← official Aaz Travel logo exports (from the
 │                                   provided Google Drive brand folder), cropped
 │                                   and optimised for web use
 ├── assets/badges/iata-logo.png ← IATA logo (public-domain mark, via Wikimedia
@@ -123,10 +123,24 @@ directly to **info@aaztravel.com** — no backend/server needed:
   FormSubmit send a confirmation email to `info@aaztravel.com` — someone with
   access to that inbox needs to click **"Confirm"** in that email once. Until
   that's done, submissions won't be delivered.
-- If AAZ Travel would rather use a different provider (a WordPress form
+- If Aaz Travel would rather use a different provider (a WordPress form
   plugin, HubSpot, etc.), just change the `action` attribute on `#contact-form`
   and the `fetch()` call in the JS at the bottom of `index.html` — the rest of
   the form (fields, validation, success state) doesn't need to change.
+
+## Umrah & Hajj questionnaire
+
+Selecting **"Umrah & Hajj Package"** in the contact form's Enquiry Type
+dropdown reveals an extra "Umrah & Hajj Details" section with fields
+mirroring the real
+[Umrah & Hajj Booking Questionnaire](https://aaztravels.com/umrah-hajj-booking-questionnaire-aaz-travels-uk/)
+(No. of Adults/Infants, From/To Date, Makkah/Madinah Nights, Accommodation,
+Visa requirement, Passport Nationality, Additional Countries to Visit,
+Airline Preference, No. of Rooms Required, Bed Type Preference). Selecting
+any other enquiry type hides the section again. These extra fields are
+`disabled` while hidden, so the browser automatically excludes them from the
+form submission (and from the FormSubmit email) whenever they're not
+relevant — no JS filtering needed on submit.
 
 ## Search-widget animations
 
@@ -189,7 +203,7 @@ i.e. become invisible against the dark footer background.
 
 ## Brand assets
 
-`assets/logo/` contains the official logo exports from the AAZ Travel brand
+`assets/logo/` contains the official logo exports from the Aaz Travel brand
 folder (Google Drive), **cropped to remove the excess transparent padding
 baked into the original exports** (the originals were ~23% content height on
 a much taller canvas, which made the logo render illegibly small when
@@ -207,7 +221,7 @@ only the web-optimised, cropped sizes needed for this page are included here.
 `assets/badges/iata-logo.png` is the public-domain IATA logo (via Wikimedia
 Commons — "consists only of simple geometric shapes or text, does not meet
 the threshold of originality needed for copyright protection"), shown next to
-**IATA Code: 9120590** in the "Why Book with AAZ Travel" section and the
+**IATA Code: 9120590** in the "Why Book with Aaz Travel" section and the
 footer.
 
 ## Contact details used on this page
@@ -228,19 +242,19 @@ footer.
   404 — likely private or the name/owner differs). This landing page and
   integration were built directly from the provided `AAZ_html-package.zip`,
   the (then-current) `aaztravels.com` site content (for the FAQ/copy), and
-  the AAZ Travel brand assets in the shared Drive folder. If that repository
+  the Aaz Travel brand assets in the shared Drive folder. If that repository
   is the intended home for this code, it can be copied in directly — the
   folder is self-contained and has no build step.
 - `config.en.js` has `defaultCountry = "CZ"` and a demo default airport
   (`Praha / Vídeň`) baked in from the GOL admin console template — adjust
-  these in the GOL IBE admin console if you want different defaults for AAZ
+  these in the GOL IBE admin console if you want different defaults for Aaz
   Travel's audience.
-- The brand name is rendered as **"AAZ Travel"** (singular) everywhere on the
+- The brand name is rendered as **"Aaz Travel"** (singular) everywhere on the
   page, matching the logo artwork and the explicit naming request.
 - The canonical site URL used across the page (canonical link, Open Graph,
   schema.org, footer/contact links) is **`https://www.aaztravel.com`**. The
   old `aaztravels.com` (with the "s") domain — the site this page's original
-  FAQ copy was sourced from — is no longer referenced anywhere; if AAZ Travel
+  FAQ copy was sourced from — is no longer referenced anywhere; if Aaz Travel
   is migrating domains, make sure `www.aaztravel.com` actually resolves
   before this page goes live, or update these references again if the final
   domain differs.
