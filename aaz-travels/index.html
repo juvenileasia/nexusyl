@@ -82,533 +82,7 @@
     }
   </script>
 
-  <style>
-    :root {
-      --red:      #B41717;
-      --red-lt:   #D2251F;
-      --navy:     #131F6B;
-      --dark:     #170707;
-      --cream:    #FFF8F3;
-      --border:   #F0E3DD;
-      --muted:    #7A6F6B;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #ffffff;
-      color: #1A1414;
-      overflow-x: hidden;
-    }
-
-    h1, h2, h3, h4, .font-display { font-family: 'Poppins', sans-serif; }
-
-    /* ── SCROLLBAR ── */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: #f4f4f4; }
-    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
-
-    /* ── NAV ── */
-    #navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(23,7,7,0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      transition: background 0.3s, border-color 0.3s;
-    }
-    #navbar.scrolled { background: rgba(23,7,7,0.98); border-bottom-color: rgba(180,23,23,0.35); }
-
-    .nav-link {
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      color: #e8dcd8;
-      transition: color 0.2s;
-      position: relative;
-      padding-bottom: 2px;
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute; bottom: -3px; left: 0; right: 0;
-      height: 2px; background: var(--red-lt);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.25s;
-    }
-    .nav-link:hover { color: #fff; }
-    .nav-link:hover::after { transform: scaleX(1); }
-
-    .nav-call-link {
-      align-items: center;
-      gap: 8px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: #e8dcd8;
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 999px;
-      padding: 7px 14px;
-      transition: border-color 0.2s, background 0.2s, color 0.2s;
-      white-space: nowrap;
-    }
-    .nav-call-link i { color: var(--red-lt); font-size: 0.75rem; }
-    .nav-call-link .nav-call-link-number { color: var(--red-lt); font-weight: 700; }
-    .nav-call-link:hover {
-      border-color: rgba(210,37,31,0.5);
-      background: rgba(180,23,23,0.1);
-      color: #fff;
-    }
-
-    /* Mobile-only click-to-call bar directly under the logo/hamburger row —
-       always visible without opening the hamburger menu. */
-    .nav-call-bar-mobile {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 0.76rem;
-      font-weight: 600;
-      color: #e8dcd8;
-      background: rgba(255,255,255,0.05);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 9px 10px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .nav-call-bar-mobile i { color: var(--red-lt); font-size: 0.72rem; }
-    .nav-call-bar-mobile:hover,
-    .nav-call-bar-mobile:active {
-      background: rgba(180,23,23,0.12);
-      color: #fff;
-    }
-    @media (min-width: 380px) {
-      .nav-call-bar-mobile { font-size: 0.82rem; }
-    }
-
-    /* ── HERO ── */
-    .hero-section {
-      position: relative;
-      background: linear-gradient(180deg, #1c0a0a 0%, #2b0d0d 55%, #170707 100%);
-      overflow: hidden;
-    }
-    .hero-bg-image {
-      position: absolute; inset: 0;
-      background-image: url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1800&q=75&auto=format&fit=crop");
-      background-size: cover; background-position: center;
-      opacity: 0.32;
-      mix-blend-mode: luminosity;
-    }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(23,7,7,0.55) 0%, rgba(23,7,7,0.75) 60%, rgba(23,7,7,0.97) 100%);
-    }
-    .hero-glow {
-      position: absolute; top: -10%; right: -10%;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(180,23,23,0.35) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    /* ── BADGE ── */
-    .badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 999px;
-      padding: 6px 16px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #f3e3df;
-      background: rgba(255,255,255,0.06);
-    }
-    .badge-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--red-lt);
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.4; transform: scale(0.7); }
-    }
-
-    /* ── HEADLINE ANIMATION ── */
-    @keyframes fade-up {
-      from { opacity: 0; transform: translateY(26px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .anim-1 { animation: fade-up 0.7s ease both; }
-    .anim-2 { animation: fade-up 0.7s ease 0.12s both; }
-    .anim-3 { animation: fade-up 0.7s ease 0.24s both; }
-    .anim-4 { animation: fade-up 0.7s ease 0.36s both; }
-
-    /* ── BUTTONS ── */
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--red);
-      color: #fff;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      padding: 14px 30px;
-      border-radius: 8px;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 8px 24px rgba(180,23,23,0.35);
-      border: none; cursor: pointer;
-    }
-    .btn-primary:hover {
-      background: var(--red-lt);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 32px rgba(180,23,23,0.5);
-    }
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 10px;
-      border: 1px solid rgba(255,255,255,0.25);
-      color: #f3e3df;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      font-size: 0.85rem;
-      padding: 14px 30px;
-      border-radius: 8px;
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
-    }
-    .btn-outline:hover {
-      border-color: var(--red-lt);
-      color: #fff;
-      background: rgba(180,23,23,0.12);
-    }
-
-    /* ── SEARCH WIDGET CARD ── */
-    #search { position: relative; }
-    #search::before {
-      content: '';
-      position: absolute;
-      inset: -22px;
-      z-index: 0;
-      background: radial-gradient(circle at 50% 35%, rgba(180,23,23,0.35), transparent 70%);
-      filter: blur(22px);
-      opacity: 0.35;
-      pointer-events: none;
-      animation: search-glow-pulse 4.5s ease-in-out infinite;
-    }
-    @keyframes search-glow-pulse {
-      0%, 100% { opacity: 0.28; transform: scale(1); }
-      50%      { opacity: 0.5;  transform: scale(1.05); }
-    }
-    @keyframes search-card-entrance {
-      from { transform: scale(0.97); }
-      to   { transform: scale(1); }
-    }
-    .search-widget-card {
-      background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 30px 70px rgba(0,0,0,0.45);
-      padding: 22px 18px 26px;
-      position: relative;
-      z-index: 5;
-      animation: search-card-entrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-    }
-    .search-widget-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 40px 90px rgba(0,0,0,0.55);
-    }
-    @media (min-width: 640px) {
-      .search-widget-card { padding: 28px 26px 30px; }
-    }
-
-    /* ── SEARCH WIDGET MICRO-INTERACTIONS ──
-       Purely decorative additions on top of the vendor GOL IBE widget:
-       only transform / box-shadow / filter / background-color are ever
-       animated here (never layout-affecting properties like width, height,
-       margin, padding, or display), and every selector is scoped under
-       #aaz-flight-search so nothing leaks onto the rest of the page and
-       none of the widget's own functionality/JS is touched. */
-    #aaz-flight-search .header-search-form-tab {
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    #aaz-flight-search .header-search-form-tab:hover {
-      transform: translateY(-2px);
-    }
-    #aaz-flight-search .header-search-form-tab-ico,
-    #aaz-flight-search .header-search-form-tab-ico-return {
-      transition: transform 0.3s ease;
-    }
-    #aaz-flight-search .header-search-form-tab:hover .header-search-form-tab-ico,
-    #aaz-flight-search .header-search-form-tab:hover .header-search-form-tab-ico-return {
-      transform: translateX(3px);
-    }
-    @keyframes tab-activate {
-      0%   { transform: scale(0.94); }
-      60%  { transform: scale(1.02); }
-      100% { transform: scale(1); }
-    }
-    #aaz-flight-search .header-search-form-tab--active {
-      animation: tab-activate 0.35s ease;
-    }
-
-    #aaz-flight-search .header-search-form-inner-field {
-      transition: background-color 0.25s ease, box-shadow 0.25s ease;
-      border-radius: 8px;
-    }
-    #aaz-flight-search .header-search-form-inner-field:hover {
-      background-color: rgba(180,23,23,0.045);
-    }
-    #aaz-flight-search .header-search-form-inner-field:focus-within {
-      box-shadow: 0 0 0 3px rgba(180,23,23,0.15);
-    }
-
-    #aaz-flight-search .counter-sign,
-    #aaz-flight-search .header-search-form-additional-bottom-tolerance-minus,
-    #aaz-flight-search .header-search-form-additional-bottom-tolerance-plus {
-      transition: transform 0.15s ease;
-    }
-    #aaz-flight-search .counter-sign:hover,
-    #aaz-flight-search .header-search-form-additional-bottom-tolerance-minus:hover,
-    #aaz-flight-search .header-search-form-additional-bottom-tolerance-plus:hover {
-      transform: scale(1.2);
-    }
-    #aaz-flight-search .counter-sign:active,
-    #aaz-flight-search .header-search-form-additional-bottom-tolerance-minus:active,
-    #aaz-flight-search .header-search-form-additional-bottom-tolerance-plus:active {
-      transform: scale(0.88);
-    }
-
-    #aaz-flight-search .button-main-search {
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-    }
-    #aaz-flight-search .button-main-search::after {
-      content: '';
-      position: absolute;
-      top: 0; left: -60%;
-      width: 35%; height: 100%;
-      background: linear-gradient(115deg, transparent, rgba(255,255,255,0.55), transparent);
-      transform: skewX(-18deg);
-      transition: left 0.65s ease;
-      pointer-events: none;
-    }
-    #aaz-flight-search .button-main-search:hover::after {
-      left: 130%;
-    }
-    #aaz-flight-search .button-main-search:hover {
-      transform: translateY(-2px) scale(1.015);
-      filter: brightness(1.06);
-      box-shadow: 0 10px 26px rgba(0,0,0,0.25);
-    }
-    #aaz-flight-search .button-main-search:active {
-      transform: translateY(0) scale(0.98);
-    }
-
-    /* ── SECTION LABELS ── */
-    .section-label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--red);
-      display: flex; align-items: center; gap: 12px;
-    }
-    .section-label::before {
-      content: '';
-      display: block;
-      width: 28px; height: 2px;
-      background: var(--red);
-    }
-
-    /* ── SERVICE CARDS ── */
-    .service-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-      position: relative;
-    }
-    .service-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(20,5,5,0.12); border-color: rgba(180,23,23,0.25); }
-
-    .service-img-wrap { position: relative; overflow: hidden; height: 260px; }
-    .service-img-wrap img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.6s;
-    }
-    .service-card:hover .service-img-wrap img { transform: scale(1.06); }
-    .service-img-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(23,7,7,0.75) 0%, transparent 55%);
-    }
-    .service-tag {
-      position: absolute; top: 16px; left: 16px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #fff;
-      background: var(--red);
-      padding: 5px 12px;
-      border-radius: 999px;
-    }
-
-    .feature-check {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 0.86rem; color: #4a4241;
-      padding: 5px 0;
-    }
-    .feature-check i { color: var(--red); font-size: 0.8rem; margin-top: 3px; }
-
-    /* ── TRUST CARDS ── */
-    .trust-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px 22px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .trust-card:hover { transform: translateY(-4px); box-shadow: 0 20px 44px rgba(20,5,5,0.1); }
-
-    /* ── STAT STRIP ── */
-    .stat-strip {
-      background: var(--navy);
-    }
-
-    /* ── FAQ ACCORDION ── */
-    .faq-item { border-bottom: 1px solid var(--border); }
-    .faq-question {
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 16px;
-      padding: 22px 4px;
-      font-weight: 600;
-      color: #1A1414;
-    }
-    .faq-question .faq-icon { transition: transform 0.3s; color: var(--red); flex-shrink: 0; }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.65;
-    }
-    .faq-answer-inner { padding: 0 4px 22px; }
-
-    /* ── UMRAH & HAJJ QUESTIONNAIRE (conditional form fields) ──
-       Base max-height: 0 collapses this section by default; the JS below
-       sets an explicit inline max-height (the section's real scrollHeight)
-       to open it, and clears the inline style to close it again, letting
-       it fall back to this 0 value. */
-    .umrah-fields-wrap {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-    .umrah-fields-wrap.open #umrah-fields {
-      border-top: 1px dashed var(--border);
-      padding-top: 18px;
-    }
-
-    /* ── CONTACT FORM ── */
-    .form-input {
-      width: 100%;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 13px 16px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.875rem;
-      color: #1A1414;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      outline: none;
-    }
-    .form-input::placeholder { color: #b8aca8; }
-    .form-input:focus {
-      border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(180,23,23,0.12);
-    }
-    .form-label {
-      display: block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: #8a7d78;
-      margin-bottom: 6px;
-    }
-
-    /* ── FOOTER ── */
-    /* All footer text/links share ONE consistent, readable colour against
-       the dark footer background (instead of a mix of different Tailwind
-       gray shades, which is what made some lines look dimmer/near-invisible
-       than others). `!important` also defensively beats the vendor GOL IBE
-       stylesheet's global `a:visited { color: inherit }` rule (which — since
-       it has higher CSS specificity than a single custom class — could
-       otherwise silently recolour a visited footer link to an inherited,
-       near-black body text colour). */
-    .footer-link, .footer-text, .footer-social-btn {
-      font-size: 0.85rem; color: #c7bab6 !important;
-      transition: color 0.2s;
-    }
-    .footer-link:hover, .footer-social-btn:hover { color: #fff !important; }
-    .footer-text { display: block; }
-
-    /* ── MOBILE NAV ── */
-    #mobile-menu {
-      display: none;
-      background: rgba(23,7,7,0.99);
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-    #mobile-menu.open { display: block; }
-
-    /* ── DIVIDER ── */
-    .section-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
-    }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0; transform: translateY(36px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-
-    /* ── SUCCESS MESSAGE ── */
-    #form-success {
-      display: none;
-      background: rgba(180,23,23,0.08);
-      border: 1px solid rgba(180,23,23,0.25);
-      border-radius: 10px;
-      padding: 16px;
-      text-align: center;
-      color: #1A1414;
-      font-size: 0.875rem;
-    }
-
-    /* ── ROUTE CHIP ── */
-    .route-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px 20px;
-      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-    }
-    .route-card:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(20,5,5,0.08); border-color: rgba(180,23,23,0.25); }
-    .route-tag {
-      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 3px 9px; border-radius: 999px;
-    }
-    .route-tag.cheapest { background: rgba(180,23,23,0.1); color: var(--red); }
-    .route-tag.popular  { background: rgba(19,31,107,0.1); color: var(--navy); }
-    .route-tag.value    { background: rgba(16,120,80,0.1); color: #0e7a52; }
-
-  </style>
+  <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 <body>
 
@@ -620,25 +94,45 @@
     <div class="flex items-center justify-between h-16">
 
       <!-- Logo -->
-      <a href="#home" class="flex items-center gap-2.5 flex-shrink-0">
-        <img src="assets/logo/aaz-travel-wordmark-white.png" alt="Aaz Travel" class="h-8 md:h-9 xl:h-10 object-contain" onerror="this.style.display='none'" />
+      <a href="index.html" class="flex items-center gap-2.5 flex-shrink-0">
+        <img src="assets/logo/aaz-travel-wordmark-white.png" alt="Aaz Travel" class="h-8 lg:h-9 xl:h-10 object-contain" onerror="this.style.display='none'" />
       </a>
 
       <!-- Desktop links -->
-      <div class="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8">
-        <a href="#search" class="nav-link whitespace-nowrap">Flights</a>
-        <a href="#umrah"  class="nav-link whitespace-nowrap">Umrah &amp; Hajj</a>
-        <a href="#why-us" class="nav-link whitespace-nowrap">Why Us</a>
-        <a href="#faqs"   class="nav-link whitespace-nowrap">FAQs</a>
-        <a href="tel:02081549513" class="nav-call-link hidden xl:inline-flex">
+      <div class="hidden lg:flex items-center gap-3 xl:gap-5">
+        <a href="index.html" class="nav-link whitespace-nowrap">Home</a>
+        <a href="umrah-packages.html" class="nav-link whitespace-nowrap">Umrah Packages</a>
+        <a href="holiday-packages.html" class="nav-link whitespace-nowrap">Holiday Packages</a>
+        <a href="money-transfer.html" class="nav-link whitespace-nowrap">Money Transfer</a>
+        <a href="travel-money.html" class="nav-link whitespace-nowrap">Travel Money</a>
+        <div class="nav-dropdown">
+          <a href="travel-services.html" class="nav-link nav-dropdown-trigger whitespace-nowrap">Travel Services <i class="fa-solid fa-chevron-down"></i></a>
+          <div class="nav-dropdown-menu">
+            <a href="travel-services.html#insurance"><i class="fa-solid fa-file-shield"></i> Travel Insurance</a>
+            <a href="travel-services.html#visa"><i class="fa-solid fa-passport"></i> Visa Services</a>
+            <a href="travel-services.html#transfers"><i class="fa-solid fa-van-shuttle"></i> Airport Transfers</a>
+            <a href="travel-services.html#group"><i class="fa-solid fa-people-group"></i> Group &amp; Corporate Travel</a>
+          </div>
+        </div>
+        <a href="about-us.html" class="nav-link whitespace-nowrap">About Us</a>
+      </div>
+
+      <!-- Right-hand CTAs (desktop) — compact icon buttons, since the full
+           "Book Online or Call Us 020 8154 9513" text (shown on the mobile
+           bar and in the hero trust pills) doesn't reliably fit alongside
+           7 nav links at common desktop widths. -->
+      <div class="hidden xl:flex items-center gap-3">
+        <a href="tel:02081549513" aria-label="Call us: 020 8154 9513" title="Call us: 020 8154 9513" class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #e8dcd8;">
           <i class="fa-solid fa-phone-volume"></i>
-          Book Online or Call Us <span class="nav-call-link-number">020 8154 9513</span>
         </a>
-        <a href="#search" class="btn-primary text-xs py-2.5 px-5 whitespace-nowrap">Search Flights</a>
+        <a href="https://wa.me/442081549513" target="_blank" rel="noopener" aria-label="WhatsApp us" title="WhatsApp us" class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background: #25D366; color: #fff;">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="index.html#contact" class="btn-primary text-xs py-2.5 px-5 whitespace-nowrap">Request a Quote</a>
       </div>
 
       <!-- Mobile hamburger -->
-      <button id="menu-toggle" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-2">
+      <button id="menu-toggle" aria-label="Open menu" class="lg:hidden flex flex-col gap-1.5 p-2">
         <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar1"></span>
         <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
         <span class="w-4 h-0.5 bg-white transition-all duration-300" id="bar3"></span>
@@ -647,7 +141,7 @@
 
     <!-- Mobile-only click-to-call bar — always visible, no need to open the
          hamburger menu to see it. -->
-    <a href="tel:02081549513" class="nav-call-bar-mobile md:hidden">
+    <a href="tel:02081549513" class="nav-call-bar-mobile lg:hidden">
       <i class="fa-solid fa-phone-volume"></i>
       Book Online or Call Us <span class="nav-call-link-number">020 8154 9513</span>
     </a>
@@ -656,20 +150,43 @@
   <!-- Mobile Menu -->
   <div id="mobile-menu" role="menu">
     <div class="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-1">
-      <a href="#search" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
-        <i class="fa-solid fa-plane mr-3 text-red-500"></i>Flights
+      <a href="index.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-house mr-3 text-red-500"></i>Home
       </a>
-      <a href="#umrah" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
-        <i class="fa-solid fa-kaaba mr-3 text-red-500"></i>Umrah &amp; Hajj
+      <a href="umrah-packages.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-kaaba mr-3 text-red-500"></i>Umrah Packages
       </a>
-      <a href="#why-us" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
-        <i class="fa-solid fa-shield-halved mr-3 text-red-500"></i>Why Us
+      <a href="holiday-packages.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-umbrella-beach mr-3 text-red-500"></i>Holiday Packages
       </a>
-      <a href="#faqs" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
-        <i class="fa-solid fa-circle-question mr-3 text-red-500"></i>FAQs
+      <a href="money-transfer.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-money-bill-transfer mr-3 text-red-500"></i>Money Transfer
       </a>
-      <div class="pt-2 pb-1">
-        <a href="#search" class="btn-primary w-full justify-center text-sm">Search Flights <i class="fa-solid fa-arrow-right text-xs"></i></a>
+      <a href="travel-money.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-money-bill-wave mr-3 text-red-500"></i>Travel Money
+      </a>
+
+      <div>
+        <div class="mobile-nav-dropdown-trigger py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors">
+          <span><i class="fa-solid fa-briefcase mr-3 text-red-500"></i>Travel Services</span>
+          <i class="fa-solid fa-chevron-down chevron"></i>
+        </div>
+        <div class="mobile-nav-submenu">
+          <a href="travel-services.html#insurance" class="mobile-nav-link block py-2.5 px-4 pl-12 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">Travel Insurance</a>
+          <a href="travel-services.html#visa" class="mobile-nav-link block py-2.5 px-4 pl-12 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">Visa Services</a>
+          <a href="travel-services.html#transfers" class="mobile-nav-link block py-2.5 px-4 pl-12 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">Airport Transfers</a>
+          <a href="travel-services.html#group" class="mobile-nav-link block py-2.5 px-4 pl-12 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">Group &amp; Corporate Travel</a>
+        </div>
+      </div>
+
+      <a href="about-us.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-circle-info mr-3 text-red-500"></i>About Us
+      </a>
+      <div class="pt-2 pb-1 flex gap-2">
+        <a href="index.html#contact" class="btn-primary w-full justify-center text-sm">Request a Quote <i class="fa-solid fa-arrow-right text-xs"></i></a>
+        <a href="https://wa.me/442081549513" target="_blank" rel="noopener" aria-label="WhatsApp us" class="flex-shrink-0 w-12 flex items-center justify-center rounded-lg" style="background: #25D366; color: #fff;">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
       </div>
     </div>
   </div>
@@ -690,9 +207,15 @@
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-[1.08] tracking-tight text-white anim-1 mb-5">
         Explore the World <span style="color: var(--red-lt);">with Confidence</span>
       </h1>
-      <p class="text-gray-300 text-base sm:text-lg leading-relaxed anim-2 max-w-2xl mx-auto">
+      <p class="text-gray-300 text-base sm:text-lg leading-relaxed anim-2 max-w-2xl mx-auto mb-6">
         Aaz Travel brings your dream destinations closer — search and book flights worldwide, or let us guide your entire Umrah &amp; Hajj journey, with transparent pricing every step of the way.
       </p>
+      <div class="flex flex-wrap justify-center gap-2.5 anim-2">
+        <span class="trust-pill trust-pill-dark"><i class="fa-solid fa-award"></i> IATA Accredited Agent</span>
+        <span class="trust-pill trust-pill-dark"><i class="fa-brands fa-whatsapp"></i> 24 Hour WhatsApp Support</span>
+        <span class="trust-pill trust-pill-dark"><i class="fa-solid fa-flag"></i> UK Based Travel Agency</span>
+        <span class="trust-pill trust-pill-dark"><i class="fa-solid fa-shield-halved"></i> Book With Confidence</span>
+      </div>
     </div>
 
     <!-- ── LIVE FLIGHT SEARCH WIDGET (GOL IBE) ──────────────────
@@ -2533,6 +2056,10 @@
           <span class="text-xs font-medium text-gray-400">from</span>
           <span class="text-2xl font-display font-bold" style="color: var(--red);">£42</span>
         </div>
+        <div class="route-card-actions">
+          <a href="tel:02081549513" class="route-card-action call"><i class="fa-solid fa-phone"></i> Call</a>
+          <a href="https://wa.me/442081549513?text=Hi%2C%20I%27m%20interested%20in%20the%20London%20to%20Paris%20deal" target="_blank" rel="noopener" class="route-card-action whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        </div>
       </div>
       <div class="route-card reveal reveal-delay-1">
         <span class="route-tag popular">Popular</span>
@@ -2541,6 +2068,10 @@
         <div class="flex items-baseline gap-1.5">
           <span class="text-xs font-medium text-gray-400">from</span>
           <span class="text-2xl font-display font-bold" style="color: var(--red);">£328</span>
+        </div>
+        <div class="route-card-actions">
+          <a href="tel:02081549513" class="route-card-action call"><i class="fa-solid fa-phone"></i> Call</a>
+          <a href="https://wa.me/442081549513?text=Hi%2C%20I%27m%20interested%20in%20the%20London%20to%20Dubai%20deal" target="_blank" rel="noopener" class="route-card-action whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
         </div>
       </div>
       <div class="route-card reveal reveal-delay-2">
@@ -2551,6 +2082,10 @@
           <span class="text-xs font-medium text-gray-400">from</span>
           <span class="text-2xl font-display font-bold" style="color: var(--red);">£412</span>
         </div>
+        <div class="route-card-actions">
+          <a href="tel:02081549513" class="route-card-action call"><i class="fa-solid fa-phone"></i> Call</a>
+          <a href="https://wa.me/442081549513?text=Hi%2C%20I%27m%20interested%20in%20the%20London%20to%20Jeddah%20deal" target="_blank" rel="noopener" class="route-card-action whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        </div>
       </div>
       <div class="route-card reveal reveal-delay-3">
         <span class="route-tag value">Best Value</span>
@@ -2560,6 +2095,10 @@
           <span class="text-xs font-medium text-gray-400">from</span>
           <span class="text-2xl font-display font-bold" style="color: var(--red);">£589</span>
         </div>
+        <div class="route-card-actions">
+          <a href="tel:02081549513" class="route-card-action call"><i class="fa-solid fa-phone"></i> Call</a>
+          <a href="https://wa.me/442081549513?text=Hi%2C%20I%27m%20interested%20in%20the%20London%20to%20Dhaka%20deal" target="_blank" rel="noopener" class="route-card-action whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        </div>
       </div>
     </div>
   </div>
@@ -2567,161 +2106,48 @@
 
 
 <!-- ══════════════════════════════════════════════════════════
-     SERVICE 1: FLIGHTS
-════════════════════════════════════════════════════════════ -->
-<section id="flights" class="py-24 lg:py-32" aria-label="Flights">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="section-label reveal mb-4">Service 01</div>
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-      <div class="reveal order-2 lg:order-1">
-        <div class="service-card">
-          <div class="service-img-wrap">
-            <img
-              src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=900&q=80&auto=format&fit=crop"
-              alt="Commercial airplane wing above the clouds — Aaz Travel flight booking"
-              loading="lazy"
-            />
-            <div class="service-img-overlay"></div>
-            <span class="service-tag">Flights</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="order-1 lg:order-2">
-        <h2 class="text-4xl lg:text-5xl font-display font-bold leading-tight reveal mb-4" style="color:#1A1414;">
-          Fly Anywhere, <span style="color: var(--red);">for Less</span>
-        </h2>
-        <p class="text-gray-500 text-base leading-relaxed reveal reveal-delay-1 mb-6">
-          Search hundreds of airlines and routes in seconds. Whether it's a quick weekend hop or a long-haul adventure, Aaz Travel finds you fair, transparent fares — with real people on hand if your plans change.
-        </p>
-
-        <div class="reveal reveal-delay-2 mb-8 border rounded-2xl p-5" style="border-color: var(--border);">
-          <div class="feature-check"><i class="fa-solid fa-circle-check"></i>One-way, round-trip &amp; multi-city search</div>
-          <div class="feature-check"><i class="fa-solid fa-circle-check"></i>Economy, Premium, Business &amp; First Class</div>
-          <div class="feature-check"><i class="fa-solid fa-circle-check"></i>Flexible dates &amp; direct-flight filters</div>
-          <div class="feature-check"><i class="fa-solid fa-circle-check"></i>Group &amp; corporate travel bookings</div>
-          <div class="feature-check"><i class="fa-solid fa-circle-check"></i>Live fares — no hidden fees</div>
-        </div>
-
-        <div class="reveal reveal-delay-3">
-          <a href="#search" class="btn-primary">
-            Search Flights <i class="fa-solid fa-arrow-right text-xs"></i>
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="section-divider mx-8 lg:mx-24"></div>
-
-
-<!-- ══════════════════════════════════════════════════════════
-     SERVICE 2: UMRAH & HAJJ
-════════════════════════════════════════════════════════════ -->
-<section id="umrah" class="py-24 lg:py-32" aria-label="Umrah and Hajj packages">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="section-label reveal mb-4">Service 02</div>
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-      <div>
-        <h2 class="text-4xl lg:text-5xl font-display font-bold leading-tight reveal mb-4" style="color:#1A1414;">
-          Umrah &amp; Hajj, <span style="color: var(--red);">Fully Guided</span>
-        </h2>
-        <p class="text-gray-500 text-base leading-relaxed reveal reveal-delay-1 mb-6">
-          A spiritual journey deserves complete peace of mind. Our Umrah &amp; Hajj packages are carefully curated end-to-end — flights, visas, accommodation near the Haramain, and ground transport — so you can focus on your Ibadah.
-        </p>
-
-        <div class="reveal reveal-delay-2 mb-8 border rounded-2xl p-5" style="border-color: var(--border);">
-          <div class="feature-check"><i class="fa-solid fa-circle-check"></i>Flights, visas &amp; hotel packages bundled</div>
-          <div class="feature-check"><i class="fa-solid fa-circle-check"></i>Hotels close to Masjid al-Haram &amp; Masjid an-Nabawi</div>
-          <div class="feature-check"><i class="fa-solid fa-circle-check"></i>Group departures &amp; private family packages</div>
-          <div class="feature-check"><i class="fa-solid fa-circle-check"></i>Ziyarat tours &amp; experienced group leaders</div>
-          <div class="feature-check"><i class="fa-solid fa-circle-check"></i>Flexible payment plans available</div>
-        </div>
-
-        <div class="reveal reveal-delay-3">
-          <a href="#contact" class="btn-primary">
-            Enquire About Packages <i class="fa-solid fa-arrow-right text-xs"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="reveal">
-        <div class="service-card">
-          <div class="service-img-wrap" style="height: 340px;">
-            <img
-              src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=900&q=80&auto=format&fit=crop"
-              alt="Masjid al-Haram in Makkah — Aaz Travel Umrah and Hajj packages"
-              loading="lazy"
-            />
-            <div class="service-img-overlay"></div>
-            <span class="service-tag">Umrah &amp; Hajj</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════
-     WHY BOOK WITH Aaz TRAVELS — TRUST BAR
+     WHY CHOOSE Aaz TRAVEL
 ════════════════════════════════════════════════════════════ -->
 <section id="why-us" class="py-20" style="background: var(--cream); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
     <div class="text-center mb-14 reveal">
-      <div class="section-label justify-center mb-4">Why Aaz Travel</div>
+      <div class="section-label justify-center mb-4">Why Choose Aaz Travel?</div>
       <h2 class="text-3xl lg:text-4xl font-display font-bold" style="color:#1A1414;">
-        Why Book with Aaz Travel?
+        Travel With Confidence
       </h2>
       <p class="text-gray-500 max-w-xl mx-auto mt-3">
-        Personalised service, transparent pricing, and carefully curated travel experiences — every trip, every time.
+        From booking your flight to reaching your destination, our team is here to make your journey easier.
       </p>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      <div class="trust-card reveal">
-        <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: rgba(180,23,23,0.1);">
-          <i class="fa-solid fa-user-check" style="color: var(--red);"></i>
-        </div>
-        <h3 class="font-display font-bold mb-2" style="color:#1A1414;">Personalised Service</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Our team works closely with every traveller to make sure each trip is smooth, enjoyable, and stress-free.</p>
+      <div class="why-choose-card reveal">
+        <div class="why-choose-icon"><i class="fa-solid fa-tags"></i></div>
+        <h3 class="font-display font-bold mb-2" style="color:#1A1414;">Competitive Fares</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Great-value flights and travel packages.</p>
       </div>
-      <div class="trust-card reveal reveal-delay-1">
-        <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: rgba(180,23,23,0.1);">
-          <i class="fa-solid fa-tags" style="color: var(--red);"></i>
-        </div>
-        <h3 class="font-display font-bold mb-2" style="color:#1A1414;">Transparent Pricing</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">What you see is what you pay — real-time fares with zero hidden fees at checkout.</p>
+      <div class="why-choose-card reveal reveal-delay-1">
+        <div class="why-choose-icon"><i class="fa-solid fa-user-check"></i></div>
+        <h3 class="font-display font-bold mb-2" style="color:#1A1414;">Personal Service</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Friendly support from our experienced team.</p>
       </div>
-      <div class="trust-card reveal reveal-delay-2">
-        <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: rgba(180,23,23,0.1);">
-          <i class="fa-solid fa-map-location-dot" style="color: var(--red);"></i>
-        </div>
-        <h3 class="font-display font-bold mb-2" style="color:#1A1414;">Curated Experiences</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">From honeymoons to Hajj groups, every itinerary is tailor-made around your interests, budget and schedule.</p>
+      <div class="why-choose-card reveal reveal-delay-2">
+        <div class="why-choose-icon"><i class="fa-solid fa-kaaba"></i></div>
+        <h3 class="font-display font-bold mb-2" style="color:#1A1414;">Umrah &amp; Hajj Specialists</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Dedicated support for your sacred journey.</p>
       </div>
-      <div class="trust-card reveal reveal-delay-3">
-        <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: rgba(180,23,23,0.1);">
-          <i class="fa-solid fa-headset" style="color: var(--red);"></i>
-        </div>
-        <h3 class="font-display font-bold mb-2" style="color:#1A1414;">Dedicated Support</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Reach us by phone, WhatsApp or email — our team is with you before, during, and after every booking.</p>
+      <div class="why-choose-card reveal reveal-delay-3">
+        <div class="why-choose-icon"><i class="fa-solid fa-earth-europe"></i></div>
+        <h3 class="font-display font-bold mb-2" style="color:#1A1414;">Worldwide Travel</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Flights and holidays to destinations around the world.</p>
       </div>
     </div>
 
-    <div class="mt-10 flex justify-center reveal">
-      <div class="inline-flex items-center gap-3 bg-white border rounded-2xl px-5 py-3" style="border-color: var(--border);">
-        <img src="assets/badges/iata-logo.png" alt="IATA" class="h-7 w-auto object-contain" onerror="this.style.display='none'" />
-        <div class="border-l pl-3" style="border-color: var(--border);">
-          <div class="text-xs font-bold uppercase tracking-widest text-gray-400">IATA Accredited Agent</div>
-          <div class="text-sm font-semibold" style="color:#1A1414;">IATA Code: 9120590</div>
-        </div>
-      </div>
+    <div class="mt-10 flex flex-wrap justify-center gap-3 reveal">
+      <span class="trust-pill" style="color: #1A1414;"><i class="fa-solid fa-award"></i> IATA Accredited Agent</span>
+      <span class="trust-pill" style="color: #1A1414;"><i class="fa-brands fa-whatsapp"></i> 24 Hour WhatsApp Support</span>
+      <span class="trust-pill" style="color: #1A1414;"><i class="fa-solid fa-flag"></i> UK Based Travel Agency</span>
+      <span class="trust-pill" style="color: #1A1414;"><i class="fa-solid fa-shield-halved"></i> Book With Confidence</span>
     </div>
   </div>
 </section>
@@ -2752,6 +2178,56 @@
     </div>
   </div>
 </div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════════════════════ -->
+<section class="py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="text-center mb-14 reveal">
+      <div class="section-label justify-center mb-4">Testimonials</div>
+      <h2 class="text-3xl lg:text-4xl font-display font-bold" style="color:#1A1414;">What Our Customers Say</h2>
+      <p class="text-gray-500 max-w-xl mx-auto mt-3">Real experiences from travellers who chose Aaz Travel.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"Booked our Umrah package through Aaz Travel and honestly couldn't have asked for a smoother experience. Flights, visas and hotels near the Haramain were all sorted — we just had to focus on our Ibadah."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">SR</div>
+          <div>
+            <div class="testimonial-name">Sofia R.</div>
+            <div class="testimonial-meta">Umrah Package, London</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"Found a much better fare than anywhere else online, and when I needed to change my dates the team sorted it over WhatsApp within the hour. Proper personal service."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">MK</div>
+          <div>
+            <div class="testimonial-name">Mohammed K.</div>
+            <div class="testimonial-meta">Flight Booking, Manchester</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"Used Aaz Travel for our family holiday and their money transfer service to send funds back home before we left. Everything was transparent, no hidden fees, and the office team were lovely to deal with in person."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">AB</div>
+          <div>
+            <div class="testimonial-name">Amina B.</div>
+            <div class="testimonial-meta">Holiday &amp; Money Transfer, London</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <!-- ══════════════════════════════════════════════════════════
@@ -3155,47 +2631,50 @@
         </div>
         <div class="inline-flex items-center gap-2.5 bg-white rounded-lg px-3 py-2 w-fit">
           <img src="assets/badges/iata-logo.png" alt="IATA" class="h-5 w-auto object-contain" onerror="this.style.display='none'" />
-          <span class="text-[11px] font-semibold text-gray-700 whitespace-nowrap">IATA Code: 9120590</span>
+          <span class="text-[11px] font-semibold text-gray-700 whitespace-nowrap">IATA Accredited Agent</span>
         </div>
       </div>
 
       <div>
-        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Services</h3>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Quick Links</h3>
         <div class="flex flex-col gap-2.5">
-          <a href="#search" class="footer-link">Flight Search</a>
-          <a href="#umrah"  class="footer-link">Umrah &amp; Hajj</a>
-          <a href="#why-us" class="footer-link">Why Us</a>
+          <a href="index.html" class="footer-link">Home</a>
+          <a href="umrah-packages.html" class="footer-link">Umrah Packages</a>
+          <a href="holiday-packages.html" class="footer-link">Holiday Packages</a>
+          <a href="money-transfer.html" class="footer-link">Money Transfer</a>
+          <a href="travel-money.html" class="footer-link">Travel Money</a>
+          <a href="travel-services.html" class="footer-link">Travel Services</a>
+          <a href="about-us.html" class="footer-link">About Us</a>
+          <a href="index.html#contact" class="footer-link">Contact</a>
         </div>
       </div>
 
       <div>
-        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Company</h3>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Help &amp; Information</h3>
         <div class="flex flex-col gap-2.5">
-          <a href="#home"    class="footer-link">About Us</a>
-          <a href="#faqs"    class="footer-link">FAQs</a>
-          <a href="#contact" class="footer-link">Contact</a>
-          <a href="https://www.aaztravel.com" target="_blank" rel="noopener" class="footer-link">www.aaztravel.com</a>
+          <a href="faqs.html" class="footer-link">FAQs</a>
+          <a href="travel-guide.html" class="footer-link">Travel Guide</a>
+          <a href="terms-conditions.html" class="footer-link">Terms &amp; Conditions</a>
+          <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+          <a href="cookie-policy.html" class="footer-link">Cookie Policy</a>
         </div>
       </div>
 
       <div>
         <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Contact</h3>
         <div class="flex flex-col gap-3">
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=241a+Whitechapel+Road+London+E1+1BD" target="_blank" rel="noopener" class="footer-link flex items-start gap-2">
-            <i class="fa-solid fa-location-dot text-red-600 text-xs mt-0.5"></i> 241a, 1st Floor, Whitechapel Road, London, E1 1BD
+          <a href="tel:02081549513" class="footer-link flex items-center gap-2">
+            <i class="fa-solid fa-phone text-red-600 text-xs"></i> 020 8154 9513
           </a>
           <a href="mailto:info@aaztravel.com" class="footer-link flex items-center gap-2">
             <i class="fa-solid fa-envelope text-red-600 text-xs"></i> info@aaztravel.com
           </a>
-          <a href="tel:02081549513" class="footer-link flex items-center gap-2">
-            <i class="fa-solid fa-phone text-red-600 text-xs"></i> 020 8154 9513
-          </a>
           <a href="https://wa.me/442081549513" target="_blank" rel="noopener" class="footer-link flex items-center gap-2">
             <i class="fa-brands fa-whatsapp text-red-600 text-xs"></i> 020 8154 9513
           </a>
-          <span class="footer-link flex items-center gap-2">
-            <i class="fa-solid fa-headset text-red-600 text-xs"></i> 24/7 Agent Support
-          </span>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=241a+Whitechapel+Road+London+E1+1BD" target="_blank" rel="noopener" class="footer-link flex items-start gap-2">
+            <i class="fa-solid fa-location-dot text-red-600 text-xs mt-0.5"></i> 241a, 1st Floor, Whitechapel Road, London, E1 1BD
+          </a>
         </div>
       </div>
 
@@ -3206,9 +2685,9 @@
     <div class="max-w-7xl mx-auto px-5 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
       <p class="footer-text text-xs">© <span id="year"></span> Aaz Travel. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="#" class="footer-link text-xs">Privacy</a>
-        <a href="#" class="footer-link text-xs">Terms</a>
-        <a href="#" class="footer-link text-xs">Cookies</a>
+        <a href="privacy-policy.html" class="footer-link text-xs">Privacy</a>
+        <a href="terms-conditions.html" class="footer-link text-xs">Terms</a>
+        <a href="cookie-policy.html" class="footer-link text-xs">Cookies</a>
       </div>
     </div>
   </div>
@@ -3241,141 +2720,7 @@
 <!-- ══════════════════════════════════════════════════════════
      JAVASCRIPT
 ════════════════════════════════════════════════════════════ -->
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
-  });
-
-  const toggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const bar1 = document.getElementById('bar1');
-  const bar2 = document.getElementById('bar2');
-  const bar3 = document.getElementById('bar3');
-  let menuOpen = false;
-
-  toggle.addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    mobileMenu.classList.toggle('open', menuOpen);
-    bar1.style.transform = menuOpen ? 'translateY(8px) rotate(45deg)' : '';
-    bar2.style.opacity   = menuOpen ? '0' : '1';
-    bar3.style.transform = menuOpen ? 'translateY(-8px) rotate(-45deg)' : '';
-    bar3.style.width     = menuOpen ? '24px' : '16px';
-  });
-
-  document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      menuOpen = false;
-      mobileMenu.classList.remove('open');
-      bar1.style.transform = bar2.style.opacity = bar3.style.transform = '';
-      bar3.style.width = '16px';
-      bar2.style.opacity = '1';
-    });
-  });
-
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => observer.observe(el));
-
-  const btt = document.getElementById('back-to-top');
-  window.addEventListener('scroll', () => {
-    btt.style.display = window.scrollY > 400 ? 'flex' : 'none';
-  });
-  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  btt.addEventListener('mouseenter', () => btt.style.transform = 'translateY(-3px)');
-  btt.addEventListener('mouseleave', () => btt.style.transform = '');
-
-  // ── Contact form — submits to info@aaztravel.com via FormSubmit (see the
-  //    comment above the <form> tag for the one-time confirmation step).
-  const form = document.getElementById('contact-form');
-  const successMsg = document.getElementById('form-success');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
-    const originalBtnHTML = btn.innerHTML;
-    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Sending...';
-    btn.disabled = true;
-
-    try {
-      const response = await fetch(form.action, {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: new FormData(form),
-      });
-      if (!response.ok) throw new Error('Form submission failed');
-      form.style.display = 'none';
-      successMsg.style.display = 'block';
-    } catch (err) {
-      btn.innerHTML = originalBtnHTML;
-      btn.disabled = false;
-      alert("Sorry, we couldn't send your message. Please email us directly at info@aaztravel.com or WhatsApp us at 020 8154 9513.");
-    }
-  });
-
-  // ── FAQ accordion
-  document.querySelectorAll('.faq-item').forEach(item => {
-    const question = item.querySelector('.faq-question');
-    const answer = item.querySelector('.faq-answer');
-    question.addEventListener('click', () => {
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(openItem => {
-        if (openItem !== item) {
-          openItem.classList.remove('open');
-          openItem.querySelector('.faq-answer').style.maxHeight = null;
-        }
-      });
-      item.classList.toggle('open', !isOpen);
-      answer.style.maxHeight = !isOpen ? answer.scrollHeight + 'px' : null;
-    });
-  });
-
-  // ── Umrah & Hajj questionnaire — reveal + enable extra fields only when
-  //    that enquiry type is selected (disabled fields are excluded from
-  //    the form submission automatically by the browser).
-  const enquirySelect = document.getElementById('enquiry');
-  const umrahWrap = document.getElementById('umrah-fields-wrap');
-  const umrahFieldsEl = document.getElementById('umrah-fields');
-  const umrahInputs = umrahWrap.querySelectorAll('input, select');
-
-  function setUmrahFieldsVisible(visible) {
-    umrahWrap.classList.toggle('open', visible);
-    umrahInputs.forEach(el => { el.disabled = !visible; });
-    if (visible) {
-      // Recompute in case content height changes after fonts/images settle.
-      requestAnimationFrame(() => {
-        umrahWrap.style.maxHeight = umrahFieldsEl.scrollHeight + 'px';
-      });
-    } else {
-      umrahWrap.style.maxHeight = null;
-    }
-  }
-
-  enquirySelect.addEventListener('change', () => {
-    setUmrahFieldsVisible(enquirySelect.value === 'umrah');
-  });
-
-  // ── Smooth anchor offset (account for fixed nav)
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        const offset = navbar.offsetHeight + 16;
-        window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
-      }
-    });
-  });
-</script>
+<script src="assets/js/main.js"></script>
 
 <!-- ══════════════════════════════════════════════════════════
      GOL IBE FLIGHT-SEARCH WIDGET — SCRIPTS

@@ -1,19 +1,50 @@
-# Aaz Travel — Landing Page + Flight Search Integration
+# Aaz Travel — Multi-Page Website + Flight Search Integration
 
-This folder contains a self-contained landing page for **Aaz Travel**, with the
-GOL IBE flight-search widget (from `AAZ_html-package.zip`) integrated directly
-into the hero section.
+This folder contains a self-contained, multi-page static website for
+**Aaz Travel**, with the GOL IBE flight-search widget (from
+`AAZ_html-package.zip`) integrated directly into the homepage hero.
+
+## Site map
+
+| Page | File |
+| --- | --- |
+| Home (flight search, trending deals, why choose us, testimonials, FAQs, contact) | `index.html` |
+| Umrah Packages | `umrah-packages.html` |
+| Holiday Packages | `holiday-packages.html` |
+| Money Transfer | `money-transfer.html` |
+| Travel Money | `travel-money.html` |
+| Travel Services (Travel Insurance / Visa Services / Airport Transfers / Group & Corporate Travel) | `travel-services.html` |
+| About Us | `about-us.html` |
+| FAQs | `faqs.html` |
+| Travel Guide | `travel-guide.html` |
+| Terms &amp; Conditions | `terms-conditions.html` |
+| Privacy Policy | `privacy-policy.html` |
+| Cookie Policy | `cookie-policy.html` |
+
+Every page shares the same navbar (with a "Travel Services" dropdown) and
+footer (Quick Links / Help &amp; Information / Contact columns), a floating
+WhatsApp button, and — on every page **except** the homepage, which has the
+full search widget — a mobile-only sticky "Call / WhatsApp" bar at the bottom
+of the screen.
 
 ## What's in here
 
 ```
 aaz-travels/
-├── index.html                 ← the landing page (open this)
+├── index.html                 ← the homepage — flight search widget lives here
+├── umrah-packages.html, holiday-packages.html, money-transfer.html,
+│   travel-money.html, travel-services.html, about-us.html,
+│   faqs.html, travel-guide.html, terms-conditions.html,
+│   privacy-policy.html, cookie-policy.html
+│                               ← the rest of the site (see "Site map" above)
+├── assets/css/main.css         ← shared site CSS, used by every page
+├── assets/js/main.js           ← shared site JS, used by every page (see below)
 ├── config.en.js                ← GOL IBE widget config (already points at aaztrip.golibe.com)
 ├── HTMLPackageControl.js       ← GOL IBE widget controller (unmodified, vendor file)
 ├── __ENV.js                    ← GOL IBE widget env flag (unmodified, vendor file)
 ├── hotels/HTMLPackageHotels.js ← GOL IBE hotels module (unmodified, vendor file)
-├── static/                     ← GOL IBE widget assets (icons, styles, fonts)
+├── static/                     ← GOL IBE widget assets (icons, styles, fonts) — only
+│                                   loaded on index.html, the one page with the widget
 │   ├── styles.css              ← ⚠️ PARTIALLY SCOPED — see "CSS scoping" below
 │   ├── font.css                ← ⚠️ PARTIALLY SCOPED — see "CSS scoping" below
 │   └── images/…, css-element-queries-1.2.1/…
@@ -21,9 +52,31 @@ aaz-travels/
 │                                   provided Google Drive brand folder), cropped
 │                                   and optimised for web use
 ├── assets/badges/iata-logo.png ← IATA logo (public-domain mark, via Wikimedia
-│                                   Commons) used next to the IATA accreditation code
+│                                   Commons) used next to the "IATA Accredited Agent" badge
 └── SEARCH-MODULE-README.md     ← original vendor integration guide (verbatim)
 ```
+
+## Shared CSS/JS (`assets/css/main.css` / `assets/js/main.js`)
+
+Every page links the same two files instead of repeating a large inline
+`<style>`/`<script>` block:
+
+- **`assets/css/main.css`** — all of the site's own design (nav, hero, cards,
+  footer, animations, etc). The GOL IBE widget's own `static/styles.css` is
+  separate and only ever linked from `index.html` (see "CSS scoping" below).
+- **`assets/js/main.js`** — nav/mobile-menu toggling, the "Travel Services"
+  dropdown (desktop) and accordion (mobile), scroll-reveal animations,
+  back-to-top, the FAQ accordion, the contact form submission, and the
+  conditional Umrah &amp; Hajj questionnaire fields. Every piece of this file
+  checks that its target element(s) exist before wiring up listeners, since
+  most pages only have a subset of these (e.g. only `index.html` has the
+  contact form and FAQ accordion — every other page still safely loads the
+  same script with no errors).
+
+**If you add a new page**, copy the `<nav>`...`</nav>` and `<footer>`...
+`</footer>` blocks verbatim from any existing secondary page (e.g.
+`about-us.html`) — they're identical on every page by design — and link the
+same `assets/css/main.css` / `assets/js/main.js` files.
 
 ## Search → results redirect (already wired up)
 
@@ -261,3 +314,29 @@ footer.
 - Office address: **241a, 1st Floor, Whitechapel Road, London, E1 1BD**
   (shown in the contact section, the footer, and the `schema.org` structured
   data, with a Google Maps link).
+- **This round's site-wide restructuring**:
+  - Navbar rebuilt to Home / Umrah Packages / Holiday Packages / Money
+    Transfer / Travel Money / Travel Services (dropdown) / About Us, with a
+    "Request a Quote" button and click-to-call/WhatsApp icons on the right
+    (desktop), and a persistent "Book Online or Call Us" bar plus a
+    "Travel Services" accordion in the mobile menu.
+  - The old on-page "Flights" and "Umrah & Hajj" sections were removed from
+    the homepage — that content now lives on their own dedicated pages
+    (`umrah-packages.html`, and flights are covered by the search widget +
+    trending deals on the homepage itself).
+  - The hero's trust pills now read "IATA Accredited Agent" (no code
+    number), "24 Hour WhatsApp Support", "UK Based Travel Agency", "Book
+    With Confidence" — the same four also appear (without the IATA logo
+    duplicated) on the homepage's "Why Choose Aaz Travel?" section and the
+    About Us page.
+  - Every "Top Flight Deals" card now has its own **Call** and **WhatsApp**
+    quick-action buttons (pre-filled with a message naming that specific
+    route) in addition to the price.
+  - Added a "What Our Customers Say" testimonials section (3 illustrative
+    reviews — replace with real customer testimonials when available).
+  - **Content on the new secondary pages (package prices, currencies,
+    package tiers, FAQs, legal text, etc.) is a solid first draft written to
+    be genuinely useful and on-brand, not placeholder/lorem-ipsum — but it
+    was not supplied verbatim by Aaz Travel, so review and adjust the
+    specifics (prices, currency list, exact legal wording, etc.) before
+    treating anything on those pages as final/binding.**
