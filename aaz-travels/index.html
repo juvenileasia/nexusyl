@@ -99,7 +99,7 @@
       </a>
 
       <!-- Desktop links -->
-      <div class="hidden lg:flex items-center gap-4 xl:gap-6">
+      <div class="hidden xl:flex items-center gap-3 2xl:gap-5">
         <a href="index.html" class="nav-link whitespace-nowrap">Flights</a>
         <a href="holiday-packages.html" class="nav-link whitespace-nowrap">Holidays</a>
         <a href="umrah-packages.html" class="nav-link whitespace-nowrap">Umrah</a>
@@ -116,19 +116,20 @@
         <a href="about-us.html" class="nav-link whitespace-nowrap">About Us</a>
       </div>
 
-      <!-- Right-hand CTAs (desktop) — phone icon calls us directly, WhatsApp
-           icon opens a chat with a "request a quote" message pre-filled. -->
-      <div class="hidden lg:flex items-center gap-3">
-        <a href="tel:02081549513" aria-label="Call us: 020 8154 9513" title="Call us: 020 8154 9513" class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #e8dcd8;">
+      <!-- Right-hand CTAs (desktop) — labelled Call and Request a Quote buttons -->
+      <div class="hidden xl:flex items-center gap-2 flex-shrink-0">
+        <a href="tel:02081549513" class="nav-cta nav-cta-call" aria-label="Call us: 020 8154 9513">
           <i class="fa-solid fa-phone-volume"></i>
+          <span>Call 020 8154 9513</span>
         </a>
-        <a href="https://wa.me/442081549513?text=Hi%2C%20I%27d%20like%20to%20request%20a%20quote" target="_blank" rel="noopener" aria-label="Request a quote on WhatsApp" title="Request a quote on WhatsApp" class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background: #25D366; color: #fff;">
+        <a href="https://wa.me/442081549513?text=Hi%2C%20I%27d%20like%20to%20request%20a%20quote" target="_blank" rel="noopener" class="nav-cta nav-cta-whatsapp" aria-label="Request a quote on WhatsApp">
           <i class="fa-brands fa-whatsapp"></i>
+          <span>Request a Quote</span>
         </a>
       </div>
 
       <!-- Mobile hamburger -->
-      <button id="menu-toggle" aria-label="Open menu" class="lg:hidden flex flex-col gap-1.5 p-2">
+      <button id="menu-toggle" aria-label="Open menu" class="xl:hidden flex flex-col gap-1.5 p-2">
         <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar1"></span>
         <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
         <span class="w-4 h-0.5 bg-white transition-all duration-300" id="bar3"></span>
@@ -137,7 +138,7 @@
 
     <!-- Mobile-only click-to-call bar — always visible, no need to open the
          hamburger menu to see it. -->
-    <a href="tel:02081549513" class="nav-call-bar-mobile lg:hidden">
+    <a href="tel:02081549513" class="nav-call-bar-mobile xl:hidden">
       <i class="fa-solid fa-phone-volume"></i>
       Book Online or Call Us <span class="nav-call-link-number">020 8154 9513</span>
     </a>
@@ -173,11 +174,9 @@
       <a href="about-us.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
         <i class="fa-solid fa-circle-info mr-3 text-red-500"></i>About Us
       </a>
-      <div class="pt-2 pb-1 flex gap-2">
-        <a href="tel:02081549513" class="btn-outline w-full justify-center text-sm" style="border-color: rgba(255,255,255,0.25); color: #f3e3df;"><i class="fa-solid fa-phone-volume"></i> Call Us</a>
-        <a href="https://wa.me/442081549513?text=Hi%2C%20I%27d%20like%20to%20request%20a%20quote" target="_blank" rel="noopener" aria-label="Request a quote on WhatsApp" class="flex-shrink-0 w-12 flex items-center justify-center rounded-lg" style="background: #25D366; color: #fff;">
-          <i class="fa-brands fa-whatsapp"></i>
-        </a>
+      <div class="pt-2 pb-1 flex flex-col gap-2">
+        <a href="tel:02081549513" class="nav-cta nav-cta-call w-full justify-center"><i class="fa-solid fa-phone-volume"></i><span>Call 020 8154 9513</span></a>
+        <a href="https://wa.me/442081549513?text=Hi%2C%20I%27d%20like%20to%20request%20a%20quote" target="_blank" rel="noopener" class="nav-cta nav-cta-whatsapp w-full justify-center"><i class="fa-brands fa-whatsapp"></i><span>Request a Quote</span></a>
       </div>
     </div>
   </div>
@@ -2414,40 +2413,18 @@
             <p class="text-gray-500 text-sm">Thank you for reaching out. We'll get back to you shortly.</p>
           </div>
 
-          <!-- Submits directly to info@aaztravel.com via FormSubmit (no backend
-               required). NOTE: the very first submission after go-live will
-               trigger a one-time confirmation email from FormSubmit to
-               info@aaztravel.com — someone needs to click "Confirm" in that
-               email before submissions start arriving. See README.md.
-
-               This is the general contact form. For Umrah, Holiday, Travel
-               Money, Money Transfer, Travel Insurance, Visa Assistance and
-               Airport Transfer enquiries, each of those pages has its own
-               dedicated enquiry form tailored to that service. -->
+          <!-- Submits directly to info@aaztravel.com via FormSubmit.
+               Choosing an enquiry type reveals the same fields used on that
+               service's dedicated page. -->
           <form class="enquiry-form" action="https://formsubmit.co/ajax/info@aaztravel.com" method="POST" novalidate>
             <input type="hidden" name="_subject" value="New enquiry from the Aaz Travel website" />
             <input type="hidden" name="_template" value="table" />
             <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
             <div class="mb-5">
-              <label class="form-label" for="name">Full Name</label>
-              <input class="form-input" type="text" id="name" name="name" placeholder="John Smith" required />
-            </div>
-
-            <div class="mb-5">
-              <label class="form-label" for="email">Email Address</label>
-              <input class="form-input" type="email" id="email" name="email" placeholder="john@example.com" required />
-            </div>
-
-            <div class="mb-5">
-              <label class="form-label" for="phone">Phone Number <span class="text-gray-400 normal-case tracking-normal font-normal">(optional)</span></label>
-              <input class="form-input" type="tel" id="phone" name="phone" placeholder="+44 7700 000000" />
-            </div>
-
-            <div class="mb-5">
-              <label class="form-label" for="enquiry">Enquiry Type</label>
+              <label class="form-label" for="enquiry">What can we help you with? <span style="color: var(--red);">*</span></label>
               <select class="form-input" id="enquiry" name="enquiry" required>
-                <option value="" disabled selected>Select an enquiry type...</option>
+                <option value="" disabled selected>Select a service...</option>
                 <option value="flights">Flights</option>
                 <option value="holiday">Holiday Package</option>
                 <option value="umrah">Umrah Package</option>
@@ -2460,9 +2437,264 @@
               </select>
             </div>
 
-            <div class="mb-7">
-              <label class="form-label" for="message">Your Message</label>
-              <textarea class="form-input" id="message" name="message" rows="4" placeholder="Tell us about your trip..." required style="resize: vertical;"></textarea>
+            <div class="grid sm:grid-cols-2 gap-4 mb-5">
+              <div>
+                <label class="form-label" for="name">Full Name <span style="color: var(--red);">*</span></label>
+                <input class="form-input" type="text" id="name" name="name" placeholder="John Smith" required data-always-required="true" />
+              </div>
+              <div>
+                <label class="form-label" for="phone">Phone / WhatsApp <span style="color: var(--red);">*</span></label>
+                <input class="form-input" type="tel" id="phone" name="phone" placeholder="+44 7700 000000" required data-always-required="true" />
+              </div>
+            </div>
+            <div class="mb-5">
+              <label class="form-label" for="email">Email Address</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="john@example.com" />
+            </div>
+
+            <!-- Flights -->
+            <div class="service-fields" data-service="flights">
+              <div class="form-section-label">Flight Details</div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_from">From</label>
+                  <input class="form-input" type="text" id="hp_from" name="from" placeholder="e.g. London Heathrow" />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_to">To</label>
+                  <input class="form-input" type="text" id="hp_to" name="to" placeholder="e.g. Dhaka" />
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_dep">Departure Date</label>
+                  <input class="form-input" type="date" id="hp_dep" name="departure_date" />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_ret">Return Date</label>
+                  <input class="form-input" type="date" id="hp_ret" name="return_date" />
+                </div>
+              </div>
+              <div class="mb-5">
+                <label class="form-label" for="hp_pax">Number of Travellers</label>
+                <input class="form-input" type="number" id="hp_pax" name="number_of_travellers" placeholder="e.g. 2" />
+              </div>
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_flights">Your Message / Requirements</label>
+                <textarea class="form-input" id="hp_msg_flights" name="message" rows="4" placeholder="Tell us about the flights you need..." style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- Holiday -->
+            <div class="service-fields" data-service="holiday">
+              <div class="form-section-label">Holiday Details</div>
+              <div class="mb-5">
+                <label class="form-label" for="hp_dest_h">Destination</label>
+                <input class="form-input" type="text" id="hp_dest_h" name="destination" placeholder="e.g. Antalya, Turkey" />
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_dep_h">Departure Date</label>
+                  <input class="form-input" type="date" id="hp_dep_h" name="departure_date" />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_ret_h">Return Date</label>
+                  <input class="form-input" type="date" id="hp_ret_h" name="return_date" />
+                </div>
+              </div>
+              <div class="mb-5">
+                <label class="form-label" for="hp_pax_h">Number of Travellers</label>
+                <input class="form-input" type="number" id="hp_pax_h" name="number_of_travellers" placeholder="e.g. 2" />
+              </div>
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_h">Your Message / Requirements</label>
+                <textarea class="form-input" id="hp_msg_h" name="message" rows="4" placeholder="Tell us about the holiday you're looking for..." style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- Umrah -->
+            <div class="service-fields" data-service="umrah">
+              <div class="form-section-label">Journey Details</div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_adults">Number of Adults</label>
+                  <select class="form-input" id="hp_adults" name="number_of_adults"><option value="" disabled selected>Select...</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10 or More</option></select>
+                </div>
+                <div>
+                  <label class="form-label" for="hp_children">Number of Children</label>
+                  <select class="form-input" id="hp_children" name="number_of_children"><option value="" disabled selected>Select...</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6 or More</option></select>
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_dep_u">Preferred Departure Date</label>
+                  <input class="form-input" type="date" id="hp_dep_u" name="preferred_departure_date" />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_ret_u">Preferred Return Date</label>
+                  <input class="form-input" type="date" id="hp_ret_u" name="preferred_return_date" />
+                </div>
+              </div>
+              <div class="form-section-label">Package Preferences</div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_makkah">Makkah Nights</label>
+                  <select class="form-input" id="hp_makkah" name="makkah_nights"><option value="" disabled selected>Select...</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10 or More</option></select>
+                </div>
+                <div>
+                  <label class="form-label" for="hp_madinah">Madinah Nights</label>
+                  <select class="form-input" id="hp_madinah" name="madinah_nights"><option value="" disabled selected>Select...</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10 or More</option></select>
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_visa_u">Visa Required?</label>
+                  <select class="form-input" id="hp_visa_u" name="visa_required"><option value="" disabled selected>Select...</option><option>Yes</option><option>No</option></select>
+                </div>
+                <div>
+                  <label class="form-label" for="hp_nat_u">Passport Nationality</label>
+                  <input class="form-input" type="text" id="hp_nat_u" name="passport_nationality" placeholder="e.g. British, Bengali" />
+                </div>
+              </div>
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_u">Your Message / Requirements</label>
+                <textarea class="form-input" id="hp_msg_u" name="message" rows="4" placeholder="Tell us about your Umrah trip..." style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- Travel Money -->
+            <div class="service-fields" data-service="travel-money">
+              <div class="form-section-label">Travel Money Details</div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_sell_buy">Sell / Buy <span style="color: var(--red);">*</span></label>
+                  <select class="form-input" id="hp_sell_buy" name="sell_buy" required><option value="" disabled selected>Select...</option><option>Buy Currency</option><option>Sell Currency</option></select>
+                </div>
+                <div>
+                  <label class="form-label" for="hp_currency">Currency Required</label>
+                  <select class="form-input" id="hp_currency" name="currency_required"><option value="" disabled selected>Select...</option><option>EUR</option><option>USD</option><option>BDT</option><option>AED</option><option>Other</option></select>
+                </div>
+              </div>
+              <div class="mb-5">
+                <label class="form-label" for="hp_amount_tm">Amount Required</label>
+                <input class="form-input" type="text" id="hp_amount_tm" name="amount_required" placeholder="e.g. 500" />
+              </div>
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_tm">Your Message / Requirements</label>
+                <textarea class="form-input" id="hp_msg_tm" name="message" rows="4" placeholder="Anything else we should know..." style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- Money Transfer -->
+            <div class="service-fields" data-service="money-transfer">
+              <div class="form-section-label">Transfer Details</div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_country">Send To Country <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="text" id="hp_country" name="send_to_country" placeholder="e.g. Bangladesh" required />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_amount_mt">Amount to Send <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="text" id="hp_amount_mt" name="amount_to_send" placeholder="e.g. £500" required />
+                </div>
+              </div>
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_mt">Your Message / Requirements</label>
+                <textarea class="form-input" id="hp_msg_mt" name="message" rows="4" placeholder="Anything else we should know..." style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- Travel Insurance -->
+            <div class="service-fields" data-service="travel-insurance">
+              <div class="form-section-label">Insurance Details</div>
+              <div class="mb-5">
+                <label class="form-label" for="hp_dest_ins">Destination <span style="color: var(--red);">*</span></label>
+                <input class="form-input" type="text" id="hp_dest_ins" name="destination" placeholder="e.g. Saudi Arabia" required />
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_dep_ins">Departure Date <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="date" id="hp_dep_ins" name="departure_date" required />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_ret_ins">Return Date <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="date" id="hp_ret_ins" name="return_date" required />
+                </div>
+              </div>
+              <div class="mb-5">
+                <label class="form-label" for="hp_pax_ins">Number of Travellers</label>
+                <input class="form-input" type="number" id="hp_pax_ins" name="number_of_travellers" placeholder="e.g. 2" />
+              </div>
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_ins">Your Message / Requirements</label>
+                <textarea class="form-input" id="hp_msg_ins" name="message" rows="4" placeholder="Anything else we should know..." style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- Visa -->
+            <div class="service-fields" data-service="visa-assistance">
+              <div class="form-section-label">Visa Details</div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_dest_v">Destination Country <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="text" id="hp_dest_v" name="destination_country" placeholder="e.g. Saudi Arabia" required />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_nat_v">Passport Nationality <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="text" id="hp_nat_v" name="passport_nationality" placeholder="e.g. British, Bengali" required />
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_visa_type">Visa Type</label>
+                  <input class="form-input" type="text" id="hp_visa_type" name="visa_type" placeholder="e.g. Tourist, Business, Umrah" />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_travel_date">Travel Date</label>
+                  <input class="form-input" type="date" id="hp_travel_date" name="travel_date" />
+                </div>
+              </div>
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_v">Your Message / Requirements</label>
+                <textarea class="form-input" id="hp_msg_v" name="message" rows="4" placeholder="Anything else we should know..." style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- Airport Transfer -->
+            <div class="service-fields" data-service="airport-transfer">
+              <div class="form-section-label">Transfer Details</div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_pickup">Airport / Pickup Location <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="text" id="hp_pickup" name="pickup_location" placeholder="e.g. Heathrow Terminal 5" required />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_dropoff">Destination / Drop-off Location <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="text" id="hp_dropoff" name="dropoff_location" placeholder="e.g. Home address" required />
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_pickup_dt">Pickup Date &amp; Time <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="datetime-local" id="hp_pickup_dt" name="pickup_datetime" required />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_passengers">Number of Passengers <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="number" id="hp_passengers" name="number_of_passengers" placeholder="e.g. 2" required />
+                </div>
+              </div>
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_at">Your Message / Requirements</label>
+                <textarea class="form-input" id="hp_msg_at" name="message" rows="4" placeholder="Anything else we should know..." style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- General -->
+            <div class="service-fields" data-service="general">
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_g">Your Message <span style="color: var(--red);">*</span></label>
+                <textarea class="form-input" id="hp_msg_g" name="message" rows="4" placeholder="Tell us how we can help..." required style="resize: vertical;"></textarea>
+              </div>
             </div>
 
             <button type="submit" class="btn-primary w-full justify-center text-sm">

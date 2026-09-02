@@ -98,6 +98,49 @@ document.addEventListener('DOMContentLoaded', () => {
     btt.addEventListener('mouseleave', () => btt.style.transform = '');
   }
 
+  // ── Homepage contact form: show the field set that matches the selected
+  //    service, and only require those visible fields.
+  const enquirySelect = document.getElementById('enquiry');
+  const subjectInput = document.querySelector('form.enquiry-form input[name="_subject"]');
+  const serviceSubjects = {
+    flights: 'New Flights enquiry from the Aaz Travel website',
+    holiday: 'New Holiday Package enquiry from the Aaz Travel website',
+    umrah: 'New Umrah & Hajj enquiry from the Aaz Travel website',
+    'travel-money': 'New Travel Money enquiry from the Aaz Travel website',
+    'money-transfer': 'New Money Transfer enquiry from the Aaz Travel website',
+    'travel-insurance': 'New Travel Insurance enquiry from the Aaz Travel website',
+    'visa-assistance': 'New Visa Assistance enquiry from the Aaz Travel website',
+    'airport-transfer': 'New Airport Transfer enquiry from the Aaz Travel website',
+    general: 'New enquiry from the Aaz Travel website',
+  };
+
+  function syncServiceFields() {
+    const panels = document.querySelectorAll('.service-fields');
+    if (!panels.length || !enquirySelect) return;
+    const selected = enquirySelect.value;
+    panels.forEach(panel => {
+      const active = panel.dataset.service === selected;
+      panel.classList.toggle('is-active', active);
+      panel.querySelectorAll('input, select, textarea').forEach(field => {
+        if (field.type === 'hidden' || field.name === '_honey') return;
+        if (field.dataset.alwaysRequired === 'true') return;
+        if (field.dataset.wasRequired === undefined) {
+          field.dataset.wasRequired = field.required ? '1' : '0';
+        }
+        field.required = active && field.dataset.wasRequired === '1';
+        field.disabled = !active;
+      });
+    });
+    if (subjectInput && serviceSubjects[selected]) {
+      subjectInput.value = serviceSubjects[selected];
+    }
+  }
+
+  if (enquirySelect) {
+    enquirySelect.addEventListener('change', syncServiceFields);
+    syncServiceFields();
+  }
+
   // ── Enquiry forms — every form on the site (the general contact form on
   //    index.html, plus each service page's dedicated enquiry form) shares
   //    this same handler. Every such form has class="enquiry-form" and a

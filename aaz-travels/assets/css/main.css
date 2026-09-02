@@ -28,19 +28,19 @@
     /* ── NAV ── */
     #navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(23,7,7,0.92);
+      background: rgba(23,7,7,0.98);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(180,23,23,0.35);
       transition: background 0.3s, border-color 0.3s;
     }
     #navbar.scrolled { background: rgba(23,7,7,0.98); border-bottom-color: rgba(180,23,23,0.35); }
 
     .nav-link {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 600;
       letter-spacing: 0.02em;
-      color: #e8dcd8;
+      color: #fff;
       transition: color 0.2s;
       position: relative;
       padding-bottom: 2px;
@@ -49,11 +49,40 @@
       content: '';
       position: absolute; bottom: -3px; left: 0; right: 0;
       height: 2px; background: var(--red-lt);
-      transform: scaleX(0); transform-origin: left;
+      transform: scaleX(1); transform-origin: left;
       transition: transform 0.25s;
     }
     .nav-link:hover { color: #fff; }
-    .nav-link:hover::after { transform: scaleX(1); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      padding: 8px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+      line-height: 1.15;
+      transition: transform 0.15s, filter 0.15s, box-shadow 0.15s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); filter: brightness(1.08); }
+    .nav-cta-call {
+      background: var(--red);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(180,23,23,0.35);
+    }
+    .nav-cta-whatsapp {
+      background: #25D366;
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(37,211,102,0.35);
+    }
+
+    .service-fields { display: none; }
+    .service-fields.is-active { display: block; }
 
     .nav-call-link {
       align-items: center;

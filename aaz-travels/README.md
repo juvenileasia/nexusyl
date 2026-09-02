@@ -6,9 +6,9 @@ This folder contains a self-contained, multi-page static website for
 
 ## Site map
 
-Navbar: **Flights | Holidays | Umrah | Travel Services ▾ | About Us**, with
-a phone icon (calls 020 8154 9513) and a WhatsApp icon (opens a chat with a
-"request a quote" message pre-filled) on the right.
+Navbar: **Flights | Holidays | Umrah | Travel Services ▾ | About Us** — menu
+links stay highlighted. On the right: a **Call 020 8154 9513** button and a
+**Request a Quote** WhatsApp button.
 
 | Nav label | Page | File |
 | --- | --- | --- |
@@ -42,6 +42,8 @@ Preferences"; the Travel Money form has a Sell/Buy dropdown and a currency
 selector; etc.). The homepage keeps one general contact form for anything
 else. Every form:
 
+- The homepage contact form shows extra fields based on the selected
+  service (same fields as that service's dedicated page).
 - Shares the same submit handler in `assets/js/main.js` (any `<form
   class="enquiry-form">` with a `.form-success` element inside its
   `.form-card` wrapper works automatically — no per-page JS needed).

@@ -63,7 +63,7 @@
       </a>
 
       <!-- Desktop links -->
-      <div class="hidden lg:flex items-center gap-4 xl:gap-6">
+      <div class="hidden xl:flex items-center gap-3 2xl:gap-5">
         <a href="index.html" class="nav-link whitespace-nowrap">Flights</a>
         <a href="holiday-packages.html" class="nav-link whitespace-nowrap">Holidays</a>
         <a href="umrah-packages.html" class="nav-link whitespace-nowrap">Umrah</a>
@@ -80,19 +80,20 @@
         <a href="about-us.html" class="nav-link whitespace-nowrap">About Us</a>
       </div>
 
-      <!-- Right-hand CTAs (desktop) — phone icon calls us directly, WhatsApp
-           icon opens a chat with a "request a quote" message pre-filled. -->
-      <div class="hidden lg:flex items-center gap-3">
-        <a href="tel:02081549513" aria-label="Call us: 020 8154 9513" title="Call us: 020 8154 9513" class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #e8dcd8;">
+      <!-- Right-hand CTAs (desktop) — labelled Call and Request a Quote buttons -->
+      <div class="hidden xl:flex items-center gap-2 flex-shrink-0">
+        <a href="tel:02081549513" class="nav-cta nav-cta-call" aria-label="Call us: 020 8154 9513">
           <i class="fa-solid fa-phone-volume"></i>
+          <span>Call 020 8154 9513</span>
         </a>
-        <a href="https://wa.me/442081549513?text=Hi%2C%20I%27d%20like%20to%20request%20a%20quote" target="_blank" rel="noopener" aria-label="Request a quote on WhatsApp" title="Request a quote on WhatsApp" class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background: #25D366; color: #fff;">
+        <a href="https://wa.me/442081549513?text=Hi%2C%20I%27d%20like%20to%20request%20a%20quote" target="_blank" rel="noopener" class="nav-cta nav-cta-whatsapp" aria-label="Request a quote on WhatsApp">
           <i class="fa-brands fa-whatsapp"></i>
+          <span>Request a Quote</span>
         </a>
       </div>
 
       <!-- Mobile hamburger -->
-      <button id="menu-toggle" aria-label="Open menu" class="lg:hidden flex flex-col gap-1.5 p-2">
+      <button id="menu-toggle" aria-label="Open menu" class="xl:hidden flex flex-col gap-1.5 p-2">
         <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar1"></span>
         <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
         <span class="w-4 h-0.5 bg-white transition-all duration-300" id="bar3"></span>
@@ -101,7 +102,7 @@
 
     <!-- Mobile-only click-to-call bar — always visible, no need to open the
          hamburger menu to see it. -->
-    <a href="tel:02081549513" class="nav-call-bar-mobile lg:hidden">
+    <a href="tel:02081549513" class="nav-call-bar-mobile xl:hidden">
       <i class="fa-solid fa-phone-volume"></i>
       Book Online or Call Us <span class="nav-call-link-number">020 8154 9513</span>
     </a>
@@ -137,11 +138,9 @@
       <a href="about-us.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
         <i class="fa-solid fa-circle-info mr-3 text-red-500"></i>About Us
       </a>
-      <div class="pt-2 pb-1 flex gap-2">
-        <a href="tel:02081549513" class="btn-outline w-full justify-center text-sm" style="border-color: rgba(255,255,255,0.25); color: #f3e3df;"><i class="fa-solid fa-phone-volume"></i> Call Us</a>
-        <a href="https://wa.me/442081549513?text=Hi%2C%20I%27d%20like%20to%20request%20a%20quote" target="_blank" rel="noopener" aria-label="Request a quote on WhatsApp" class="flex-shrink-0 w-12 flex items-center justify-center rounded-lg" style="background: #25D366; color: #fff;">
-          <i class="fa-brands fa-whatsapp"></i>
-        </a>
+      <div class="pt-2 pb-1 flex flex-col gap-2">
+        <a href="tel:02081549513" class="nav-cta nav-cta-call w-full justify-center"><i class="fa-solid fa-phone-volume"></i><span>Call 020 8154 9513</span></a>
+        <a href="https://wa.me/442081549513?text=Hi%2C%20I%27d%20like%20to%20request%20a%20quote" target="_blank" rel="noopener" class="nav-cta nav-cta-whatsapp w-full justify-center"><i class="fa-brands fa-whatsapp"></i><span>Request a Quote</span></a>
       </div>
     </div>
   </div>
