@@ -98,11 +98,17 @@ document.addEventListener('DOMContentLoaded', () => {
     btt.addEventListener('mouseleave', () => btt.style.transform = '');
   }
 
-  // ── Contact form — submits to info@aaztravel.com via FormSubmit (see the
-  //    comment above the <form> tag for the one-time confirmation step).
-  const form = document.getElementById('contact-form');
-  const successMsg = document.getElementById('form-success');
-  if (form && successMsg) {
+  // ── Enquiry forms — every form on the site (the general contact form on
+  //    index.html, plus each service page's dedicated enquiry form) shares
+  //    this same handler. Every such form has class="enquiry-form" and a
+  //    ".form-success" element as a sibling inside the same ".form-card"
+  //    wrapper; forms submit to info@aaztravel.com via FormSubmit (see the
+  //    comment above each <form> tag for the one-time confirmation step).
+  document.querySelectorAll('form.enquiry-form').forEach(form => {
+    const card = form.closest('.form-card') || form.parentElement;
+    const successMsg = card ? card.querySelector('.form-success') : null;
+    if (!successMsg) return;
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = form.querySelector('button[type="submit"]');
@@ -125,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alert("Sorry, we couldn't send your message. Please email us directly at info@aaztravel.com or WhatsApp us at 020 8154 9513.");
       }
     });
-  }
+  });
 
   // ── FAQ accordion
   document.querySelectorAll('.faq-item').forEach(item => {
@@ -145,33 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
       answer.style.maxHeight = !isOpen ? answer.scrollHeight + 'px' : null;
     });
   });
-
-  // ── Umrah & Hajj questionnaire — reveal + enable extra fields only when
-  //    that enquiry type is selected (disabled fields are excluded from
-  //    the form submission automatically by the browser).
-  const enquirySelect = document.getElementById('enquiry');
-  const umrahWrap = document.getElementById('umrah-fields-wrap');
-  const umrahFieldsEl = document.getElementById('umrah-fields');
-  if (enquirySelect && umrahWrap && umrahFieldsEl) {
-    const umrahInputs = umrahWrap.querySelectorAll('input, select');
-
-    function setUmrahFieldsVisible(visible) {
-      umrahWrap.classList.toggle('open', visible);
-      umrahInputs.forEach(el => { el.disabled = !visible; });
-      if (visible) {
-        // Recompute in case content height changes after fonts/images settle.
-        requestAnimationFrame(() => {
-          umrahWrap.style.maxHeight = umrahFieldsEl.scrollHeight + 'px';
-        });
-      } else {
-        umrahWrap.style.maxHeight = null;
-      }
-    }
-
-    enquirySelect.addEventListener('change', () => {
-      setUmrahFieldsVisible(enquirySelect.value === 'umrah');
-    });
-  }
 
   // ── Smooth anchor offset (account for fixed nav) — only for in-page
   //    anchors (href starting with "#") that resolve on THIS page.

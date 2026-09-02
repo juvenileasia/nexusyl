@@ -415,16 +415,6 @@
        sets an explicit inline max-height (the section's real scrollHeight)
        to open it, and clears the inline style to close it again, letting
        it fall back to this 0 value. */
-    .umrah-fields-wrap {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-    .umrah-fields-wrap.open #umrah-fields {
-      border-top: 1px dashed var(--border);
-      padding-top: 18px;
-    }
-
     /* ── CONTACT FORM ── */
     .form-input {
       width: 100%;
@@ -494,8 +484,21 @@
     .reveal-delay-3 { transition-delay: 0.3s; }
     .reveal-delay-4 { transition-delay: 0.4s; }
 
+    /* ── GROUPED FORM SECTIONS (Umrah enquiry form) ── */
+    .form-section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 14px;
+      padding-top: 4px;
+      border-top: 1px dashed var(--border);
+    }
+    .form-section-label:first-child { border-top: none; padding-top: 0; }
+
     /* ── SUCCESS MESSAGE ── */
-    #form-success {
+    #form-success, .form-success {
       display: none;
       background: rgba(180,23,23,0.08);
       border: 1px solid rgba(180,23,23,0.25);
@@ -504,6 +507,7 @@
       text-align: center;
       color: #1A1414;
       font-size: 0.875rem;
+      margin-bottom: 20px;
     }
 
     /* ── ROUTE CHIP ── */

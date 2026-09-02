@@ -6,26 +6,49 @@ This folder contains a self-contained, multi-page static website for
 
 ## Site map
 
-| Page | File |
-| --- | --- |
-| Home (flight search, trending deals, why choose us, testimonials, FAQs, contact) | `index.html` |
-| Umrah Packages | `umrah-packages.html` |
-| Holiday Packages | `holiday-packages.html` |
-| Money Transfer | `money-transfer.html` |
-| Travel Money | `travel-money.html` |
-| Travel Services (Travel Insurance / Visa Services / Airport Transfers / Group & Corporate Travel) | `travel-services.html` |
-| About Us | `about-us.html` |
-| FAQs | `faqs.html` |
-| Travel Guide | `travel-guide.html` |
-| Terms &amp; Conditions | `terms-conditions.html` |
-| Privacy Policy | `privacy-policy.html` |
-| Cookie Policy | `cookie-policy.html` |
+Navbar: **Flights | Holidays | Umrah | Travel Services ▾ | About Us**, with
+a phone icon (calls 020 8154 9513) and a WhatsApp icon (opens a chat with a
+"request a quote" message pre-filled) on the right.
 
-Every page shares the same navbar (with a "Travel Services" dropdown) and
-footer (Quick Links / Help &amp; Information / Contact columns), a floating
-WhatsApp button, and — on every page **except** the homepage, which has the
-full search widget — a mobile-only sticky "Call / WhatsApp" bar at the bottom
-of the screen.
+| Nav label | Page | File |
+| --- | --- | --- |
+| Flights | Home (flight search, trending deals, why choose us, testimonials, FAQs, general contact form) | `index.html` |
+| Holidays | Holiday Packages (+ dedicated enquiry form) | `holiday-packages.html` |
+| Umrah | Umrah &amp; Hajj Packages (+ dedicated, grouped enquiry form) | `umrah-packages.html` |
+| Travel Services | Hub page linking to the 5 services below | `travel-services.html` |
+| ↳ | Travel Money (+ dedicated enquiry form) | `travel-money.html` |
+| ↳ | Money Transfer (+ dedicated enquiry form) | `money-transfer.html` |
+| ↳ | Travel Insurance (+ dedicated enquiry form) | `travel-insurance.html` |
+| ↳ | Visa Assistance (+ dedicated enquiry form) | `visa-assistance.html` |
+| ↳ | Airport Transfer (+ dedicated enquiry form) | `airport-transfer.html` |
+| About Us | About Us | `about-us.html` |
+| *(footer only)* | FAQs | `faqs.html` |
+| *(footer only)* | Travel Guide | `travel-guide.html` |
+| *(footer only)* | Terms &amp; Conditions | `terms-conditions.html` |
+| *(footer only)* | Privacy Policy | `privacy-policy.html` |
+| *(footer only)* | Cookie Policy | `cookie-policy.html` |
+
+Every page shares the same navbar/footer, a floating WhatsApp button, and —
+on every page **except** the homepage, which has the full search widget — a
+mobile-only sticky "Call / WhatsApp" bar at the bottom of the screen.
+
+### Enquiry forms
+
+Each of the 7 service pages above (Holidays, Umrah, Travel Money, Money
+Transfer, Travel Insurance, Visa Assistance, Airport Transfer) has its own
+dedicated enquiry form with fields specific to that service (e.g. the Umrah
+form is grouped into "Your Details" / "Journey Details" / "Package
+Preferences"; the Travel Money form has a Sell/Buy dropdown and a currency
+selector; etc.). The homepage keeps one general contact form for anything
+else. Every form:
+
+- Shares the same submit handler in `assets/js/main.js` (any `<form
+  class="enquiry-form">` with a `.form-success` element inside its
+  `.form-card` wrapper works automatically — no per-page JS needed).
+- Submits to **info@aaztravel.com** via FormSubmit (AJAX, no backend). The
+  first submission after go-live triggers a one-time FormSubmit
+  confirmation email — someone needs to click "Confirm" before submissions
+  start arriving.
 
 ## What's in here
 
@@ -340,3 +363,21 @@ footer.
     was not supplied verbatim by Aaz Travel, so review and adjust the
     specifics (prices, currency list, exact legal wording, etc.) before
     treating anything on those pages as final/binding.**
+- **Latest round — nav simplified further, dedicated enquiry forms added**:
+  - Navbar cut down to Flights / Holidays / Umrah / Travel Services
+    (dropdown) / About Us, with just a phone icon + WhatsApp icon on the
+    right (the separate "Request a Quote" button was removed — the
+    WhatsApp icon itself now opens a chat with a "request a quote" message
+    pre-filled).
+  - "Group &amp; Corporate Travel" was removed entirely (no page, no menu
+    entry) per instruction.
+  - Travel Money and Money Transfer moved from being their own top-level nav
+    items into the Travel Services dropdown, alongside three **newly
+    created pages**: `travel-insurance.html`, `visa-assistance.html`,
+    `airport-transfer.html` (previously these were just anchors on
+    `travel-services.html`; that page is now a simple hub linking out to
+    all 5 dedicated service pages).
+  - The homepage's old conditional "Umrah &amp; Hajj questionnaire" (which
+    dynamically revealed extra fields in the general contact form) was
+    removed — that functionality is superseded by the dedicated,
+    always-visible form on `umrah-packages.html`.
