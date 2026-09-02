@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Travel Money | Aaz Travel</title>
+  <meta name="description" content="Order your foreign currency ahead of your trip with Aaz Travel — competitive rates on all major currencies, collect in-store or buy on the day." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Aaz Travel" />
+  <link rel="canonical" href="https://www.aaztravel.com/travel-money.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.aaztravel.com/travel-money.html" />
+  <meta property="og:title" content="Travel Money | Aaz Travel" />
+  <meta property="og:description" content="Order your foreign currency ahead of your trip with Aaz Travel — competitive rates on all major currencies, collect in-store or buy on the day." />
+  <meta property="og:image" content="assets/logo/aaz-travel-logo-red.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Travel Money | Aaz Travel" />
+  <meta name="twitter:description" content="Order your foreign currency ahead of your trip with Aaz Travel — competitive rates on all major currencies, collect in-store or buy on the day." />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/aaz-travel-favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/aaz-travel-apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Poppins', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: { red: '#B41717', redLt: '#D2251F', navy: '#131F6B', cream: '#FFF8F3' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     STICKY NAVIGATION (shared across every page)
+════════════════════════════════════════════════════════════ -->
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2.5 flex-shrink-0">
+        <img src="assets/logo/aaz-travel-wordmark-white.png" alt="Aaz Travel" class="h-8 lg:h-9 xl:h-10 object-contain" onerror="this.style.display='none'" />
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden xl:flex items-center gap-3 2xl:gap-5">
+        <a href="index.html" class="nav-link whitespace-nowrap">Flights</a>
+        <a href="holiday-packages.html" class="nav-link whitespace-nowrap">Holidays</a>
+        <a href="umrah-packages.html" class="nav-link whitespace-nowrap">Umrah</a>
+        <div class="nav-dropdown">
+          <a href="travel-services.html" class="nav-link nav-dropdown-trigger whitespace-nowrap">Travel Services <i class="fa-solid fa-chevron-down"></i></a>
+          <div class="nav-dropdown-menu">
+            <a href="travel-money.html"><i class="fa-solid fa-money-bill-wave"></i> Travel Money</a>
+            <a href="money-transfer.html"><i class="fa-solid fa-money-bill-transfer"></i> Money Transfer</a>
+            <a href="travel-insurance.html"><i class="fa-solid fa-file-shield"></i> Travel Insurance</a>
+            <a href="visa-assistance.html"><i class="fa-solid fa-passport"></i> Visa Assistance</a>
+            <a href="airport-transfer.html"><i class="fa-solid fa-van-shuttle"></i> Airport Transfer</a>
+          </div>
+        </div>
+        <a href="about-us.html" class="nav-link whitespace-nowrap">About Us</a>
+      </div>
+
+      <!-- Right-hand CTAs (desktop) — labelled Call and Request a Quote buttons -->
+      <div class="hidden xl:flex items-center gap-2 flex-shrink-0">
+        <a href="tel:02081549513" class="nav-cta nav-cta-call" aria-label="Call us: 020 8154 9513">
+          <i class="fa-solid fa-phone-volume"></i>
+          <span>Call 020 8154 9513</span>
+        </a>
+        <a href="https://wa.me/442081549513?text=Hi%2C%20I%27d%20like%20to%20request%20a%20quote" target="_blank" rel="noopener" class="nav-cta nav-cta-whatsapp" aria-label="Request a quote on WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>Request a Quote</span>
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-toggle" aria-label="Open menu" class="xl:hidden flex flex-col gap-1.5 p-2">
+        <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar1"></span>
+        <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
+        <span class="w-4 h-0.5 bg-white transition-all duration-300" id="bar3"></span>
+      </button>
+    </div>
+
+    <!-- Mobile-only click-to-call bar — always visible, no need to open the
+         hamburger menu to see it. -->
+    <a href="tel:02081549513" class="nav-call-bar-mobile xl:hidden">
+      <i class="fa-solid fa-phone-volume"></i>
+      Book Online or Call Us <span class="nav-call-link-number">020 8154 9513</span>
+    </a>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" role="menu">
+    <div class="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-1">
+      <a href="index.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-plane mr-3 text-red-500"></i>Flights
+      </a>
+      <a href="holiday-packages.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-umbrella-beach mr-3 text-red-500"></i>Holidays
+      </a>
+      <a href="umrah-packages.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-kaaba mr-3 text-red-500"></i>Umrah
+      </a>
+
+      <div>
+        <div class="mobile-nav-dropdown-trigger py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors">
+          <span><i class="fa-solid fa-briefcase mr-3 text-red-500"></i>Travel Services</span>
+          <i class="fa-solid fa-chevron-down chevron"></i>
+        </div>
+        <div class="mobile-nav-submenu">
+          <a href="travel-money.html" class="mobile-nav-link block py-2.5 px-4 pl-12 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">Travel Money</a>
+          <a href="money-transfer.html" class="mobile-nav-link block py-2.5 px-4 pl-12 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">Money Transfer</a>
+          <a href="travel-insurance.html" class="mobile-nav-link block py-2.5 px-4 pl-12 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">Travel Insurance</a>
+          <a href="visa-assistance.html" class="mobile-nav-link block py-2.5 px-4 pl-12 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">Visa Assistance</a>
+          <a href="airport-transfer.html" class="mobile-nav-link block py-2.5 px-4 pl-12 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">Airport Transfer</a>
+        </div>
+      </div>
+
+      <a href="about-us.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-circle-info mr-3 text-red-500"></i>About Us
+      </a>
+      <div class="pt-2 pb-1 flex flex-col gap-2">
+        <a href="tel:02081549513" class="nav-cta nav-cta-call w-full justify-center"><i class="fa-solid fa-phone-volume"></i><span>Call 020 8154 9513</span></a>
+        <a href="https://wa.me/442081549513?text=Hi%2C%20I%27d%20like%20to%20request%20a%20quote" target="_blank" rel="noopener" class="nav-cta nav-cta-whatsapp w-full justify-center"><i class="fa-brands fa-whatsapp"></i><span>Request a Quote</span></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE HERO
+════════════════════════════════════════════════════════════ -->
+<section class="page-hero" aria-label="Travel Money">
+  <div class="hero-bg-image"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-glow"></div>
+  <div class="relative max-w-7xl mx-auto px-5 lg:px-8 w-full text-center">
+    <div class="page-hero-breadcrumb mb-5 anim-1">
+      <a href="index.html">Home</a><i class="fa-solid fa-chevron-right"></i>Travel Money
+    </div>
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-[1.08] tracking-tight text-white anim-2 mb-5">
+      Travel Money, <span style="color: var(--red-lt);">Sorted Before You Fly</span>
+    </h1>
+    <p class="text-gray-300 text-base sm:text-lg leading-relaxed anim-3 max-w-2xl mx-auto">
+      Order your foreign currency in advance and collect it in-store, or buy on the day — competitive rates on all the major currencies.
+    </p>
+  </div>
+</section>
+
+<section class="py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20">
+      <div>
+        <div class="section-label mb-4">Foreign Currency</div>
+        <h2 class="text-3xl lg:text-4xl font-display font-bold leading-tight mb-4" style="color:#1A1414;">
+          Great Rates, <span style="color: var(--red);">Ready When You Are</span>
+        </h2>
+        <p class="text-gray-500 text-base leading-relaxed mb-6">
+          Don't get caught out by poor airport exchange rates. Order your travel money with Aaz Travel and collect it in-store, or come in and buy on the spot.
+        </p>
+        <div class="border rounded-2xl p-5" style="border-color: var(--border);">
+          <div class="feature-check"><i class="fa-solid fa-circle-check"></i>Saudi Riyal, US Dollar, Euro &amp; all major currencies</div>
+          <div class="feature-check"><i class="fa-solid fa-circle-check"></i>Competitive rates, checked daily</div>
+          <div class="feature-check"><i class="fa-solid fa-circle-check"></i>Order ahead or buy on the day, in-store</div>
+          <div class="feature-check"><i class="fa-solid fa-circle-check"></i>Ideal alongside your Umrah, Hajj or holiday booking</div>
+          <div class="feature-check"><i class="fa-solid fa-circle-check"></i>No commission surprises — rate confirmed before you pay</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="service-card">
+          <div class="service-img-wrap" style="height: 380px;">
+            <img src="https://images.unsplash.com/photo-1580048915913-4f8f5cb481c4?w=900&q=80&auto=format&fit=crop"
+                 alt="Foreign currency notes for travel — Aaz Travel travel money" loading="lazy" />
+            <div class="service-img-overlay"></div>
+            <span class="service-tag">Travel Money</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mb-12 reveal">
+      <div class="section-label justify-center mb-4">Popular Currencies</div>
+      <h2 class="text-3xl lg:text-4xl font-display font-bold" style="color:#1A1414;">We Hold Stock in the Currencies You Need</h2>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-5">
+      <div class="content-card reveal text-center">
+        <h3 class="font-display font-bold text-lg" style="color:#1A1414;">SAR</h3>
+        <p class="text-gray-500 text-xs mt-1">Saudi Riyal</p>
+      </div>
+      <div class="content-card reveal reveal-delay-1 text-center">
+        <h3 class="font-display font-bold text-lg" style="color:#1A1414;">USD</h3>
+        <p class="text-gray-500 text-xs mt-1">US Dollar</p>
+      </div>
+      <div class="content-card reveal reveal-delay-2 text-center">
+        <h3 class="font-display font-bold text-lg" style="color:#1A1414;">EUR</h3>
+        <p class="text-gray-500 text-xs mt-1">Euro</p>
+      </div>
+      <div class="content-card reveal reveal-delay-3 text-center">
+        <h3 class="font-display font-bold text-lg" style="color:#1A1414;">AED</h3>
+        <p class="text-gray-500 text-xs mt-1">UAE Dirham</p>
+      </div>
+    </div>
+    <p class="text-center text-gray-500 text-sm mt-6">Don't see your currency? Call or WhatsApp us — we can usually source it.</p>
+
+  </div>
+</section>
+
+<section id="enquire" class="py-20 lg:py-28" style="background: var(--cream);">
+  <div class="max-w-3xl mx-auto px-5 lg:px-8">
+    <div class="text-center mb-12 reveal">
+      <div class="section-label justify-center mb-4">Order Now</div>
+      <h2 class="text-3xl lg:text-4xl font-display font-bold" style="color:#1A1414;">Request Your Travel Money</h2>
+      <p class="text-gray-500 max-w-xl mx-auto mt-3">Tell us what you need and we'll confirm today's rate.</p>
+    </div>
+
+    <div class="form-card border rounded-2xl p-8 lg:p-10 bg-white reveal" style="border-color: var(--border);">
+      <div class="form-success">
+        <i class="fa-solid fa-circle-check text-2xl mb-3" style="color: var(--red);"></i>
+        <p class="font-semibold mb-1" style="color:#1A1414;">Message Sent!</p>
+        <p class="text-gray-500 text-sm">Thank you for reaching out. We'll get back to you shortly.</p>
+      </div>
+
+      <!-- Submits directly to info@aaztravel.com via FormSubmit (no backend
+           required). NOTE: the very first submission after go-live will
+           trigger a one-time confirmation email from FormSubmit to
+           info@aaztravel.com — someone needs to click "Confirm" in that
+           email before submissions start arriving. See README.md. -->
+      <form class="enquiry-form" action="https://formsubmit.co/ajax/info@aaztravel.com" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="New Travel Money enquiry from the Aaz Travel website" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+        
+            <div class="grid sm:grid-cols-2 gap-4 mb-5">
+              <div>
+              <label class="form-label" for="name">Full Name <span style="color: var(--red);">*</span></label>
+              <input class="form-input" type="text" id="name" name="name" placeholder="John Smith" required />
+            </div><div>
+              <label class="form-label" for="phone">Phone / WhatsApp <span style="color: var(--red);">*</span></label>
+              <input class="form-input" type="tel" id="phone" name="phone" placeholder="+44 7700 000000" required />
+            </div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4 mb-5">
+              <div>
+              <label class="form-label" for="email">Email Address <span style="color: var(--red);">*</span></label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="john@example.com" required />
+            </div><div>
+              <label class="form-label" for="sell_buy">Sell / Buy <span style="color: var(--red);">*</span></label>
+              <select class="form-input" id="sell_buy" name="sell_buy" required><option value="" disabled selected>Select...</option><option>Buy Currency</option><option>Sell Currency</option></select>
+            </div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4 mb-5">
+              <div>
+              <label class="form-label" for="currency_required">Currency Required</label>
+              <select class="form-input" id="currency_required" name="currency_required"><option value="" disabled selected>Select...</option><option>EUR</option><option>USD</option><option>BDT</option><option>AED</option><option>Other</option></select>
+            </div><div>
+              <label class="form-label" for="amount_required">Amount Required</label>
+              <input class="form-input" type="text" id="amount_required" name="amount_required" placeholder="e.g. 500" />
+            </div>
+            </div><div class="mb-5"><div>
+              <label class="form-label" for="message">Your Message / Requirements</label>
+              <textarea class="form-input" id="message" name="message" rows="4" placeholder="Anything else we should know..." style="resize:vertical;"></textarea>
+            </div></div>
+        <button type="submit" class="btn-primary w-full justify-center text-sm">
+          Send Enquiry <i class="fa-solid fa-paper-plane text-xs"></i>
+        </button>
+        <p class="text-xs text-gray-400 text-center mt-4">We respond within 1 business day. Your information is kept private.</p>
+      </form>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-4 mt-8 reveal">
+      <a href="tel:02081549513" class="btn-outline" style="border-color: rgba(180,23,23,0.3); color: var(--red);">
+        <i class="fa-solid fa-phone"></i> Call 020 8154 9513
+      </a>
+      <a href="https://wa.me/442081549513" target="_blank" rel="noopener" class="btn-outline" style="border-color: rgba(180,23,23,0.3); color: var(--red);">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Mobile sticky call/WhatsApp bar (this page has no search widget) -->
+<div class="sticky-cta-bar md:hidden">
+  <a href="tel:02081549513" class="call"><i class="fa-solid fa-phone"></i> Call Us</a>
+  <a href="https://wa.me/442081549513" target="_blank" rel="noopener" class="whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+</div>
+<div class="md:hidden" style="height: 60px;"></div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER (shared across every page)
+════════════════════════════════════════════════════════════ -->
+<footer style="background: var(--dark); border-top: 1px solid rgba(255,255,255,0.08);" role="contentinfo">
+
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-14">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-6 gap-10">
+
+      <div class="lg:col-span-2">
+        <div class="flex items-center mb-5">
+          <img src="assets/logo/aaz-travel-wordmark-white.png" alt="Aaz Travel" class="h-9 object-contain" onerror="this.style.display='none'" />
+        </div>
+        <p class="footer-text text-sm leading-relaxed mb-5 max-w-xs">
+          Aaz Travel brings your dream destinations closer — flights and fully guided Umrah &amp; Hajj packages, booked with confidence.
+        </p>
+        <div class="flex items-center gap-3 mb-5">
+          <a href="https://www.instagram.com/aaz.travels/" target="_blank" rel="noopener" aria-label="Instagram" class="footer-social-btn w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center hover:bg-red-700 hover:border-red-700 transition-all">
+            <i class="fa-brands fa-instagram text-xs"></i>
+          </a>
+          <a href="https://www.facebook.com/people/Aaz-Travel/61581291682116/" target="_blank" rel="noopener" aria-label="Facebook" class="footer-social-btn w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center hover:bg-red-700 hover:border-red-700 transition-all">
+            <i class="fa-brands fa-facebook-f text-xs"></i>
+          </a>
+          <a href="https://wa.me/442081549513" target="_blank" rel="noopener" aria-label="WhatsApp" class="footer-social-btn w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center hover:bg-red-700 hover:border-red-700 transition-all">
+            <i class="fa-brands fa-whatsapp text-xs"></i>
+          </a>
+        </div>
+        <div class="inline-flex items-center gap-2.5 bg-white rounded-lg px-3 py-2 w-fit">
+          <img src="assets/badges/iata-logo.png" alt="IATA" class="h-5 w-auto object-contain" onerror="this.style.display='none'" />
+          <span class="text-[11px] font-semibold text-gray-700 whitespace-nowrap">IATA Accredited Agent</span>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Quick Links</h3>
+        <div class="flex flex-col gap-2.5">
+          <a href="index.html" class="footer-link">Flights</a>
+          <a href="holiday-packages.html" class="footer-link">Holidays</a>
+          <a href="umrah-packages.html" class="footer-link">Umrah</a>
+          <a href="travel-services.html" class="footer-link">Travel Services</a>
+          <a href="about-us.html" class="footer-link">About Us</a>
+          <a href="index.html#contact" class="footer-link">Contact</a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Travel Services</h3>
+        <div class="flex flex-col gap-2.5">
+          <a href="travel-money.html" class="footer-link">Travel Money</a>
+          <a href="money-transfer.html" class="footer-link">Money Transfer</a>
+          <a href="travel-insurance.html" class="footer-link">Travel Insurance</a>
+          <a href="visa-assistance.html" class="footer-link">Visa Assistance</a>
+          <a href="airport-transfer.html" class="footer-link">Airport Transfer</a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Help &amp; Information</h3>
+        <div class="flex flex-col gap-2.5">
+          <a href="faqs.html" class="footer-link">FAQs</a>
+          <a href="travel-guide.html" class="footer-link">Travel Guide</a>
+          <a href="terms-conditions.html" class="footer-link">Terms &amp; Conditions</a>
+          <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+          <a href="cookie-policy.html" class="footer-link">Cookie Policy</a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Contact</h3>
+        <div class="flex flex-col gap-3">
+          <a href="tel:02081549513" class="footer-link flex items-center gap-2">
+            <i class="fa-solid fa-phone text-red-600 text-xs"></i> 020 8154 9513
+          </a>
+          <a href="mailto:info@aaztravel.com" class="footer-link flex items-center gap-2">
+            <i class="fa-solid fa-envelope text-red-600 text-xs"></i> info@aaztravel.com
+          </a>
+          <a href="https://wa.me/442081549513" target="_blank" rel="noopener" class="footer-link flex items-center gap-2">
+            <i class="fa-brands fa-whatsapp text-red-600 text-xs"></i> 020 8154 9513
+          </a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=241a+Whitechapel+Road+London+E1+1BD" target="_blank" rel="noopener" class="footer-link flex items-start gap-2">
+            <i class="fa-solid fa-location-dot text-red-600 text-xs mt-0.5"></i> 241a, 1st Floor, Whitechapel Road, London, E1 1BD
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="border-top: 1px solid rgba(255,255,255,0.08);">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="footer-text text-xs">© <span id="year"></span> Aaz Travel. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="privacy-policy.html" class="footer-link text-xs">Privacy</a>
+        <a href="terms-conditions.html" class="footer-link text-xs">Terms</a>
+        <a href="cookie-policy.html" class="footer-link text-xs">Cookies</a>
+      </div>
+    </div>
+  </div>
+
+  <div style="border-top: 1px solid rgba(255,255,255,0.08);">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-4 flex justify-center">
+      <a href="https://juvenileasia.com/" target="_blank" rel="noopener"
+         class="footer-link inline-flex items-center gap-2 text-xs">
+        <img src="assets/badges/juvenile-asia-favicon.png" alt="Juvenile Asia" class="h-4 w-4 object-contain" onerror="this.style.display='none'" />
+        Design and developed by Juvenile Asia
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp button -->
+<a id="whatsapp-float" href="https://wa.me/442081549513" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"
+  style="position: fixed; bottom: 24px; left: 24px; z-index: 900; background: #25D366; color: white; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(37,211,102,0.5); transition: transform 0.2s;"
+  onmouseenter="this.style.transform='translateY(-3px)'" onmouseleave="this.style.transform=''">
+  <i class="fa-brands fa-whatsapp text-2xl"></i>
+</a>
+
+<!-- Back to top button -->
+<button id="back-to-top" aria-label="Back to top"
+  style="position: fixed; bottom: 24px; right: 24px; z-index: 900; background: var(--red); color: white; width: 44px; height: 44px; border-radius: 10px; display: none; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(180,23,23,0.45); transition: transform 0.2s; border: none; cursor: pointer;">
+  <i class="fa-solid fa-arrow-up text-sm"></i>
+</button>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

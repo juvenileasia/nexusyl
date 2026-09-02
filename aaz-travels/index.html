@@ -1,0 +1,2872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ═══════════════════════════════════════════
+       SEO META TAGS
+  ════════════════════════════════════════════ -->
+  <title>Aaz Travel</title>
+  <meta name="description" content="Aaz Travel brings your dream destinations closer. Search and book cheap flights worldwide, plus fully guided Umrah &amp; Hajj packages, with transparent pricing and dedicated support." />
+  <meta name="keywords" content="Aaz Travel, cheap flights, flight search, Umrah packages, Hajj packages, travel agency, book flights online, IATA accredited travel agent" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Aaz Travel" />
+  <link rel="canonical" href="https://www.aaztravel.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.aaztravel.com/" />
+  <meta property="og:title" content="Aaz Travel | Explore the World with Confidence" />
+  <meta property="og:description" content="Search and book global flights and fully guided Umrah &amp; Hajj packages with Aaz Travel — personalised service, transparent pricing, curated experiences." />
+  <meta property="og:image" content="assets/logo/aaz-travel-logo-red.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Aaz Travel | Explore the World with Confidence" />
+  <meta name="twitter:description" content="Flights and Umrah &amp; Hajj packages, booked with confidence." />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/aaz-travel-favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/aaz-travel-apple-touch-icon.png" />
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "Aaz Travel",
+    "url": "https://www.aaztravel.com",
+    "logo": "https://www.aaztravel.com/assets/logo/aaz-travel-logo-red.png",
+    "description": "Aaz Travel is a travel agency offering global flight search and booking, plus fully guided Umrah and Hajj packages.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "241a, 1st Floor, Whitechapel Road",
+      "addressLocality": "London",
+      "postalCode": "E1 1BD",
+      "addressCountry": "GB"
+    },
+    "contactPoint": { "@type": "ContactPoint", "contactType": "customer service" }
+  }
+  </script>
+
+  <!-- Fonts: brand fonts + Muli (required by the GOL IBE flight-search widget below) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Muli:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome (for the landing page's own iconography, not used by the search widget) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Poppins', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              red:   '#B41717',
+              redLt: '#D2251F',
+              navy:  '#131F6B',
+              cream: '#FFF8F3',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     STICKY NAVIGATION
+════════════════════════════════════════════════════════════ -->
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2.5 flex-shrink-0">
+        <img src="assets/logo/aaz-travel-wordmark-white.png" alt="Aaz Travel" class="h-8 lg:h-9 xl:h-10 object-contain" onerror="this.style.display='none'" />
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden xl:flex items-center gap-3 2xl:gap-5">
+        <a href="index.html" class="nav-link whitespace-nowrap">Flights</a>
+        <a href="holiday-packages.html" class="nav-link whitespace-nowrap">Holidays</a>
+        <a href="umrah-packages.html" class="nav-link whitespace-nowrap">Umrah</a>
+        <div class="nav-dropdown">
+          <a href="travel-services.html" class="nav-link nav-dropdown-trigger whitespace-nowrap">Travel Services <i class="fa-solid fa-chevron-down"></i></a>
+          <div class="nav-dropdown-menu">
+            <a href="travel-money.html"><i class="fa-solid fa-money-bill-wave"></i> Travel Money</a>
+            <a href="money-transfer.html"><i class="fa-solid fa-money-bill-transfer"></i> Money Transfer</a>
+            <a href="travel-insurance.html"><i class="fa-solid fa-file-shield"></i> Travel Insurance</a>
+            <a href="visa-assistance.html"><i class="fa-solid fa-passport"></i> Visa Assistance</a>
+            <a href="airport-transfer.html"><i class="fa-solid fa-van-shuttle"></i> Airport Transfer</a>
+          </div>
+        </div>
+        <a href="about-us.html" class="nav-link whitespace-nowrap">About Us</a>
+      </div>
+
+      <!-- Right-hand CTAs (desktop) — labelled Call and Request a Quote buttons -->
+      <div class="hidden xl:flex items-center gap-2 flex-shrink-0">
+        <a href="tel:02081549513" class="nav-cta nav-cta-call" aria-label="Call us: 020 8154 9513">
+          <i class="fa-solid fa-phone-volume"></i>
+          <span>Call 020 8154 9513</span>
+        </a>
+        <a href="https://wa.me/442081549513?text=Hi%2C%20I%27d%20like%20to%20request%20a%20quote" target="_blank" rel="noopener" class="nav-cta nav-cta-whatsapp" aria-label="Request a quote on WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>Request a Quote</span>
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-toggle" aria-label="Open menu" class="xl:hidden flex flex-col gap-1.5 p-2">
+        <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar1"></span>
+        <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
+        <span class="w-4 h-0.5 bg-white transition-all duration-300" id="bar3"></span>
+      </button>
+    </div>
+
+    <!-- Mobile-only click-to-call bar — always visible, no need to open the
+         hamburger menu to see it. -->
+    <a href="tel:02081549513" class="nav-call-bar-mobile xl:hidden">
+      <i class="fa-solid fa-phone-volume"></i>
+      Book Online or Call Us <span class="nav-call-link-number">020 8154 9513</span>
+    </a>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" role="menu">
+    <div class="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-1">
+      <a href="index.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-plane mr-3 text-red-500"></i>Flights
+      </a>
+      <a href="holiday-packages.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-umbrella-beach mr-3 text-red-500"></i>Holidays
+      </a>
+      <a href="umrah-packages.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-kaaba mr-3 text-red-500"></i>Umrah
+      </a>
+
+      <div>
+        <div class="mobile-nav-dropdown-trigger py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors">
+          <span><i class="fa-solid fa-briefcase mr-3 text-red-500"></i>Travel Services</span>
+          <i class="fa-solid fa-chevron-down chevron"></i>
+        </div>
+        <div class="mobile-nav-submenu">
+          <a href="travel-money.html" class="mobile-nav-link block py-2.5 px-4 pl-12 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">Travel Money</a>
+          <a href="money-transfer.html" class="mobile-nav-link block py-2.5 px-4 pl-12 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">Money Transfer</a>
+          <a href="travel-insurance.html" class="mobile-nav-link block py-2.5 px-4 pl-12 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">Travel Insurance</a>
+          <a href="visa-assistance.html" class="mobile-nav-link block py-2.5 px-4 pl-12 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">Visa Assistance</a>
+          <a href="airport-transfer.html" class="mobile-nav-link block py-2.5 px-4 pl-12 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">Airport Transfer</a>
+        </div>
+      </div>
+
+      <a href="about-us.html" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-circle-info mr-3 text-red-500"></i>About Us
+      </a>
+      <div class="pt-2 pb-1 flex flex-col gap-2">
+        <a href="tel:02081549513" class="nav-cta nav-cta-call w-full justify-center"><i class="fa-solid fa-phone-volume"></i><span>Call 020 8154 9513</span></a>
+        <a href="https://wa.me/442081549513?text=Hi%2C%20I%27d%20like%20to%20request%20a%20quote" target="_blank" rel="noopener" class="nav-cta nav-cta-whatsapp w-full justify-center"><i class="fa-brands fa-whatsapp"></i><span>Request a Quote</span></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     HERO + FLIGHT SEARCH WIDGET
+════════════════════════════════════════════════════════════ -->
+<section id="home" class="hero-section" aria-label="Hero">
+  <div class="hero-bg-image"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-glow"></div>
+
+  <div class="relative max-w-7xl mx-auto px-5 lg:px-8 w-full pt-28 pb-14">
+
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-[1.08] tracking-tight text-white anim-1 mb-5">
+        Explore the World <span style="color: var(--red-lt);">with Confidence</span>
+      </h1>
+      <p class="text-gray-300 text-base sm:text-lg leading-relaxed anim-2 max-w-2xl mx-auto mb-6">
+        Aaz Travel brings your dream destinations closer — search and book flights worldwide, or let us guide your entire Umrah &amp; Hajj journey, with transparent pricing every step of the way.
+      </p>
+      <div class="flex flex-wrap justify-center gap-2.5 anim-2">
+        <span class="trust-pill trust-pill-dark"><i class="fa-solid fa-award"></i> IATA Accredited Agent</span>
+        <span class="trust-pill trust-pill-dark"><i class="fa-brands fa-whatsapp"></i> 24 Hour WhatsApp Support</span>
+        <span class="trust-pill trust-pill-dark"><i class="fa-solid fa-flag"></i> UK Based Travel Agency</span>
+        <span class="trust-pill trust-pill-dark"><i class="fa-solid fa-shield-halved"></i> Book With Confidence</span>
+      </div>
+    </div>
+
+    <!-- ── LIVE FLIGHT SEARCH WIDGET (GOL IBE) ──────────────────
+         Search results are handled entirely by the widget's own
+         config (config.en.js → feUrl = https://aaztrip.golibe.com),
+         so every search submitted here redirects the visitor to
+         https://aaztrip.golibe.com/results with the query params.
+    ─────────────────────────────────────────────────────────── -->
+    <div id="search" class="max-w-5xl mx-auto anim-4">
+      <div id="aaz-flight-search" class="search-widget-card">
+        
+<div class="header">
+<div class="container">
+<div class="header-search-form iframe">
+<div class="header-search-form-tabs header-search-form-tabs-with-hotels">
+<div class="header-search-form-tab-flight-container">
+<div class="header-search-form-tab iframe" id="header-search-form-tab_ONE_WAY" role="button" style="overflow: hidden">
+<img alt="plane icon" class="header-search-form-tab-ico iframe" height="15" src="static/images/ico-plane-oneway.svg" style="margin-right: 10px" title="" width="29"/>
+<div class="header-search-form-tab-text-ellipsis iframe" id="GOL_package-textStorage-SearchForm.oneWay">
+                          One way
+                        </div>
+</div>
+<div class="header-search-form-tab header-search-form-tab--active iframe" id="header-search-form-tab_RETURN" role="button" style="overflow: hidden">
+<img alt="plane icon" class="header-search-form-tab-ico-return iframe" height="22" src="static/images/ico-plane-back.svg" style="margin-right: 10px" title="" width="22"/>
+<div class="header-search-form-tab-text-ellipsis iframe" id="GOL_package-textStorage-SearchForm.return">
+                          Return
+                        </div>
+</div>
+<div class="header-search-form-tab iframe" id="header-search-form-tab_MULTIPLE" role="button" style="overflow: hidden">
+<img alt="plane icon" class="header-search-form-tab-ico iframe" height="15" src="static/images/ico-plane-double.svg" style="margin-right: 10px" title="" width="36"/>
+<div class="header-search-form-tab-text-ellipsis iframe" id="GOL_package-textStorage-SearchForm.multiCity">
+                          Multi-city
+                        </div>
+</div>
+</div>
+<div class="header-search-form-tab header-search-form-tab--change-type-search header-search-form-tab-hotels iframe" role="button" style="overflow: hidden">
+<img alt="hotel icon" class="header-search-form-tab-ico iframe" src="static/images/ico-hotel.svg" style="height: 16px; margin-right: 10px" title=""/>
+<div class="header-search-form-tab-text-ellipsis iframe" id="GOL_package-textStorage-SearchForm.hotels">
+                        HOTELS
+                      </div>
+</div>
+</div>
+<div class="header-search-form-inner">
+<div class="header-search-form-inner-cols" id="searchForm-standard">
+<div class="header-search-form-inner-first-col">
+<div class="header-search-form-desktop-line iframe">
+<div class="header-search-form-inner-field iframe">
+<span class="header-search-form-inner-field-label">
+<span id="GOL_package-textStorage-SearchForm.from">
+                                From
+                              </span>
+</span>
+<div class="header-search-form-results">
+<style data-emotion-css="2b097c-container">
+                                .css-2b097c-container {
+                                  position: relative;
+                                  box-sizing: border-box;
+                                }
+                              </style>
+<div class="react-select-2-wrapper-2 css-2b097c-container" id="airport-select-from">
+<div class="css-0">
+<style data-emotion-css="ocdc9e">
+                                    .css-ocdc9e {
+                                      -webkit-align-items: center;
+                                      -webkit-box-align: center;
+                                      -ms-flex-align: center;
+                                      align-items: center;
+                                      display: inline-block;
+                                      -webkit-flex: 1;
+                                      -ms-flex: 1;
+                                      flex: 1;
+                                      -webkit-flex-wrap: wrap;
+                                      -ms-flex-wrap: wrap;
+                                      flex-wrap: wrap;
+                                      padding: 2px 8px;
+                                      -webkit-overflow-scrolling: touch;
+                                      position: relative;
+                                      overflow: hidden;
+                                      box-sizing: border-box;
+                                      padding-left: 0;
+                                      padding-right: 0;
+                                      margin-left: 0;
+                                      margin-right: 0;
+                                      margin-top: -4px;
+                                      height: -webkit-max-content;
+                                      height: -moz-max-content;
+                                      height: max-content;
+                                    }
+                                  </style>
+<div class="css-ocdc9e">
+<span id="from-value" role="button">
+<span class="header-search-form-inner-field-value">
+                                        Praha / Vídeň
+                                      </span>
+</span>
+<style data-emotion-css="qjit9y">
+                                      .css-qjit9y {
+                                        margin: 2px;
+                                        padding-bottom: 2px;
+                                        padding-top: 2px;
+                                        visibility: visible;
+                                        color: hsl(0, 0%, 20%);
+                                        box-sizing: border-box;
+                                        display: inline-block;
+                                      }
+                                    </style>
+<div class="css-qjit9y">
+<div class="r3" style="display: inline-block">
+<input aria-autocomplete="list" autocapitalize="none" autocomplete="off" autocorrect="off" data-cy="from" id="airport-select-input-from" spellcheck="false" style="
+                                            box-sizing: content-box;
+                                            width: 1px;
+                                            label: input;
+                                            background: 0;
+                                            border: 0;
+                                            font-size: inherit;
+                                            opacity: 1;
+                                            outline: 0;
+                                            padding: 0;
+                                            color: inherit;
+                                          " tabindex="0" type="text" value=""/>
+<div style="
+                                            position: absolute;
+                                            top: 0;
+                                            left: 0;
+                                            visibility: hidden;
+                                            height: 0;
+                                            overflow: scroll;
+                                            white-space: pre;
+                                          "></div>
+</div>
+</div>
+</div>
+<style data-emotion-css="1wy0on6">
+                                    .css-1wy0on6 {
+                                      -webkit-align-items: center;
+                                      -webkit-box-align: center;
+                                      -ms-flex-align: center;
+                                      align-items: center;
+                                      -webkit-align-self: stretch;
+                                      -ms-flex-item-align: stretch;
+                                      align-self: stretch;
+                                      display: -webkit-box;
+                                      display: -webkit-flex;
+                                      display: -ms-flexbox;
+                                      display: flex;
+                                      -webkit-flex-shrink: 0;
+                                      -ms-flex-negative: 0;
+                                      flex-shrink: 0;
+                                      box-sizing: border-box;
+                                    }
+                                  </style>
+<div class="css-1wy0on6"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="header-search-form-inner-field iframe">
+<div class="header-search-form-inner-field-label">
+<span id="GOL_package-textStorage-SearchForm.to">
+                                To
+                              </span>
+<div id="header-search-form-multiCity-redirect-container" style="display: inline-block">
+<span class="header-search-form-link-divider">
+                                  |
+                                </span>
+<span class="header-search-form-link-text" id="header-search-form-multiCity-redirect" role="button">
+<span id="GOL_package-textStorage-SearchForm.differentReturnAirport">
+                                    Another return airport?
+                                  </span>
+</span>
+</div>
+</div>
+<div class="header-search-form-results">
+<style data-emotion-css="2b097c-container">
+                                .css-2b097c-container {
+                                  position: relative;
+                                  box-sizing: border-box;
+                                }
+                              </style>
+<div class="react-select-2-wrapper-2 css-2b097c-container" id="airport-select-to">
+<div class="css-0">
+<style data-emotion-css="ocdc9e">
+                                    .css-ocdc9e {
+                                      -webkit-align-items: center;
+                                      -webkit-box-align: center;
+                                      -ms-flex-align: center;
+                                      align-items: center;
+                                      display: inline-block;
+                                      -webkit-flex: 1;
+                                      -ms-flex: 1;
+                                      flex: 1;
+                                      -webkit-flex-wrap: wrap;
+                                      -ms-flex-wrap: wrap;
+                                      flex-wrap: wrap;
+                                      padding: 2px 8px;
+                                      -webkit-overflow-scrolling: touch;
+                                      position: relative;
+                                      overflow: hidden;
+                                      box-sizing: border-box;
+                                      padding-left: 0;
+                                      padding-right: 0;
+                                      margin-left: 0;
+                                      margin-right: 0;
+                                      margin-top: -4px;
+                                      height: -webkit-max-content;
+                                      height: -moz-max-content;
+                                      height: max-content;
+                                    }
+                                  </style>
+<div class="css-ocdc9e">
+<style data-emotion-css="i8c4ex-placeholder">
+                                      .css-i8c4ex-placeholder {
+                                        margin-top: -1px;
+                                        box-sizing: border-box;
+                                        display: inline-block;
+                                      }
+                                    </style>
+<div class="react-select-2-placeholder css-i8c4ex-placeholder">
+                                      Airport code / city
+                                    </div>
+<style data-emotion-css="qjit9y">
+                                      .css-qjit9y {
+                                        margin: 2px;
+                                        padding-bottom: 2px;
+                                        padding-top: 2px;
+                                        visibility: visible;
+                                        color: hsl(0, 0%, 20%);
+                                        box-sizing: border-box;
+                                        display: inline-block;
+                                      }
+                                    </style>
+<div class="css-qjit9y">
+<div class="r3" style="display: inline-block">
+<input aria-autocomplete="list" autocapitalize="none" autocomplete="off" autocorrect="off" data-cy="to" id="airport-select-input-to" spellcheck="false" style="
+                                            box-sizing: content-box;
+                                            width: 1px;
+                                            label: input;
+                                            background: 0;
+                                            border: 0;
+                                            font-size: inherit;
+                                            opacity: 1;
+                                            outline: 0;
+                                            padding: 0;
+                                            color: inherit;
+                                          " tabindex="0" type="text" value=""/>
+<div style="
+                                            position: absolute;
+                                            top: 0;
+                                            left: 0;
+                                            visibility: hidden;
+                                            height: 0;
+                                            overflow: scroll;
+                                            white-space: pre;
+                                          "></div>
+</div>
+</div>
+</div>
+<style data-emotion-css="1wy0on6">
+                                    .css-1wy0on6 {
+                                      -webkit-align-items: center;
+                                      -webkit-box-align: center;
+                                      -ms-flex-align: center;
+                                      align-items: center;
+                                      -webkit-align-self: stretch;
+                                      -ms-flex-item-align: stretch;
+                                      align-self: stretch;
+                                      display: -webkit-box;
+                                      display: -webkit-flex;
+                                      display: -ms-flexbox;
+                                      display: flex;
+                                      -webkit-flex-shrink: 0;
+                                      -ms-flex-negative: 0;
+                                      flex-shrink: 0;
+                                      box-sizing: border-box;
+                                    }
+                                  </style>
+<div class="css-1wy0on6"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="header-search-form-desktop-line header-search-form-desktop-line--half iframe">
+<div class="flex-1 iframe" id="departure_date-container">
+<div class="header-search-form-inner-field iframe">
+<span class="header-search-form-inner-field-label">
+<span id="GOL_package-textStorage-SearchForm.departureDate">
+                                  Departure date
+                                </span>
+</span>
+<div class="date-picker-wrapper" id="departure_date">
+<span role="button">
+<span class="header-search-form-inner-field-value">
+                                    ST
+                                  </span>
+<span>|</span>
+<span class="header-search-form-inner-field-additional">
+                                    30.09.2026
+                                  </span>
+</span>
+</div>
+</div>
+</div>
+<div class="flex-1 iframe" id="return_date-container">
+<div class="header-search-form-inner-field iframe">
+<span class="header-search-form-inner-field-label">
+<span id="GOL_package-textStorage-SearchForm.returnDate">
+                                  Return date
+                                </span>
+</span>
+<div class="date-picker-wrapper" id="return_date">
+<span role="button">
+<span class="header-search-form-inner-field-value">
+                                    ST
+                                  </span>
+<span>|</span>
+<span class="header-search-form-inner-field-additional">
+                                    16.12.2026
+                                  </span>
+</span>
+</div>
+</div>
+</div>
+<div class="iframe"></div>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="header-search-form-inner-second-col">
+<div class="header-search-form-inner-field header-search-form-desktop-line-one preferences iframe">
+<span class="header-search-form-inner-field-label" id="GOL_package-textStorage-SearchForm.options">
+                            Options
+                          </span>
+<div class="loader-wrapper-mini"></div>
+<div>
+<div class="form-properties-wrapper" id="header-search-form-div_toggle_properties" role="button">
+<span class="header-search-form-inner-field-value nowrap" id="header-search-form-properties-value">
+                                0 passengers
+                              </span>
+<span class="header-search-form-inner-field-additional nowrap">
+                                ECONOMY
+                              </span>
+<img class="" id="header-search-form-properties-arrow" src="static/images/ico-arrow-down.svg" style="
+                                  padding: 2px;
+                                  margin-left: 5px;
+                                  transition: all 0.4s ease;
+                                  transform: rotate(180deg);
+                                " title=""/>
+</div>
+<div class="header-search-form-properties iframe" id="header-search-form-properties" role="button">
+<table class="header-search-form-properties-table">
+<tbody>
+<tr>
+<th class="header-search-form-properties-class-name" id="header-search-form-GOL_package-textStorage-PropertiesSelect.class">
+                                      Class:
+                                    </th>
+<th class="header-search-form-properties-class-select">
+<style data-emotion-css="2b097c-container">
+                                        .css-2b097c-container {
+                                          position: relative;
+                                          box-sizing: border-box;
+                                        }
+                                      </style>
+<div class="search-properties css-2b097c-container" id="search-properties">
+<style data-emotion-css="11yzrfi-control">
+                                          .css-11yzrfi-control {
+                                            -webkit-align-items: center;
+                                            -webkit-box-align: center;
+                                            -ms-flex-align: center;
+                                            align-items: center;
+                                            background-color: transparent;
+                                            border-color: hsl(0, 0%, 80%);
+                                            border-radius: 4px;
+                                            border-style: solid;
+                                            border-width: 1px;
+                                            box-shadow: none;
+                                            cursor: default;
+                                            display: -webkit-box;
+                                            display: -webkit-flex;
+                                            display: -ms-flexbox;
+                                            display: flex;
+                                            -webkit-flex-wrap: wrap;
+                                            -ms-flex-wrap: wrap;
+                                            flex-wrap: wrap;
+                                            -webkit-box-pack: justify;
+                                            -webkit-justify-content: space-between;
+                                            -ms-flex-pack: justify;
+                                            justify-content: space-between;
+                                            min-height: 38px;
+                                            outline: 0 !important;
+                                            position: relative;
+                                            -webkit-transition: all 100ms;
+                                            transition: all 100ms;
+                                            box-sizing: border-box;
+                                            border: none;
+                                            -webkit-box-flex: 1;
+                                            -webkit-flex-grow: 1;
+                                            -ms-flex-positive: 1;
+                                            flex-grow: 1;
+                                            text-align: left;
+                                          }
+                                          .css-11yzrfi-control:hover {
+                                            border-color: hsl(0, 0%, 70%);
+                                          }
+                                        </style>
+<div class="css-11yzrfi-control">
+<style data-emotion-css="1l34y5a">
+                                            .css-1l34y5a {
+                                              -webkit-align-items: center;
+                                              -webkit-box-align: center;
+                                              -ms-flex-align: center;
+                                              align-items: center;
+                                              display: -webkit-box;
+                                              display: -webkit-flex;
+                                              display: -ms-flexbox;
+                                              display: flex;
+                                              -webkit-flex: 1;
+                                              -ms-flex: 1;
+                                              flex: 1;
+                                              -webkit-flex-wrap: wrap;
+                                              -ms-flex-wrap: wrap;
+                                              flex-wrap: wrap;
+                                              padding: 2px 8px;
+                                              -webkit-overflow-scrolling: touch;
+                                              position: relative;
+                                              overflow: hidden;
+                                              box-sizing: border-box;
+                                              -webkit-box-pack: start;
+                                              -webkit-justify-content: flex-start;
+                                              -ms-flex-pack: start;
+                                              justify-content: flex-start;
+                                              padding-left: 11px;
+                                              font-size: 13px;
+                                              cursor: pointer;
+                                            }
+                                          </style>
+<div class="css-1l34y5a">
+<div id="search-properties-singleValue">
+<style data-emotion-css="1uccc91-singleValue">
+                                                .css-1uccc91-singleValue {
+                                                  color: hsl(0, 0%, 20%);
+                                                  margin-left: 2px;
+                                                  margin-right: 2px;
+                                                  max-width: calc(100% - 8px);
+                                                  overflow: hidden;
+                                                  position: absolute;
+                                                  text-overflow: ellipsis;
+                                                  white-space: nowrap;
+                                                  top: 50%;
+                                                  -webkit-transform: translateY(
+                                                    -50%
+                                                  );
+                                                  -ms-transform: translateY(
+                                                    -50%
+                                                  );
+                                                  transform: translateY(-50%);
+                                                  box-sizing: border-box;
+                                                }
+                                              </style>
+<div class="css-1uccc91-singleValue">
+                                                ECONOMY
+                                              </div>
+</div>
+<style data-emotion-css="62g3xt-dummyInput">
+                                              .css-62g3xt-dummyInput {
+                                                background: 0;
+                                                border: 0;
+                                                font-size: inherit;
+                                                outline: 0;
+                                                padding: 0;
+                                                width: 1px;
+                                                color: transparent;
+                                                left: -100px;
+                                                opacity: 0;
+                                                position: relative;
+                                                -webkit-transform: scale(0);
+                                                -ms-transform: scale(0);
+                                                transform: scale(0);
+                                              }
+                                            </style>
+<input aria-autocomplete="list" class="css-62g3xt-dummyInput" id="react-select-search-properties-input" readonly="" tabindex="0" value=""/>
+</div>
+<style data-emotion-css="1wy0on6">
+                                            .css-1wy0on6 {
+                                              -webkit-align-items: center;
+                                              -webkit-box-align: center;
+                                              -ms-flex-align: center;
+                                              align-items: center;
+                                              -webkit-align-self: stretch;
+                                              -ms-flex-item-align: stretch;
+                                              align-self: stretch;
+                                              display: -webkit-box;
+                                              display: -webkit-flex;
+                                              display: -ms-flexbox;
+                                              display: flex;
+                                              -webkit-flex-shrink: 0;
+                                              -ms-flex-negative: 0;
+                                              flex-shrink: 0;
+                                              box-sizing: border-box;
+                                            }
+                                          </style>
+<div class="css-1wy0on6">
+<style data-emotion-css="1wlxkwn-indicatorContainer">
+                                              .css-1wlxkwn-indicatorContainer {
+                                                color: hsl(0, 0%, 80%);
+                                                display: -webkit-box;
+                                                display: -webkit-flex;
+                                                display: -ms-flexbox;
+                                                display: flex;
+                                                padding: 8px;
+                                                -webkit-transition: all 0.2s
+                                                  ease;
+                                                transition: all 0.2s ease;
+                                                box-sizing: border-box;
+                                                cursor: pointer;
+                                              }
+                                              .css-1wlxkwn-indicatorContainer:hover {
+                                                color: hsl(0, 0%, 60%);
+                                              }
+                                            </style>
+<div aria-hidden="true" class="css-1wlxkwn-indicatorContainer">
+<img class="" src="static/images/ico-arrow-down.svg" title=""/>
+</div>
+</div>
+</div>
+</div>
+</th>
+</tr>
+<tr class="header-search-form-properties-row">
+<td>
+<span id="header-search-form-GOL_package-textStorage-PassengerCodes.ADT">
+                                        Dospělý
+                                      </span>
+</td>
+<td>
+<div class="counter-container">
+<img alt="minus icon" class="counter-sign" id="properties_counter_ADT_minus" src="static/images/ico-minus.svg" title=""/>
+<span id="properties_counter_ADT_value"></span>
+<img alt="plus icon" class="counter-sign" id="properties_counter_ADT_plus" src="static/images/ico-plus.svg" title=""/>
+</div>
+</td>
+</tr>
+<tr class="header-search-form-properties-row">
+<td>
+<span id="header-search-form-GOL_package-textStorage-PassengerCodes.INF">
+                                        Kojenec
+                                      </span>
+</td>
+<td>
+<div class="counter-container">
+<img alt="minus icon" class="counter-sign" id="properties_counter_INF_minus" src="static/images/ico-minus.svg" title=""/>
+<span id="properties_counter_INF_value"></span>
+<img alt="plus icon" class="counter-sign" id="properties_counter_INF_plus" src="static/images/ico-plus.svg" title=""/>
+</div>
+</td>
+</tr>
+<tr class="header-search-form-properties-row">
+<td>
+<span id="header-search-form-GOL_package-textStorage-PassengerCodes.CHD">
+                                        Dítě
+                                      </span>
+</td>
+<td>
+<div class="counter-container">
+<img alt="minus icon" class="counter-sign" id="properties_counter_CHD_minus" src="static/images/ico-minus.svg" title=""/>
+<span id="properties_counter_CHD_value"></span>
+<img alt="plus icon" class="counter-sign" id="properties_counter_CHD_plus" src="static/images/ico-plus.svg" title=""/>
+</div>
+</td>
+</tr>
+<tr class="header-search-form-properties-row">
+<td>
+<span id="header-search-form-GOL_package-textStorage-PassengerCodes.YTH">
+                                        Mládežník
+                                      </span>
+</td>
+<td>
+<div class="counter-container">
+<img alt="minus icon" class="counter-sign" id="properties_counter_YTH_minus" src="static/images/ico-minus.svg" title=""/>
+<span id="properties_counter_YTH_value"></span>
+<img alt="plus icon" class="counter-sign" id="properties_counter_YTH_plus" src="static/images/ico-plus.svg" title=""/>
+</div>
+</td>
+</tr>
+<tr class="header-search-form-properties-row">
+<td>
+<span id="header-search-form-GOL_package-textStorage-PassengerCodes.YCD">
+                                        Senior
+                                      </span>
+</td>
+<td>
+<div class="counter-container">
+<img alt="minus icon" class="counter-sign" id="properties_counter_YCD_minus" src="static/images/ico-minus.svg" title=""/>
+<span id="properties_counter_YCD_value"></span>
+<img alt="plus icon" class="counter-sign" id="properties_counter_YCD_plus" src="static/images/ico-plus.svg" title=""/>
+</div>
+</td>
+</tr>
+<tr class="max-passengers-error"></tr>
+<tr>
+<td></td>
+<td style="text-align: center">
+<button class="button button-secondary-color" id="header-search-form-div_toggle_properties_done" style="width: 70%; margin-top: 5px" type="button">
+                                        PropertiesSelect.done
+                                      </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="searchForm-multiCity">
+<div class="header-search-form-desktop-line iframe" id="searchForm-multiCity-row-0">
+<div class="header-search-form-inner-field header-search-form-desktop-line-one iframe">
+<span class="header-search-form-inner-field-label GOL_package-textStorage-SearchForm.from">
+                            From
+                          </span>
+<div class="header-search-form-results">
+<style data-emotion-css="2b097c-container">
+                              .css-2b097c-container {
+                                position: relative;
+                                box-sizing: border-box;
+                              }
+                            </style>
+<div class="react-select-2-wrapper-2 css-2b097c-container" id="airport-select-from-0">
+<div class="css-0">
+<style data-emotion-css="ocdc9e">
+                                  .css-ocdc9e {
+                                    -webkit-align-items: center;
+                                    -webkit-box-align: center;
+                                    -ms-flex-align: center;
+                                    align-items: center;
+                                    display: inline-block;
+                                    -webkit-flex: 1;
+                                    -ms-flex: 1;
+                                    flex: 1;
+                                    -webkit-flex-wrap: wrap;
+                                    -ms-flex-wrap: wrap;
+                                    flex-wrap: wrap;
+                                    padding: 2px 8px;
+                                    -webkit-overflow-scrolling: touch;
+                                    position: relative;
+                                    overflow: hidden;
+                                    box-sizing: border-box;
+                                    padding-left: 0;
+                                    padding-right: 0;
+                                    margin-left: 0;
+                                    margin-right: 0;
+                                    margin-top: -4px;
+                                    height: -webkit-max-content;
+                                    height: -moz-max-content;
+                                    height: max-content;
+                                  }
+                                </style>
+<div class="css-ocdc9e">
+<style data-emotion-css="i8c4ex-placeholder">
+                                    .css-i8c4ex-placeholder {
+                                      margin-top: -1px;
+                                      box-sizing: border-box;
+                                      display: inline-block;
+                                    }
+                                  </style>
+<div class="react-select-2-placeholder css-i8c4ex-placeholder">
+                                    Airport code / city
+                                  </div>
+<style data-emotion-css="qjit9y">
+                                    .css-qjit9y {
+                                      margin: 2px;
+                                      padding-bottom: 2px;
+                                      padding-top: 2px;
+                                      visibility: visible;
+                                      color: hsl(0, 0%, 20%);
+                                      box-sizing: border-box;
+                                      display: inline-block;
+                                    }
+                                  </style>
+<div class="css-qjit9y">
+<div class="r3" style="display: inline-block">
+<input aria-autocomplete="list" autocapitalize="none" autocomplete="off" autocorrect="off" data-cy="from-0" id="airport-select-input-from-0" spellcheck="false" style="
+                                          box-sizing: content-box;
+                                          width: 1px;
+                                          label: input;
+                                          background: 0;
+                                          border: 0;
+                                          font-size: inherit;
+                                          opacity: 1;
+                                          outline: 0;
+                                          padding: 0;
+                                          color: inherit;
+                                        " tabindex="0" type="text" value=""/>
+<div style="
+                                          position: absolute;
+                                          top: 0;
+                                          left: 0;
+                                          visibility: hidden;
+                                          height: 0;
+                                          overflow: scroll;
+                                          white-space: pre;
+                                        "></div>
+</div>
+</div>
+</div>
+<style data-emotion-css="1wy0on6">
+                                  .css-1wy0on6 {
+                                    -webkit-align-items: center;
+                                    -webkit-box-align: center;
+                                    -ms-flex-align: center;
+                                    align-items: center;
+                                    -webkit-align-self: stretch;
+                                    -ms-flex-item-align: stretch;
+                                    align-self: stretch;
+                                    display: -webkit-box;
+                                    display: -webkit-flex;
+                                    display: -ms-flexbox;
+                                    display: flex;
+                                    -webkit-flex-shrink: 0;
+                                    -ms-flex-negative: 0;
+                                    flex-shrink: 0;
+                                    box-sizing: border-box;
+                                  }
+                                </style>
+<div class="css-1wy0on6"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="header-search-form-inner-field header-search-form-desktop-line-one iframe">
+<span class="header-search-form-inner-field-label GOL_package-textStorage-SearchForm.to">
+                            To
+                          </span>
+<div class="header-search-form-results">
+<style data-emotion-css="2b097c-container">
+                              .css-2b097c-container {
+                                position: relative;
+                                box-sizing: border-box;
+                              }
+                            </style>
+<div class="react-select-2-wrapper-2 css-2b097c-container" id="airport-select-to-0">
+<div class="css-0">
+<style data-emotion-css="ocdc9e">
+                                  .css-ocdc9e {
+                                    -webkit-align-items: center;
+                                    -webkit-box-align: center;
+                                    -ms-flex-align: center;
+                                    align-items: center;
+                                    display: inline-block;
+                                    -webkit-flex: 1;
+                                    -ms-flex: 1;
+                                    flex: 1;
+                                    -webkit-flex-wrap: wrap;
+                                    -ms-flex-wrap: wrap;
+                                    flex-wrap: wrap;
+                                    padding: 2px 8px;
+                                    -webkit-overflow-scrolling: touch;
+                                    position: relative;
+                                    overflow: hidden;
+                                    box-sizing: border-box;
+                                    padding-left: 0;
+                                    padding-right: 0;
+                                    margin-left: 0;
+                                    margin-right: 0;
+                                    margin-top: -4px;
+                                    height: -webkit-max-content;
+                                    height: -moz-max-content;
+                                    height: max-content;
+                                  }
+                                </style>
+<div class="css-ocdc9e">
+<style data-emotion-css="i8c4ex-placeholder">
+                                    .css-i8c4ex-placeholder {
+                                      margin-top: -1px;
+                                      box-sizing: border-box;
+                                      display: inline-block;
+                                    }
+                                  </style>
+<div class="react-select-2-placeholder css-i8c4ex-placeholder">
+                                    Airport code / city
+                                  </div>
+<style data-emotion-css="qjit9y">
+                                    .css-qjit9y {
+                                      margin: 2px;
+                                      padding-bottom: 2px;
+                                      padding-top: 2px;
+                                      visibility: visible;
+                                      color: hsl(0, 0%, 20%);
+                                      box-sizing: border-box;
+                                      display: inline-block;
+                                    }
+                                  </style>
+<div class="css-qjit9y">
+<div class="r3" style="display: inline-block">
+<input aria-autocomplete="list" autocapitalize="none" autocomplete="off" autocorrect="off" data-cy="to-0" id="airport-select-input-to-0" spellcheck="false" style="
+                                          box-sizing: content-box;
+                                          width: 1px;
+                                          label: input;
+                                          background: 0;
+                                          border: 0;
+                                          font-size: inherit;
+                                          opacity: 1;
+                                          outline: 0;
+                                          padding: 0;
+                                          color: inherit;
+                                        " tabindex="0" type="text" value=""/>
+<div style="
+                                          position: absolute;
+                                          top: 0;
+                                          left: 0;
+                                          visibility: hidden;
+                                          height: 0;
+                                          overflow: scroll;
+                                          white-space: pre;
+                                        "></div>
+</div>
+</div>
+</div>
+<style data-emotion-css="1wy0on6">
+                                  .css-1wy0on6 {
+                                    -webkit-align-items: center;
+                                    -webkit-box-align: center;
+                                    -ms-flex-align: center;
+                                    align-items: center;
+                                    -webkit-align-self: stretch;
+                                    -ms-flex-item-align: stretch;
+                                    align-self: stretch;
+                                    display: -webkit-box;
+                                    display: -webkit-flex;
+                                    display: -ms-flexbox;
+                                    display: flex;
+                                    -webkit-flex-shrink: 0;
+                                    -ms-flex-negative: 0;
+                                    flex-shrink: 0;
+                                    box-sizing: border-box;
+                                  }
+                                </style>
+<div class="css-1wy0on6"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="header-search-form-desktop-line-one iframe">
+<div class="header-search-form-inner-field">
+<span class="header-search-form-inner-field-label GOL_package-textStorage-SearchForm.departureDate">
+                              Departure date
+                            </span>
+<div class="date-picker-wrapper" id="departure_date_0">
+<span role="button">
+<span class="header-search-form-inner-field-value">
+                                  ST
+                                </span>
+<span>|</span>
+<span class="header-search-form-inner-field-additional">
+                                  30.09.2026
+                                </span>
+</span>
+</div>
+</div>
+</div>
+<div class="header-search-form-multiple-add"></div>
+<div class="header-search-form-multiple-divider"></div>
+</div>
+<div class="header-search-form-desktop-line iframe" id="searchForm-multiCity-row-1">
+<div class="header-search-form-inner-field header-search-form-desktop-line-one iframe">
+<span class="header-search-form-inner-field-label GOL_package-textStorage-SearchForm.from">
+                            From
+                          </span>
+<div class="header-search-form-results">
+<style data-emotion-css="2b097c-container">
+                              .css-2b097c-container {
+                                position: relative;
+                                box-sizing: border-box;
+                              }
+                            </style>
+<div class="react-select-2-wrapper-2 css-2b097c-container" id="airport-select-from-1">
+<div class="css-0">
+<style data-emotion-css="ocdc9e">
+                                  .css-ocdc9e {
+                                    -webkit-align-items: center;
+                                    -webkit-box-align: center;
+                                    -ms-flex-align: center;
+                                    align-items: center;
+                                    display: inline-block;
+                                    -webkit-flex: 1;
+                                    -ms-flex: 1;
+                                    flex: 1;
+                                    -webkit-flex-wrap: wrap;
+                                    -ms-flex-wrap: wrap;
+                                    flex-wrap: wrap;
+                                    padding: 2px 8px;
+                                    -webkit-overflow-scrolling: touch;
+                                    position: relative;
+                                    overflow: hidden;
+                                    box-sizing: border-box;
+                                    padding-left: 0;
+                                    padding-right: 0;
+                                    margin-left: 0;
+                                    margin-right: 0;
+                                    margin-top: -4px;
+                                    height: -webkit-max-content;
+                                    height: -moz-max-content;
+                                    height: max-content;
+                                  }
+                                </style>
+<div class="css-ocdc9e">
+<style data-emotion-css="i8c4ex-placeholder">
+                                    .css-i8c4ex-placeholder {
+                                      margin-top: -1px;
+                                      box-sizing: border-box;
+                                      display: inline-block;
+                                    }
+                                  </style>
+<div class="react-select-2-placeholder css-i8c4ex-placeholder">
+                                    Airport code / city
+                                  </div>
+<style data-emotion-css="qjit9y">
+                                    .css-qjit9y {
+                                      margin: 2px;
+                                      padding-bottom: 2px;
+                                      padding-top: 2px;
+                                      visibility: visible;
+                                      color: hsl(0, 0%, 20%);
+                                      box-sizing: border-box;
+                                      display: inline-block;
+                                    }
+                                  </style>
+<div class="css-qjit9y">
+<div class="r3" style="display: inline-block">
+<input aria-autocomplete="list" autocapitalize="none" autocomplete="off" autocorrect="off" data-cy="from-1" id="airport-select-input-from-1" spellcheck="false" style="
+                                          box-sizing: content-box;
+                                          width: 1px;
+                                          label: input;
+                                          background: 0;
+                                          border: 0;
+                                          font-size: inherit;
+                                          opacity: 1;
+                                          outline: 0;
+                                          padding: 0;
+                                          color: inherit;
+                                        " tabindex="0" type="text" value=""/>
+<div style="
+                                          position: absolute;
+                                          top: 0;
+                                          left: 0;
+                                          visibility: hidden;
+                                          height: 0;
+                                          overflow: scroll;
+                                          white-space: pre;
+                                        "></div>
+</div>
+</div>
+</div>
+<style data-emotion-css="1wy0on6">
+                                  .css-1wy0on6 {
+                                    -webkit-align-items: center;
+                                    -webkit-box-align: center;
+                                    -ms-flex-align: center;
+                                    align-items: center;
+                                    -webkit-align-self: stretch;
+                                    -ms-flex-item-align: stretch;
+                                    align-self: stretch;
+                                    display: -webkit-box;
+                                    display: -webkit-flex;
+                                    display: -ms-flexbox;
+                                    display: flex;
+                                    -webkit-flex-shrink: 0;
+                                    -ms-flex-negative: 0;
+                                    flex-shrink: 0;
+                                    box-sizing: border-box;
+                                  }
+                                </style>
+<div class="css-1wy0on6"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="header-search-form-inner-field header-search-form-desktop-line-one iframe">
+<span class="header-search-form-inner-field-label GOL_package-textStorage-SearchForm.to">
+                            To
+                          </span>
+<div class="header-search-form-results">
+<style data-emotion-css="2b097c-container">
+                              .css-2b097c-container {
+                                position: relative;
+                                box-sizing: border-box;
+                              }
+                            </style>
+<div class="react-select-2-wrapper-2 css-2b097c-container" id="airport-select-to-1">
+<div class="css-0">
+<style data-emotion-css="ocdc9e">
+                                  .css-ocdc9e {
+                                    -webkit-align-items: center;
+                                    -webkit-box-align: center;
+                                    -ms-flex-align: center;
+                                    align-items: center;
+                                    display: inline-block;
+                                    -webkit-flex: 1;
+                                    -ms-flex: 1;
+                                    flex: 1;
+                                    -webkit-flex-wrap: wrap;
+                                    -ms-flex-wrap: wrap;
+                                    flex-wrap: wrap;
+                                    padding: 2px 8px;
+                                    -webkit-overflow-scrolling: touch;
+                                    position: relative;
+                                    overflow: hidden;
+                                    box-sizing: border-box;
+                                    padding-left: 0;
+                                    padding-right: 0;
+                                    margin-left: 0;
+                                    margin-right: 0;
+                                    margin-top: -4px;
+                                    height: -webkit-max-content;
+                                    height: -moz-max-content;
+                                    height: max-content;
+                                  }
+                                </style>
+<div class="css-ocdc9e">
+<style data-emotion-css="i8c4ex-placeholder">
+                                    .css-i8c4ex-placeholder {
+                                      margin-top: -1px;
+                                      box-sizing: border-box;
+                                      display: inline-block;
+                                    }
+                                  </style>
+<div class="react-select-2-placeholder css-i8c4ex-placeholder">
+                                    Airport code / city
+                                  </div>
+<style data-emotion-css="qjit9y">
+                                    .css-qjit9y {
+                                      margin: 2px;
+                                      padding-bottom: 2px;
+                                      padding-top: 2px;
+                                      visibility: visible;
+                                      color: hsl(0, 0%, 20%);
+                                      box-sizing: border-box;
+                                      display: inline-block;
+                                    }
+                                  </style>
+<div class="css-qjit9y">
+<div class="r3" style="display: inline-block">
+<input aria-autocomplete="list" autocapitalize="none" autocomplete="off" autocorrect="off" data-cy="to-1" id="airport-select-input-to-1" spellcheck="false" style="
+                                          box-sizing: content-box;
+                                          width: 1px;
+                                          label: input;
+                                          background: 0;
+                                          border: 0;
+                                          font-size: inherit;
+                                          opacity: 1;
+                                          outline: 0;
+                                          padding: 0;
+                                          color: inherit;
+                                        " tabindex="0" type="text" value=""/>
+<div style="
+                                          position: absolute;
+                                          top: 0;
+                                          left: 0;
+                                          visibility: hidden;
+                                          height: 0;
+                                          overflow: scroll;
+                                          white-space: pre;
+                                        "></div>
+</div>
+</div>
+</div>
+<style data-emotion-css="1wy0on6">
+                                  .css-1wy0on6 {
+                                    -webkit-align-items: center;
+                                    -webkit-box-align: center;
+                                    -ms-flex-align: center;
+                                    align-items: center;
+                                    -webkit-align-self: stretch;
+                                    -ms-flex-item-align: stretch;
+                                    align-self: stretch;
+                                    display: -webkit-box;
+                                    display: -webkit-flex;
+                                    display: -ms-flexbox;
+                                    display: flex;
+                                    -webkit-flex-shrink: 0;
+                                    -ms-flex-negative: 0;
+                                    flex-shrink: 0;
+                                    box-sizing: border-box;
+                                  }
+                                </style>
+<div class="css-1wy0on6"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="header-search-form-desktop-line-one iframe">
+<div class="header-search-form-inner-field">
+<span class="header-search-form-inner-field-label GOL_package-textStorage-SearchForm.departureDate">
+                              Departure date
+                            </span>
+<div class="date-picker-wrapper" id="departure_date_1">
+<span role="button">
+<span class="header-search-form-inner-field-value">
+                                  ST
+                                </span>
+<span>|</span>
+<span class="header-search-form-inner-field-additional">
+                                  16.12.2026
+                                </span>
+</span>
+</div>
+</div>
+</div>
+<div class="header-search-form-multiple-add">
+<div class="header-search-form-multiple-add-inner-container-minus" role="button">
+<img alt="minus icon" class="header-search-form-multiple-add-inner-image" id="searchForm-multiCity-button-remove-1" src="static/images/ico-minus-gray.svg" title=""/>
+<span class="header-search-form-multiple-add-minus-button-label GOL_package-textStorage-SearchForm.remove" id="GOL_package-textStorage-SearchForm.remove-1">
+                              Remove
+                            </span>
+</div>
+<div class="header-search-form-multiple-add-inner-container-plus" role="button">
+<img alt="plus icon" class="counter-sign header-search-form-multiple-add-inner-image" id="searchForm-multiCity-button-add-1" src="static/images/ico-plus.svg" title=""/>
+<span class="header-search-form-multiple-add-plus-button-label GOL_package-textStorage-SearchForm.anotherFlight" id="GOL_package-textStorage-SearchForm.anotherFlight-1">
+                              Another flight
+                            </span>
+</div>
+</div>
+</div>
+<div class="header-search-form-inner-field header-search-form-multiple-preferences preferences iframe">
+<span class="header-search-form-inner-field-label" id="GOL_package-textStorage-SearchForm.options">
+                          Options
+                        </span>
+<div class="loader-wrapper-mini"></div>
+<div>
+<div class="form-properties-wrapper" id="header-search-form-div_toggle_properties" role="button">
+<span class="header-search-form-inner-field-value nowrap" id="header-search-form-properties-value">
+                              0 passengers
+                            </span>
+<span class="header-search-form-inner-field-additional nowrap">
+                              ECONOMY
+                            </span>
+<img class="" id="header-search-form-properties-arrow" src="static/images/ico-arrow-down.svg" style="
+                                padding: 2px;
+                                margin-left: 5px;
+                                transition: all 0.4s ease;
+                                transform: rotate(180deg);
+                              " title=""/>
+</div>
+<div class="header-search-form-properties iframe" id="header-search-form-properties" role="button">
+<table class="header-search-form-properties-table">
+<tbody>
+<tr>
+<th class="header-search-form-properties-class-name" id="header-search-form-GOL_package-textStorage-PropertiesSelect.class">
+                                    Class:
+                                  </th>
+<th class="header-search-form-properties-class-select">
+<style data-emotion-css="2b097c-container">
+                                      .css-2b097c-container {
+                                        position: relative;
+                                        box-sizing: border-box;
+                                      }
+                                    </style>
+<div class="search-properties css-2b097c-container" id="search-properties">
+<style data-emotion-css="11yzrfi-control">
+                                        .css-11yzrfi-control {
+                                          -webkit-align-items: center;
+                                          -webkit-box-align: center;
+                                          -ms-flex-align: center;
+                                          align-items: center;
+                                          background-color: transparent;
+                                          border-color: hsl(0, 0%, 80%);
+                                          border-radius: 4px;
+                                          border-style: solid;
+                                          border-width: 1px;
+                                          box-shadow: none;
+                                          cursor: default;
+                                          display: -webkit-box;
+                                          display: -webkit-flex;
+                                          display: -ms-flexbox;
+                                          display: flex;
+                                          -webkit-flex-wrap: wrap;
+                                          -ms-flex-wrap: wrap;
+                                          flex-wrap: wrap;
+                                          -webkit-box-pack: justify;
+                                          -webkit-justify-content: space-between;
+                                          -ms-flex-pack: justify;
+                                          justify-content: space-between;
+                                          min-height: 38px;
+                                          outline: 0 !important;
+                                          position: relative;
+                                          -webkit-transition: all 100ms;
+                                          transition: all 100ms;
+                                          box-sizing: border-box;
+                                          border: none;
+                                          -webkit-box-flex: 1;
+                                          -webkit-flex-grow: 1;
+                                          -ms-flex-positive: 1;
+                                          flex-grow: 1;
+                                          text-align: left;
+                                        }
+                                        .css-11yzrfi-control:hover {
+                                          border-color: hsl(0, 0%, 70%);
+                                        }
+                                      </style>
+<div class="css-11yzrfi-control">
+<style data-emotion-css="1l34y5a">
+                                          .css-1l34y5a {
+                                            -webkit-align-items: center;
+                                            -webkit-box-align: center;
+                                            -ms-flex-align: center;
+                                            align-items: center;
+                                            display: -webkit-box;
+                                            display: -webkit-flex;
+                                            display: -ms-flexbox;
+                                            display: flex;
+                                            -webkit-flex: 1;
+                                            -ms-flex: 1;
+                                            flex: 1;
+                                            -webkit-flex-wrap: wrap;
+                                            -ms-flex-wrap: wrap;
+                                            flex-wrap: wrap;
+                                            padding: 2px 8px;
+                                            -webkit-overflow-scrolling: touch;
+                                            position: relative;
+                                            overflow: hidden;
+                                            box-sizing: border-box;
+                                            -webkit-box-pack: start;
+                                            -webkit-justify-content: flex-start;
+                                            -ms-flex-pack: start;
+                                            justify-content: flex-start;
+                                            padding-left: 11px;
+                                            font-size: 13px;
+                                            cursor: pointer;
+                                          }
+                                        </style>
+<div class="css-1l34y5a">
+<div id="search-properties-singleValue">
+<style data-emotion-css="1uccc91-singleValue">
+                                              .css-1uccc91-singleValue {
+                                                color: hsl(0, 0%, 20%);
+                                                margin-left: 2px;
+                                                margin-right: 2px;
+                                                max-width: calc(100% - 8px);
+                                                overflow: hidden;
+                                                position: absolute;
+                                                text-overflow: ellipsis;
+                                                white-space: nowrap;
+                                                top: 50%;
+                                                -webkit-transform: translateY(
+                                                  -50%
+                                                );
+                                                -ms-transform: translateY(-50%);
+                                                transform: translateY(-50%);
+                                                box-sizing: border-box;
+                                              }
+                                            </style>
+<div class="css-1uccc91-singleValue">
+                                              ECONOMY
+                                            </div>
+</div>
+<style data-emotion-css="62g3xt-dummyInput">
+                                            .css-62g3xt-dummyInput {
+                                              background: 0;
+                                              border: 0;
+                                              font-size: inherit;
+                                              outline: 0;
+                                              padding: 0;
+                                              width: 1px;
+                                              color: transparent;
+                                              left: -100px;
+                                              opacity: 0;
+                                              position: relative;
+                                              -webkit-transform: scale(0);
+                                              -ms-transform: scale(0);
+                                              transform: scale(0);
+                                            }
+                                          </style>
+<input aria-autocomplete="list" class="css-62g3xt-dummyInput" id="react-select-search-properties-input" readonly="" tabindex="0" value=""/>
+</div>
+<style data-emotion-css="1wy0on6">
+                                          .css-1wy0on6 {
+                                            -webkit-align-items: center;
+                                            -webkit-box-align: center;
+                                            -ms-flex-align: center;
+                                            align-items: center;
+                                            -webkit-align-self: stretch;
+                                            -ms-flex-item-align: stretch;
+                                            align-self: stretch;
+                                            display: -webkit-box;
+                                            display: -webkit-flex;
+                                            display: -ms-flexbox;
+                                            display: flex;
+                                            -webkit-flex-shrink: 0;
+                                            -ms-flex-negative: 0;
+                                            flex-shrink: 0;
+                                            box-sizing: border-box;
+                                          }
+                                        </style>
+<div class="css-1wy0on6">
+<style data-emotion-css="1wlxkwn-indicatorContainer">
+                                            .css-1wlxkwn-indicatorContainer {
+                                              color: hsl(0, 0%, 80%);
+                                              display: -webkit-box;
+                                              display: -webkit-flex;
+                                              display: -ms-flexbox;
+                                              display: flex;
+                                              padding: 8px;
+                                              -webkit-transition: all 0.2s ease;
+                                              transition: all 0.2s ease;
+                                              box-sizing: border-box;
+                                              cursor: pointer;
+                                            }
+                                            .css-1wlxkwn-indicatorContainer:hover {
+                                              color: hsl(0, 0%, 60%);
+                                            }
+                                          </style>
+<div aria-hidden="true" class="css-1wlxkwn-indicatorContainer">
+<img class="" src="static/images/ico-arrow-down.svg" title=""/>
+</div>
+</div>
+</div>
+</div>
+</th>
+</tr>
+<tr class="header-search-form-properties-row">
+<td>
+<span id="header-search-form-GOL_package-textStorage-PassengerCodes.ADT">
+                                      Dospělý
+                                    </span>
+</td>
+<td>
+<div class="counter-container">
+<img alt="minus icon" class="counter-sign" id="properties_counter_ADT_minus" src="static/images/ico-minus.svg" title=""/>
+<span id="properties_counter_ADT_value"></span>
+<img alt="plus icon" class="counter-sign" id="properties_counter_ADT_plus" src="static/images/ico-plus.svg" title=""/>
+</div>
+</td>
+</tr>
+<tr class="header-search-form-properties-row">
+<td>
+<span id="header-search-form-GOL_package-textStorage-PassengerCodes.INF">
+                                      Kojenec
+                                    </span>
+</td>
+<td>
+<div class="counter-container">
+<img alt="minus icon" class="counter-sign" id="properties_counter_INF_minus" src="static/images/ico-minus.svg" title=""/>
+<span id="properties_counter_INF_value"></span>
+<img alt="plus icon" class="counter-sign" id="properties_counter_INF_plus" src="static/images/ico-plus.svg" title=""/>
+</div>
+</td>
+</tr>
+<tr class="header-search-form-properties-row">
+<td>
+<span id="header-search-form-GOL_package-textStorage-PassengerCodes.CHD">
+                                      Dítě
+                                    </span>
+</td>
+<td>
+<div class="counter-container">
+<img alt="minus icon" class="counter-sign" id="properties_counter_CHD_minus" src="static/images/ico-minus.svg" title=""/>
+<span id="properties_counter_CHD_value"></span>
+<img alt="plus icon" class="counter-sign" id="properties_counter_CHD_plus" src="static/images/ico-plus.svg" title=""/>
+</div>
+</td>
+</tr>
+<tr class="header-search-form-properties-row">
+<td>
+<span id="header-search-form-GOL_package-textStorage-PassengerCodes.YTH">
+                                      Mládežník
+                                    </span>
+</td>
+<td>
+<div class="counter-container">
+<img alt="minus icon" class="counter-sign" id="properties_counter_YTH_minus" src="static/images/ico-minus.svg" title=""/>
+<span id="properties_counter_YTH_value"></span>
+<img alt="plus icon" class="counter-sign" id="properties_counter_YTH_plus" src="static/images/ico-plus.svg" title=""/>
+</div>
+</td>
+</tr>
+<tr class="header-search-form-properties-row">
+<td>
+<span id="header-search-form-GOL_package-textStorage-PassengerCodes.YCD">
+                                      Senior
+                                    </span>
+</td>
+<td>
+<div class="counter-container">
+<img alt="minus icon" class="counter-sign" id="properties_counter_YCD_minus" src="static/images/ico-minus.svg" title=""/>
+<span id="properties_counter_YCD_value"></span>
+<img alt="plus icon" class="counter-sign" id="properties_counter_YCD_plus" src="static/images/ico-plus.svg" title=""/>
+</div>
+</td>
+</tr>
+<tr class="max-passengers-error"></tr>
+<tr>
+<td></td>
+<td style="text-align: center">
+<button class="button button-secondary-color" id="header-search-form-div_toggle_properties_done" style="width: 70%; margin-top: 5px" type="button">
+                                      PropertiesSelect.done
+                                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="header-search-form-additional-desktop iframe">
+<div class="header-search-form-additional-desktop-one header-search-form-additional-desktop-one-only-direct">
+<div aria-checked="false" class="checkbox direct-flights-checkbox-container" id="header-search-form-only-direct" role="checkbox" tabindex="0">
+<img alt="" class="checkbox-background pointer" id="GOL_package-onlyDirect-checkbox" role="presentation" src="static/images/ico-checkbox-unchecked.svg" title=""/>
+<span class="checkbox-label" id="GOL_package-textStorage-FilterBar.onlyDirect">
+                          Only direct flights
+                        </span>
+</div>
+</div>
+<div class="header-search-form-additional-desktop-one header-search-form-additional-desktop-one-airlines">
+<style data-emotion-css="2b097c-container">
+                        .css-2b097c-container {
+                          position: relative;
+                          box-sizing: border-box;
+                        }
+                      </style>
+<div class="simple-select-beforemount GOL_package-search-airlines css-2b097c-container" id="GOL_package-search-airlines">
+<style data-emotion-css="11yzrfi-control">
+                          .css-11yzrfi-control {
+                            -webkit-align-items: center;
+                            -webkit-box-align: center;
+                            -ms-flex-align: center;
+                            align-items: center;
+                            background-color: transparent;
+                            border-color: hsl(0, 0%, 80%);
+                            border-radius: 4px;
+                            border-style: solid;
+                            border-width: 1px;
+                            box-shadow: none;
+                            cursor: default;
+                            display: -webkit-box;
+                            display: -webkit-flex;
+                            display: -ms-flexbox;
+                            display: flex;
+                            -webkit-flex-wrap: wrap;
+                            -ms-flex-wrap: wrap;
+                            flex-wrap: wrap;
+                            -webkit-box-pack: justify;
+                            -webkit-justify-content: space-between;
+                            -ms-flex-pack: justify;
+                            justify-content: space-between;
+                            min-height: 38px;
+                            outline: 0 !important;
+                            position: relative;
+                            -webkit-transition: all 100ms;
+                            transition: all 100ms;
+                            box-sizing: border-box;
+                            border: none;
+                            -webkit-box-flex: 1;
+                            -webkit-flex-grow: 1;
+                            -ms-flex-positive: 1;
+                            flex-grow: 1;
+                            text-align: left;
+                          }
+                          .css-11yzrfi-control:hover {
+                            border-color: hsl(0, 0%, 70%);
+                          }
+                        </style>
+<div class="css-11yzrfi-control">
+<style data-emotion-css="do63y8">
+                            .css-do63y8 {
+                              -webkit-align-items: center;
+                              -webkit-box-align: center;
+                              -ms-flex-align: center;
+                              align-items: center;
+                              display: -webkit-box;
+                              display: -webkit-flex;
+                              display: -ms-flexbox;
+                              display: flex;
+                              -webkit-flex: 1;
+                              -ms-flex: 1;
+                              flex: 1;
+                              -webkit-flex-wrap: wrap;
+                              -ms-flex-wrap: wrap;
+                              flex-wrap: wrap;
+                              padding: 2px 8px;
+                              -webkit-overflow-scrolling: touch;
+                              position: relative;
+                              overflow: hidden;
+                              box-sizing: border-box;
+                              cursor: pointer;
+                              font-size: 14px;
+                              width: 106px;
+                              max-width: 130px;
+                            }
+                          </style>
+<div class="css-do63y8">
+<style data-emotion-css="1uccc91-singleValue">
+                              .css-1uccc91-singleValue {
+                                color: hsl(0, 0%, 20%);
+                                margin-left: 2px;
+                                margin-right: 2px;
+                                max-width: calc(100% - 8px);
+                                overflow: hidden;
+                                position: absolute;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                top: 50%;
+                                -webkit-transform: translateY(-50%);
+                                -ms-transform: translateY(-50%);
+                                transform: translateY(-50%);
+                                box-sizing: border-box;
+                              }
+                            </style>
+<div class="search-airlines css-1uccc91-singleValue">
+                              All airlines
+                            </div>
+<style data-emotion-css="1g6gooi">
+                              .css-1g6gooi {
+                                margin: 2px;
+                                padding-bottom: 2px;
+                                padding-top: 2px;
+                                visibility: visible;
+                                color: hsl(0, 0%, 20%);
+                                box-sizing: border-box;
+                              }
+                            </style>
+<div class="css-1g6gooi">
+<div class="" style="flex-grow: 1; display: inline-block">
+<input aria-autocomplete="list" autocapitalize="none" autocomplete="aerolines-input" autocorrect="off" data-cy="GOL_package-search-airlines" id="react-select-GOL_package-search-airlines-input" spellcheck="false" style="
+                                    box-sizing: content-box;
+                                    width: 1px;
+                                    label: input;
+                                    background: 0;
+                                    border: 0;
+                                    font-size: inherit;
+                                    opacity: 1;
+                                    outline: 0;
+                                    padding: 0;
+                                    color: inherit;
+                                  " tabindex="0" type="text" value=""/>
+<div style="
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    visibility: hidden;
+                                    height: 0;
+                                    overflow: scroll;
+                                    white-space: pre;
+                                  "></div>
+</div>
+</div>
+</div>
+<style data-emotion-css="1wy0on6">
+                            .css-1wy0on6 {
+                              -webkit-align-items: center;
+                              -webkit-box-align: center;
+                              -ms-flex-align: center;
+                              align-items: center;
+                              -webkit-align-self: stretch;
+                              -ms-flex-item-align: stretch;
+                              align-self: stretch;
+                              display: -webkit-box;
+                              display: -webkit-flex;
+                              display: -ms-flexbox;
+                              display: flex;
+                              -webkit-flex-shrink: 0;
+                              -ms-flex-negative: 0;
+                              flex-shrink: 0;
+                              box-sizing: border-box;
+                            }
+                          </style>
+<div class="css-1wy0on6">
+<style data-emotion-css="1wlxkwn-indicatorContainer">
+                              .css-1wlxkwn-indicatorContainer {
+                                color: hsl(0, 0%, 80%);
+                                display: -webkit-box;
+                                display: -webkit-flex;
+                                display: -ms-flexbox;
+                                display: flex;
+                                padding: 8px;
+                                -webkit-transition: all 0.2s ease;
+                                transition: all 0.2s ease;
+                                box-sizing: border-box;
+                                cursor: pointer;
+                              }
+                              .css-1wlxkwn-indicatorContainer:hover {
+                                color: hsl(0, 0%, 60%);
+                              }
+                            </style>
+<div aria-hidden="true" class="css-1wlxkwn-indicatorContainer">
+<img class="" src="static/images/ico-arrow-down.svg" title=""/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="header-search-form-additional-desktop-one header-search-form-additional-desktop-one-tolerance no-border" id="GOL_package-variableDays">
+<div class="header-search-form-additional-desktop-one-tolerance-inner">
+<div class="header-search-form-additional-desktop-one-tolerance-inner-label">
+                          SearchForm.tolerance:
+                        </div>
+<div class="header-search-form-additional-bottom-tolerance-buttons">
+<div class="minus-button tolerance-item">
+<img alt="minus icon" class="counter-sign" id="GOL_package-variableDays-minus" src="static/images/ico-minus.svg" title=""/>
+</div>
+<div class="tolerance-item">
+<span id="GOL_package-variableDays-value"></span>
+</div>
+<div class="plus-button tolerance-item">
+<img alt="plus icon" class="counter-sign" id="GOL_package-variableDays-plus" src="static/images/ico-plus.svg" title=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="header-search-form-additional-desktop-one-search-button no-border">
+<button class="button-main-search button-secondary-color button-main-search-desktop iframe" id="GOL_package-textStorage-SearchForm.searchFlights" type="button">
+                        Search
+                      </button>
+</div>
+</div>
+<div class="header-search-form-additional iframe">
+<div class="header-search-form-additional-top">
+<div class="header-search-form-additional-top-first header-search-form-additional-mobile-one">
+<div aria-checked="false" class="checkbox" id="header-search-form-only-direct-mobile" role="checkbox" tabindex="0">
+<img alt="" class="checkbox-background pointer" role="presentation" src="static/images/ico-checkbox-unchecked.svg" title=""/>
+<span class="checkbox-label" id="GOL_package-textStorage-FilterBar.onlyDirect-mobile">
+                            Only direct flights
+                          </span>
+</div>
+</div>
+<div class="header-search-form-additional-top-second" style="top: -3px; position: relative">
+<style data-emotion-css="2b097c-container">
+                          .css-2b097c-container {
+                            position: relative;
+                            box-sizing: border-box;
+                          }
+                        </style>
+<div class="simple-select-beforemount GOL_package-search-airlines-mobile css-2b097c-container" id="GOL_package-search-airlines-mobile">
+<style data-emotion-css="11yzrfi-control">
+                            .css-11yzrfi-control {
+                              -webkit-align-items: center;
+                              -webkit-box-align: center;
+                              -ms-flex-align: center;
+                              align-items: center;
+                              background-color: transparent;
+                              border-color: hsl(0, 0%, 80%);
+                              border-radius: 4px;
+                              border-style: solid;
+                              border-width: 1px;
+                              box-shadow: none;
+                              cursor: default;
+                              display: -webkit-box;
+                              display: -webkit-flex;
+                              display: -ms-flexbox;
+                              display: flex;
+                              -webkit-flex-wrap: wrap;
+                              -ms-flex-wrap: wrap;
+                              flex-wrap: wrap;
+                              -webkit-box-pack: justify;
+                              -webkit-justify-content: space-between;
+                              -ms-flex-pack: justify;
+                              justify-content: space-between;
+                              min-height: 38px;
+                              outline: 0 !important;
+                              position: relative;
+                              -webkit-transition: all 100ms;
+                              transition: all 100ms;
+                              box-sizing: border-box;
+                              border: none;
+                              -webkit-box-flex: 1;
+                              -webkit-flex-grow: 1;
+                              -ms-flex-positive: 1;
+                              flex-grow: 1;
+                              text-align: left;
+                            }
+                            .css-11yzrfi-control:hover {
+                              border-color: hsl(0, 0%, 70%);
+                            }
+                          </style>
+<div class="css-11yzrfi-control">
+<style data-emotion-css="1jvgsb3">
+                              .css-1jvgsb3 {
+                                -webkit-align-items: center;
+                                -webkit-box-align: center;
+                                -ms-flex-align: center;
+                                align-items: center;
+                                display: -webkit-box;
+                                display: -webkit-flex;
+                                display: -ms-flexbox;
+                                display: flex;
+                                -webkit-flex: 1;
+                                -ms-flex: 1;
+                                flex: 1;
+                                -webkit-flex-wrap: wrap;
+                                -ms-flex-wrap: wrap;
+                                flex-wrap: wrap;
+                                padding: 2px 8px;
+                                -webkit-overflow-scrolling: touch;
+                                position: relative;
+                                overflow: hidden;
+                                box-sizing: border-box;
+                                -webkit-box-pack: center;
+                                -webkit-justify-content: center;
+                                -ms-flex-pack: center;
+                                justify-content: center;
+                                padding-left: 11px;
+                                font-size: 14px;
+                              }
+                            </style>
+<div class="css-1jvgsb3">
+<style data-emotion-css="1uccc91-singleValue">
+                                .css-1uccc91-singleValue {
+                                  color: hsl(0, 0%, 20%);
+                                  margin-left: 2px;
+                                  margin-right: 2px;
+                                  max-width: calc(100% - 8px);
+                                  overflow: hidden;
+                                  position: absolute;
+                                  text-overflow: ellipsis;
+                                  white-space: nowrap;
+                                  top: 50%;
+                                  -webkit-transform: translateY(-50%);
+                                  -ms-transform: translateY(-50%);
+                                  transform: translateY(-50%);
+                                  box-sizing: border-box;
+                                }
+                              </style>
+<div class="search-airlines css-1uccc91-singleValue">
+                                All airlines
+                              </div>
+<style data-emotion-css="1g6gooi">
+                                .css-1g6gooi {
+                                  margin: 2px;
+                                  padding-bottom: 2px;
+                                  padding-top: 2px;
+                                  visibility: visible;
+                                  color: hsl(0, 0%, 20%);
+                                  box-sizing: border-box;
+                                }
+                              </style>
+<div class="css-1g6gooi">
+<div class="" style="flex-grow: 1; display: inline-block">
+<input aria-autocomplete="list" autocapitalize="none" autocorrect="off" data-cy="GOL_package-search-airlines-mobile" id="react-select-GOL_package-search-airlines-mobile-input" spellcheck="false" style="
+                                      box-sizing: content-box;
+                                      width: 1px;
+                                      label: input;
+                                      background: 0;
+                                      border: 0;
+                                      font-size: inherit;
+                                      opacity: 1;
+                                      outline: 0;
+                                      padding: 0;
+                                      color: inherit;
+                                    " tabindex="0" type="text" value=""/>
+<div style="
+                                      position: absolute;
+                                      top: 0;
+                                      left: 0;
+                                      visibility: hidden;
+                                      height: 0;
+                                      overflow: scroll;
+                                      white-space: pre;
+                                    "></div>
+</div>
+</div>
+</div>
+<style data-emotion-css="1wy0on6">
+                              .css-1wy0on6 {
+                                -webkit-align-items: center;
+                                -webkit-box-align: center;
+                                -ms-flex-align: center;
+                                align-items: center;
+                                -webkit-align-self: stretch;
+                                -ms-flex-item-align: stretch;
+                                align-self: stretch;
+                                display: -webkit-box;
+                                display: -webkit-flex;
+                                display: -ms-flexbox;
+                                display: flex;
+                                -webkit-flex-shrink: 0;
+                                -ms-flex-negative: 0;
+                                flex-shrink: 0;
+                                box-sizing: border-box;
+                              }
+                            </style>
+<div class="css-1wy0on6"></div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="header-search-form-additional-tolerance" id="GOL_package-variableDays-mobile">
+<span>Tolerance:</span>
+<div class="header-search-form-additional-bottom-tolerance">
+<div class="header-search-form-additional-bottom-tolerance-minus" id="GOL_package-variableDays-minus-mobile" role="button">
+                          -
+                        </div>
+<div class="header-search-form-additional-bottom-tolerance-plus" id="GOL_package-variableDays-plus-mobile" role="button">
+                          +
+                        </div>
+<span id="GOL_package-variableDays-value-mobile"></span>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="header-search-form-additional-desktop-one-search-button no-border">
+<button class="button-main-search button-secondary-color button-main-search-mobile" id="GOL_package-textStorage-SearchForm.searchFlights-mobile" type="button">
+                        Search
+                      </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TRENDING ROUTES
+════════════════════════════════════════════════════════════ -->
+<section class="py-20 bg-[--cream]" style="background: var(--cream);">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-10 reveal">
+      <div>
+        <div class="section-label mb-3">Trending Now</div>
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-[--dark]" style="color:#1A1414;">Top Flight Deals</h2>
+      </div>
+      <a href="#search" class="text-sm font-semibold text-[--red] flex items-center gap-2" style="color: var(--red);">
+        View All Deals <i class="fa-solid fa-arrow-right text-xs"></i>
+      </a>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="route-card reveal">
+        <span class="route-tag cheapest">Cheapest</span>
+        <h3 class="font-display font-bold text-lg mt-3 mb-1">London → Paris</h3>
+        <p class="text-xs text-gray-500 mb-3">Direct • 1h 15m</p>
+        <div class="flex items-baseline gap-1.5">
+          <span class="text-xs font-medium text-gray-400">from</span>
+          <span class="text-2xl font-display font-bold" style="color: var(--red);">£42</span>
+        </div>
+        <div class="route-card-actions">
+          <a href="tel:02081549513" class="route-card-action call"><i class="fa-solid fa-phone"></i> Call</a>
+          <a href="https://wa.me/442081549513?text=Hi%2C%20I%27m%20interested%20in%20the%20London%20to%20Paris%20deal" target="_blank" rel="noopener" class="route-card-action whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        </div>
+      </div>
+      <div class="route-card reveal reveal-delay-1">
+        <span class="route-tag popular">Popular</span>
+        <h3 class="font-display font-bold text-lg mt-3 mb-1">London → Dubai</h3>
+        <p class="text-xs text-gray-500 mb-3">Direct • 6h 50m</p>
+        <div class="flex items-baseline gap-1.5">
+          <span class="text-xs font-medium text-gray-400">from</span>
+          <span class="text-2xl font-display font-bold" style="color: var(--red);">£328</span>
+        </div>
+        <div class="route-card-actions">
+          <a href="tel:02081549513" class="route-card-action call"><i class="fa-solid fa-phone"></i> Call</a>
+          <a href="https://wa.me/442081549513?text=Hi%2C%20I%27m%20interested%20in%20the%20London%20to%20Dubai%20deal" target="_blank" rel="noopener" class="route-card-action whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        </div>
+      </div>
+      <div class="route-card reveal reveal-delay-2">
+        <span class="route-tag value">Best Value</span>
+        <h3 class="font-display font-bold text-lg mt-3 mb-1">London → Jeddah</h3>
+        <p class="text-xs text-gray-500 mb-3">1 Stop • 8h 40m</p>
+        <div class="flex items-baseline gap-1.5">
+          <span class="text-xs font-medium text-gray-400">from</span>
+          <span class="text-2xl font-display font-bold" style="color: var(--red);">£412</span>
+        </div>
+        <div class="route-card-actions">
+          <a href="tel:02081549513" class="route-card-action call"><i class="fa-solid fa-phone"></i> Call</a>
+          <a href="https://wa.me/442081549513?text=Hi%2C%20I%27m%20interested%20in%20the%20London%20to%20Jeddah%20deal" target="_blank" rel="noopener" class="route-card-action whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        </div>
+      </div>
+      <div class="route-card reveal reveal-delay-3">
+        <span class="route-tag value">Best Value</span>
+        <h3 class="font-display font-bold text-lg mt-3 mb-1">London → Dhaka</h3>
+        <p class="text-xs text-gray-500 mb-3">Direct • 10h 30m</p>
+        <div class="flex items-baseline gap-1.5">
+          <span class="text-xs font-medium text-gray-400">from</span>
+          <span class="text-2xl font-display font-bold" style="color: var(--red);">£589</span>
+        </div>
+        <div class="route-card-actions">
+          <a href="tel:02081549513" class="route-card-action call"><i class="fa-solid fa-phone"></i> Call</a>
+          <a href="https://wa.me/442081549513?text=Hi%2C%20I%27m%20interested%20in%20the%20London%20to%20Dhaka%20deal" target="_blank" rel="noopener" class="route-card-action whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     WHY CHOOSE Aaz TRAVEL
+════════════════════════════════════════════════════════════ -->
+<section id="why-us" class="py-20" style="background: var(--cream); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="text-center mb-14 reveal">
+      <div class="section-label justify-center mb-4">Why Choose Aaz Travel?</div>
+      <h2 class="text-3xl lg:text-4xl font-display font-bold" style="color:#1A1414;">
+        Travel With Confidence
+      </h2>
+      <p class="text-gray-500 max-w-xl mx-auto mt-3">
+        From booking your flight to reaching your destination, our team is here to make your journey easier.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="why-choose-card reveal">
+        <div class="why-choose-icon"><i class="fa-solid fa-tags"></i></div>
+        <h3 class="font-display font-bold mb-2" style="color:#1A1414;">Competitive Fares</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Great-value flights and travel packages.</p>
+      </div>
+      <div class="why-choose-card reveal reveal-delay-1">
+        <div class="why-choose-icon"><i class="fa-solid fa-user-check"></i></div>
+        <h3 class="font-display font-bold mb-2" style="color:#1A1414;">Personal Service</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Friendly support from our experienced team.</p>
+      </div>
+      <div class="why-choose-card reveal reveal-delay-2">
+        <div class="why-choose-icon"><i class="fa-solid fa-kaaba"></i></div>
+        <h3 class="font-display font-bold mb-2" style="color:#1A1414;">Umrah &amp; Hajj Specialists</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Dedicated support for your sacred journey.</p>
+      </div>
+      <div class="why-choose-card reveal reveal-delay-3">
+        <div class="why-choose-icon"><i class="fa-solid fa-earth-europe"></i></div>
+        <h3 class="font-display font-bold mb-2" style="color:#1A1414;">Worldwide Travel</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Flights and holidays to destinations around the world.</p>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-wrap justify-center gap-3 reveal">
+      <span class="trust-pill" style="color: #1A1414;"><i class="fa-solid fa-award"></i> IATA Accredited Agent</span>
+      <span class="trust-pill" style="color: #1A1414;"><i class="fa-brands fa-whatsapp"></i> 24 Hour WhatsApp Support</span>
+      <span class="trust-pill" style="color: #1A1414;"><i class="fa-solid fa-flag"></i> UK Based Travel Agency</span>
+      <span class="trust-pill" style="color: #1A1414;"><i class="fa-solid fa-shield-halved"></i> Book With Confidence</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     STAT STRIP
+════════════════════════════════════════════════════════════ -->
+<div class="stat-strip py-10">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+      <div>
+        <div class="text-3xl font-display font-bold text-white mb-1">50K+</div>
+        <div class="text-xs text-white/60 font-semibold uppercase tracking-widest">Travellers Booked</div>
+      </div>
+      <div>
+        <div class="text-3xl font-display font-bold text-white mb-1">200+</div>
+        <div class="text-xs text-white/60 font-semibold uppercase tracking-widest">Airline Partners</div>
+      </div>
+      <div>
+        <div class="text-3xl font-display font-bold text-white mb-1">Hajj &amp; Umrah</div>
+        <div class="text-xs text-white/60 font-semibold uppercase tracking-widest">Guided Groups Yearly</div>
+      </div>
+      <div>
+        <div class="text-3xl font-display font-bold text-white mb-1">24/7</div>
+        <div class="text-xs text-white/60 font-semibold uppercase tracking-widest">Agent Support</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════════════════════ -->
+<section class="py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="text-center mb-14 reveal">
+      <div class="section-label justify-center mb-4">Testimonials</div>
+      <h2 class="text-3xl lg:text-4xl font-display font-bold" style="color:#1A1414;">What Our Customers Say</h2>
+      <p class="text-gray-500 max-w-xl mx-auto mt-3">Real experiences from travellers who chose Aaz Travel.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"Booked our Umrah package through Aaz Travel and honestly couldn't have asked for a smoother experience. Flights, visas and hotels near the Haramain were all sorted — we just had to focus on our Ibadah."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">SR</div>
+          <div>
+            <div class="testimonial-name">Sofia R.</div>
+            <div class="testimonial-meta">Umrah Package, London</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"Found a much better fare than anywhere else online, and when I needed to change my dates the team sorted it over WhatsApp within the hour. Proper personal service."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">MK</div>
+          <div>
+            <div class="testimonial-name">Mohammed K.</div>
+            <div class="testimonial-meta">Flight Booking, Manchester</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"Used Aaz Travel for our family holiday and their money transfer service to send funds back home before we left. Everything was transparent, no hidden fees, and the office team were lovely to deal with in person."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">AB</div>
+          <div>
+            <div class="testimonial-name">Amina B.</div>
+            <div class="testimonial-meta">Holiday &amp; Money Transfer, London</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FAQ SECTION
+════════════════════════════════════════════════════════════ -->
+<section id="faqs" class="py-24 lg:py-32">
+  <div class="max-w-3xl mx-auto px-5 lg:px-8">
+    <div class="text-center mb-14 reveal">
+      <div class="section-label justify-center mb-4">Got Questions</div>
+      <h2 class="text-3xl lg:text-4xl font-display font-bold" style="color:#1A1414;">Frequently Asked Questions</h2>
+    </div>
+
+    <div id="faq-list" class="reveal">
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What makes Aaz Travel different from other travel agencies?</span>
+          <i class="fa-solid fa-plus faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Aaz Travel focuses on personalized service, transparent pricing, and carefully curated travel experiences. Our team works closely with each traveler to ensure every trip is smooth, enjoyable, and stress-free.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can Aaz Travel help me plan a fully customized itinerary?</span>
+          <i class="fa-solid fa-plus faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Absolutely. Whether you're planning a family vacation, honeymoon, corporate trip, or solo adventure, we design tailor-made itineraries that match your interests, budget, and schedule.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Does Aaz Travel offer group or corporate travel packages?</span>
+          <i class="fa-solid fa-plus faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Yes, we organize group tours, corporate trips, team-building retreats, and special events. We handle transportation, accommodations, activities, and custom requests for all group sizes.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How can I stay updated on new offers and travel promotions?</span>
+          <i class="fa-solid fa-plus faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Follow our social media pages or subscribe to our mailing list to receive updates on discounts, seasonal packages, and exclusive deals.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Does Aaz Travel provide visa and document assistance?</span>
+          <i class="fa-solid fa-plus faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Yes. We offer comprehensive visa support, including documentation guidance, application submission, and appointment scheduling. Requirements vary by country, and our experts will walk you through each step.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What should I know about cancellations or changes to my booking?</span>
+          <i class="fa-solid fa-plus faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">We understand plans can change. Contact us as soon as possible, and we will assist based on airline, hotel, and package policies. Refunds or change fees depend on the provider's terms.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Is travel insurance included in your packages?</span>
+          <i class="fa-solid fa-plus faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Travel insurance is optional but highly recommended. We can help you choose the right insurance plan for health coverage, trip protection, and emergency support.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How do I get a quote for my trip?</span>
+          <i class="fa-solid fa-plus faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">You can request a quote through our website, WhatsApp, email, or by visiting our office. Share your destination, dates, and preferences, and our team will prepare a detailed quotation for you.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     CONTACT SECTION
+════════════════════════════════════════════════════════════ -->
+<section id="contact" class="py-24 lg:py-32" style="background: var(--cream);" aria-label="Contact Aaz Travel">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+      <!-- Left info -->
+      <div class="reveal">
+        <div class="section-label mb-4">Get In Touch</div>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold leading-tight mb-6" style="color:#1A1414;">
+          Let's Plan Your <span style="color: var(--red);">Next Trip</span>
+        </h2>
+        <p class="text-gray-500 text-base leading-relaxed mb-10">
+          Looking for the best flight fare, or planning your Umrah &amp; Hajj journey? Send us your details and a member of the Aaz Travel team will be in touch promptly with a tailored quote.
+        </p>
+
+        <div class="flex flex-col gap-6">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center" style="background: rgba(180,23,23,0.1);">
+              <i class="fa-solid fa-location-dot" style="color: var(--red); font-size: 0.875rem;"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-0.5">Our Office</div>
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=241a+Whitechapel+Road+London+E1+1BD" target="_blank" rel="noopener" class="font-medium hover:text-red-700 transition-colors" style="color:#1A1414;">241a, 1st Floor, Whitechapel Road, London, E1 1BD</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center" style="background: rgba(180,23,23,0.1);">
+              <i class="fa-solid fa-envelope" style="color: var(--red); font-size: 0.875rem;"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-0.5">Email Us</div>
+              <a href="mailto:info@aaztravel.com" class="font-medium hover:text-red-700 transition-colors" style="color:#1A1414;">info@aaztravel.com</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center" style="background: rgba(180,23,23,0.1);">
+              <i class="fa-solid fa-phone" style="color: var(--red); font-size: 0.875rem;"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-0.5">Call Us</div>
+              <a href="tel:02081549513" class="font-medium hover:text-red-700 transition-colors" style="color:#1A1414;">020 8154 9513</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center" style="background: rgba(180,23,23,0.1);">
+              <i class="fa-brands fa-whatsapp" style="color: var(--red); font-size: 0.9rem;"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-0.5">WhatsApp</div>
+              <a href="https://wa.me/442081549513" target="_blank" rel="noopener" class="font-medium hover:text-red-700 transition-colors" style="color:#1A1414;">020 8154 9513</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center" style="background: rgba(180,23,23,0.1);">
+              <i class="fa-solid fa-globe" style="color: var(--red); font-size: 0.875rem;"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-0.5">Website</div>
+              <a href="https://www.aaztravel.com" target="_blank" rel="noopener" class="font-medium hover:text-red-700 transition-colors" style="color:#1A1414;">www.aaztravel.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 flex items-center gap-3">
+          <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Follow Us</span>
+          <div class="flex gap-2">
+            <a href="https://www.instagram.com/aaz.travels/" target="_blank" rel="noopener" aria-label="Instagram" class="w-8 h-8 rounded-lg border flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-700 hover:border-red-700 transition-all" style="border-color: var(--border);">
+              <i class="fa-brands fa-instagram text-xs"></i>
+            </a>
+            <a href="https://www.facebook.com/people/Aaz-Travel/61581291682116/" target="_blank" rel="noopener" aria-label="Facebook" class="w-8 h-8 rounded-lg border flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-700 hover:border-red-700 transition-all" style="border-color: var(--border);">
+              <i class="fa-brands fa-facebook-f text-xs"></i>
+            </a>
+            <a href="https://wa.me/442081549513" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-8 h-8 rounded-lg border flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-700 hover:border-red-700 transition-all" style="border-color: var(--border);">
+              <i class="fa-brands fa-whatsapp text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right form -->
+      <div class="reveal reveal-delay-2">
+        <div class="form-card border rounded-2xl p-8 lg:p-10 bg-white" style="border-color: var(--border);">
+
+          <div class="form-success">
+            <i class="fa-solid fa-circle-check text-2xl mb-3" style="color: var(--red);"></i>
+            <p class="font-semibold mb-1" style="color:#1A1414;">Message Sent!</p>
+            <p class="text-gray-500 text-sm">Thank you for reaching out. We'll get back to you shortly.</p>
+          </div>
+
+          <!-- Submits directly to info@aaztravel.com via FormSubmit.
+               Choosing an enquiry type reveals the same fields used on that
+               service's dedicated page. -->
+          <form class="enquiry-form" action="https://formsubmit.co/ajax/info@aaztravel.com" method="POST" novalidate>
+            <input type="hidden" name="_subject" value="New enquiry from the Aaz Travel website" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <div class="mb-5">
+              <label class="form-label" for="enquiry">What can we help you with? <span style="color: var(--red);">*</span></label>
+              <select class="form-input" id="enquiry" name="enquiry" required>
+                <option value="" disabled selected>Select a service...</option>
+                <option value="flights">Flights</option>
+                <option value="holiday">Holiday Package</option>
+                <option value="umrah">Umrah Package</option>
+                <option value="travel-money">Travel Money</option>
+                <option value="money-transfer">Money Transfer</option>
+                <option value="travel-insurance">Travel Insurance</option>
+                <option value="visa-assistance">Visa Assistance</option>
+                <option value="airport-transfer">Airport Transfer</option>
+                <option value="general">General Enquiry</option>
+              </select>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4 mb-5">
+              <div>
+                <label class="form-label" for="name">Full Name <span style="color: var(--red);">*</span></label>
+                <input class="form-input" type="text" id="name" name="name" placeholder="John Smith" required data-always-required="true" />
+              </div>
+              <div>
+                <label class="form-label" for="phone">Phone / WhatsApp <span style="color: var(--red);">*</span></label>
+                <input class="form-input" type="tel" id="phone" name="phone" placeholder="+44 7700 000000" required data-always-required="true" />
+              </div>
+            </div>
+            <div class="mb-5">
+              <label class="form-label" for="email">Email Address</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="john@example.com" />
+            </div>
+
+            <!-- Flights -->
+            <div class="service-fields" data-service="flights">
+              <div class="form-section-label">Flight Details</div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_from">From</label>
+                  <input class="form-input" type="text" id="hp_from" name="from" placeholder="e.g. London Heathrow" />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_to">To</label>
+                  <input class="form-input" type="text" id="hp_to" name="to" placeholder="e.g. Dhaka" />
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_dep">Departure Date</label>
+                  <input class="form-input" type="date" id="hp_dep" name="departure_date" />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_ret">Return Date</label>
+                  <input class="form-input" type="date" id="hp_ret" name="return_date" />
+                </div>
+              </div>
+              <div class="mb-5">
+                <label class="form-label" for="hp_pax">Number of Travellers</label>
+                <input class="form-input" type="number" id="hp_pax" name="number_of_travellers" placeholder="e.g. 2" />
+              </div>
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_flights">Your Message / Requirements</label>
+                <textarea class="form-input" id="hp_msg_flights" name="message" rows="4" placeholder="Tell us about the flights you need..." style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- Holiday -->
+            <div class="service-fields" data-service="holiday">
+              <div class="form-section-label">Holiday Details</div>
+              <div class="mb-5">
+                <label class="form-label" for="hp_dest_h">Destination</label>
+                <input class="form-input" type="text" id="hp_dest_h" name="destination" placeholder="e.g. Antalya, Turkey" />
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_dep_h">Departure Date</label>
+                  <input class="form-input" type="date" id="hp_dep_h" name="departure_date" />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_ret_h">Return Date</label>
+                  <input class="form-input" type="date" id="hp_ret_h" name="return_date" />
+                </div>
+              </div>
+              <div class="mb-5">
+                <label class="form-label" for="hp_pax_h">Number of Travellers</label>
+                <input class="form-input" type="number" id="hp_pax_h" name="number_of_travellers" placeholder="e.g. 2" />
+              </div>
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_h">Your Message / Requirements</label>
+                <textarea class="form-input" id="hp_msg_h" name="message" rows="4" placeholder="Tell us about the holiday you're looking for..." style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- Umrah -->
+            <div class="service-fields" data-service="umrah">
+              <div class="form-section-label">Journey Details</div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_adults">Number of Adults</label>
+                  <select class="form-input" id="hp_adults" name="number_of_adults"><option value="" disabled selected>Select...</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10 or More</option></select>
+                </div>
+                <div>
+                  <label class="form-label" for="hp_children">Number of Children</label>
+                  <select class="form-input" id="hp_children" name="number_of_children"><option value="" disabled selected>Select...</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6 or More</option></select>
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_dep_u">Preferred Departure Date</label>
+                  <input class="form-input" type="date" id="hp_dep_u" name="preferred_departure_date" />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_ret_u">Preferred Return Date</label>
+                  <input class="form-input" type="date" id="hp_ret_u" name="preferred_return_date" />
+                </div>
+              </div>
+              <div class="form-section-label">Package Preferences</div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_makkah">Makkah Nights</label>
+                  <select class="form-input" id="hp_makkah" name="makkah_nights"><option value="" disabled selected>Select...</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10 or More</option></select>
+                </div>
+                <div>
+                  <label class="form-label" for="hp_madinah">Madinah Nights</label>
+                  <select class="form-input" id="hp_madinah" name="madinah_nights"><option value="" disabled selected>Select...</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10 or More</option></select>
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_visa_u">Visa Required?</label>
+                  <select class="form-input" id="hp_visa_u" name="visa_required"><option value="" disabled selected>Select...</option><option>Yes</option><option>No</option></select>
+                </div>
+                <div>
+                  <label class="form-label" for="hp_nat_u">Passport Nationality</label>
+                  <input class="form-input" type="text" id="hp_nat_u" name="passport_nationality" placeholder="e.g. British, Bengali" />
+                </div>
+              </div>
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_u">Your Message / Requirements</label>
+                <textarea class="form-input" id="hp_msg_u" name="message" rows="4" placeholder="Tell us about your Umrah trip..." style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- Travel Money -->
+            <div class="service-fields" data-service="travel-money">
+              <div class="form-section-label">Travel Money Details</div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_sell_buy">Sell / Buy <span style="color: var(--red);">*</span></label>
+                  <select class="form-input" id="hp_sell_buy" name="sell_buy" required><option value="" disabled selected>Select...</option><option>Buy Currency</option><option>Sell Currency</option></select>
+                </div>
+                <div>
+                  <label class="form-label" for="hp_currency">Currency Required</label>
+                  <select class="form-input" id="hp_currency" name="currency_required"><option value="" disabled selected>Select...</option><option>EUR</option><option>USD</option><option>BDT</option><option>AED</option><option>Other</option></select>
+                </div>
+              </div>
+              <div class="mb-5">
+                <label class="form-label" for="hp_amount_tm">Amount Required</label>
+                <input class="form-input" type="text" id="hp_amount_tm" name="amount_required" placeholder="e.g. 500" />
+              </div>
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_tm">Your Message / Requirements</label>
+                <textarea class="form-input" id="hp_msg_tm" name="message" rows="4" placeholder="Anything else we should know..." style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- Money Transfer -->
+            <div class="service-fields" data-service="money-transfer">
+              <div class="form-section-label">Transfer Details</div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_country">Send To Country <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="text" id="hp_country" name="send_to_country" placeholder="e.g. Bangladesh" required />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_amount_mt">Amount to Send <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="text" id="hp_amount_mt" name="amount_to_send" placeholder="e.g. £500" required />
+                </div>
+              </div>
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_mt">Your Message / Requirements</label>
+                <textarea class="form-input" id="hp_msg_mt" name="message" rows="4" placeholder="Anything else we should know..." style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- Travel Insurance -->
+            <div class="service-fields" data-service="travel-insurance">
+              <div class="form-section-label">Insurance Details</div>
+              <div class="mb-5">
+                <label class="form-label" for="hp_dest_ins">Destination <span style="color: var(--red);">*</span></label>
+                <input class="form-input" type="text" id="hp_dest_ins" name="destination" placeholder="e.g. Saudi Arabia" required />
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_dep_ins">Departure Date <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="date" id="hp_dep_ins" name="departure_date" required />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_ret_ins">Return Date <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="date" id="hp_ret_ins" name="return_date" required />
+                </div>
+              </div>
+              <div class="mb-5">
+                <label class="form-label" for="hp_pax_ins">Number of Travellers</label>
+                <input class="form-input" type="number" id="hp_pax_ins" name="number_of_travellers" placeholder="e.g. 2" />
+              </div>
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_ins">Your Message / Requirements</label>
+                <textarea class="form-input" id="hp_msg_ins" name="message" rows="4" placeholder="Anything else we should know..." style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- Visa -->
+            <div class="service-fields" data-service="visa-assistance">
+              <div class="form-section-label">Visa Details</div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_dest_v">Destination Country <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="text" id="hp_dest_v" name="destination_country" placeholder="e.g. Saudi Arabia" required />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_nat_v">Passport Nationality <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="text" id="hp_nat_v" name="passport_nationality" placeholder="e.g. British, Bengali" required />
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_visa_type">Visa Type</label>
+                  <input class="form-input" type="text" id="hp_visa_type" name="visa_type" placeholder="e.g. Tourist, Business, Umrah" />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_travel_date">Travel Date</label>
+                  <input class="form-input" type="date" id="hp_travel_date" name="travel_date" />
+                </div>
+              </div>
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_v">Your Message / Requirements</label>
+                <textarea class="form-input" id="hp_msg_v" name="message" rows="4" placeholder="Anything else we should know..." style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- Airport Transfer -->
+            <div class="service-fields" data-service="airport-transfer">
+              <div class="form-section-label">Transfer Details</div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_pickup">Airport / Pickup Location <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="text" id="hp_pickup" name="pickup_location" placeholder="e.g. Heathrow Terminal 5" required />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_dropoff">Destination / Drop-off Location <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="text" id="hp_dropoff" name="dropoff_location" placeholder="e.g. Home address" required />
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="form-label" for="hp_pickup_dt">Pickup Date &amp; Time <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="datetime-local" id="hp_pickup_dt" name="pickup_datetime" required />
+                </div>
+                <div>
+                  <label class="form-label" for="hp_passengers">Number of Passengers <span style="color: var(--red);">*</span></label>
+                  <input class="form-input" type="number" id="hp_passengers" name="number_of_passengers" placeholder="e.g. 2" required />
+                </div>
+              </div>
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_at">Your Message / Requirements</label>
+                <textarea class="form-input" id="hp_msg_at" name="message" rows="4" placeholder="Anything else we should know..." style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- General -->
+            <div class="service-fields" data-service="general">
+              <div class="mb-7">
+                <label class="form-label" for="hp_msg_g">Your Message <span style="color: var(--red);">*</span></label>
+                <textarea class="form-input" id="hp_msg_g" name="message" rows="4" placeholder="Tell us how we can help..." required style="resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary w-full justify-center text-sm">
+              Send Message <i class="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+
+            <p class="text-xs text-gray-400 text-center mt-4">We respond within 1 business day. Your information is kept private.</p>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════ -->
+<footer style="background: var(--dark); border-top: 1px solid rgba(255,255,255,0.08);" role="contentinfo">
+
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-14">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-6 gap-10">
+
+      <div class="lg:col-span-2">
+        <div class="flex items-center mb-5">
+          <img src="assets/logo/aaz-travel-wordmark-white.png" alt="Aaz Travel" class="h-9 object-contain" onerror="this.style.display='none'" />
+        </div>
+        <p class="footer-text text-sm leading-relaxed mb-5 max-w-xs">
+          Aaz Travel brings your dream destinations closer — flights and fully guided Umrah &amp; Hajj packages, booked with confidence.
+        </p>
+        <div class="flex items-center gap-3 mb-5">
+          <a href="https://www.instagram.com/aaz.travels/" target="_blank" rel="noopener" aria-label="Instagram" class="footer-social-btn w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center hover:bg-red-700 hover:border-red-700 transition-all">
+            <i class="fa-brands fa-instagram text-xs"></i>
+          </a>
+          <a href="https://www.facebook.com/people/Aaz-Travel/61581291682116/" target="_blank" rel="noopener" aria-label="Facebook" class="footer-social-btn w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center hover:bg-red-700 hover:border-red-700 transition-all">
+            <i class="fa-brands fa-facebook-f text-xs"></i>
+          </a>
+          <a href="https://wa.me/442081549513" target="_blank" rel="noopener" aria-label="WhatsApp" class="footer-social-btn w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center hover:bg-red-700 hover:border-red-700 transition-all">
+            <i class="fa-brands fa-whatsapp text-xs"></i>
+          </a>
+        </div>
+        <div class="inline-flex items-center gap-2.5 bg-white rounded-lg px-3 py-2 w-fit">
+          <img src="assets/badges/iata-logo.png" alt="IATA" class="h-5 w-auto object-contain" onerror="this.style.display='none'" />
+          <span class="text-[11px] font-semibold text-gray-700 whitespace-nowrap">IATA Accredited Agent</span>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Quick Links</h3>
+        <div class="flex flex-col gap-2.5">
+          <a href="index.html" class="footer-link">Flights</a>
+          <a href="holiday-packages.html" class="footer-link">Holidays</a>
+          <a href="umrah-packages.html" class="footer-link">Umrah</a>
+          <a href="travel-services.html" class="footer-link">Travel Services</a>
+          <a href="about-us.html" class="footer-link">About Us</a>
+          <a href="index.html#contact" class="footer-link">Contact</a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Travel Services</h3>
+        <div class="flex flex-col gap-2.5">
+          <a href="travel-money.html" class="footer-link">Travel Money</a>
+          <a href="money-transfer.html" class="footer-link">Money Transfer</a>
+          <a href="travel-insurance.html" class="footer-link">Travel Insurance</a>
+          <a href="visa-assistance.html" class="footer-link">Visa Assistance</a>
+          <a href="airport-transfer.html" class="footer-link">Airport Transfer</a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Help &amp; Information</h3>
+        <div class="flex flex-col gap-2.5">
+          <a href="faqs.html" class="footer-link">FAQs</a>
+          <a href="travel-guide.html" class="footer-link">Travel Guide</a>
+          <a href="terms-conditions.html" class="footer-link">Terms &amp; Conditions</a>
+          <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+          <a href="cookie-policy.html" class="footer-link">Cookie Policy</a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Contact</h3>
+        <div class="flex flex-col gap-3">
+          <a href="tel:02081549513" class="footer-link flex items-center gap-2">
+            <i class="fa-solid fa-phone text-red-600 text-xs"></i> 020 8154 9513
+          </a>
+          <a href="mailto:info@aaztravel.com" class="footer-link flex items-center gap-2">
+            <i class="fa-solid fa-envelope text-red-600 text-xs"></i> info@aaztravel.com
+          </a>
+          <a href="https://wa.me/442081549513" target="_blank" rel="noopener" class="footer-link flex items-center gap-2">
+            <i class="fa-brands fa-whatsapp text-red-600 text-xs"></i> 020 8154 9513
+          </a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=241a+Whitechapel+Road+London+E1+1BD" target="_blank" rel="noopener" class="footer-link flex items-start gap-2">
+            <i class="fa-solid fa-location-dot text-red-600 text-xs mt-0.5"></i> 241a, 1st Floor, Whitechapel Road, London, E1 1BD
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="border-top: 1px solid rgba(255,255,255,0.08);">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="footer-text text-xs">© <span id="year"></span> Aaz Travel. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="privacy-policy.html" class="footer-link text-xs">Privacy</a>
+        <a href="terms-conditions.html" class="footer-link text-xs">Terms</a>
+        <a href="cookie-policy.html" class="footer-link text-xs">Cookies</a>
+      </div>
+    </div>
+  </div>
+
+  <div style="border-top: 1px solid rgba(255,255,255,0.08);">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-4 flex justify-center">
+      <a href="https://juvenileasia.com/" target="_blank" rel="noopener"
+         class="footer-link inline-flex items-center gap-2 text-xs">
+        <img src="assets/badges/juvenile-asia-favicon.png" alt="Juvenile Asia" class="h-4 w-4 object-contain" onerror="this.style.display='none'" />
+        Design and developed by Juvenile Asia
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp button -->
+<a id="whatsapp-float" href="https://wa.me/442081549513" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"
+  style="position: fixed; bottom: 24px; left: 24px; z-index: 900; background: #25D366; color: white; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(37,211,102,0.5); transition: transform 0.2s;"
+  onmouseenter="this.style.transform='translateY(-3px)'" onmouseleave="this.style.transform=''">
+  <i class="fa-brands fa-whatsapp text-2xl"></i>
+</a>
+
+<!-- Back to top button -->
+<button id="back-to-top" aria-label="Back to top"
+  style="position: fixed; bottom: 24px; right: 24px; z-index: 900; background: var(--red); color: white; width: 44px; height: 44px; border-radius: 10px; display: none; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(180,23,23,0.45); transition: transform 0.2s; border: none; cursor: pointer;">
+  <i class="fa-solid fa-arrow-up text-sm"></i>
+</button>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════════════ -->
+<script src="assets/js/main.js"></script>
+
+<!-- ══════════════════════════════════════════════════════════
+     GOL IBE FLIGHT-SEARCH WIDGET — SCRIPTS
+     Order matters: these must load in this sequence, exactly as
+     shipped by the vendor package (see SEARCH-MODULE-README.md).
+     config.en.js already targets feUrl = https://aaztrip.golibe.com,
+     so submitting the form above redirects to
+     https://aaztrip.golibe.com/results with the search query.
+
+     Note on static/styles.css: this vendor stylesheet ships as one big
+     global stylesheet (not scoped to the widget), because the widget's
+     own JS appends its date-picker calendar and a couple of dropdowns
+     directly to <body> (outside this page's markup) — scoping the whole
+     file breaks those. Only a small, explicitly-audited set of generic,
+     collision-prone selectors (.hidden, .flex, .container, html, body,
+     etc. — see README.md) have been prefixed with "#aaz-flight-search"
+     so they can't leak onto the rest of this landing page; everything
+     else in static/styles.css is intentionally left global. See
+     README.md → "CSS scoping" for the full list and how to re-apply it
+     if these files are ever regenerated from the GOL admin console.
+════════════════════════════════════════════════════════════ -->
+<script src="static/css-element-queries-1.2.1/src/ResizeSensor.js" type="text/javascript"></script>
+<script src="static/css-element-queries-1.2.1/src/ElementQueries.js" type="text/javascript"></script>
+<script src="hotels/HTMLPackageHotels.js" type="text/javascript"></script>
+<script src="HTMLPackageControl.js" type="text/javascript"></script>
+<link href="static/font.css" rel="stylesheet" />
+<link href="static/styles.css" rel="stylesheet" />
+<script src="config.en.js" type="text/javascript"></script>
+
+</body>
+</html>

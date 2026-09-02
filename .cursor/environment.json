@@ -1,0 +1,16 @@
+{
+  "name": "Nexusyl static sites",
+  "terminals": [
+    {
+      "name": "static-server",
+      "command": "python3 -m http.server 8000 --bind 0.0.0.0",
+      "description": "Serves the static sites over HTTP on port 8000 from the repository root. The Nexusyl landing page is at '/index%20nexusyl.html' and the AAZ Travels site is at '/aaz-travels/index.html'."
+    }
+  ],
+  "ports": [
+    {
+      "name": "static web server",
+      "port": 8000
+    }
+  ]
+}
