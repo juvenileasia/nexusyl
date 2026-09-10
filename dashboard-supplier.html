@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexusyl — Supplier / Partner Dashboard</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/Nexusyl_Fab.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root{--red:#E8211A;--black:#0A0A0A;--dark:#111111;--card:#161616;--border:#2a2a2a;--white:#F5F5F5;--sb:240px;--acc:#eab308;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html,body{height:100%;font-family:'Manrope',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
+    ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--black);}::-webkit-scrollbar-thumb{background:var(--acc);border-radius:2px;}
+    #sb{position:fixed;top:0;left:0;bottom:0;width:var(--sb);background:var(--dark);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:200;overflow-y:auto;}
+    .sb-logo{padding:18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+    .sb-sec{font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#444;padding:14px 18px 5px;}
+    .sb-link{display:flex;align-items:center;gap:10px;padding:9px 18px;font-size:.81rem;font-weight:600;color:#666;cursor:pointer;border-left:2px solid transparent;transition:all .15s;text-decoration:none;}
+    .sb-link i{width:16px;text-align:center;font-size:.78rem;}
+    .sb-link:hover{color:var(--white);background:rgba(255,255,255,.04);}
+    .sb-link.active{color:var(--white);background:rgba(234,179,8,.07);border-left-color:var(--acc);}
+    .sb-link.active i{color:var(--acc);}
+    #tb{position:fixed;top:0;left:var(--sb);right:0;height:56px;background:rgba(10,10,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 22px;z-index:100;}
+    #main{margin-left:var(--sb);margin-top:56px;padding:26px;min-height:calc(100vh - 56px);}
+    .sec{display:none;}.sec.active{display:block;}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:4px;}
+    .card-hd{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+    .card-bd{padding:18px;}
+    .stat{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px 20px;transition:border-color .2s,transform .2s;}
+    .stat:hover{transform:translateY(-2px);border-color:#333;}
+    .btn{display:inline-flex;align-items:center;gap:7px;font-family:'Syne',sans-serif;font-weight:700;font-size:.73rem;letter-spacing:.06em;text-transform:uppercase;padding:8px 16px;border-radius:2px;border:none;cursor:pointer;transition:all .2s;}
+    .btn-p{background:var(--acc);color:#000;} .btn-p:hover{background:#ca8a04;color:#fff;transform:translateY(-1px);}
+    .btn-s{background:transparent;color:#888;border:1px solid var(--border);} .btn-s:hover{border-color:var(--acc);color:var(--white);}
+    table{width:100%;border-collapse:collapse;}
+    th{font-size:.63rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#555;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);}
+    td{padding:11px 14px;font-size:.81rem;color:#ccc;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle;}
+    tr:last-child td{border-bottom:none;} tr:hover td{background:rgba(255,255,255,.02);}
+    .pill{display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:2px;}
+    .pill-r{background:rgba(232,33,26,.12);color:var(--red);border:1px solid rgba(232,33,26,.25);}
+    .pill-g{background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.25);}
+    .pill-y{background:rgba(234,179,8,.12);color:#eab308;border:1px solid rgba(234,179,8,.25);}
+    .pill-b{background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.25);}
+    .pill-p{background:rgba(168,85,247,.12);color:#c084fc;border:1px solid rgba(168,85,247,.25);}
+    .sec-lbl{font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+    .sec-lbl::before{content:'';display:block;width:20px;height:1px;background:var(--acc);}
+    .pb{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:6px;}
+    .pb-f{height:100%;border-radius:3px;background:var(--acc);transition:width .8s ease;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+    .fade-in{animation:fadeIn .4s ease both;}
+    #toast-c{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:6px;}
+    .toast{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--acc);border-radius:3px;padding:10px 16px;font-size:.8rem;font-weight:600;display:flex;align-items:center;gap:8px;animation:fadeIn .2s ease;}
+    /* STATUS DOT */
+    .sdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+    /* SEARCH */
+    .search-inp{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:2px;padding:8px 12px;font-family:'Manrope',sans-serif;font-size:.83rem;color:var(--white);outline:none;width:220px;transition:border-color .2s;}
+    .search-inp:focus{border-color:var(--acc);}
+    .search-inp::placeholder{color:#444;}
+  </style>
+</head>
+<body>
+<div id="toast-c"></div>
+
+<aside id="sb">
+  <div class="sb-logo">
+    <img src="/Nexusyl_Fab.png" alt="N" style="height:28px;width:28px;object-fit:contain;flex-shrink:0;" onerror="this.style.display='none'" />
+    <div><div style="font-family:'Syne',sans-serif;font-weight:800;font-size:.88rem;color:var(--white);">Nexusyl</div><div style="font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);">Partner Portal</div></div>
+  </div>
+  <nav style="flex:1;padding:8px 0;">
+    <div class="sb-sec">Overview</div>
+    <a class="sb-link active" onclick="show('home',this)"><i class="fa-solid fa-chart-bar"></i>Dashboard</a>
+    <div class="sb-sec">Pipeline</div>
+    <a class="sb-link" onclick="show('students',this)"><i class="fa-solid fa-graduation-cap"></i>Student Pipeline</a>
+    <a class="sb-link" onclick="show('employees',this)"><i class="fa-solid fa-briefcase"></i>Employee Training</a>
+    <div class="sb-sec">Business</div>
+    <a class="sb-link" onclick="show('contracts',this)"><i class="fa-solid fa-file-contract"></i>Contracts</a>
+    <a class="sb-link" onclick="show('reports',this)"><i class="fa-solid fa-chart-line"></i>Reports</a>
+    <div class="sb-sec">System</div>
+    <a class="sb-link" href="login.html"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+  </nav>
+  <div style="padding:14px 18px;border-top:1px solid var(--border);">
+    <div style="display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:3px;background:rgba(255,255,255,.03);border:1px solid var(--border);">
+      <div id="user-avatar" style="width:28px;height:28px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:.68rem;color:#000;flex-shrink:0;">GP</div>
+      <div style="flex:1;min-width:0;"><div id="user-name" style="font-size:.78rem;font-weight:700;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Partner</div><div style="font-size:.65rem;color:#555;">Supplier / Partner</div></div>
+    </div>
+  </div>
+</aside>
+
+<header id="tb">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <span style="font-size:.7rem;color:#555;">Partner</span>
+    <i class="fa-solid fa-chevron-right" style="font-size:.5rem;color:#333;"></i>
+    <span id="tb-title" style="font-size:.8rem;font-weight:700;color:var(--white);">Dashboard</span>
+  </div>
+  <span class="pill pill-y"><i class="fa-solid fa-handshake"></i> Supplier / Partner</span>
+</header>
+
+<main id="main">
+
+<!-- HOME -->
+<div id="sec-home" class="sec active fade-in">
+  <div class="sec-lbl" style="margin-bottom:5px;">B2B Partner Portal</div>
+  <h2 id="welcome-h" style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:22px;">Partner Overview</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px;">
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Assigned Students</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--white);">24</div><div style="font-size:.7rem;color:#555;margin-top:3px;">Active pipeline</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Enrolled</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#22c55e;">18</div><div style="font-size:.7rem;color:#555;margin-top:3px;">75% conversion</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Visa Approved</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--acc);">11</div><div style="font-size:.7rem;color:#555;margin-top:3px;">46% of pipeline</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px;">Commission Earned</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#22c55e;">£3,200</div><div style="font-size:.7rem;color:#555;margin-top:3px;">This month</div></div>
+  </div>
+
+  <!-- Conversion funnel -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <div class="card">
+      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Pipeline Conversion Funnel</span></div>
+      <div class="card-bd" style="display:flex;flex-direction:column;gap:10px;">
+        <div><div style="display:flex;justify-content:space-between;font-size:.78rem;color:#aaa;margin-bottom:4px;"><span>Referred by Partner</span><span>24</span></div><div class="pb"><div class="pb-f" style="width:100%;"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;font-size:.78rem;color:#aaa;margin-bottom:4px;"><span>Application Submitted</span><span>21</span></div><div class="pb"><div class="pb-f" style="width:88%;"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;font-size:.78rem;color:#aaa;margin-bottom:4px;"><span>Offer Received</span><span>19</span></div><div class="pb"><div class="pb-f" style="width:79%;background:#60a5fa;"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;font-size:.78rem;color:#aaa;margin-bottom:4px;"><span>Enrolled</span><span style="color:#22c55e;">18</span></div><div class="pb"><div class="pb-f" style="width:75%;background:#22c55e;"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;font-size:.78rem;color:#aaa;margin-bottom:4px;"><span>Visa Approved</span><span style="color:var(--acc);">11</span></div><div class="pb"><div class="pb-f" style="width:46%;"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;font-size:.78rem;color:#aaa;margin-bottom:4px;"><span>Arrived in UK</span><span>8</span></div><div class="pb"><div class="pb-f" style="width:33%;background:#22c55e;"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Status Breakdown</span></div>
+      <div class="card-bd" style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:3px;border:1px solid rgba(34,197,94,.15);background:rgba(34,197,94,.04);">
+          <div style="display:flex;align-items:center;gap:8px;"><div class="sdot" style="background:#22c55e;"></div><span style="font-size:.82rem;color:var(--white);">Enrolled &amp; Active</span></div>
+          <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:#22c55e;">18</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:3px;border:1px solid rgba(234,179,8,.15);background:rgba(234,179,8,.04);">
+          <div style="display:flex;align-items:center;gap:8px;"><div class="sdot" style="background:var(--acc);"></div><span style="font-size:.82rem;color:var(--white);">Visa Approved</span></div>
+          <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--acc);">11</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:3px;border:1px solid rgba(59,130,246,.15);background:rgba(59,130,246,.04);">
+          <div style="display:flex;align-items:center;gap:8px;"><div class="sdot" style="background:#60a5fa;"></div><span style="font-size:.82rem;color:var(--white);">Visa Pending</span></div>
+          <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:#60a5fa;">7</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:3px;border:1px solid rgba(232,33,26,.15);background:rgba(232,33,26,.04);">
+          <div style="display:flex;align-items:center;gap:8px;"><div class="sdot" style="background:var(--red);"></div><span style="font-size:.82rem;color:var(--white);">Documents Pending</span></div>
+          <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--red);">6</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STUDENT PIPELINE -->
+<div id="sec-students" class="sec fade-in">
+  <div class="sec-lbl" style="margin-bottom:5px;">Student Pipeline</div>
+  <h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:22px;">Assigned Student Database</h2>
+  <div class="card">
+    <div class="card-hd">
+      <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">All Assigned Students</span>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <input class="search-inp" id="student-search" placeholder="Search students…" oninput="filterStudents()" />
+        <button class="btn btn-s" style="padding:6px 10px;font-size:.68rem;" onclick="toast('Export feature available in full release.')"><i class="fa-solid fa-download"></i> Export</button>
+      </div>
+    </div>
+    <table>
+      <thead><tr><th>Student</th><th>Course / University</th><th>Enrolment</th><th>Visa Status</th><th>Pipeline Status</th><th>Adviser Note</th></tr></thead>
+      <tbody id="student-table">
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- EMPLOYEE TRAINING -->
+<div id="sec-employees" class="sec fade-in">
+  <div class="sec-lbl" style="margin-bottom:5px;">Training Metrics</div>
+  <h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:22px;">Employee Training Progress</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px;">
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:3px;">Employees Supplied</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--white);">12</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:3px;">Training Complete</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#22c55e;">9</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:3px;">DBS Cleared</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--acc);">10</div></div>
+  </div>
+  <div class="card">
+    <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Employee Training Tracker</span></div>
+    <table>
+      <thead><tr><th>Employee</th><th>Role</th><th>Training Progress</th><th>DBS Status</th><th>Compliance</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:600;color:var(--white);">Marcus Lee</td><td style="color:#888;">Chef de Partie</td><td><div style="display:flex;align-items:center;gap:8px;"><div class="pb" style="width:100px;"><div class="pb-f" style="width:100%;background:#22c55e;"></div></div><span style="font-size:.7rem;color:#22c55e;">100%</span></div></td><td><span class="pill pill-g">Cleared</span></td><td><span class="pill pill-g">Compliant</span></td></tr>
+        <tr><td style="font-weight:600;color:var(--white);">Priya Sharma</td><td style="color:#888;">Sous Chef</td><td><div style="display:flex;align-items:center;gap:8px;"><div class="pb" style="width:100px;"><div class="pb-f" style="width:100%;background:#22c55e;"></div></div><span style="font-size:.7rem;color:#22c55e;">100%</span></div></td><td><span class="pill pill-g">Cleared</span></td><td><span class="pill pill-g">Compliant</span></td></tr>
+        <tr><td style="font-weight:600;color:var(--white);">David Okafor</td><td style="color:#888;">Kitchen Porter</td><td><div style="display:flex;align-items:center;gap:8px;"><div class="pb" style="width:100px;"><div class="pb-f" style="width:60%;"></div></div><span style="font-size:.7rem;color:var(--acc);">60%</span></div></td><td><span class="pill pill-y">Processing</span></td><td><span class="pill pill-y">In Progress</span></td></tr>
+        <tr><td style="font-weight:600;color:var(--white);">Emma Walsh</td><td style="color:#888;">Front of House</td><td><div style="display:flex;align-items:center;gap:8px;"><div class="pb" style="width:100px;"><div class="pb-f" style="width:40%;"></div></div><span style="font-size:.7rem;color:var(--acc);">40%</span></div></td><td><span class="pill pill-r">Submitted</span></td><td><span class="pill pill-y">In Progress</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CONTRACTS -->
+<div id="sec-contracts" class="sec fade-in">
+  <div class="sec-lbl" style="margin-bottom:5px;">B2B Contracts</div>
+  <h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:22px;">Partner Agreements</h2>
+  <div class="card">
+    <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Active Contracts</span></div>
+    <table>
+      <thead><tr><th>Contract Ref</th><th>Service</th><th>Start</th><th>Renewal</th><th>Value</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td style="font-family:monospace;font-size:.78rem;">NX-SUP-2026-001</td><td style="font-weight:600;color:var(--white);">Student Referral Agreement</td><td>01 Jan 2026</td><td>31 Dec 2026</td><td style="color:#22c55e;">£18,000/yr</td><td><span class="pill pill-g">Active</span></td></tr>
+        <tr><td style="font-family:monospace;font-size:.78rem;">NX-SUP-2026-002</td><td style="font-weight:600;color:var(--white);">Hospitality Staffing SLA</td><td>01 Mar 2026</td><td>28 Feb 2027</td><td style="color:#22c55e;">£24,000/yr</td><td><span class="pill pill-g">Active</span></td></tr>
+        <tr><td style="font-family:monospace;font-size:.78rem;">NX-SUP-2025-008</td><td style="font-weight:600;color:var(--white);">DBS Processing Partnership</td><td>01 Jun 2025</td><td>31 May 2026</td><td style="color:#eab308;">£6,000/yr</td><td><span class="pill pill-y">Renewal Due</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- REPORTS -->
+<div id="sec-reports" class="sec fade-in">
+  <div class="sec-lbl" style="margin-bottom:5px;">Analytics</div>
+  <h2 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:22px;">Partner Performance Report</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px;">
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:3px;">YTD Commission</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#22c55e;">£19,400</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:3px;">Conversion Rate</div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--acc);">75%</div></div>
+    <div class="stat"><div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:3px;">Partner Tier</div><div style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:var(--white);margin-top:4px;">Gold Partner</div></div>
+  </div>
+  <div class="card">
+    <div class="card-hd"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;">Monthly Performance</span><button class="btn btn-s" style="padding:5px 10px;font-size:.65rem;" onclick="toast('PDF report download — available in full release.')"><i class="fa-solid fa-download"></i> Download PDF</button></div>
+    <table>
+      <thead><tr><th>Month</th><th>Students Referred</th><th>Enrolled</th><th>Visa Approved</th><th>Commission</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:600;color:var(--white);">May 2026</td><td>6</td><td>5</td><td>3</td><td style="color:#22c55e;">£3,200</td></tr>
+        <tr><td style="font-weight:600;color:var(--white);">April 2026</td><td>8</td><td>7</td><td>4</td><td style="color:#22c55e;">£4,100</td></tr>
+        <tr><td style="font-weight:600;color:var(--white);">March 2026</td><td>5</td><td>4</td><td>2</td><td style="color:#22c55e;">£2,600</td></tr>
+        <tr><td style="font-weight:600;color:var(--white);">February 2026</td><td>5</td><td>2</td><td>2</td><td style="color:#22c55e;">£2,900</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</main>
+
+<footer style="margin-left:var(--sb);border-top:1px solid var(--border);padding:16px 26px;background:var(--dark);">
+  <p style="font-size:.68rem;color:#333;line-height:1.6;">Nexusyl Limited is a wholly owned subsidiary of Juvenile Asia Limited (Company No. 16966853). All infrastructure and data architectures are managed securely under corporate data frameworks.</p>
+</footer>
+
+<script>
+var SESSION_KEY='nx_portal_session';
+var students=[
+  {name:'Jordan Singh',course:'BSc Hospitality Management — University of Surrey',enrolled:'Enrolled',visa:'Awaiting Upload',pipeline:'Documents Required'},
+  {name:'Amara Osei',course:'MSc Data Analytics — King\'s College London',enrolled:'Enrolled',visa:'Under Review',pipeline:'Visa Pending'},
+  {name:'Ravi Patel',course:'BA Business Studies — University of Birmingham',enrolled:'Enrolled',visa:'Approved',pipeline:'Visa Approved'},
+  {name:'Chen Wei',course:'MEng Computer Science — Imperial College London',enrolled:'Enrolled',visa:'Approved',pipeline:'Arrived UK'},
+  {name:'Fatima Al-Hassan',course:'LLB Law — University of Edinburgh',enrolled:'Offer Received',visa:'Not Started',pipeline:'Offer Received'},
+  {name:'Samuel Adeyemi',course:'BSc Nursing — University of Leeds',enrolled:'Enrolled',visa:'Approved',pipeline:'Enrolled'},
+  {name:'Mei Lin',course:'MSc Finance — University of Manchester',enrolled:'Enrolled',visa:'Processing',pipeline:'Visa Pending'},
+];
+
+(function(){
+  var s=sessionStorage.getItem(SESSION_KEY);
+  if(!s){window.location.href='login.html?role=supplier';return;}
+  try{
+    var sess=JSON.parse(s);
+    if(sess.role!=='supplier'&&sess.role!=='admin'){window.location.href='login.html?role=supplier';return;}
+    document.getElementById('user-name').textContent=sess.name;
+    document.getElementById('user-avatar').textContent=sess.name.split(' ').map(function(w){return w[0]||'';}).slice(0,2).join('').toUpperCase();
+    document.getElementById('welcome-h').textContent='Partner Overview — '+sess.name;
+  }catch(e){window.location.href='login.html';}
+})();
+
+var pipeCols={Enrolled:'pill-g','Visa Approved':'pill-y','Documents Required':'pill-r','Visa Pending':'pill-b','Arrived UK':'pill-g','Offer Received':'pill-b'};
+
+function renderStudentTable(data){
+  document.getElementById('student-table').innerHTML=(data||students).map(function(s){
+    return '<tr>'
+      +'<td style="font-weight:600;color:var(--white);">'+s.name+'</td>'
+      +'<td style="font-size:.78rem;color:#777;max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+s.course+'</td>'
+      +'<td><span class="pill pill-g">'+s.enrolled+'</span></td>'
+      +'<td><span class="pill '+(s.visa==='Approved'?'pill-g':s.visa==='Under Review'||s.visa==='Processing'?'pill-y':'pill-r')+'">'+s.visa+'</span></td>'
+      +'<td><span class="pill '+(pipeCols[s.pipeline]||'pill-b')+'">'+s.pipeline+'</span></td>'
+      +'<td><button class="btn btn-s" style="padding:3px 8px;font-size:.6rem;" onclick="toast(\'Adviser notes for '+s.name+' — available in full release.\')">Notes</button></td>'
+      +'</tr>';
+  }).join('');
+}
+function filterStudents(){
+  var q=document.getElementById('student-search').value.toLowerCase();
+  renderStudentTable(students.filter(function(s){return s.name.toLowerCase().includes(q)||s.pipeline.toLowerCase().includes(q)||s.visa.toLowerCase().includes(q);}));
+}
+
+function show(sec,el){document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('active');});document.getElementById('sec-'+sec).classList.add('active');document.querySelectorAll('.sb-link').forEach(function(l){l.classList.remove('active');});if(el)el.classList.add('active');var t={home:'Dashboard',students:'Student Pipeline',employees:'Employee Training',contracts:'Contracts',reports:'Reports'};document.getElementById('tb-title').textContent=t[sec]||sec;if(sec==='students')renderStudentTable();}
+function toast(msg){var t=document.createElement('div');t.className='toast';t.innerHTML='<i class="fa-solid fa-circle-check" style="color:var(--acc);"></i> '+msg;document.getElementById('toast-c').appendChild(t);setTimeout(function(){t.remove();},3500);}
+show('home',document.querySelector('.sb-link.active'));
+</script>
+</body>
+</html>

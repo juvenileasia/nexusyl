@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  // Apply saved theme class on body before paint to prevent flash
+  (function(){
+    var t = localStorage.getItem('nx-theme');
+    if(t === 'light'){
+      document.addEventListener('DOMContentLoaded', function(){
+        document.body.classList.add('light');
+      });
+    }
+  })();
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ═══════════════════════════════════════════
+       SEO META TAGS — RECRUITMENT
+  ════════════════════════════════════════════ -->
+  <title>Nexusyl Recruitment | Matching International Talent with UK Skills Shortages</title>
+  <meta name="description" content="Nexusyl Recruitment uses Juvenile Asia's proprietary algorithms to match international talent with UK skills shortage roles. Data-driven, sector-specific, and built for the post-study work generation." />
+  <meta name="keywords" content="international talent recruitment UK, graduate job placement UK, skills shortage recruitment London, data-driven recruitment agency, Nexusyl Recruitment, post-study work visa UK, tech recruitment London, Juvenile Asia algorithms" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- ═══════════════════════════════════════════
+       FAVICON — browser tab, bookmarks, social preview
+  ════════════════════════════════════════════ -->
+  <link rel="icon"           type="image/png" sizes="32x32"  href="/Nexusyl_Fab.png" />
+  <link rel="icon"           type="image/png" sizes="16x16"  href="/Nexusyl_Fab.png" />
+  <link rel="shortcut icon"  type="image/png"                href="/Nexusyl_Fab.png" />
+  <link rel="apple-touch-icon"                               href="/Nexusyl_Fab.png" />
+  <meta name="author" content="Nexusyl Limited" />
+  <link rel="canonical" href="https://nexusyl.juvenileasia.com/recruitment" />
+  
+  
+
+  <!-- Open Graph / WhatsApp / Social Preview -->
+  <meta property="og:type"         content="website" />
+  <meta property="og:site_name"    content="Nexusyl Limited" />
+  <meta property="og:url"          content="https://nexusyl.juvenileasia.com/recruitment" />
+  <meta property="og:title"        content="Nexusyl Recruitment | Matching International Talent with UK Skills Shortages" />
+  <meta property="og:description"  content="Nexusyl Recruitment matches international talent with UK skills shortage vacancies using Juvenile Asia proprietary algorithms." />
+  <meta property="og:image"        content="https://nexusyl.juvenileasia.com/Nexusyl_Fab.png" />
+  <meta property="og:image:width"  content="240" />
+  <meta property="og:image:height" content="240" />
+  <meta property="og:image:type"   content="image/png" />
+  <meta property="og:image:alt"    content="Nexusyl Limited" />
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card"        content="summary" />
+  <meta name="twitter:site"        content="@nexusyl" />
+  <meta name="twitter:title"       content="Nexusyl Recruitment | Matching International Talent with UK Skills Shortages" />
+  <meta name="twitter:description" content="Nexusyl Recruitment matches international talent with UK skills shortage vacancies using Juvenile Asia proprietary algorithms." />
+  <meta name="twitter:image"       content="https://nexusyl.juvenileasia.com/Nexusyl_Fab.png" />
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EmploymentAgency",
+    "name": "Nexusyl Recruitment",
+    "url": "https://nexusyl.juvenileasia.com/recruitment",
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "Nexusyl Limited",
+      "url": "https://nexusyl.juvenileasia.com"
+    },
+    "description": "Data-driven recruitment agency matching international talent with UK skills shortage vacancies, powered by Juvenile Asia Limited algorithmic technology.",
+    "address": { "@type": "PostalAddress", "addressLocality": "London", "addressCountry": "GB" },
+    "contactPoint": { "@type": "ContactPoint", "contactType": "recruitment", "email": "support@nexusyl.com", "telephone": "+447892821808" }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { display: ['Syne', 'sans-serif'], body: ['Manrope', 'sans-serif'] },
+          colors: { brand: { red: '#E8211A', black: '#0A0A0A', dark: '#111111', card: '#161616', muted: '#888888', border: '#222222' } }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root { --red:#E8211A; --black:#0A0A0A; --dark:#111111; --card:#161616; --border:#2a2a2a; --muted:#888; --white:#F5F5F5; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Manrope', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: var(--black); } ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,10,10,0.9); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: border-color 0.3s; }
+    #navbar.scrolled { border-color: rgba(232,33,26,0.3); }
+    .nav-link { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; transition: color 0.2s; position: relative; padding-bottom: 2px; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 1.5px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.25s; }
+    .nav-link:hover { color: #fff; } .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); } .nav-link.active { color: #fff; }
+
+    /* ── SERVICES DROPDOWN ── */
+    .nav-dropdown {
+      position: relative;
+    }
+    .nav-dropdown-trigger {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #aaa; transition: color 0.2s;
+      position: relative; padding-bottom: 2px;
+      display: flex; align-items: center; gap: 5px;
+      cursor: pointer; background: none; border: none;
+      font-family: inherit;
+    }
+    .nav-dropdown-trigger::after {
+      content: '';
+      position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 1.5px; background: var(--red);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.25s;
+    }
+    .nav-dropdown-trigger:hover { color: #fff; }
+    .nav-dropdown-trigger:hover::after,
+    .nav-dropdown.open .nav-dropdown-trigger::after { transform: scaleX(1); }
+    .nav-dropdown.open .nav-dropdown-trigger { color: #fff; }
+    .nav-dropdown-trigger .chevron {
+      font-size: 0.6rem; transition: transform 0.2s; margin-top: 1px;
+    }
+    .nav-dropdown.open .chevron { transform: rotate(180deg); }
+
+    .nav-dropdown-menu {
+      position: absolute; top: calc(100% + 14px); left: 50%;
+      transform: translateX(-50%);
+      background: rgba(18,18,18,0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      min-width: 200px;
+      padding: 6px;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transform: translateX(-50%) translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+      z-index: 2000;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.6);
+    }
+    /* bridge gap so mouse can travel to menu without it closing */
+    .nav-dropdown-menu::before {
+      content: '';
+      position: absolute; top: -14px; left: 0; right: 0; height: 14px;
+    }
+    .nav-dropdown.open .nav-dropdown-menu {
+      opacity: 1; visibility: visible; pointer-events: all;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown-menu a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 12px;
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      color: #999; border-radius: 3px;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-dropdown-menu a:hover {
+      background: rgba(232,33,26,0.1); color: #fff;
+    }
+    .nav-dropdown-menu a i {
+      color: var(--red); font-size: 0.78rem; width: 16px; text-align: center;
+    }
+    .nav-dropdown-divider {
+      height: 1px; background: var(--border); margin: 4px 6px;
+    }
+
+
+    .hero-section { min-height: 100vh; background: var(--black); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .hero-noise { position: absolute; inset: 0; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); opacity: 0.5; }
+    .hero-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 700px; background: radial-gradient(circle, rgba(232,33,26,0.07) 0%, transparent 70%); pointer-events: none; }
+    .hero-lines { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px); background-size: 80px 80px; }
+    .ticker-line { position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--red), transparent); animation: sweep 3s ease-in-out infinite; }
+    @keyframes sweep { 0% { opacity:0; transform:scaleX(0) translateX(-100%); } 50% { opacity:1; transform:scaleX(1) translateX(0); } 100% { opacity:0; transform:scaleX(0) translateX(100%); } }
+
+    .badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(232,33,26,0.35); border-radius: 2px; padding: 6px 16px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(232,33,26,0.85); background: rgba(232,33,26,0.06); }
+    .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%, 100% { opacity:1; transform:scale(1); } 50% { opacity:0.4; transform:scale(0.7); } }
+
+    @keyframes fade-up { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+    .anim-1 { animation: fade-up 0.7s ease both; } .anim-2 { animation: fade-up 0.7s ease 0.15s both; } .anim-3 { animation: fade-up 0.7s ease 0.3s both; } .anim-4 { animation: fade-up 0.7s ease 0.45s both; } .anim-5 { animation: fade-up 0.7s ease 0.6s both; }
+
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--red); color: #fff; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 32px; border-radius: 2px; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 24px rgba(232,33,26,0.3); }
+    .btn-primary:hover { background: #ff2d25; transform: translateY(-2px); box-shadow: 0 8px 36px rgba(232,33,26,0.45); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--border); color: #ccc; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 32px; border-radius: 2px; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .btn-outline:hover { border-color: var(--red); color: #fff; background: rgba(232,33,26,0.07); }
+
+    .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); display: flex; align-items: center; gap: 12px; }
+    .section-label::before { content: ''; display: block; width: 32px; height: 1px; background: var(--red); }
+
+    .sector-card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; position: relative; }
+    .sector-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.35s; z-index: 2; }
+    .sector-card:hover { border-color: #333; transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+    .sector-card:hover::before { transform: scaleX(1); }
+
+    .stat-item { border-left: 2px solid var(--red); padding-left: 20px; }
+    .service-item { display: flex; align-items: center; gap: 10px; font-size: 0.83rem; color: #aaa; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .service-item:last-child { border-bottom: none; }
+    .service-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+
+    .sector-img-wrap { position: relative; overflow: hidden; height: 420px; }
+    .sector-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; filter: brightness(0.8); }
+    .sector-img-wrap:hover img { transform: scale(1.04); filter: brightness(0.9); }
+    .sector-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.65) 0%, transparent 60%); }
+
+    .section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+    .footer-link { font-size: 0.82rem; color: #666; transition: color 0.2s; } .footer-link:hover { color: var(--red); }
+    #mobile-menu { display: none; background: rgba(10,10,10,0.98); border-top: 1px solid var(--border); } #mobile-menu.open { display: block; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; } .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; } .reveal-delay-4 { transition-delay: 0.4s; }
+
+    .synergy-card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 28px; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
+    .synergy-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--red), transparent); }
+    .synergy-card:hover { border-color: rgba(232,33,26,0.3); transform: translateY(-4px); }
+
+    .process-step { display: flex; gap: 20px; align-items: flex-start; }
+    .step-number { flex-shrink: 0; width: 40px; height: 40px; border-radius: 2px; background: rgba(232,33,26,0.12); border: 1px solid rgba(232,33,26,0.25); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem; color: var(--red); }
+
+    .feature-strip { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .feature-pill { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 600; color: #aaa; padding: 14px 0; }
+    .feature-pill i { color: var(--red); font-size: 0.85rem; }
+  
+    
+  
+    /* ══════════════════════════════════════════════════════
+       LIGHT THEME — applied when body has class "light"
+       Smooth transition on all colour changes
+    ══════════════════════════════════════════════════════ */
+    body {
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.light {
+      background-color: #F7F7F5 !important;
+      color: #1A1A1A !important;
+    }
+
+    /* Navbar */
+    body.light #navbar {
+      background: rgba(247,247,245,0.97) !important;
+      border-bottom-color: #DDDDD8 !important;
+    }
+    body.light #navbar.scrolled { border-color: rgba(232,33,26,0.2) !important; }
+
+    /* Nav text */
+    body.light .nav-link { color: #444 !important; }
+    body.light .nav-link:hover { color: #111 !important; }
+    body.light .nav-link.active { color: #111 !important; }
+    body.light .nav-dropdown-trigger { color: #444 !important; }
+    body.light .nav-dropdown-trigger:hover,
+    body.light .nav-dropdown.open .nav-dropdown-trigger { color: #111 !important; }
+
+    /* Services dropdown menu */
+    body.light .nav-dropdown-menu {
+      background: rgba(255,255,255,0.99) !important;
+      border-color: #DDDDD8 !important;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.1) !important;
+    }
+    body.light .nav-dropdown-menu a { color: #555 !important; }
+    body.light .nav-dropdown-menu a:hover {
+      background: rgba(232,33,26,0.07) !important;
+      color: #111 !important;
+    }
+
+    /* Mobile menu */
+    body.light #mobile-menu {
+      background: rgba(247,247,245,0.99) !important;
+      border-top-color: #DDDDD8 !important;
+    }
+    body.light .mobile-nav-link { color: #444 !important; }
+    body.light .mobile-nav-link:hover {
+      color: #111 !important;
+      background: rgba(0,0,0,0.04) !important;
+    }
+
+    /* Hamburger */
+    body.light #bar1, body.light #bar2, body.light #bar3 {
+      background-color: #222 !important;
+    }
+
+    /* Theme toggle icon colours */
+    body.light #icon-sun  { color: #555 !important; }
+    body.light #icon-moon { color: #555 !important; }
+
+    /* HERO */
+    body.light .hero-section { background: #F7F7F5 !important; }
+    body.light .hero-lines {
+      background-image:
+        linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px) !important;
+    }
+
+    /* Headings & general text */
+    body.light h1, body.light h2, body.light h3, body.light h4 { color: #111 !important; }
+    body.light .text-white { color: #111 !important; }
+    body.light .text-gray-400 { color: #555 !important; }
+    body.light .text-gray-500 { color: #666 !important; }
+    body.light .text-gray-600 { color: #777 !important; }
+    body.light .text-gray-300 { color: #444 !important; }
+
+    /* Badge */
+    body.light .badge {
+      background: rgba(232,33,26,0.06) !important;
+      border-color: rgba(232,33,26,0.25) !important;
+    }
+
+    /* Buttons */
+    body.light .btn-outline {
+      border-color: #CCCCCA !important;
+      color: #333 !important;
+      background: transparent !important;
+    }
+    body.light .btn-outline:hover {
+      border-color: var(--red) !important;
+      color: #111 !important;
+      background: rgba(232,33,26,0.05) !important;
+    }
+
+    /* Cards */
+    body.light .sector-card {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+    body.light .sector-card:hover {
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08) !important;
+      border-color: #CCCCCA !important;
+    }
+
+    /* Feature strip */
+    body.light .feature-strip {
+      background: #EFEFED !important;
+      border-color: #DDDDD8 !important;
+    }
+    body.light .feature-pill { color: #555 !important; }
+
+    /* Stat items */
+    body.light .stat-item { border-left-color: var(--red) !important; }
+
+    /* Service list */
+    body.light .service-item { color: #555 !important; border-bottom-color: rgba(0,0,0,0.05) !important; }
+
+    /* Section dividers */
+    body.light .section-divider {
+      background: linear-gradient(90deg, transparent, #CCCCCA, transparent) !important;
+    }
+
+    /* About / Why Nexusyl section */
+    body.light #about-section {
+      background: #EFEFED !important;
+      border-color: #DDDDD8 !important;
+    }
+
+    /* Synergy cards / Process */
+    body.light .synergy-card { background: #FFFFFF !important; border-color: #DDDDD8 !important; }
+    body.light .step-number { background: rgba(232,33,26,0.08) !important; }
+
+    /* Sections with inline dark backgrounds */
+    body.light section[style*="background: var(--dark)"],
+    body.light section[style*="background: var(--card)"] {
+      background: #EFEFED !important;
+    }
+    body.light div[style*="background: var(--card)"],
+    body.light div[style*="background: var(--dark)"] {
+      background: #F7F7F5 !important;
+    }
+
+    /* Contact form */
+    body.light .form-input {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+      color: #111 !important;
+    }
+    body.light .form-input::placeholder { color: #AAAAAA !important; }
+    body.light .form-input:focus {
+      border-color: var(--red) !important;
+      box-shadow: 0 0 0 3px rgba(232,33,26,0.08) !important;
+    }
+    body.light .form-label { color: #777 !important; }
+    body.light select.form-input option { background: #fff; color: #111; }
+
+    /* Footer */
+    body.light footer {
+      background: #EFEFED !important;
+      border-top-color: #DDDDD8 !important;
+    }
+    body.light footer p,
+    body.light footer span,
+    body.light footer div { color: inherit; }
+    body.light .footer-link { color: #777 !important; }
+    body.light .footer-link:hover { color: var(--red) !important; }
+    body.light footer .text-gray-500 { color: #666 !important; }
+    body.light footer .text-gray-600 { color: #888 !important; }
+    body.light footer div[style*="border-top"] { border-top-color: #DDDDD8 !important; }
+    body.light footer .text-xs.text-gray-600 { color: #888 !important; }
+
+    /* Legal pages */
+    body.light .legal-body h2 { color: #111 !important; }
+    body.light .legal-body h3 { color: #333 !important; }
+    body.light .legal-body p,
+    body.light .legal-body ul,
+    body.light .legal-body ol { color: #444 !important; }
+    body.light .legal-body .highlight-box {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+
+    /* Scrollbar in light mode */
+    body.light ::-webkit-scrollbar-track { background: #EFEFED; }
+
+    /* Hero static section */
+    body.light section[style*="background: var(--dark)"] h2,
+    body.light section[style*="background: var(--card)"] h2 { color: #111 !important; }
+
+
+    /* ── Fix inline rgba dark backgrounds in light mode ────────────────── */
+
+    /* Hero ecology card (rgba(22,22,22,0.8)) */
+    body.light .hero-section .border,
+    body.light .hero-section [style*="rgba(22,22,22"],
+    body.light .hero-section [style*="rgba(16,16,16"],
+    body.light .hero-section [style*="rgba(18,18,18"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+
+    /* Floating stat/badge panels in hero on service pages */
+    body.light [style*="rgba(22,22,22"],
+    body.light [style*="rgba(16,16,16"],
+    body.light [style*="rgba(18,18,18"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+
+    /* All elements with var(--card) or var(--dark) inline backgrounds */
+    body.light [style*="background: var(--card)"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+    body.light [style*="background: var(--dark)"] {
+      background: #EFEFED !important;
+    }
+    body.light [style*="background: var(--black)"] {
+      background: #F7F7F5 !important;
+    }
+
+    /* Text INSIDE those forced-white boxes */
+    body.light [style*="rgba(22,22,22"] *,
+    body.light [style*="background: var(--card)"] *,
+    body.light [style*="background: var(--dark)"] *,
+    body.light [style*="background: var(--black)"] * {
+      color: inherit;
+    }
+    body.light [style*="rgba(22,22,22"] .text-white,
+    body.light [style*="background: var(--card)"] .text-white,
+    body.light [style*="background: var(--dark)"] .text-white {
+      color: #111 !important;
+    }
+    body.light [style*="rgba(22,22,22"] .text-gray-400,
+    body.light [style*="background: var(--card)"] .text-gray-400,
+    body.light [style*="background: var(--dark)"] .text-gray-400 { color: #555 !important; }
+    body.light [style*="rgba(22,22,22"] .text-gray-500,
+    body.light [style*="background: var(--card)"] .text-gray-500,
+    body.light [style*="background: var(--dark)"] .text-gray-500 { color: #666 !important; }
+    body.light [style*="rgba(22,22,22"] .text-gray-600,
+    body.light [style*="background: var(--card)"] .text-gray-600,
+    body.light [style*="background: var(--dark)"] .text-gray-600 { color: #777 !important; }
+    body.light [style*="rgba(22,22,22"] .text-gray-300,
+    body.light [style*="background: var(--card)"] .text-gray-300 { color: #333 !important; }
+
+    /* Section label inside dark boxes */
+    body.light [style*="rgba(22,22,22"] .section-label,
+    body.light [style*="background: var(--card)"] .section-label { color: var(--red) !important; }
+
+    /* Icon background circles inside dark boxes */
+    body.light [style*="rgba(232,33,26,0.12)"] { background: rgba(232,33,26,0.1) !important; }
+
+    /* Inline border-color: var(--border) → light border */
+    body.light [style*="border-color: var(--border)"] { border-color: #DDDDD8 !important; }
+    body.light [style*="border: 1px solid var(--border)"] { border-color: #DDDDD8 !important; }
+
+    /* Floating stat panels in sector pages */
+    body.light .absolute.z-20[style*="background: var(--card)"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+    body.light .absolute.z-20[style*="background: var(--card)"] .text-white { color: #111 !important; }
+    body.light .absolute.z-20[style*="background: var(--card)"] .text-gray-500 { color: #777 !important; }
+
+    /* Services list box on sector pages */
+    body.light .border.rounded-sm[style*="border-color: var(--border)"],
+    body.light .border.rounded-sm[style*="background: var(--card)"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+
+    /* Contact form card */
+    body.light #contact .border.rounded-sm {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+
+    /* Success message */
+    body.light #form-success {
+      background: rgba(232,33,26,0.06) !important;
+      border-color: rgba(232,33,26,0.2) !important;
+    }
+
+    /* All floating badges / number panels */
+    body.light [class*="absolute"][class*="-bottom-5"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+    body.light [class*="absolute"][class*="-bottom-5"] .text-white { color: #111 !important; }
+
+    /* Hero section label text */
+    body.light .hero-section .section-label { color: var(--red) !important; }
+    body.light .hero-section p { color: #444 !important; }
+
+    /* Global: any remaining dark inline text in light mode */
+    body.light span.text-white { color: #111 !important; }
+    body.light p.text-gray-400 { color: #555 !important; }
+    body.light p.text-gray-500 { color: #666 !important; }
+
+    /* Ticker line stays visible */
+    body.light .ticker-line { opacity: 0.4; }
+
+    /* Hero noise/lines — invisible in light */
+    body.light .hero-noise { opacity: 0.15; }
+
+    /* Select dropdown options */
+    body.light select option { background: #fff !important; color: #111 !important; }
+
+    /* ── Logo inversion for light mode ─────────────────────────────────────── */
+    /* Nexusyl.png is a white wordmark — invert in light mode to show black */
+    body.light img[alt="Nexusyl Limited"],
+    body.light img[alt="Nexusyl"] {
+      filter: none;
+    }
+    /* Nexusyl.png white text on transparent — invert to black in light mode */
+    body.light .footer-link + img,
+    body.light nav img[alt="Nexusyl Limited"] { filter: invert(1) brightness(0); }
+
+    /* CTA wordmark — make visible in light mode (dark text on light bg) */
+    body.light #cta-logo-wordmark {
+      filter: brightness(0) !important;
+    }
+
+    
+
+    /* ── Logo image theme swap ─────────────────────────────────────────────── */
+    .logo-wrap        { display: none; }
+    @media (min-width: 640px) { .logo-wrap { display: inline-flex; align-items: center; } }
+    .logo-dark        { display: block; }
+    .logo-light       { display: none; }
+    body.light .logo-dark  { display: none; }
+    body.light .logo-light { display: block; }
+    .logo-wrap-always { display: inline-flex; align-items: center; }
+    .logo-wrap-always .logo-dark  { display: block; }
+    .logo-wrap-always .logo-light { display: none; }
+    body.light .logo-wrap-always .logo-dark  { display: none; }
+    body.light .logo-wrap-always .logo-light { display: block; }
+    /* ── Pre-Employment Readiness Pipeline ────────────────────────────────── */
+    .pipeline-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 4px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .pipeline-card:hover { border-color: rgba(232,33,26,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+    .ecology-banner { transition: transform 0.3s, box-shadow 0.3s; }
+    .ecology-banner:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(232,33,26,0.1); }
+    body.light .pipeline-card { background: #FFFFFF; border-color: #DDDDD8; }
+    body.light #dbs-dropzone { background: rgba(232,33,26,0.03) !important; }
+
+  </style>
+</head>
+<body>
+
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-3 flex-shrink-0">
+        <img src="/Nexusyl_Fab.png" alt="Nexusyl icon" class="h-8 w-8 object-contain" onerror="this.style.display='none'" />
+        <span class="logo-wrap"><img src="/Nexusyl_White_Logo.png" alt="Nexusyl Limited" class="logo-dark h-7 object-contain" /><img src="/Nexusyl_Black_Logo.png" alt="Nexusyl Limited" class="logo-light h-7 object-contain" /></span>
+        <span class="text-white font-display font-bold text-lg sm:hidden">nexusyl!</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="/"         class="nav-link">Home</a>
+
+        <!-- Services dropdown -->
+        <div class="nav-dropdown" id="services-dropdown">
+          <button class="nav-dropdown-trigger" id="services-trigger" aria-haspopup="true" aria-expanded="false">
+            Services <i class="fa-solid fa-chevron-down chevron"></i>
+          </button>
+          <div class="nav-dropdown-menu" id="services-menu" role="menu">
+            <a href="/recruitment" role="menuitem"><i class="fa-solid fa-briefcase"></i>Recruitment</a>
+            <a href="/food-tech"    role="menuitem"><i class="fa-solid fa-utensils"></i>Food Tech</a>
+            <a href="/education"   role="menuitem"><i class="fa-solid fa-graduation-cap"></i>Education</a>
+            <a href="/property"    role="menuitem"><i class="fa-solid fa-building"></i>Property</a>
+          </div>
+        </div>
+
+        <a href="/#about-section" class="nav-link">About</a>
+        <a href="/#contact"       class="nav-link">Contact</a>
+<a href="/login" class="btn-outline text-xs py-2.5 px-4" style="display:inline-flex;align-items:center;gap:7px;font-family:'Syne',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--border);color:#aaa;border-radius:2px;transition:all .2s;text-decoration:none;" onmouseover="this.style.borderColor='var(--red)';this.style.color='#fff'" onmouseout="this.style.borderColor='var(--border)';this.style.color='#aaa'">
+          <i class="fa-solid fa-right-to-bracket" style="font-size:.75rem;"></i> Login
+        </a>
+        <a href="/#contact"       class="btn-primary text-xs py-2.5 px-5">Get in Touch</a>
+        <button id="theme-toggle" aria-label="Toggle light/dark theme"
+          style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:2px;border:1px solid var(--border);background:transparent;cursor:pointer;transition:border-color 0.2s,background 0.2s;flex-shrink:0;"
+          onmouseenter="this.style.borderColor='var(--red)'"
+          onmouseleave="this.style.borderColor='var(--border)'">
+          <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color:#aaa;display:block;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color:#555;display:none;"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+      </div>
+
+      <button id="menu-toggle" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-2">
+        <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar1"></span>
+        <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
+        <span class="w-4 h-0.5 bg-white transition-all duration-300" id="bar3"></span>
+      </button>
+    </div>
+  </div>
+      <div id="mobile-menu" role="menu">
+    <div class="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-1">
+      <a href="/" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-house mr-3 text-red-500"></i>Home
+      </a>
+      <a href="/recruitment" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-briefcase mr-3 text-red-500"></i>Recruitment
+      </a>
+      <a href="/food-tech" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-utensils mr-3 text-red-500"></i>Food Tech
+      </a>
+      <a href="/education" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-graduation-cap mr-3 text-red-500"></i>Education
+      </a>
+      <a href="/property" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-building mr-3 text-red-500"></i>Property
+      </a>
+      <a href="/#about-section" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-info-circle mr-3 text-red-500"></i>About
+      </a>
+      <a href="/#contact" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-envelope mr-3 text-red-500"></i>Contact
+      </a>
+      <div class="pt-2 pb-1">
+        <a href="/#contact" class="btn-primary w-full justify-center text-sm">Get in Touch <i class="fa-solid fa-arrow-right text-xs"></i></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero-section" aria-label="Nexusyl Recruitment Hero">
+  <div class="hero-noise"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-glow"></div>
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 w-full pt-24 pb-16">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-[80vh]">
+      <div>
+        <div class="badge anim-1 mb-8"><span class="badge-dot"></span>Sector 01 — Nexusyl Ecology</div>
+        <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-white anim-2 mb-6">
+          The Right Talent,<br />
+          in the Right <span style="color: var(--red);">Role,</span><br />
+          Every Time.
+        </h1>
+        <p class="text-gray-400 text-base sm:text-lg leading-relaxed anim-3 mb-8 max-w-md">
+          Nexusyl Recruitment matches international talent with UK skills shortage vacancies using Juvenile Asia's proprietary algorithms — producing more precise, faster, and more durable placements than traditional agency models.
+        </p>
+        <div class="flex flex-wrap gap-2 anim-4 mb-10">
+          <span class="text-xs font-semibold px-3 py-1.5 rounded-sm border border-white/10 text-gray-400 bg-white/5">Algorithmic Matching</span>
+          <span class="text-xs font-semibold px-3 py-1.5 rounded-sm border border-white/10 text-gray-400 bg-white/5">Skills Shortage Focus</span>
+          <span class="text-xs font-semibold px-3 py-1.5 rounded-sm border border-white/10 text-gray-400 bg-white/5">Graduate Pipelines</span>
+          <span class="text-xs font-semibold px-3 py-1.5 rounded-sm border border-white/10 text-gray-400 bg-white/5">Visa-Ready Talent</span>
+        </div>
+        <div class="flex flex-wrap gap-4 anim-5">
+          <a href="/#contact" class="btn-primary">Find Talent or Work <i class="fa-solid fa-arrow-right text-xs"></i></a>
+          <a href="#solution" class="btn-outline">How It Works <i class="fa-solid fa-chevron-down text-xs"></i></a>
+        </div>
+      </div>
+      <div class="lg:flex flex-col gap-6 hidden">
+        <div class="border border-white/8 rounded-sm p-8" style="background: rgba(22,22,22,0.7);">
+                    <div class="flex items-center gap-3 mb-5">
+            <img src="/Nexusyl_Fab.png" alt="Nexusyl" class="h-8 w-8 object-contain" onerror="this.style.display='none'" />
+            <span class="logo-wrap-always"><img src="/Nexusyl_White_Logo.png" alt="Nexusyl Limited" class="logo-dark h-6 object-contain" /><img src="/Nexusyl_Black_Logo.png" alt="Nexusyl Limited" class="logo-light h-6 object-contain" /></span>
+          </div>
+          <div class="section-label mb-5">Algorithmically Powered</div>
+          <p class="text-gray-400 text-sm leading-relaxed">Juvenile Asia's Software development team has built a proprietary matching engine that analyses skills, visa status, sector demand, and salary benchmarks in real time — going far beyond keyword-matching CVs.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="stat-item"><div class="font-display text-3xl font-bold text-white mb-1">500+</div><div class="text-xs text-gray-500 font-semibold uppercase tracking-widest">Placements Made</div></div>
+          <div class="stat-item"><div class="font-display text-3xl font-bold text-white mb-1">UK</div><div class="text-xs text-gray-500 font-semibold uppercase tracking-widest">Skills Shortage Roles</div></div>
+          <div class="stat-item"><div class="font-display text-3xl font-bold text-white mb-1">48h</div><div class="text-xs text-gray-500 font-semibold uppercase tracking-widest">Avg. Shortlist Time</div></div>
+          <div class="stat-item"><div class="font-display text-3xl font-bold text-white mb-1">Nil</div><div class="text-xs text-gray-500 font-semibold uppercase tracking-widest">No Placement No Fee</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ticker-line"></div>
+</section>
+
+<div class="feature-strip overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="flex flex-wrap items-center gap-x-10 gap-y-0 divide-x divide-white/8">
+      <div class="feature-pill"><i class="fa-solid fa-microchip"></i> Juvenile Asia Proprietary Algorithms</div>
+      <div class="feature-pill pl-10"><i class="fa-solid fa-list-check"></i> Skills Shortage Vacancy Network</div>
+      <div class="feature-pill pl-10"><i class="fa-solid fa-id-badge"></i> Visa-Status Aware Matching</div>
+      <div class="feature-pill pl-10"><i class="fa-solid fa-handshake"></i> No Placement, No Fee</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MARKET GAP -->
+<section class="py-24 lg:py-32" aria-label="The Graduate-to-Career Gap">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="section-label reveal mb-4">The Market Gap</div>
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+      <div>
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-white leading-tight reveal mb-6">
+          The Graduate-to-Career <span style="color: var(--red);">Gap Is Structural.</span>
+        </h2>
+        <p class="text-gray-400 text-base leading-relaxed reveal reveal-delay-1 mb-6">
+          The UK faces persistent, documented skills shortages across technology, healthcare, engineering, and professional services. Simultaneously, tens of thousands of international graduates holding Post-Study Work visas leave the UK each year because no structured mechanism exists to connect them to shortage-area employers.
+        </p>
+        <p class="text-gray-400 text-base leading-relaxed reveal reveal-delay-2">
+          Conventional recruitment agencies operate on keyword-matched CV databases — a model that systematically disadvantages international candidates unfamiliar with UK CV conventions, unaware of shortage-route visa sponsorship, or lacking the local professional network to reach the right hiring manager. The result is a talent-market inefficiency that harms both employer and candidate.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="sector-card p-6 reveal">
+          <div class="w-10 h-10 rounded-sm flex items-center justify-center mb-4" style="background: rgba(232,33,26,0.12);"><i class="fa-solid fa-magnifying-glass-minus" style="color: var(--red);"></i></div>
+          <h3 class="font-display font-bold text-white mb-2">CV Keyword Blindness</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">International graduates lack UK-style CV formats and industry keywords — making them invisible to ATS systems at conventional agencies.</p>
+        </div>
+        <div class="sector-card p-6 reveal reveal-delay-1">
+          <div class="w-10 h-10 rounded-sm flex items-center justify-center mb-4" style="background: rgba(232,33,26,0.12);"><i class="fa-solid fa-passport" style="color: var(--red);"></i></div>
+          <h3 class="font-display font-bold text-white mb-2">Visa Status Friction</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Employers do not understand Post-Study Work and Skilled Worker visa routes — rejecting eligible candidates out of compliance uncertainty.</p>
+        </div>
+        <div class="sector-card p-6 reveal reveal-delay-2">
+          <div class="w-10 h-10 rounded-sm flex items-center justify-center mb-4" style="background: rgba(232,33,26,0.12);"><i class="fa-solid fa-network-wired" style="color: var(--red);"></i></div>
+          <h3 class="font-display font-bold text-white mb-2">No Local Network</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Without a pre-established professional network in the UK, international graduates cannot access the 70% of roles filled through referral and informal channels.</p>
+        </div>
+        <div class="sector-card p-6 reveal reveal-delay-3">
+          <div class="w-10 h-10 rounded-sm flex items-center justify-center mb-4" style="background: rgba(232,33,26,0.12);"><i class="fa-solid fa-chart-bar" style="color: var(--red);"></i></div>
+          <h3 class="font-display font-bold text-white mb-2">Shortages Go Unfilled</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">UK employers in shortage sectors struggle to fill roles precisely when a fully qualified international talent pool exists — but cannot be reached through existing infrastructure.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider mx-8 lg:mx-24"></div>
+
+
+<!-- SOLUTION -->
+<section id="solution" class="py-24 lg:py-32" style="background: var(--dark);" aria-label="The Nexusyl Recruitment Solution">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="section-label reveal mb-4">The Solution</div>
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+      <div>
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-white leading-tight reveal mb-6">
+          Algorithmic Precision, <span style="color: var(--red);">Human Expertise.</span>
+        </h2>
+        <p class="text-gray-400 text-base leading-relaxed reveal reveal-delay-1 mb-8">
+          Nexusyl Recruitment operates at the intersection of data science and human insight. Juvenile Asia Limited's Software development capability underpins a matching engine that goes beyond job boards — analysing hundreds of candidate and vacancy attributes simultaneously to produce shortlists that convert.
+        </p>
+        <div class="flex flex-col gap-6 reveal reveal-delay-2">
+          <div class="process-step">
+            <div class="step-number">01</div>
+            <div>
+              <h4 class="font-display font-bold text-white mb-1">Pre-Graduate Profile Building</h4>
+              <p class="text-gray-500 text-sm leading-relaxed">For students in the Nexusyl Education pillar, a candidate profile is constructed from enrolment data — course subject, skills assessments, career intent — before the student graduates. Employers receive a ready-to-interview shortlist, not a cold CV.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-number">02</div>
+            <div>
+              <h4 class="font-display font-bold text-white mb-1">Skills Shortage Role Mapping</h4>
+              <p class="text-gray-500 text-sm leading-relaxed">Our vacancy network is curated around the UK's shortage occupation list and sector-specific demand signals. Every role is verified for sponsorship eligibility and rated for candidate-visa compatibility before matching begins.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-number">03</div>
+            <div>
+              <h4 class="font-display font-bold text-white mb-1">Algorithmic Matching Engine</h4>
+              <p class="text-gray-500 text-sm leading-relaxed">Juvenile Asia's algorithm scores candidate-role compatibility across skills, experience depth, salary expectation, location, visa requirements, and cultural-fit indicators — producing a ranked shortlist verified by a specialist consultant before submission.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-number">04</div>
+            <div>
+              <h4 class="font-display font-bold text-white mb-1">Interview Preparation &amp; Offer Management</h4>
+              <p class="text-gray-500 text-sm leading-relaxed">Candidates receive sector-specific interview coaching, UK salary benchmarking, and offer negotiation support. Employers receive compliance-ready documentation for any sponsored hires.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="relative reveal">
+          <div class="absolute -inset-3 rounded-sm opacity-15" style="background: radial-gradient(circle at 50% 50%, var(--red), transparent 70%);"></div>
+          <div class="sector-img-wrap rounded-sm relative z-10">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=900&q=80&auto=format&fit=crop" alt="Professional workplace and recruitment matching — Nexusyl Recruitment" loading="lazy" />
+            <div class="sector-img-overlay"></div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2 mt-8 border rounded-sm p-6" style="border-color: var(--border); background: var(--card);">
+          <h4 class="font-display font-bold text-white mb-4 text-sm uppercase tracking-wider">Full-Spectrum Services</h4>
+          <div class="service-item"><span class="service-dot"></span>Permanent &amp; Contract Placements</div>
+          <div class="service-item"><span class="service-dot"></span>Executive Search &amp; Headhunting</div>
+          <div class="service-item"><span class="service-dot"></span>Shortage Occupation Route Matching</div>
+          <div class="service-item"><span class="service-dot"></span>Skilled Worker Visa Sponsorship Advisory</div>
+          <div class="service-item"><span class="service-dot"></span>UK CV Professionalisation &amp; Interview Coaching</div>
+          <div class="service-item"><span class="service-dot"></span>Salary Benchmarking &amp; Offer Negotiation</div>
+          <div class="service-item"><span class="service-dot"></span>Workforce Planning for High-Growth Employers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider mx-8 lg:mx-24"></div>
+
+
+<!-- SYNERGY -->
+<section class="py-24 lg:py-32" aria-label="The Nexusyl Ecology Synergy">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="section-label reveal mb-4">The Ecology Synergy</div>
+    <div class="max-w-3xl reveal mb-12">
+      <h2 class="font-display text-4xl lg:text-5xl font-bold text-white leading-tight mb-5">
+        Recruitment Is the <span style="color: var(--red);">Career Engine</span> of the Ecosystem.
+      </h2>
+      <p class="text-gray-400 text-base leading-relaxed">
+        No other recruitment agency in the UK can pre-build a candidate profile from the moment of university enrolment, resolve their housing challenge before interview, and offer an entrepreneurship exit route if employment is not the right path. That is the Nexusyl Ecology — and Juvenile Asia's data infrastructure is what makes it structurally possible.
+      </p>
+    </div>
+    <div class="grid sm:grid-cols-3 gap-5">
+      <div class="synergy-card reveal">
+        <div class="w-10 h-10 rounded-sm flex items-center justify-center mb-4" style="background: rgba(232,33,26,0.12);"><i class="fa-solid fa-graduation-cap" style="color: var(--red);"></i></div>
+        <h3 class="font-display font-bold text-white mb-3">← Education Pillar</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Enrolment data gathered in the Education pillar — course subject, skills assessments, academic results, career intent — flows directly into the Recruitment matching engine. By graduation, a candidate profile is already built and pre-matched to a shortlist of vacancy clusters aligned with UK shortage occupations.</p>
+      </div>
+      <div class="synergy-card reveal reveal-delay-1">
+        <div class="w-10 h-10 rounded-sm flex items-center justify-center mb-4" style="background: rgba(232,33,26,0.12);"><i class="fa-solid fa-building" style="color: var(--red);"></i></div>
+        <h3 class="font-display font-bold text-white mb-3">→ Property Pillar</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">When a candidate secures a role offer, our Property pillar is immediately notified — routing them to verified accommodation within commuting distance of the employer. The traditional housing-search delay between offer acceptance and first working day is eliminated entirely.</p>
+      </div>
+      <div class="synergy-card reveal reveal-delay-2">
+        <div class="w-10 h-10 rounded-sm flex items-center justify-center mb-4" style="background: rgba(232,33,26,0.12);"><i class="fa-solid fa-utensils" style="color: var(--red);"></i></div>
+        <h3 class="font-display font-bold text-white mb-3">→ Food Tech Pillar</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">For candidates whose Juvenile Asia profile identifies an entrepreneurial disposition — rather than employment preference — Recruitment routes them to the Food Tech low-capex entrepreneurship programme rather than forcing an employment outcome that does not fit their ambitions.</p>
+      </div>
+    </div>
+    <div class="mt-14 border rounded-sm p-8 reveal" style="border-color: var(--border); background: var(--card);">
+      <div class="text-center mb-8">
+        <div class="section-label justify-center mb-2">Nexusyl Ecology Method</div>
+        <p class="text-gray-500 text-sm">How Recruitment data integrates with the wider ecosystem</p>
+      </div>
+      <div class="grid grid-cols-4 gap-2 text-center">
+        <div class="rounded-sm p-4" style="border: 1px solid var(--border);">
+          <i class="fa-solid fa-graduation-cap text-gray-500 text-xl mb-2"></i>
+          <div class="font-display font-bold text-gray-300 text-xs uppercase tracking-wider">Education</div>
+          <div class="text-gray-600 text-xs mt-1">Profile Source</div>
+        </div>
+        <div class="rounded-sm p-4" style="background: rgba(232,33,26,0.12); border: 1px solid rgba(232,33,26,0.25);">
+          <i class="fa-solid fa-briefcase text-red-500 text-xl mb-2"></i>
+          <div class="font-display font-bold text-white text-xs uppercase tracking-wider">Recruitment</div>
+          <div class="text-gray-600 text-xs mt-1">Career Engine</div>
+        </div>
+        <div class="rounded-sm p-4" style="border: 1px solid var(--border);">
+          <i class="fa-solid fa-building text-gray-500 text-xl mb-2"></i>
+          <div class="font-display font-bold text-gray-300 text-xs uppercase tracking-wider">Property</div>
+          <div class="text-gray-600 text-xs mt-1">Housing Activated</div>
+        </div>
+        <div class="rounded-sm p-4" style="border: 1px solid var(--border);">
+          <i class="fa-solid fa-utensils text-gray-500 text-xl mb-2"></i>
+          <div class="font-display font-bold text-gray-300 text-xs uppercase tracking-wider">Food Tech</div>
+          <div class="text-gray-600 text-xs mt-1">Enterprise Route</div>
+        </div>
+      </div>
+      <div class="text-center mt-6">
+        <p class="text-gray-600 text-xs">Powered by Juvenile Asia Limited — Software Development &amp; Data Processing</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PRE-EMPLOYMENT READINESS PIPELINE
+════════════════════════════════════════════════════════════ -->
+<section id="pipeline" class="py-24 lg:py-32" aria-label="Pre-Employment Readiness Pipeline">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+    <!-- Header -->
+    <div class="section-label reveal mb-4">Compliance Pipeline</div>
+    <div class="grid lg:grid-cols-2 gap-6 lg:gap-10 items-end mb-14">
+      <div>
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-white leading-tight reveal">
+          Pre-Employment <span style="color:var(--red);">Readiness</span> Pipeline
+        </h2>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <p class="text-gray-400 text-base leading-relaxed">
+          Every candidate in the Nexusyl ecosystem passes through a structured compliance and onboarding pipeline before entering the live vacancy pool — ensuring employers receive verified, trained, placement-ready talent.
+        </p>
+      </div>
+    </div>
+
+    <!-- Wizard Step Indicator -->
+    <div class="reveal mb-12">
+      <div class="flex items-center justify-center gap-0 overflow-x-auto pb-2">
+        <!-- Step 1 -->
+        <div class="flex items-center gap-0 flex-shrink-0">
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm text-white"
+                 style="background: var(--red); border: 2px solid var(--red);">1</div>
+            <span class="text-xs font-semibold text-white mt-2 text-center max-w-[80px]">Identity &amp;<br/>Eligibility</span>
+          </div>
+          <div class="w-16 sm:w-24 h-0.5 mx-1 flex-shrink-0" style="background: var(--red);"></div>
+        </div>
+        <!-- Step 2 -->
+        <div class="flex items-center gap-0 flex-shrink-0">
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm text-white"
+                 style="background: var(--red); border: 2px solid var(--red);">2</div>
+            <span class="text-xs font-semibold text-white mt-2 text-center max-w-[80px]">DBS &amp; Vetting<br/>Check</span>
+          </div>
+          <div class="w-16 sm:w-24 h-0.5 mx-1 flex-shrink-0" style="background: rgba(232,33,26,0.3);"></div>
+        </div>
+        <!-- Step 3 -->
+        <div class="flex items-center gap-0 flex-shrink-0">
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm"
+                 style="background: transparent; border: 2px solid rgba(232,33,26,0.3); color: rgba(255,255,255,0.4);">3</div>
+            <span class="text-xs font-semibold text-gray-500 mt-2 text-center max-w-[80px]">Academy<br/>Onboarding</span>
+          </div>
+          <div class="w-16 sm:w-24 h-0.5 mx-1 flex-shrink-0" style="background: var(--border);"></div>
+        </div>
+        <!-- Step 4 -->
+        <div class="flex flex-col items-center flex-shrink-0">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm"
+               style="background: transparent; border: 2px solid var(--border); color: rgba(255,255,255,0.25);">4</div>
+          <span class="text-xs font-semibold text-gray-600 mt-2 text-center max-w-[80px]">Live Vacancy<br/>Pool</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two Pipeline Cards -->
+    <div class="grid lg:grid-cols-2 gap-8">
+
+      <!-- ── Card A: DBS Vetting Tracker ─────────────────────────────────── -->
+      <div class="sector-card reveal" style="border-color: rgba(232,33,26,0.25);">
+        <!-- Card header -->
+        <div class="p-6 pb-0">
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <div class="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0"
+                     style="background: rgba(232,33,26,0.12);">
+                  <i class="fa-solid fa-shield-halved text-xs" style="color:var(--red);"></i>
+                </div>
+                <span class="text-xs font-bold uppercase tracking-widest" style="color:var(--red);">Automated Vetting</span>
+              </div>
+              <h3 class="font-display text-xl font-bold text-white">UK DBS Check Tracker</h3>
+              <p class="text-gray-500 text-sm mt-1">Identity-verified background screening aligned to UK Disclosure and Barring Service standards.</p>
+            </div>
+            <span class="text-xs font-bold px-2.5 py-1 rounded-sm flex-shrink-0"
+                  style="background:rgba(232,33,26,0.12); color:var(--red); border:1px solid rgba(232,33,26,0.25);">
+              In Progress
+            </span>
+          </div>
+
+          <!-- 3-step DBS progress stepper -->
+          <div class="border rounded-sm p-5 mb-5" style="background:var(--dark); border-color:var(--border);">
+            <div class="flex items-start gap-3">
+
+              <!-- Step 1: Complete -->
+              <div class="flex flex-col items-center flex-shrink-0">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:var(--red);">
+                  <i class="fa-solid fa-check text-white text-xs"></i>
+                </div>
+                <div class="w-0.5 h-8 mt-1" style="background:var(--red);"></div>
+              </div>
+              <div class="pt-1 flex-1 mb-6">
+                <p class="font-semibold text-white text-sm">Data Submitted</p>
+                <p class="text-gray-500 text-xs mt-0.5">Personal data &amp; consent form received · <span style="color:var(--red);">02 May 2026</span></p>
+              </div>
+
+              <!-- Step 2: Active -->
+              <div class="flex flex-col items-center flex-shrink-0">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center animate-pulse" style="background:var(--red);">
+                  <i class="fa-solid fa-fingerprint text-white text-xs"></i>
+                </div>
+              </div>
+
+            </div>
+            <!-- Second row -->
+            <div class="flex items-start gap-3 mt-1">
+              <div class="flex flex-col items-center flex-shrink-0">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:var(--red);">
+                  <i class="fa-solid fa-fingerprint text-white text-xs"></i>
+                </div>
+                <div class="w-0.5 h-8 mt-1" style="background: rgba(232,33,26,0.3);"></div>
+              </div>
+              <div class="pt-1 flex-1 mb-6">
+                <p class="font-semibold text-white text-sm">Identity Verified</p>
+                <p class="text-gray-500 text-xs mt-0.5">Biometric ID cross-referenced with UKVI database · <span class="text-yellow-500">Processing…</span></p>
+              </div>
+            </div>
+            <!-- Third row -->
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="border:2px solid var(--border);">
+                <i class="fa-solid fa-certificate text-xs text-gray-600"></i>
+              </div>
+              <div class="pt-1 flex-1">
+                <p class="font-semibold text-gray-500 text-sm">Certificate Issued</p>
+                <p class="text-gray-600 text-xs mt-0.5">Awaiting identity verification completion</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- File upload dropzone -->
+        <div class="px-6 pb-6">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Upload UK Digital Identity Document</p>
+          <form id="dbs-upload-form" novalidate>
+            <div id="dbs-dropzone"
+                 class="border-2 border-dashed rounded-sm p-6 text-center cursor-pointer transition-all duration-200"
+                 style="border-color: rgba(232,33,26,0.3); background: rgba(232,33,26,0.04);"
+                 ondragover="event.preventDefault();this.style.borderColor='var(--red)';this.style.background='rgba(232,33,26,0.08)';"
+                 ondragleave="this.style.borderColor='rgba(232,33,26,0.3)';this.style.background='rgba(232,33,26,0.04)';"
+                 ondrop="handleDbsDrop(event)"
+                 onclick="document.getElementById('dbs-file-input').click()">
+              <i class="fa-solid fa-cloud-arrow-up text-2xl mb-2" style="color:var(--red);"></i>
+              <p class="text-sm text-gray-400 font-semibold">Drag &amp; drop your document here</p>
+              <p class="text-xs text-gray-600 mt-1">Accepted: Passport, BRP, UK Driving Licence &middot; PDF, JPG, PNG &middot; Max 10 MB</p>
+              <input type="file" id="dbs-file-input" name="dbs_document"
+                     accept=".pdf,.jpg,.jpeg,.png"
+                     class="hidden"
+                     aria-label="Upload UK Digital Identity Document"
+                     required
+                     onchange="handleDbsFileSelect(event)" />
+            </div>
+            <div id="dbs-file-name" class="hidden mt-3 flex items-center gap-2 text-sm text-green-400">
+              <i class="fa-solid fa-circle-check"></i>
+              <span id="dbs-file-label"></span>
+            </div>
+            <div class="flex gap-3 mt-4">
+              <button type="submit" class="btn-primary text-xs py-2.5 flex-1 justify-center"
+                      onclick="submitDbsForm(event)">
+                <i class="fa-solid fa-upload mr-2"></i> Submit for Verification
+              </button>
+              <button type="button" class="btn-outline text-xs py-2.5 px-4"
+                      onclick="document.getElementById('dbs-file-input').click()">
+                Browse
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ── Card B: Nexusyl Academy Micro-LMS ──────────────────────────── -->
+      <div class="sector-card reveal reveal-delay-1" style="border-color: rgba(232,33,26,0.15);">
+        <!-- Card header -->
+        <div class="p-6 pb-4">
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <div class="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0"
+                     style="background: rgba(232,33,26,0.12);">
+                  <i class="fa-solid fa-graduation-cap text-xs" style="color:var(--red);"></i>
+                </div>
+                <span class="text-xs font-bold uppercase tracking-widest" style="color:var(--red);">Nexusyl Academy</span>
+              </div>
+              <h3 class="font-display text-xl font-bold text-white">Onboarding Progress</h3>
+              <p class="text-gray-500 text-sm mt-1">Complete your assigned compliance modules before entering the live vacancy pool.</p>
+            </div>
+            <!-- Circular progress -->
+            <div class="flex flex-col items-center flex-shrink-0">
+              <div class="relative w-16 h-16">
+                <svg viewBox="0 0 36 36" class="w-16 h-16 -rotate-90">
+                  <circle cx="18" cy="18" r="15.9" fill="none" stroke="var(--border)" stroke-width="2.5"/>
+                  <circle cx="18" cy="18" r="15.9" fill="none"
+                          stroke="var(--red)" stroke-width="2.5"
+                          stroke-dasharray="66 100"
+                          stroke-linecap="round"
+                          style="transition: stroke-dasharray 1s ease;"/>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <span class="font-display font-bold text-white text-sm">66%</span>
+                </div>
+              </div>
+              <span class="text-xs text-gray-500 mt-1">Complete</span>
+            </div>
+          </div>
+
+          <!-- Course list -->
+          <div class="flex flex-col gap-3 mb-5">
+
+            <!-- Course 1: Complete -->
+            <div class="flex items-center gap-3 p-3 rounded-sm" style="background: var(--dark); border: 1px solid var(--border);">
+              <div class="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.12);">
+                <i class="fa-solid fa-check text-xs text-green-400"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-semibold text-white truncate">UK Hospitality Compliance</p>
+                <div class="flex items-center gap-2 mt-0.5">
+                  <div class="flex-1 h-1 rounded-full" style="background: var(--border);">
+                    <div class="h-1 rounded-full" style="background: #22c55e; width: 100%;"></div>
+                  </div>
+                  <span class="text-xs text-green-400 flex-shrink-0">100%</span>
+                </div>
+              </div>
+              <span class="text-xs text-gray-600 flex-shrink-0">45 min</span>
+            </div>
+
+            <!-- Course 2: Complete -->
+            <div class="flex items-center gap-3 p-3 rounded-sm" style="background: var(--dark); border: 1px solid var(--border);">
+              <div class="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.12);">
+                <i class="fa-solid fa-check text-xs text-green-400"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-semibold text-white truncate">Right to Work Verification</p>
+                <div class="flex items-center gap-2 mt-0.5">
+                  <div class="flex-1 h-1 rounded-full" style="background: var(--border);">
+                    <div class="h-1 rounded-full" style="background: #22c55e; width: 100%;"></div>
+                  </div>
+                  <span class="text-xs text-green-400 flex-shrink-0">100%</span>
+                </div>
+              </div>
+              <span class="text-xs text-gray-600 flex-shrink-0">30 min</span>
+            </div>
+
+            <!-- Course 3: In progress -->
+            <div class="flex items-center gap-3 p-3 rounded-sm" style="background: var(--dark); border: 1px solid rgba(232,33,26,0.2);">
+              <div class="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0" style="background: rgba(232,33,26,0.12);">
+                <i class="fa-solid fa-play text-xs" style="color:var(--red);"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-semibold text-white truncate">GDPR &amp; Data Handling (UK)</p>
+                <div class="flex items-center gap-2 mt-0.5">
+                  <div class="flex-1 h-1 rounded-full" style="background: var(--border);">
+                    <div class="h-1 rounded-full" style="background: var(--red); width: 45%;"></div>
+                  </div>
+                  <span class="text-xs flex-shrink-0" style="color:var(--red);">45%</span>
+                </div>
+              </div>
+              <span class="text-xs text-gray-600 flex-shrink-0">60 min</span>
+            </div>
+
+            <!-- Course 4: Locked -->
+            <div class="flex items-center gap-3 p-3 rounded-sm opacity-50" style="background: var(--dark); border: 1px solid var(--border);">
+              <div class="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0" style="background: rgba(255,255,255,0.05);">
+                <i class="fa-solid fa-lock text-xs text-gray-600"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-semibold text-gray-500 truncate">UK Employment Law Fundamentals</p>
+                <p class="text-xs text-gray-600 mt-0.5">Unlocks on DBS certificate receipt</p>
+              </div>
+              <span class="text-xs text-gray-600 flex-shrink-0">90 min</span>
+            </div>
+          </div>
+
+          <!-- Launch Training CTA -->
+          <div class="flex gap-3">
+            <button type="button"
+                    id="launch-training-btn"
+                    class="btn-primary text-xs py-3 flex-1 justify-center"
+                    onclick="launchTraining()">
+              <i class="fa-solid fa-rocket mr-2"></i> Launch Training — GDPR Module
+            </button>
+            <button type="button"
+                    class="btn-outline text-xs py-3 px-4"
+                    title="View full Academy dashboard"
+                    onclick="alert('Full Academy dashboard — coming soon.')">
+              <i class="fa-solid fa-chart-bar"></i>
+            </button>
+          </div>
+          <p class="text-xs text-gray-600 mt-3 text-center">
+            Powered by Nexusyl Academy · Accredited CPD modules for UK employment compliance
+          </p>
+        </div>
+      </div>
+
+    </div><!-- end grid -->
+
+    <!-- Pipeline Status Summary -->
+    <div class="mt-10 reveal border rounded-sm p-6" style="background: var(--card); border-color: var(--border);">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="font-display text-2xl font-bold mb-1" style="color:var(--red);">2/4</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest">Modules Complete</div>
+        </div>
+        <div>
+          <div class="font-display text-2xl font-bold text-white mb-1">Step 2</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest">DBS Status</div>
+        </div>
+        <div>
+          <div class="font-display text-2xl font-bold text-white mb-1">48h</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest">Est. Clearance</div>
+        </div>
+        <div>
+          <div class="font-display text-2xl font-bold mb-1 text-yellow-400">Pending</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest">Pool Status</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider mx-8 lg:mx-24"></div>
+
+<div class="section-divider mx-8 lg:mx-24"></div>
+
+
+<!-- CTA -->
+<section class="py-24 lg:py-32" style="background: var(--dark);" aria-label="Register with Nexusyl Recruitment">
+  <div class="max-w-4xl mx-auto px-5 lg:px-8 text-center">
+    <div class="section-label justify-center reveal mb-4">Register Today</div>
+    <div class="flex items-center justify-center gap-3 reveal mb-6">
+      <img src="/Nexusyl_Fab.png" alt="Nexusyl" class="h-10 w-10 object-contain" onerror="this.style.display='none'" />
+      <span class="logo-wrap-always"><img src="/Nexusyl_White_Logo.png" alt="Nexusyl Limited" class="logo-dark h-7 object-contain" /><img src="/Nexusyl_Black_Logo.png" alt="Nexusyl Limited" class="logo-light h-7 object-contain" /></span>
+    </div>
+    <h2 class="font-display text-4xl lg:text-5xl font-bold text-white leading-tight reveal mb-6">
+      Your UK Career Is <span style="color: var(--red);">Already Being Built.</span>
+    </h2>
+    <p class="text-gray-400 text-base leading-relaxed reveal reveal-delay-1 mb-10 max-w-2xl mx-auto">
+      Whether you are an international graduate seeking your first UK role, a professional looking to leverage a shortage occupation, or an employer building a team for growth — Nexusyl Recruitment has the data infrastructure and human expertise to deliver outcomes that conventional agencies cannot.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center reveal reveal-delay-2">
+      <a href="/#contact" class="btn-primary">Register as a Candidate <i class="fa-solid fa-arrow-right text-xs"></i></a>
+      <a href="/#contact" class="btn-outline">Hire Talent <i class="fa-solid fa-arrow-right text-xs"></i></a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer style="background: var(--dark); border-top: 1px solid var(--border);" role="contentinfo">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-14">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
+            <div class="lg:col-span-2">
+        <div class="flex items-center gap-3 mb-5">
+          <img src="/Nexusyl_Fab.png" alt="Nexusyl icon" class="h-8 w-8 object-contain" onerror="this.style.display='none'" />
+          <span class="logo-wrap-always"><img src="/Nexusyl_White_Logo.png" alt="Nexusyl Limited" class="logo-dark h-6 object-contain" /><img src="/Nexusyl_Black_Logo.png" alt="Nexusyl Limited" class="logo-light h-6 object-contain" /></span>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed mb-3 max-w-xs">
+          A London-based multi-sector company delivering excellence across recruitment, food tech, education, and property.
+        </p>
+        <p class="text-gray-600 text-xs leading-relaxed mb-4 max-w-xs">
+          Nexusyl Limited is a wholly owned subsidiary of Juvenile Asia Limited (Company No. 16966853). Registered in England &amp; Wales.
+        </p>
+        <div class="text-xs text-gray-600 font-semibold uppercase tracking-widest"></div>
+      </div>
+
+      <div>
+        <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Our Sectors</h3>
+        <div class="flex flex-col gap-2.5">
+          <a href="/recruitment" class="footer-link">Recruitment</a>
+          <a href="/food-tech"   class="footer-link">Food Tech</a>
+          <a href="/education"   class="footer-link">Education</a>
+          <a href="/property"    class="footer-link">Property</a>
+        </div>
+      </div>
+      </div>
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Company</h3>
+        <div class="flex flex-col gap-2.5">
+          <a href="/"         class="footer-link">Home</a>
+          <a href="/#contact"  class="footer-link">Contact</a>
+          <a href="/privacy" class="footer-link">Privacy Policy</a>
+          <a href="/terms" class="footer-link">Terms of Service</a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Contact</h3>
+                <div class="flex flex-col gap-3">
+          <a href="mailto:support@nexusyl.com" class="footer-link flex items-center gap-2"><i class="fa-solid fa-envelope text-red-600 text-xs"></i> support@nexusyl.com</a>
+          <a href="tel:+447892821808" class="footer-link flex items-center gap-2"><i class="fa-solid fa-phone text-red-600 text-xs"></i> +44 7892 821808</a>
+          <a href="https://wa.me/447892821808" target="_blank" rel="noopener noreferrer" class="footer-link flex items-center gap-2"><i class="fa-brands fa-whatsapp text-red-600 text-xs"></i> WhatsApp +44 7892 821808</a>
+          <span class="footer-link flex items-center gap-2"><i class="fa-solid fa-location-dot text-red-600 text-xs"></i> London, UK</span>
+        </div>
+      </div>
+    </div>
+  </div>
+      <div style="border-top: 1px solid var(--border);">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-5 flex flex-col items-center gap-3">
+      <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-600">
+        <span>© 2026 Nexusyl Limited. All rights reserved.</span>
+        <span style="color:var(--border);">|</span>
+        <span class="flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="16" height="16" style="display:inline-block;vertical-align:-2px;flex-shrink:0;"><circle cx="32" cy="32" r="32" fill="white"/><path d="M32 32 Q46 10 54 20 Q58 28 44 36 Z" fill="#e85c2b"/><path d="M32 32 Q56 36 52 50 Q46 58 34 46 Z" fill="#28a8b5"/><path d="M32 32 Q36 58 22 58 Q12 56 18 42 Z" fill="#1a6eb5"/><path d="M32 32 Q8 48 8 34 Q8 22 24 24 Z" fill="#2b7fcc"/><path d="M32 32 Q12 16 22 10 Q32 6 38 20 Z" fill="#35b8c8"/></svg>
+          Powered by <a href="https://juvenileasia.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors ml-1">Juvenile Asia</a>
+        </span>
+      </div>
+      <div class="flex items-center gap-4 text-xs">
+        <a href="/privacy" class="text-gray-600 hover:text-gray-400 transition-colors">Privacy</a>
+        <a href="/terms"   class="text-gray-600 hover:text-gray-400 transition-colors">Terms</a>
+        <a href="#"        class="text-gray-600 hover:text-gray-400 transition-colors">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Floating WhatsApp -->
+<a id="wa-float" href="https://wa.me/447892821808?text=Hello%20Nexusyl%2C%20I%20would%20like%20to%20enquire%20about%20your%20services." target="_blank" rel="noopener noreferrer" aria-label="Chat with Nexusyl on WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<style>
+  #wa-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 950;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    box-shadow: 0 4px 18px rgba(37,211,102,0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+  }
+  #wa-float:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(37,211,102,0.65); color: #fff !important; }
+  #back-to-top { bottom: 96px !important; }
+</style>
+
+<button id="back-to-top" aria-label="Back to top"
+  style="position: fixed; bottom: 24px; right: 24px; z-index: 900; background: var(--red); color: white; width: 40px; height: 40px; border-radius: 2px; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(232,33,26,0.4); transition: transform 0.2s; border: none; cursor: pointer;">
+  <i class="fa-solid fa-arrow-up text-sm"></i>
+</button>
+
+<script>
+  var _yr = document.getElementById('year'); if (_yr) _yr.textContent = new Date().getFullYear();
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
+  const toggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const bar1 = document.getElementById('bar1'); const bar2 = document.getElementById('bar2'); const bar3 = document.getElementById('bar3');
+  let menuOpen = false;
+  toggle.addEventListener('click', () => { menuOpen = !menuOpen; mobileMenu.classList.toggle('open', menuOpen); bar1.style.transform = menuOpen ? 'translateY(8px) rotate(45deg)' : ''; bar2.style.opacity = menuOpen ? '0' : '1'; bar3.style.transform = menuOpen ? 'translateY(-8px) rotate(-45deg)' : ''; bar3.style.width = menuOpen ? '24px' : '16px'; });
+  document.querySelectorAll('.mobile-nav-link').forEach(link => { link.addEventListener('click', () => { menuOpen = false; mobileMenu.classList.remove('open'); bar1.style.transform = bar3.style.transform = ''; bar2.style.opacity = '1'; bar3.style.width = '16px'; }); });
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+  const btt = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => { btt.style.display = window.scrollY > 400 ? 'flex' : 'none'; });
+  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  btt.addEventListener('mouseenter', () => btt.style.transform = 'translateY(-3px)');
+  btt.addEventListener('mouseleave', () => btt.style.transform = '');
+
+  // ── Services dropdown
+  (function () {
+    var dropdown = document.getElementById('services-dropdown');
+    var trigger  = document.getElementById('services-trigger');
+    var menu     = document.getElementById('services-menu');
+    if (!dropdown || !trigger || !menu) return;
+    var closeTimer;
+    function openMenu() { clearTimeout(closeTimer); dropdown.classList.add('open'); trigger.setAttribute('aria-expanded','true'); }
+    function closeMenu() { closeTimer = setTimeout(function(){ dropdown.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); }, 150); }
+    trigger.addEventListener('mouseenter', openMenu);
+    trigger.addEventListener('mouseleave', closeMenu);
+    menu.addEventListener('mouseenter', function(){ clearTimeout(closeTimer); });
+    menu.addEventListener('mouseleave', closeMenu);
+    trigger.addEventListener('click', function(e){ e.stopPropagation(); dropdown.classList.toggle('open'); trigger.setAttribute('aria-expanded', dropdown.classList.contains('open').toString()); });
+    document.addEventListener('click', function(e){ if(!dropdown.contains(e.target)){ dropdown.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); } });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ dropdown.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); trigger.focus(); } });
+  })();
+
+
+  // ── Light / Dark theme toggle ──────────────────────────────────────────────
+  (function () {
+    var body   = document.body;
+    var btn    = document.getElementById('theme-toggle');
+    var sunEl  = document.getElementById('icon-sun');
+    var moonEl = document.getElementById('icon-moon');
+
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        body.classList.add('light');
+        if (sunEl)  { sunEl.style.display  = 'none'; }
+        if (moonEl) { moonEl.style.display = 'block'; }
+      } else {
+        body.classList.remove('light');
+        if (sunEl)  { sunEl.style.display  = 'block'; }
+        if (moonEl) { moonEl.style.display = 'none'; }
+      }
+      localStorage.setItem('nx-theme', theme);
+    }
+
+    // Restore saved preference
+    var saved = localStorage.getItem('nx-theme') || 'dark';
+    applyTheme(saved);
+
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var isLight = body.classList.contains('light');
+        applyTheme(isLight ? 'dark' : 'light');
+      });
+    }
+  })();
+
+
+  // ── DBS Upload Dropzone ───────────────────────────────────────────────────
+  function handleDbsDrop(event) {
+    event.preventDefault();
+    var zone = document.getElementById('dbs-dropzone');
+    zone.style.borderColor = 'var(--red)';
+    zone.style.background  = 'rgba(232,33,26,0.08)';
+    var file = event.dataTransfer.files[0];
+    if (file) showDbsFile(file);
+  }
+  function handleDbsFileSelect(event) {
+    var file = event.target.files[0];
+    if (file) showDbsFile(file);
+  }
+  function showDbsFile(file) {
+    var allowed = ['application/pdf','image/jpeg','image/png'];
+    if (!allowed.includes(file.type)) {
+      alert('Please upload a PDF, JPG, or PNG file.');
+      return;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+      alert('File size must not exceed 10 MB.');
+      return;
+    }
+    document.getElementById('dbs-file-name').classList.remove('hidden');
+    document.getElementById('dbs-file-label').textContent = file.name + ' (' + (file.size / 1024).toFixed(0) + ' KB)';
+  }
+  function submitDbsForm(event) {
+    event.preventDefault();
+    var input = document.getElementById('dbs-file-input');
+    if (!input.files || input.files.length === 0) {
+      alert('Please select a document before submitting.');
+      return;
+    }
+    var btn = event.target;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Uploading…';
+    setTimeout(function () {
+      btn.innerHTML = '<i class="fa-solid fa-circle-check mr-2"></i> Submitted for Verification';
+      btn.style.background = '#16a34a';
+    }, 1800);
+  }
+
+  // ── Academy Launch Training ──────────────────────────────────────────────
+  function launchTraining() {
+    var btn = document.getElementById('launch-training-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Launching Module…';
+    setTimeout(function () {
+      btn.innerHTML = '<i class="fa-solid fa-rocket mr-2"></i> Module Active — Good Luck!';
+      btn.style.boxShadow = '0 0 24px rgba(232,33,26,0.5)';
+    }, 1200);
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  // Apply saved theme class on body before paint to prevent flash
+  (function(){
+    var t = localStorage.getItem('nx-theme');
+    if(t === 'light'){
+      document.addEventListener('DOMContentLoaded', function(){
+        document.body.classList.add('light');
+      });
+    }
+  })();
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service | Nexusyl Limited</title>
+  <meta name="description" content="Terms of Service for Nexusyl Limited — the legal agreement governing your use of our website and services across Recruitment, Food Tech, Education, and Property." />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- ═══════════════════════════════════════════
+       FAVICON — browser tab, bookmarks, social preview
+  ════════════════════════════════════════════ -->
+  <link rel="icon"           type="image/png" sizes="32x32"  href="/Nexusyl_Fab.png" />
+  <link rel="icon"           type="image/png" sizes="16x16"  href="/Nexusyl_Fab.png" />
+  <link rel="shortcut icon"  type="image/png"                href="/Nexusyl_Fab.png" />
+  <link rel="apple-touch-icon"                               href="/Nexusyl_Fab.png" />
+  <link rel="canonical" href="https://nexusyl.juvenileasia.com/terms" />
+
+  <!-- Open Graph / WhatsApp / Social Preview -->
+  <meta property="og:type"         content="website" />
+  <meta property="og:site_name"    content="Nexusyl Limited" />
+  <meta property="og:url"          content="https://nexusyl.juvenileasia.com/terms" />
+  <meta property="og:title"        content="Terms of Service | Nexusyl Limited" />
+  <meta property="og:description"  content="Terms of Service for Nexusyl Limited covering all four business sectors." />
+  <meta property="og:image"        content="https://nexusyl.juvenileasia.com/Nexusyl_Fab.png" />
+  <meta property="og:image:width"  content="240" />
+  <meta property="og:image:height" content="240" />
+  <meta property="og:image:type"   content="image/png" />
+  <meta property="og:image:alt"    content="Nexusyl Limited" />
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card"        content="summary" />
+  <meta name="twitter:site"        content="@nexusyl" />
+  <meta name="twitter:title"       content="Terms of Service | Nexusyl Limited" />
+  <meta name="twitter:description" content="Terms of Service for Nexusyl Limited covering all four business sectors." />
+  <meta name="twitter:image"       content="https://nexusyl.juvenileasia.com/Nexusyl_Fab.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { display: ['Syne', 'sans-serif'], body: ['Manrope', 'sans-serif'] },
+          colors: { brand: { red: '#E8211A', black: '#0A0A0A', dark: '#111111', card: '#161616', muted: '#888888', border: '#222222' } }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root { --red:#E8211A; --black:#0A0A0A; --dark:#111111; --card:#161616; --border:#2a2a2a; --muted:#888; --white:#F5F5F5; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Manrope', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: var(--black); } ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,10,10,0.9); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: border-color 0.3s; }
+    #navbar.scrolled { border-color: rgba(232,33,26,0.3); }
+    .nav-link { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; transition: color 0.2s; position: relative; padding-bottom: 2px; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 1.5px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.25s; }
+    .nav-link:hover { color: #fff; } .nav-link:hover::after { transform: scaleX(1); }
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--red); color: #fff; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 32px; border-radius: 2px; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 24px rgba(232,33,26,0.3); }
+    .btn-primary:hover { background: #ff2d25; transform: translateY(-2px); }
+    .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); display: flex; align-items: center; gap: 12px; }
+    .section-label::before { content: ''; display: block; width: 32px; height: 1px; background: var(--red); }
+    .footer-link { font-size: 0.82rem; color: #666; transition: color 0.2s; } .footer-link:hover { color: var(--red); }
+    #mobile-menu { display: none; background: rgba(10,10,10,0.98); border-top: 1px solid var(--border); } #mobile-menu.open { display: block; }
+
+    .legal-body h2 { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 700; color: #fff; margin: 2.5rem 0 0.75rem; }
+    .legal-body h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: #ddd; margin: 1.75rem 0 0.5rem; }
+    .legal-body p { color: #aaa; font-size: 0.9rem; line-height: 1.8; margin-bottom: 1rem; }
+    .legal-body ul { color: #aaa; font-size: 0.9rem; line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; list-style-type: disc; }
+    .legal-body ul li { margin-bottom: 0.4rem; }
+    .legal-body ol { color: #aaa; font-size: 0.9rem; line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; list-style-type: decimal; }
+    .legal-body ol li { margin-bottom: 0.4rem; }
+    .legal-body a { color: var(--red); text-decoration: underline; } .legal-body a:hover { color: #ff5f5a; }
+    .legal-body .highlight-box { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 20px 24px; margin: 1.5rem 0; }
+    .legal-body .highlight-box p { margin-bottom: 0; }
+    .section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 1.5rem 0; }
+  
+    /* ── SERVICES DROPDOWN ── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-trigger {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #aaa; transition: color 0.2s;
+      position: relative; padding-bottom: 2px;
+      display: flex; align-items: center; gap: 5px;
+      cursor: pointer; background: none; border: none; font-family: inherit;
+    }
+    .nav-dropdown-trigger::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 1.5px; background: var(--red);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.25s;
+    }
+    .nav-dropdown-trigger:hover { color: #fff; }
+    .nav-dropdown-trigger:hover::after,
+    .nav-dropdown.open .nav-dropdown-trigger::after { transform: scaleX(1); }
+    .nav-dropdown.open .nav-dropdown-trigger { color: #fff; }
+    .nav-dropdown-trigger .chevron { font-size: 0.6rem; transition: transform 0.2s; margin-top: 1px; }
+    .nav-dropdown.open .chevron { transform: rotate(180deg); }
+    .nav-dropdown-menu {
+      position: absolute; top: calc(100% + 14px); left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      background: rgba(18,18,18,0.98);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border); border-radius: 4px;
+      min-width: 200px; padding: 6px;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+      z-index: 2000; box-shadow: 0 16px 48px rgba(0,0,0,0.6);
+    }
+    .nav-dropdown-menu::before {
+      content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px;
+    }
+    .nav-dropdown.open .nav-dropdown-menu {
+      opacity: 1; visibility: visible; pointer-events: all;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown-menu a {
+      display: flex; align-items: center; gap: 10px; padding: 9px 12px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em;
+      text-transform: uppercase; color: #999; border-radius: 3px;
+      transition: background 0.15s, color 0.15s; white-space: nowrap;
+    }
+    .nav-dropdown-menu a:hover { background: rgba(232,33,26,0.1); color: #fff; }
+    .nav-dropdown-menu a i { color: var(--red); font-size: 0.78rem; width: 16px; text-align: center; }
+
+  
+    
+  
+    /* ══════════════════════════════════════════════════════
+       LIGHT THEME — applied when body has class "light"
+       Smooth transition on all colour changes
+    ══════════════════════════════════════════════════════ */
+    body {
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.light {
+      background-color: #F7F7F5 !important;
+      color: #1A1A1A !important;
+    }
+
+    /* Navbar */
+    body.light #navbar {
+      background: rgba(247,247,245,0.97) !important;
+      border-bottom-color: #DDDDD8 !important;
+    }
+    body.light #navbar.scrolled { border-color: rgba(232,33,26,0.2) !important; }
+
+    /* Nav text */
+    body.light .nav-link { color: #444 !important; }
+    body.light .nav-link:hover { color: #111 !important; }
+    body.light .nav-link.active { color: #111 !important; }
+    body.light .nav-dropdown-trigger { color: #444 !important; }
+    body.light .nav-dropdown-trigger:hover,
+    body.light .nav-dropdown.open .nav-dropdown-trigger { color: #111 !important; }
+
+    /* Services dropdown menu */
+    body.light .nav-dropdown-menu {
+      background: rgba(255,255,255,0.99) !important;
+      border-color: #DDDDD8 !important;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.1) !important;
+    }
+    body.light .nav-dropdown-menu a { color: #555 !important; }
+    body.light .nav-dropdown-menu a:hover {
+      background: rgba(232,33,26,0.07) !important;
+      color: #111 !important;
+    }
+
+    /* Mobile menu */
+    body.light #mobile-menu {
+      background: rgba(247,247,245,0.99) !important;
+      border-top-color: #DDDDD8 !important;
+    }
+    body.light .mobile-nav-link { color: #444 !important; }
+    body.light .mobile-nav-link:hover {
+      color: #111 !important;
+      background: rgba(0,0,0,0.04) !important;
+    }
+
+    /* Hamburger */
+    body.light #bar1, body.light #bar2, body.light #bar3 {
+      background-color: #222 !important;
+    }
+
+    /* Theme toggle icon colours */
+    body.light #icon-sun  { color: #555 !important; }
+    body.light #icon-moon { color: #555 !important; }
+
+    /* HERO */
+    body.light .hero-section { background: #F7F7F5 !important; }
+    body.light .hero-lines {
+      background-image:
+        linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px) !important;
+    }
+
+    /* Headings & general text */
+    body.light h1, body.light h2, body.light h3, body.light h4 { color: #111 !important; }
+    body.light .text-white { color: #111 !important; }
+    body.light .text-gray-400 { color: #555 !important; }
+    body.light .text-gray-500 { color: #666 !important; }
+    body.light .text-gray-600 { color: #777 !important; }
+    body.light .text-gray-300 { color: #444 !important; }
+
+    /* Badge */
+    body.light .badge {
+      background: rgba(232,33,26,0.06) !important;
+      border-color: rgba(232,33,26,0.25) !important;
+    }
+
+    /* Buttons */
+    body.light .btn-outline {
+      border-color: #CCCCCA !important;
+      color: #333 !important;
+      background: transparent !important;
+    }
+    body.light .btn-outline:hover {
+      border-color: var(--red) !important;
+      color: #111 !important;
+      background: rgba(232,33,26,0.05) !important;
+    }
+
+    /* Cards */
+    body.light .sector-card {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+    body.light .sector-card:hover {
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08) !important;
+      border-color: #CCCCCA !important;
+    }
+
+    /* Feature strip */
+    body.light .feature-strip {
+      background: #EFEFED !important;
+      border-color: #DDDDD8 !important;
+    }
+    body.light .feature-pill { color: #555 !important; }
+
+    /* Stat items */
+    body.light .stat-item { border-left-color: var(--red) !important; }
+
+    /* Service list */
+    body.light .service-item { color: #555 !important; border-bottom-color: rgba(0,0,0,0.05) !important; }
+
+    /* Section dividers */
+    body.light .section-divider {
+      background: linear-gradient(90deg, transparent, #CCCCCA, transparent) !important;
+    }
+
+    /* About / Why Nexusyl section */
+    body.light #about-section {
+      background: #EFEFED !important;
+      border-color: #DDDDD8 !important;
+    }
+
+    /* Synergy cards / Process */
+    body.light .synergy-card { background: #FFFFFF !important; border-color: #DDDDD8 !important; }
+    body.light .step-number { background: rgba(232,33,26,0.08) !important; }
+
+    /* Sections with inline dark backgrounds */
+    body.light section[style*="background: var(--dark)"],
+    body.light section[style*="background: var(--card)"] {
+      background: #EFEFED !important;
+    }
+    body.light div[style*="background: var(--card)"],
+    body.light div[style*="background: var(--dark)"] {
+      background: #F7F7F5 !important;
+    }
+
+    /* Contact form */
+    body.light .form-input {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+      color: #111 !important;
+    }
+    body.light .form-input::placeholder { color: #AAAAAA !important; }
+    body.light .form-input:focus {
+      border-color: var(--red) !important;
+      box-shadow: 0 0 0 3px rgba(232,33,26,0.08) !important;
+    }
+    body.light .form-label { color: #777 !important; }
+    body.light select.form-input option { background: #fff; color: #111; }
+
+    /* Footer */
+    body.light footer {
+      background: #EFEFED !important;
+      border-top-color: #DDDDD8 !important;
+    }
+    body.light footer p,
+    body.light footer span,
+    body.light footer div { color: inherit; }
+    body.light .footer-link { color: #777 !important; }
+    body.light .footer-link:hover { color: var(--red) !important; }
+    body.light footer .text-gray-500 { color: #666 !important; }
+    body.light footer .text-gray-600 { color: #888 !important; }
+    body.light footer div[style*="border-top"] { border-top-color: #DDDDD8 !important; }
+    body.light footer .text-xs.text-gray-600 { color: #888 !important; }
+
+    /* Legal pages */
+    body.light .legal-body h2 { color: #111 !important; }
+    body.light .legal-body h3 { color: #333 !important; }
+    body.light .legal-body p,
+    body.light .legal-body ul,
+    body.light .legal-body ol { color: #444 !important; }
+    body.light .legal-body .highlight-box {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+
+    /* Scrollbar in light mode */
+    body.light ::-webkit-scrollbar-track { background: #EFEFED; }
+
+    /* Hero static section */
+    body.light section[style*="background: var(--dark)"] h2,
+    body.light section[style*="background: var(--card)"] h2 { color: #111 !important; }
+
+
+    /* ── Fix inline rgba dark backgrounds in light mode ────────────────── */
+
+    /* Hero ecology card (rgba(22,22,22,0.8)) */
+    body.light .hero-section .border,
+    body.light .hero-section [style*="rgba(22,22,22"],
+    body.light .hero-section [style*="rgba(16,16,16"],
+    body.light .hero-section [style*="rgba(18,18,18"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+
+    /* Floating stat/badge panels in hero on service pages */
+    body.light [style*="rgba(22,22,22"],
+    body.light [style*="rgba(16,16,16"],
+    body.light [style*="rgba(18,18,18"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+
+    /* All elements with var(--card) or var(--dark) inline backgrounds */
+    body.light [style*="background: var(--card)"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+    body.light [style*="background: var(--dark)"] {
+      background: #EFEFED !important;
+    }
+    body.light [style*="background: var(--black)"] {
+      background: #F7F7F5 !important;
+    }
+
+    /* Text INSIDE those forced-white boxes */
+    body.light [style*="rgba(22,22,22"] *,
+    body.light [style*="background: var(--card)"] *,
+    body.light [style*="background: var(--dark)"] *,
+    body.light [style*="background: var(--black)"] * {
+      color: inherit;
+    }
+    body.light [style*="rgba(22,22,22"] .text-white,
+    body.light [style*="background: var(--card)"] .text-white,
+    body.light [style*="background: var(--dark)"] .text-white {
+      color: #111 !important;
+    }
+    body.light [style*="rgba(22,22,22"] .text-gray-400,
+    body.light [style*="background: var(--card)"] .text-gray-400,
+    body.light [style*="background: var(--dark)"] .text-gray-400 { color: #555 !important; }
+    body.light [style*="rgba(22,22,22"] .text-gray-500,
+    body.light [style*="background: var(--card)"] .text-gray-500,
+    body.light [style*="background: var(--dark)"] .text-gray-500 { color: #666 !important; }
+    body.light [style*="rgba(22,22,22"] .text-gray-600,
+    body.light [style*="background: var(--card)"] .text-gray-600,
+    body.light [style*="background: var(--dark)"] .text-gray-600 { color: #777 !important; }
+    body.light [style*="rgba(22,22,22"] .text-gray-300,
+    body.light [style*="background: var(--card)"] .text-gray-300 { color: #333 !important; }
+
+    /* Section label inside dark boxes */
+    body.light [style*="rgba(22,22,22"] .section-label,
+    body.light [style*="background: var(--card)"] .section-label { color: var(--red) !important; }
+
+    /* Icon background circles inside dark boxes */
+    body.light [style*="rgba(232,33,26,0.12)"] { background: rgba(232,33,26,0.1) !important; }
+
+    /* Inline border-color: var(--border) → light border */
+    body.light [style*="border-color: var(--border)"] { border-color: #DDDDD8 !important; }
+    body.light [style*="border: 1px solid var(--border)"] { border-color: #DDDDD8 !important; }
+
+    /* Floating stat panels in sector pages */
+    body.light .absolute.z-20[style*="background: var(--card)"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+    body.light .absolute.z-20[style*="background: var(--card)"] .text-white { color: #111 !important; }
+    body.light .absolute.z-20[style*="background: var(--card)"] .text-gray-500 { color: #777 !important; }
+
+    /* Services list box on sector pages */
+    body.light .border.rounded-sm[style*="border-color: var(--border)"],
+    body.light .border.rounded-sm[style*="background: var(--card)"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+
+    /* Contact form card */
+    body.light #contact .border.rounded-sm {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+
+    /* Success message */
+    body.light #form-success {
+      background: rgba(232,33,26,0.06) !important;
+      border-color: rgba(232,33,26,0.2) !important;
+    }
+
+    /* All floating badges / number panels */
+    body.light [class*="absolute"][class*="-bottom-5"] {
+      background: #FFFFFF !important;
+      border-color: #DDDDD8 !important;
+    }
+    body.light [class*="absolute"][class*="-bottom-5"] .text-white { color: #111 !important; }
+
+    /* Hero section label text */
+    body.light .hero-section .section-label { color: var(--red) !important; }
+    body.light .hero-section p { color: #444 !important; }
+
+    /* Global: any remaining dark inline text in light mode */
+    body.light span.text-white { color: #111 !important; }
+    body.light p.text-gray-400 { color: #555 !important; }
+    body.light p.text-gray-500 { color: #666 !important; }
+
+    /* Ticker line stays visible */
+    body.light .ticker-line { opacity: 0.4; }
+
+    /* Hero noise/lines — invisible in light */
+    body.light .hero-noise { opacity: 0.15; }
+
+    /* Select dropdown options */
+    body.light select option { background: #fff !important; color: #111 !important; }
+
+    
+
+    /* ── Logo image theme swap ─────────────────────────────────────────────── */
+    .logo-wrap        { display: none; }
+    @media (min-width: 640px) { .logo-wrap { display: inline-flex; align-items: center; } }
+    .logo-dark        { display: block; }
+    .logo-light       { display: none; }
+    body.light .logo-dark  { display: none; }
+    body.light .logo-light { display: block; }
+    .logo-wrap-always { display: inline-flex; align-items: center; }
+    .logo-wrap-always .logo-dark  { display: block; }
+    .logo-wrap-always .logo-light { display: none; }
+    body.light .logo-wrap-always .logo-dark  { display: none; }
+    body.light .logo-wrap-always .logo-light { display: block; }
+  </style>
+</head>
+<body>
+
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-3 flex-shrink-0">
+        <img src="/Nexusyl_Fab.png" alt="Nexusyl icon" class="h-8 w-8 object-contain" onerror="this.style.display='none'" />
+        <span class="logo-wrap"><img src="/Nexusyl_White_Logo.png" alt="Nexusyl Limited" class="logo-dark h-7 object-contain" /><img src="/Nexusyl_Black_Logo.png" alt="Nexusyl Limited" class="logo-light h-7 object-contain" /></span>
+        <span class="text-white font-display font-bold text-lg sm:hidden">nexusyl!</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="/"         class="nav-link">Home</a>
+
+        <!-- Services dropdown -->
+        <div class="nav-dropdown" id="services-dropdown">
+          <button class="nav-dropdown-trigger" id="services-trigger" aria-haspopup="true" aria-expanded="false">
+            Services <i class="fa-solid fa-chevron-down chevron"></i>
+          </button>
+          <div class="nav-dropdown-menu" id="services-menu" role="menu">
+            <a href="/recruitment" role="menuitem"><i class="fa-solid fa-briefcase"></i>Recruitment</a>
+            <a href="/food-tech"    role="menuitem"><i class="fa-solid fa-utensils"></i>Food Tech</a>
+            <a href="/education"   role="menuitem"><i class="fa-solid fa-graduation-cap"></i>Education</a>
+            <a href="/property"    role="menuitem"><i class="fa-solid fa-building"></i>Property</a>
+          </div>
+        </div>
+
+        <a href="/#about-section" class="nav-link">About</a>
+        <a href="/#contact"       class="nav-link">Contact</a>
+<a href="/login" class="btn-outline text-xs py-2.5 px-4" style="display:inline-flex;align-items:center;gap:7px;font-family:'Syne',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--border);color:#aaa;border-radius:2px;transition:all .2s;text-decoration:none;" onmouseover="this.style.borderColor='var(--red)';this.style.color='#fff'" onmouseout="this.style.borderColor='var(--border)';this.style.color='#aaa'">
+          <i class="fa-solid fa-right-to-bracket" style="font-size:.75rem;"></i> Login
+        </a>
+        <a href="/#contact"       class="btn-primary text-xs py-2.5 px-5">Get in Touch</a>
+        <button id="theme-toggle" aria-label="Toggle light/dark theme"
+          style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:2px;border:1px solid var(--border);background:transparent;cursor:pointer;transition:border-color 0.2s,background 0.2s;flex-shrink:0;"
+          onmouseenter="this.style.borderColor='var(--red)'"
+          onmouseleave="this.style.borderColor='var(--border)'">
+          <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color:#aaa;display:block;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color:#555;display:none;"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+      </div>
+
+      <button id="menu-toggle" aria-label="Open menu" class="md:hidden flex flex-col gap-1.5 p-2">
+        <span class="w-6 h-0.5 bg-white" id="bar1"></span>
+        <span class="w-6 h-0.5 bg-white" id="bar2"></span>
+        <span class="w-4 h-0.5 bg-white" id="bar3"></span>
+      </button>
+    </div>
+  </div>
+      <div id="mobile-menu" role="menu">
+    <div class="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-1">
+      <a href="/" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-house mr-3 text-red-500"></i>Home
+      </a>
+      <a href="/recruitment" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-briefcase mr-3 text-red-500"></i>Recruitment
+      </a>
+      <a href="/food-tech" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-utensils mr-3 text-red-500"></i>Food Tech
+      </a>
+      <a href="/education" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-graduation-cap mr-3 text-red-500"></i>Education
+      </a>
+      <a href="/property" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-building mr-3 text-red-500"></i>Property
+      </a>
+      <a href="/#about-section" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-info-circle mr-3 text-red-500"></i>About
+      </a>
+      <a href="/#contact" class="mobile-nav-link py-3 px-4 text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors" role="menuitem">
+        <i class="fa-solid fa-envelope mr-3 text-red-500"></i>Contact
+      </a>
+      <div class="pt-2 pb-1">
+        <a href="/#contact" class="btn-primary w-full justify-center text-sm">Get in Touch <i class="fa-solid fa-arrow-right text-xs"></i></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- HERO BANNER -->
+<section class="pt-28 pb-14" style="background: var(--dark); border-bottom: 1px solid var(--border);">
+  <div class="max-w-4xl mx-auto px-5 lg:px-8">
+    <div class="section-label mb-4">Legal</div>
+    <h1 class="font-display text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">Terms of Service</h1>
+    <p class="text-gray-500 text-sm">Last updated: 1 May 2026 &nbsp;·&nbsp; Effective: 1 May 2026</p>
+  </div>
+</section>
+
+
+<!-- CONTENT -->
+<main class="py-16">
+  <div class="max-w-4xl mx-auto px-5 lg:px-8">
+    <div class="legal-body">
+
+      <div class="highlight-box">
+        <p>Please read these Terms of Service carefully before using the Nexusyl Limited website or engaging with any of our services. By accessing our website or using our services, you agree to be bound by these Terms. If you do not agree, please do not use our website or services.</p>
+      </div>
+
+      <h2>1. About Us</h2>
+      <p><strong>Nexusyl Limited</strong> ("Nexusyl", "we", "us", "our") is a company registered in England and Wales, with its registered office in London, United Kingdom. Our website is operated at <a href="https://www.nexusyl.co.uk">www.nexusyl.co.uk</a>.</p>
+      <p>Our technology and data processing infrastructure is provided by <strong>Juvenile Asia Limited</strong> (Company No. 16966853), our parent company and technology partner, operating under  and .</p>
+      <p>For enquiries: <a href="mailto:support@nexusyl.com">support@nexusyl.com</a></p>
+
+      <div class="section-divider"></div>
+
+      <h2>2. Scope of Services</h2>
+      <p>Nexusyl provides services across four business sectors. These Terms apply to all of them:</p>
+      <ul>
+        <li><strong>Nexusyl Recruitment</strong> — candidate placement, employer talent acquisition, skills shortage matching, and workforce advisory services.</li>
+        <li><strong>Nexusyl Food Tech</strong> — graduate entrepreneurship programme, location intelligence, low-capex operational frameworks for food businesses.</li>
+        <li><strong>Nexusyl Education</strong> — international student admissions consultancy, UK university application management, visa support, and lifecycle management.</li>
+        <li><strong>Nexusyl Property</strong> — residential lettings, property management, tech-verified tenant referencing, and managed community accommodation.</li>
+      </ul>
+      <p>Specific service engagements may be subject to additional agreements, engagement letters, or service contracts which take precedence over these general Terms in the event of conflict.</p>
+
+      <div class="section-divider"></div>
+
+      <h2>3. Website Use</h2>
+
+      <h3>3.1 Permitted Use</h3>
+      <p>You may use our website for lawful personal or business purposes. You agree not to:</p>
+      <ul>
+        <li>Reproduce, copy, or distribute any content from the website without our prior written consent.</li>
+        <li>Use the website in any way that is unlawful, harmful, or fraudulent.</li>
+        <li>Transmit any unsolicited or unauthorised advertising or promotional material.</li>
+        <li>Attempt to gain unauthorised access to any part of the website, its servers, or connected systems.</li>
+        <li>Use automated tools, bots, scrapers, or crawlers to extract data from the website without our prior written consent.</li>
+        <li>Upload or transmit any viruses, malicious code, or other disruptive material.</li>
+      </ul>
+
+      <h3>3.2 Website Availability</h3>
+      <p>We aim to keep the website available at all times, but we do not guarantee uninterrupted access. We reserve the right to suspend or withdraw the website (or any part of it) at any time and without notice for operational, maintenance, or security reasons.</p>
+
+      <div class="section-divider"></div>
+
+      <h2>4. Intellectual Property</h2>
+      <p>All content on this website — including but not limited to text, images, logos, graphics, layout, design, software, and data architecture — is owned by or licensed to Nexusyl Limited or Juvenile Asia Limited and is protected by UK and international intellectual property laws.</p>
+      <p>The <strong>Nexusyl</strong> name and logo, the <strong>Nexusyl Ecology Method</strong> framework, and all associated branding are the exclusive intellectual property of Nexusyl Limited.</p>
+      <p>The data architecture, matching algorithms, location intelligence systems, and identity verification platform are the intellectual property of <strong>Juvenile Asia Limited</strong> and are licensed to Nexusyl Limited for use in the delivery of its services.</p>
+      <p>You may not use any of our intellectual property without our prior written consent. Nothing in these Terms grants you any rights in our intellectual property other than the right to use the website for permitted purposes.</p>
+
+      <div class="section-divider"></div>
+
+      <h2>5. Recruitment Services — Specific Terms</h2>
+
+      <h3>5.1 Candidates</h3>
+      <p>By registering as a candidate, you confirm that all information you provide is accurate, complete, and up to date. You authorise Nexusyl to submit your profile and CV to prospective employers on your behalf, in accordance with our Privacy Policy.</p>
+      <p>We do not guarantee employment or placement outcomes. Our role is to match and introduce candidates to employers; the decision to offer employment rests entirely with the employer.</p>
+
+      <h3>5.2 Employers</h3>
+      <p>By engaging Nexusyl Recruitment as an employer, you confirm that all vacancy information you provide is accurate and that you are authorised to recruit for the stated roles. You agree to comply with all applicable employment and immigration laws, including the Equality Act 2010, the Asylum and Immigration Act 1996, and the Immigration, Asylum and Nationality Act 2006.</p>
+      <p>Our fees are as agreed in your individual engagement letter or terms of business. Our standard "no placement, no fee" policy applies unless alternative terms are agreed in writing.</p>
+
+      <h3>5.3 Data Sharing with Juvenile Asia Platform</h3>
+      <p>Candidate profiles entered into the Nexusyl Recruitment system may be enriched with data from the Juvenile Asia algorithmic platform (where the candidate is also engaged with another Nexusyl service). This is carried out in accordance with our Privacy Policy and candidates will be informed and given the opportunity to object.</p>
+
+      <div class="section-divider"></div>
+
+      <h2>6. Education Services — Specific Terms</h2>
+      <p>Nexusyl Education acts as an admissions agent on your behalf. We are not a university, examination board, or awarding body. We do not control university admissions decisions, which are made solely by the relevant institution.</p>
+      <p>You must provide complete and truthful information for all applications. Providing false or misleading information — including in personal statements, academic transcripts, or supporting documents — may result in application cancellation, refusal, or legal liability under the Fraud Act 2006.</p>
+      <p>Our visa support services are provided for guidance purposes only. We are not immigration solicitors and our visa guidance does not constitute legal advice. For complex visa matters, you should seek advice from a regulated immigration adviser or solicitor.</p>
+
+      <div class="section-divider"></div>
+
+      <h2>7. Property Services — Specific Terms</h2>
+      <p>Nexusyl Property provides letting agency and property management services regulated in accordance with UK legislation, including the Landlord and Tenant Act 1985, the Housing Act 1988, the Deregulation Act 2015, and the Tenant Fees Act 2019.</p>
+      <p>All deposits are protected in a government-approved tenancy deposit protection scheme.</p>
+      <p>Tech-verified identity referencing replaces the requirement for a traditional UK-based guarantor within the Nexusyl Property platform. This process is carried out by Juvenile Asia Limited acting as a data processor. Landlords and tenants consent to this process by engaging with Nexusyl Property's referencing service.</p>
+      <p>Landlords instruct Nexusyl Property under a separate Landlord Terms of Business document, which governs management fees, maintenance authorisation thresholds, and reporting obligations.</p>
+
+      <div class="section-divider"></div>
+
+      <h2>8. Food Tech Programme — Specific Terms</h2>
+      <p>The Nexusyl Food Tech programme is an entrepreneurship support programme. Participation does not guarantee business success, profitability, or any specific trading outcome. All business and financial risks remain with the participant.</p>
+      <p>Location intelligence reports provided via the Juvenile Asia platform are provided for informational purposes only and do not constitute financial, investment, or business advice.</p>
+      <p>Participants are responsible for obtaining all licences, permits, and insurance required to operate a food business in the UK, including but not limited to food hygiene registration, public liability insurance, and street trading permits. Nexusyl may assist in navigating these requirements but is not liable for any failure to obtain them.</p>
+
+      <div class="section-divider"></div>
+
+      <h2>9. Disclaimer of Warranties</h2>
+      <p>To the fullest extent permitted by applicable law, this website and our services are provided on an "as is" and "as available" basis without warranties of any kind, express or implied. Nexusyl Limited does not warrant that:</p>
+      <ul>
+        <li>The website will be uninterrupted, error-free, or free from viruses.</li>
+        <li>Any information on the website is accurate, complete, or current.</li>
+        <li>Use of the website will achieve any particular outcome.</li>
+      </ul>
+
+      <div class="section-divider"></div>
+
+      <h2>10. Limitation of Liability</h2>
+      <p>To the fullest extent permitted by law, Nexusyl Limited shall not be liable for:</p>
+      <ul>
+        <li>Any indirect, incidental, special, consequential, or punitive damages arising from your use of (or inability to use) our website or services.</li>
+        <li>Loss of revenue, profits, business, data, or goodwill.</li>
+        <li>Any decision made by a third party (including universities, employers, landlords, or regulatory bodies) based on information provided or processed by Nexusyl.</li>
+      </ul>
+      <p>Nothing in these Terms excludes or limits our liability for: (a) death or personal injury caused by our negligence; (b) fraud or fraudulent misrepresentation; or (c) any liability that cannot be excluded by English law.</p>
+      <p>Where we provide services under a separate engagement letter or service contract, liability may be further defined therein.</p>
+
+      <div class="section-divider"></div>
+
+      <h2>11. Indemnity</h2>
+      <p>You agree to indemnify and hold harmless Nexusyl Limited, Juvenile Asia Limited, and their respective officers, employees, and agents from and against any claims, liabilities, damages, losses, and expenses (including legal fees) arising from:</p>
+      <ul>
+        <li>Your breach of these Terms.</li>
+        <li>Your breach of any applicable law or third-party rights.</li>
+        <li>Any false, inaccurate, or misleading information you have provided to us.</li>
+      </ul>
+
+      <div class="section-divider"></div>
+
+      <h2>12. Third-Party Links</h2>
+      <p>Our website may contain links to third-party websites (including university portals, UCAS, UKVI, HMRC, and employer platforms). These links are provided for convenience only. We are not responsible for the content, accuracy, or practices of any third-party website. Visiting a linked website is at your own risk.</p>
+
+      <div class="section-divider"></div>
+
+      <h2>13. Governing Law and Jurisdiction</h2>
+      <p>These Terms are governed by and construed in accordance with the laws of <strong>England and Wales</strong>. Any dispute arising from these Terms or your use of our website or services shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+
+      <div class="section-divider"></div>
+
+      <h2>14. Changes to These Terms</h2>
+      <p>We reserve the right to modify these Terms at any time. When we do so, we will update the "Last updated" date at the top of this page. Material changes will be notified by prominent notice on the website or, where appropriate, by email. Your continued use of our website after any changes constitutes your acceptance of the revised Terms.</p>
+
+      <div class="section-divider"></div>
+
+      <h2>15. Severability</h2>
+      <p>If any provision of these Terms is found to be unlawful, void, or unenforceable, that provision shall be deemed severable and shall not affect the validity and enforceability of the remaining provisions.</p>
+
+      <div class="section-divider"></div>
+
+      <h2>16. Entire Agreement</h2>
+      <p>These Terms, together with our Privacy Policy and any service-specific engagement letters, constitute the entire agreement between you and Nexusyl Limited with respect to your use of our website and services, superseding all prior agreements and understandings.</p>
+
+      <div class="section-divider"></div>
+
+      <h2>17. Contact Us</h2>
+      <div class="highlight-box">
+        <p><strong>Nexusyl Limited</strong><br />
+        London, United Kingdom<br />
+        <strong>Email:</strong> <a href="mailto:support@nexusyl.com">support@nexusyl.com</a><br />
+        <strong>Phone / WhatsApp:</strong> <a href="tel:+447892821808">+44 7892 821808</a><br />
+        <strong>Technology Partner:</strong> Juvenile Asia Limited (Co. No. 16966853)</p>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+
+<!-- FOOTER -->
+<footer style="background: var(--dark); border-top: 1px solid var(--border);" role="contentinfo">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-14">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
+            <div class="lg:col-span-2">
+        <div class="flex items-center gap-3 mb-5">
+          <img src="/Nexusyl_Fab.png" alt="Nexusyl icon" class="h-8 w-8 object-contain" onerror="this.style.display='none'" />
+          <span class="logo-wrap-always"><img src="/Nexusyl_White_Logo.png" alt="Nexusyl Limited" class="logo-dark h-6 object-contain" /><img src="/Nexusyl_Black_Logo.png" alt="Nexusyl Limited" class="logo-light h-6 object-contain" /></span>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed mb-3 max-w-xs">
+          A London-based multi-sector company delivering excellence across recruitment, food tech, education, and property.
+        </p>
+        <p class="text-gray-600 text-xs leading-relaxed mb-4 max-w-xs">
+          Nexusyl Limited is a wholly owned subsidiary of Juvenile Asia Limited (Company No. 16966853). Registered in England &amp; Wales.
+        </p>
+        <div class="text-xs text-gray-600 font-semibold uppercase tracking-widest"></div>
+      </div>
+
+      <div>
+        <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Our Sectors</h3>
+        <div class="flex flex-col gap-2.5">
+          <a href="/recruitment" class="footer-link">Recruitment</a>
+          <a href="/food-tech"   class="footer-link">Food Tech</a>
+          <a href="/education"   class="footer-link">Education</a>
+          <a href="/property"    class="footer-link">Property</a>
+        </div>
+      </div>
+      </div>
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Company</h3>
+        <div class="flex flex-col gap-2.5">
+          <a href="/"         class="footer-link">Home</a>
+          <a href="/#contact"  class="footer-link">Contact</a>
+          <a href="/privacy"       class="footer-link">Privacy Policy</a>
+          <a href="/terms"         class="footer-link">Terms of Service</a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Contact</h3>
+                <div class="flex flex-col gap-3">
+          <a href="mailto:support@nexusyl.com" class="footer-link flex items-center gap-2"><i class="fa-solid fa-envelope text-red-600 text-xs"></i> support@nexusyl.com</a>
+          <a href="tel:+447892821808" class="footer-link flex items-center gap-2"><i class="fa-solid fa-phone text-red-600 text-xs"></i> +44 7892 821808</a>
+          <a href="https://wa.me/447892821808" target="_blank" rel="noopener noreferrer" class="footer-link flex items-center gap-2"><i class="fa-brands fa-whatsapp text-red-600 text-xs"></i> WhatsApp +44 7892 821808</a>
+          <span class="footer-link flex items-center gap-2"><i class="fa-solid fa-location-dot text-red-600 text-xs"></i> London, UK</span>
+        </div>
+      </div>
+    </div>
+  </div>
+      <div style="border-top: 1px solid var(--border);">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-5 flex flex-col items-center gap-3">
+      <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-600">
+        <span>© 2026 Nexusyl Limited. All rights reserved.</span>
+        <span style="color:var(--border);">|</span>
+        <span class="flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="16" height="16" style="display:inline-block;vertical-align:-2px;flex-shrink:0;"><circle cx="32" cy="32" r="32" fill="white"/><path d="M32 32 Q46 10 54 20 Q58 28 44 36 Z" fill="#e85c2b"/><path d="M32 32 Q56 36 52 50 Q46 58 34 46 Z" fill="#28a8b5"/><path d="M32 32 Q36 58 22 58 Q12 56 18 42 Z" fill="#1a6eb5"/><path d="M32 32 Q8 48 8 34 Q8 22 24 24 Z" fill="#2b7fcc"/><path d="M32 32 Q12 16 22 10 Q32 6 38 20 Z" fill="#35b8c8"/></svg>
+          Powered by <a href="https://juvenileasia.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors ml-1">Juvenile Asia</a>
+        </span>
+      </div>
+      <div class="flex items-center gap-4 text-xs">
+        <a href="/privacy" class="text-gray-600 hover:text-gray-400 transition-colors">Privacy</a>
+        <a href="/terms"   class="text-gray-600 hover:text-gray-400 transition-colors">Terms</a>
+        <a href="#"        class="text-gray-600 hover:text-gray-400 transition-colors">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a id="wa-float" href="https://wa.me/447892821808?text=Hello%20Nexusyl%2C%20I%20would%20like%20to%20enquire%20about%20your%20services." target="_blank" rel="noopener noreferrer" aria-label="Chat with Nexusyl on WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<style>
+  #wa-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 950;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    box-shadow: 0 4px 18px rgba(37,211,102,0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+  }
+  #wa-float:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(37,211,102,0.65); color: #fff !important; }
+  #back-to-top { bottom: 96px !important; }
+</style>
+
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
+  const toggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const bar1 = document.getElementById('bar1'); const bar2 = document.getElementById('bar2'); const bar3 = document.getElementById('bar3');
+  let menuOpen = false;
+  toggle.addEventListener('click', () => { menuOpen = !menuOpen; mobileMenu.classList.toggle('open', menuOpen); bar1.style.transform = menuOpen ? 'translateY(8px) rotate(45deg)' : ''; bar2.style.opacity = menuOpen ? '0' : '1'; bar3.style.transform = menuOpen ? 'translateY(-8px) rotate(-45deg)' : ''; bar3.style.width = menuOpen ? '24px' : '16px'; });
+  document.querySelectorAll('.mobile-nav-link').forEach(link => { link.addEventListener('click', () => { menuOpen = false; mobileMenu.classList.remove('open'); bar1.style.transform = bar3.style.transform = ''; bar2.style.opacity = '1'; bar3.style.width = '16px'; }); });
+
+  // ── Services dropdown
+  (function () {
+    var dropdown = document.getElementById('services-dropdown');
+    var trigger  = document.getElementById('services-trigger');
+    var menu     = document.getElementById('services-menu');
+    if (!dropdown || !trigger || !menu) return;
+    var closeTimer;
+    function openMenu() { clearTimeout(closeTimer); dropdown.classList.add('open'); trigger.setAttribute('aria-expanded','true'); }
+    function closeMenu() { closeTimer = setTimeout(function(){ dropdown.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); }, 150); }
+    trigger.addEventListener('mouseenter', openMenu);
+    trigger.addEventListener('mouseleave', closeMenu);
+    menu.addEventListener('mouseenter', function(){ clearTimeout(closeTimer); });
+    menu.addEventListener('mouseleave', closeMenu);
+    trigger.addEventListener('click', function(e){ e.stopPropagation(); dropdown.classList.toggle('open'); trigger.setAttribute('aria-expanded', dropdown.classList.contains('open').toString()); });
+    document.addEventListener('click', function(e){ if(!dropdown.contains(e.target)){ dropdown.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); } });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ dropdown.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); trigger.focus(); } });
+  })();
+
+
+  // ── Light / Dark theme toggle ──────────────────────────────────────────────
+  (function () {
+    var body   = document.body;
+    var btn    = document.getElementById('theme-toggle');
+    var sunEl  = document.getElementById('icon-sun');
+    var moonEl = document.getElementById('icon-moon');
+
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        body.classList.add('light');
+        if (sunEl)  { sunEl.style.display  = 'none'; }
+        if (moonEl) { moonEl.style.display = 'block'; }
+      } else {
+        body.classList.remove('light');
+        if (sunEl)  { sunEl.style.display  = 'block'; }
+        if (moonEl) { moonEl.style.display = 'none'; }
+      }
+      localStorage.setItem('nx-theme', theme);
+    }
+
+    // Restore saved preference
+    var saved = localStorage.getItem('nx-theme') || 'dark';
+    applyTheme(saved);
+
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var isLight = body.classList.contains('light');
+        applyTheme(isLight ? 'dark' : 'light');
+      });
+    }
+  })();
+
+</script>
+</body>
+</html>
