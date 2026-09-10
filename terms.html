@@ -565,7 +565,7 @@
       <h2>1. About Us</h2>
       <p><strong>Nexusyl Limited</strong> ("Nexusyl", "we", "us", "our") is a company registered in England and Wales, with its registered office in London, United Kingdom. Our website is operated at <a href="https://www.nexusyl.co.uk">www.nexusyl.co.uk</a>.</p>
       <p>Our technology and data processing infrastructure is provided by <strong>Juvenile Asia Limited</strong> (Company No. 16966853), our parent company and technology partner, operating under  and .</p>
-      <p>For enquiries: <a href="mailto:hello@nexusyl.co.uk">hello@nexusyl.co.uk</a></p>
+      <p>For enquiries: <a href="mailto:support@nexusyl.com">support@nexusyl.com</a></p>
 
       <div class="section-divider"></div>
 
@@ -705,7 +705,8 @@
       <div class="highlight-box">
         <p><strong>Nexusyl Limited</strong><br />
         London, United Kingdom<br />
-        <strong>Email:</strong> <a href="mailto:hello@nexusyl.co.uk">hello@nexusyl.co.uk</a><br />
+        <strong>Email:</strong> <a href="mailto:support@nexusyl.com">support@nexusyl.com</a><br />
+        <strong>Phone / WhatsApp:</strong> <a href="tel:+447892821808">+44 7892 821808</a><br />
         <strong>Technology Partner:</strong> Juvenile Asia Limited (Co. No. 16966853)</p>
       </div>
 
@@ -754,8 +755,10 @@
       </div>
       <div>
         <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Contact</h3>
-        <div class="flex flex-col gap-3">
-          <a href="mailto:hello@nexusyl.co.uk" class="footer-link flex items-center gap-2"><i class="fa-solid fa-envelope text-red-600 text-xs"></i> hello@nexusyl.co.uk</a>
+                <div class="flex flex-col gap-3">
+          <a href="mailto:support@nexusyl.com" class="footer-link flex items-center gap-2"><i class="fa-solid fa-envelope text-red-600 text-xs"></i> support@nexusyl.com</a>
+          <a href="tel:+447892821808" class="footer-link flex items-center gap-2"><i class="fa-solid fa-phone text-red-600 text-xs"></i> +44 7892 821808</a>
+          <a href="https://wa.me/447892821808" target="_blank" rel="noopener noreferrer" class="footer-link flex items-center gap-2"><i class="fa-brands fa-whatsapp text-red-600 text-xs"></i> WhatsApp +44 7892 821808</a>
           <span class="footer-link flex items-center gap-2"><i class="fa-solid fa-location-dot text-red-600 text-xs"></i> London, UK</span>
         </div>
       </div>
@@ -779,6 +782,34 @@
     </div>
   </div>
 </footer>
+
+<!-- Floating WhatsApp -->
+<a id="wa-float" href="https://wa.me/447892821808?text=Hello%20Nexusyl%2C%20I%20would%20like%20to%20enquire%20about%20your%20services." target="_blank" rel="noopener noreferrer" aria-label="Chat with Nexusyl on WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<style>
+  #wa-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 950;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    box-shadow: 0 4px 18px rgba(37,211,102,0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+  }
+  #wa-float:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(37,211,102,0.65); color: #fff !important; }
+  #back-to-top { bottom: 96px !important; }
+</style>
+
 
 <script>
   const navbar = document.getElementById('navbar');
